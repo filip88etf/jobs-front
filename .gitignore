@@ -1,0 +1,7 @@
+node_modules
+typings
+*.js.map
+app/**/*.js
+app/**/*.map
+*.js
+.git

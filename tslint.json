@@ -1,0 +1,47 @@
+{
+    "rulesDirectory": ["/"],
+    "rules": {
+        "class-name": true,
+        "comment-format": [true, "check-space"],
+        "indent": [true, "spaces"],
+        "no-duplicate-variable": true,
+        "no-debugger": true,
+        "no-unreachable": true,
+        "no-eval": true,
+        "no-internal-module": true,
+        "no-trailing-whitespace": true,
+        "no-var-keyword": true,
+        "one-line": [true, "check-open-brace", "check-whitespace"],
+        "quotemark": [true, "single"],
+        "semicolon": [true, "always"],
+        "triple-equals": [true, "allow-null-check"],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+        "max-line-length": [
+          true,
+          120
+        ],
+        "typedef-whitespace": [true, {
+            "call-signature": "nospace",
+            "index-signature": "nospace",
+            "parameter": "nospace",
+            "property-declaration": "nospace",
+            "variable-declaration": "nospace"
+        }],
+        "no-console": [
+          true,
+          "debug",
+          "info",
+          "time",
+          "timeEnd",
+          "trace"
+        ],
+        "variable-name": [true, "ban-keywords"],
+        "whitespace": [true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    }
+}
