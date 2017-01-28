@@ -10,7 +10,7 @@ gulp.task('build',['sass'],function(){
 gulp.task('sass', function () {
   return gulp.src('**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./style'));
+    .pipe(gulp.dest(''));
 });
 
 gulp.task('sass:watch', function () {

@@ -4,4 +4,6 @@ typings
 *.js.map
 app/**/*.js
 app/**/*.map
+app/**/*.css
 .git
+*.css
