@@ -11,19 +11,43 @@
    -moz-transform: translateX(-50%) translateY(-50%);
    -webkit-transform: translateX(-50%) translateY(-50%);
    transform: translateX(-50%) translateY(-50%);
-   background: url(polina.jpg) no-repeat;
    background-size: cover;
    filter: blur(4px);
+}
+
+.home-content {
+  margin-top: 150px;
 }
 
 .search-title {
   text-align: center;
 }
 
-.home-buttons {
+.form-container {
+    margin-top: 80px;
+}
+
+.mouse-pointer {
+  cursor: pointer;
+}
+
+.form-content {
+  margin-top: 80px;
   text-align: center;
+  background-color: rgba(255,255,255,1);
+  border-radius: 10px;
+}
+
+.active-tab {
+  border: 2px solid white;
+  border-radius: 10px;
 }
 
 .button-workers {
   margin-left: 20px;
+}
+
+.search-label {
+  font-size: 18px;
+  padding-top: 10px;
 }

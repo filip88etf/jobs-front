@@ -1,15 +1,14 @@
 <nav class="col-md-12">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <img src="assets/profesionalci-logo-white.png" height="50px" width="50px"/>
   </div>
-  <div class="container topBotomBordersOut col-md-8">
-    <a class="text-color">Home</a>
+  <div class="container pullDown col-md-6">
     <a class="text-color">Offer Service</a>
     <a class="text-color">Offer Job</a>
-    <a class="text-color">About</a>
   </div>
-  <div class="container topBotomBordersOut col-md-2">
+  <div class="container pullDown col-md-3">
     <a class="text-color right-menu-item"><span>Sign Up</span></a>
-    <a class="text-color right-menu-item"><span>Log In</span></a>
+    <a [routerLink]="['/login']" class="text-color right-menu-item"><span>Log In</span></a>
+    <a class="text-color right-menu-item">About</a>
   </div>
 </nav>

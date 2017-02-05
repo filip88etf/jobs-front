@@ -1,50 +1,71 @@
 
-<video autoplay muted loop poster="polina.jpg" class="video-background">
+<video autoplay muted loop class="video-background">
       <source src="assets/Welding.mp4" type="video/mp4">
 </video>
 <app-menu></app-menu>
 <div class="col-md-2">
 </div>
-<div class="col-md-8" style="margin-top: 200px;">
-  <div>
-    <h1 class="text-color search-title"><b>Search</b></h1>
-  </div>
-  <div class="home-buttons padding-20">
-    <div class="row">
-      <div class="col-md-6">
+<div class="col-md-8 home-content">
 
-        <select class="form-control">
-          <option>
-            Beograd
-          </option>
-          <option>
-            Novi Sad
-          </option>
-          <option>
-            Nis
-          </option>
-          <option>
-            Cacak
-          </option>
-        </select>
-        <select class="selectpicker" data-live-search="true">
-          <option>
-            Stolar
-          </option>
-          <option>
-            Moler
-          </option>
-          <option>
-            Elektricar
-          </option>
-        </select>
-        <button class="btn btn-default btn-lg">Jobs</button>
+  <h1 class="text-color search-title"><b>What are you searching for?</b></h1>
+
+  <div class="form-container">
+
+    <div class="row">
+      <div class="col-md-3">
       </div>
-      <div class="col-md-6">
-        <select></select>
-        <select></select>
-        <button class="btn btn-default btn-lg button-workers">Workers</button>
+      <div class="col-md-3 mouse-pointer">
+        <div class="search-title padding-10" [ngClass]="{'active-tab':isJobActive}" (click)='TabToggle()'>
+          <span><b class="text-color">JOBS</b></span>
+        </div>
       </div>
+
+      <div class="col-md-3 mouse-pointer">
+        <div class="search-title padding-10" [ngClass]="{'active-tab':!isJobActive}" (click)='TabToggle()'>
+          <span><b class="text-color">WORKERS</b></span>
+        </div>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+
+      <div class="col-md-10 form-content">
+        <div class="form-group-lg col-md-5 padding-20">
+          <div class="col-md-3 padding-10">
+            <span class="search-label">Where</span>
+          </div>
+          <div class="col-md-9">
+            <select class="form-control mouse-pointer">
+              <option *ngFor='let city of cities;'>
+                {{city}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group-lg col-md-5 padding-20">
+          <div class="col-md-3 padding-10">
+            <span class="search-label">Profession</span>
+          </div>
+          <div class="col-md-9">
+            <select class="form-control mouse-pointer">
+              <option *ngFor='let prof of professions'>
+                {{prof}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2 search-button padding-20">
+          <button class="btn btn-default btn-lg" (click)='TabToggle()'>Search</button>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+      </div>
+
     </div>
   </div>
 </div>
