@@ -1,0 +1,49 @@
+.nav-menu {
+  position: relative;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+div.container
+{
+  margin: 0 auto;
+	padding: 8px 0px;
+	text-align: center;
+}
+
+div.container a
+{
+    color: #FFF;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.right-menu-item {
+  margin-top: -8px !important;
+  margin-bottom: -10px !important;
+  float: right;
+}
+
+div.pullDown a:before
+{
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0px;
+    top: 0px;
+    content: '';
+    background: #FFF;
+    opacity: 0.3;
+    transition: all 0.3s;
+}
+
+div.pullDown a:hover:before
+{
+    height: 100%;
+}

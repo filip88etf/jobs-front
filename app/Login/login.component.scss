@@ -1,0 +1,46 @@
+.login-container {
+  height: calc( 100vh );
+  width: 100%;
+  background: url(assets/cleaning.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  left: 50%;
+}
+
+.login-content {
+  top: 30vh;
+  height: 330px;
+}
+
+.login-form {
+  position: absolute;
+  left: 38vw;
+  top: 30vh;
+  width: 24vw;
+  height: 310px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 10px;
+}
+
+.facebook-wrapper {
+  padding-top: 30px;
+}
+
+.facebook-button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #3B5998;
+  width: 100%;
+}
+
+.hr-divider {
+  margin-bottom: 0px;
+}
+
+.login-button {
+  width: 100%;
+}

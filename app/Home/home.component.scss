@@ -16,7 +16,10 @@
 }
 
 .home-content {
-  margin-top: 150px;
+  position: absolute;
+  top: 25vh;
+  left: 20vw;
+  width: 60vw;
 }
 
 .search-title {
@@ -25,10 +28,6 @@
 
 .form-container {
     margin-top: 80px;
-}
-
-.mouse-pointer {
-  cursor: pointer;
 }
 
 .form-content {
