@@ -1,7 +1,7 @@
-.login-container {
+.signup-container {
   height: calc( 100vh );
   width: 100%;
-  background: url(assets/cleaning.jpg) no-repeat center center fixed;
+  background: url(assets/signup3.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -9,37 +9,43 @@
   text-align: center;
 }
 
-.login-content {
-  top: 30vh;
-  height: 330px;
-}
-
-.login-form {
+.signup-form {
   position: absolute;
   left: 38vw;
   top: 30vh;
   width: 24vw;
-  height: 310px;
+  height: 240px;
   text-align: center;
   background-color: rgba(255,255,255,0.8);
   border-radius: 10px;
 }
 
-.facebook-wrapper {
+.facebook-wrapper-signup {
   padding-top: 30px;
 }
 
-.facebook-button {
+.facebook-button-signup {
   overflow: hidden;
   text-overflow: ellipsis;
   background-color: #3B5998;
   width: 100%;
 }
 
-.hr-divider {
+.google-button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.hrs-divider {
   margin-bottom: 0px;
 }
 
-.login-button {
-  width: 100%;
+.divider-text {
+  margin-bottom: 20px;
+}
+
+.email-wrapper {
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
