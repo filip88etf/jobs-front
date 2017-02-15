@@ -1,4 +1,6 @@
 <div class="login-container">
+  <div class="log-wrapper">
+
   <div class="login-form">
 
     <div class="row">
@@ -16,29 +18,60 @@
       </div>
     </div>
 
-    <div class="row padding-top-bottom-10">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6">
-        <input class="col-md-12 form-control" type="text" placeholder="Username"/>
-      </div>
-    </div>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
 
-    <div class="row padding-top-bottom-10">
-      <div class="col-md-3">
+      <div class="row padding-top-bottom-10">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" [ngClass]="{'has-error': !usernameControl.valid && usernameControl.touched}">
+          <input  class="col-md-12 form-control"
+                  type="text"
+                  name="username"
+                  [(ngModel)]="username"
+                  #usernameControl="ngModel"
+                  placeholder="Username"
+                  required
+                  minlength="6"/>
+          <span class="error-message" *ngIf="usernameControl.touched && usernameControl.errors?.required">
+            Username is required
+          </span>
+          <span class="error-message" *ngIf="usernameControl.touched && usernameControl.errors?.minlength">
+            Minlength for username is 6
+          </span>
+        </div>
       </div>
-      <div class="col-md-6">
-        <input class="col-md-12 form-control" type="password" placeholder="Password" />
-      </div>
-    </div>
 
-    <div class="row padding-top-bottom-10">
-      <div class="col-md-3">
+      <div class="row padding-top-bottom-10">
+        <div class="col-md-3">
+        </div>
+
+        <div class="col-md-6" [ngClass]="{'has-error': !passwordControl.valid && passwordControl.touched}">
+          <input  class="col-md-12 form-control"
+                type="password"
+                name="password"
+                [(ngModel)]="password"
+                #passwordControl="ngModel"
+                placeholder="Password"
+                required
+                minlength="6"/>
+          <span class="error-message" *ngIf="passwordControl.touched && passwordControl.errors?.required">
+            Password is required
+          </span>
+          <span class="error-message" *ngIf="passwordControl.touched && passwordControl.errors?.minlength">
+            Minlength for password is 6
+          </span>
+        </div>
       </div>
-      <div class="col-md-6">
-        <button class="btn btn-primary login-button">Log in</button>
+
+      <div class="row padding-top-bottom-10">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary login-button">Log in</button>
+        </div>
       </div>
-    </div>
+
+    </form>
 
     <div class="row padding-top-bottom-10">
       <div class="col-md-3">
@@ -48,5 +81,16 @@
       </div>
     </div>
 
+  </div>
+
+  <div class="create-form">
+    <div class="row padding-top-bottom-10">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <button [routerLink]="['/user/signup']" class="btn btn-primary login-button">Create Account</button>
+      </div>
+    </div>
+  </div>
   </div>
 </div>

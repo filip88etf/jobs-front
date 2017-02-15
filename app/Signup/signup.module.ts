@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SignupComponent } from './signup.component';
+import { ManualSignupComponent } from './Manual/manual-signup.component';
 
 const signupRoutes: Routes = [
   { path: '', component : SignupComponent },
@@ -9,7 +10,7 @@ const signupRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(signupRoutes)],
-  declarations: [SignupComponent]
+  declarations: [SignupComponent, ManualSignupComponent]
 })
 
 export class SignupModule {}
