@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['signup.component.css']
 })
 
-export class SignupComponent {}
+export class SignupComponent {
+  isManual: boolean = false;
+  signupManual(): void {
+    this.isManual = !this.isManual;
+  }
+}

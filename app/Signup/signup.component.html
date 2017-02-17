@@ -1,5 +1,5 @@
 <div class="signup-container">
-  <div class="signup-form">
+  <div *ngIf="!isManual" class="signup-form">
 
     <div class="row">
       <div class="col-md-3">
@@ -23,7 +23,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6">
-        <button class="btn btn-default google-button">
+        <button (click)="signupManual()" class="btn btn-default google-button">
           <span class="pull-left glyphicon glyphicon-envelope"></span>
           <span>Sign up with Email</span>
         </button>
@@ -39,5 +39,9 @@
       </div>
     </div>
 
+  </div>
+
+  <div *ngIf="isManual">
+    <app-manual-signup></app-manual-signup>
   </div>
 </div>

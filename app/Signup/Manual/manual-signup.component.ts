@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+interface Option {
+  value: number;
+  label: string;
+}
+
 @Component({
   selector: 'app-manual-signup',
   moduleId: module.id,
@@ -7,4 +12,9 @@ import { Component } from '@angular/core';
   styleUrls: ['manual-signup.component.css']
 })
 
-export class ManualSignupComponent {}
+export class ManualSignupComponent {
+  genderList: Option[] = [
+    { value: 0, label: 'Female'},
+    { value: 1, label: 'Male'}
+  ];
+}
