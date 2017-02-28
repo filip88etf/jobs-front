@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { CITIES, PROFFESSIONS, Option } from '../global-consts';
+
 @Component({
   moduleId: module.id,
   selector: 'app-home',
@@ -8,14 +10,14 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
-  cities: string[];
-  professions: string[];
+  cities: Option[] = CITIES;
+  professions: Option[] = PROFFESSIONS;
   isJobActive: boolean;
 
   constructor() {
     this.isJobActive = true;
-    this.cities = ['Beograd', 'Novi Sad', 'Cacak', 'Nis', 'Kragujevac'];
-    this.professions = ['Stolar', 'Elektricar', 'Vodoinstalater', 'Zidar'];
+    this.cities = CITIES;
+    this.professions = PROFFESSIONS;
   }
 
   public TabToggle (): void {

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { MenuComponent } from './Menu/menu.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { ValidationMessage } from './ValidationMessage/validation-message.component';
 
 @NgModule({
-  imports: [AppRoutingModule],
-  declarations: [MenuComponent],
-  exports: [MenuComponent]
+  imports: [RouterModule, CommonModule],
+  declarations: [MenuComponent, ValidationMessage],
+  exports: [MenuComponent, ValidationMessage]
 })
 
 export class SharedModule {

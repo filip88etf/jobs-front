@@ -1,100 +1,155 @@
 <div class="manual-signup-form">
 
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="First Name" />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Last Name" />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <div class="ng2-select-wrapper">
-        <ng-select
-          [options]="genderList"
-          [placeholder]="'Select Gender'">
-        </ng-select>
+  <form (ngSubmit)="manualSignup()" [formGroup]="signupForm">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10"
+      [ngClass]="{'has-error': !signupForm.get('firstName').valid && signupForm.get('firstName').touched}">
+        <input type="text"
+               class="form-control"
+               placeholder="First Name"
+               formControlName="firstName" />
+        <validation-message [control]="signupForm.get('firstName')">
+        </validation-message>
       </div>
     </div>
-  </div>
 
-  <!-- <div class="row">
-    <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10"
+      [ngClass]="{'has-error': !signupForm.get('lastName').valid && signupForm.get('lastName').touched}">
+        <input type="text"
+               class="form-control"
+               placeholder="Last Name"
+               formControlName="lastName" />
+        <validation-message [control]="signupForm.get('lastName')">
+        </validation-message>
+      </div>
     </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <select class="form-control mouse-pointer">
-        <option *ngFor='let gender of genderList'>
-          {{gender}}
-        </option>
-      </select>
-    </div>
-  </div> -->
 
-  <div class="row">
-    <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10">
+        <div class="ng2-select-wrapper">
+          <ng-select
+            [options]="genderList"
+            [placeholder]="'Select Gender'">
+          </ng-select>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Phone" />
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10">
+        <div class="ng2-select-wrapper">
+          <ng-select
+            [options]="birthDateList"
+            [placeholder]="'Select birth year'">
+          </ng-select>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Username" />
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10"
+      [ngClass]="{'has-error': !signupForm.get('phone').valid && signupForm.get('phone').touched}">
+        <input type="tel"
+               class="form-control"
+               placeholder="Phone"
+               formControlName="phone" />
+        <validation-message [control]="signupForm.get('phone')">
+        </validation-message>
+      </div>
     </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Password" />
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10"
+      [ngClass]="{'has-error': !signupForm.get('username').valid && signupForm.get('username').touched}">
+        <input type="text"
+               class="form-control"
+               placeholder="Username"
+               formControlName='username' />
+        <validation-message [control]="signupForm.get('username')">
+        </validation-message>
+      </div>
     </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Confirm Password" />
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Security Question" />
-    </div>
-  </div>
+    <div formGroupName="passwordGroup">
 
-  <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6 padding-top-bottom-10">
-      <input type="text" class="form-control" placeholder="Answer" />
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 padding-top-bottom-10"
+        [ngClass]="{'has-error': !signupForm.get('passwordGroup.password').valid && signupForm.get('passwordGroup.password').touched}">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Password"
+                 formControlName='password' />
+          <validation-message [control]="signupForm.get('passwordGroup.password')">
+          </validation-message>
+        </div>
+      </div>
 
-  <div class="row padding-top-bottom-10">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6">
-      <button class="col-md-12 btn btn-primary">Sign in</button>
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 padding-top-bottom-10"
+        [ngClass]="{'has-error': !signupForm.get('passwordGroup.confirmPassword').valid && signupForm.get('passwordGroup.confirmPassword').touched}">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Confirm Password"
+                 formControlName="confirmPassword" />
+          <validation-message [control]="signupForm.get('passwordGroup.confirmPassword')">
+          </validation-message>
+        </div>
+      </div>
 
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10"
+      [ngClass]="{'has-error': !signupForm.get('securityQuestion').valid && signupForm.get('securityQuestion').touched}">
+        <input type="text"
+               class="form-control"
+               placeholder="Security Question"
+               formControlName="securityQuestion" />
+        <validation-message [control]="signupForm.get('securityQuestion')">
+        </validation-message>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6 padding-top-bottom-10"
+      [ngClass]="{'has-error': !signupForm.get('securityAnswer').valid && signupForm.get('securityAnswer').touched}">
+        <input type="text"
+               class="form-control"
+               placeholder="Answer"
+               formControlName="securityAnswer" />
+        <validation-message [control]="signupForm.get('securityAnswer')">
+        </validation-message>
+      </div>
+    </div>
+
+    <div class="row padding-top-bottom-10">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <button type="submit" class="col-md-12 btn btn-primary">Sign up</button>
+      </div>
+    </div>
+
+  </form>
 </div>

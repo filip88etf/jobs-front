@@ -1,0 +1,8 @@
+<div *ngIf="showMessages()">
+  <span class="error-message" *ngIf="this.requiredMessage" >
+    {{this.requiredMessage}}
+  </span>
+  <span class="error-message" *ngIf="this.minLengthMessage">
+    {{this.minLengthMessage}}
+  </span>
+</div>

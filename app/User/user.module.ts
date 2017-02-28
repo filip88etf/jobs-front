@@ -13,7 +13,8 @@ export const userRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule, CommonModule ],
+  imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
+    CommonModule ],
   declarations: [ UserComponent ]
 })
 
