@@ -12,15 +12,20 @@ const MINLENGTH_MESSAGE: string = 'Minimal length is ';
 
 export class ValidationMessage {
   @Input() control: AbstractControl;
-  requiredMessage: string;
-  minLengthMessage: string;
+  requiredMessage: string = '';
+  minLengthMessage: string = '';
 
   showMessages(): boolean {
-    let errors = this.control.errors,
-        minLengthError = MINLENGTH_MESSAGE + errors['minlength'].requiredLength + ' characters';
+    let errors = this.control.errors;
+    let minLengthError: string;
+
     if (errors && this.control.touched) {
       this.requiredMessage = errors['required'] ? REQUIRED_MESSAGE : '';
-      this.minLengthMessage = errors['minlength'] ? minLengthError : '';
+      if (errors['minlength']) {
+        this.minLengthMessage = MINLENGTH_MESSAGE + errors['minlength'].requiredLength + ' characters';
+      } else {
+        this.minLengthMessage = '';
+      }
     } else {
       this.requiredMessage = '';
       this.minLengthMessage = '';

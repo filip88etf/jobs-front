@@ -26,14 +26,15 @@ function passwordMatcher (control: AbstractControl) {
 })
 
 export class ManualSignupComponent implements OnInit {
-  genderList: Option[] = GENDER_LIST;
-  birthDateList: Option[] = BIRTH_DATE;
+  genderItems: Option[] = GENDER_LIST;
   signupForm: FormGroup;
+  gender: Option[] = [GENDER_LIST[0]];
 
   constructor(private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    console.log(GENDER_LIST);
     this.signupForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
       lastName: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
@@ -46,8 +47,6 @@ export class ManualSignupComponent implements OnInit {
       securityQuestion: ['', Validators.required],
       securityAnswer: ['', Validators.required]
     });
-
-    this.signupForm
   }
 
 

@@ -1,28 +1,27 @@
 export const CITIES = [
-  { value: 'Beograd', label: 'Beograd'},
-  { value: 'Novi Sad', label: 'Novi Sad'},
-  { value: 'Cacak', label: 'Cacak'},
-  { value: 'Nis', label: 'Nis'},
-  { value: 'Kragujevac', label: 'Kragujevac'}
+  { id: 'Beograd', text: 'Beograd'},
+  { id: 'Novi Sad', text: 'Novi Sad'},
+  { id: 'Cacak', text: 'Cacak'},
+  { id: 'Nis', text: 'Nis'},
+  { id: 'Kragujevac', text: 'Kragujevac'}
 ];
 
 export const GENDER_LIST = [
-  { value: 0, label: 'Female'},
-  { value: 1, label: 'Male'}
+  { id: 1, text: 'Female'},
+  { id: 2, text: 'Male'}
 ];
 
 export const PROFFESSIONS = [
-  { value: 'Electrician', label: 'Electrician'},
-  { value: 'Plumber', label: 'Plumber'},
-  { value: 'Housekeeper', label: 'Housekeeper'},
-  { value: 'Housekeeper', label: 'Housekeeper'},
-  { value: 'Gardener', label: 'Gardener'},
-  { value: 'Bricklayer', label: 'Bricklayer'},
+  { id: 'Electrician', text: 'Electrician'},
+  { id: 'Plumber', text: 'Plumber'},
+  { id: 'Housekeeper', text: 'Housekeeper'},
+  { id: 'Gardener', text: 'Gardener'},
+  { id: 'Bricklayer', text: 'Bricklayer'},
 ];
 
 export interface Option {
-  value: any;
-  label: string;
+  id: any;
+  text: string;
 }
 
 export const BIRTH_DATE = [

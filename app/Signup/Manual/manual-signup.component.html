@@ -35,8 +35,10 @@
       <div class="col-md-6 padding-top-bottom-10">
         <div class="ng2-select-wrapper">
           <ng-select
-            [options]="genderList"
-            [placeholder]="'Select Gender'">
+            [items]="genderItems"
+            [placeholder]="'Select Gender'"
+            [(ngModel)]="gender"
+            [ngModelOptions]="{standalone: true}">
           </ng-select>
         </div>
       </div>
@@ -47,10 +49,10 @@
       </div>
       <div class="col-md-6 padding-top-bottom-10">
         <div class="ng2-select-wrapper">
-          <ng-select
+          <!-- <ng-select
             [options]="birthDateList"
             [placeholder]="'Select birth year'">
-          </ng-select>
+          </ng-select> -->
         </div>
       </div>
     </div>

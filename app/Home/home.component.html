@@ -12,13 +12,13 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-3 mouse-pointer">
-        <div class="search-title padding-10" [ngClass]="{'active-tab':isJobActive}" (click)='TabToggle()'>
+        <div class="search-title padding-10" [ngClass]="{'active-tab':isJobSearch}" (click)='searchJobs(true)'>
           <span><b class="text-color">JOBS</b></span>
         </div>
       </div>
 
       <div class="col-md-3 mouse-pointer">
-        <div class="search-title padding-10" [ngClass]="{'active-tab':!isJobActive}" (click)='TabToggle()'>
+        <div class="search-title padding-10" [ngClass]="{'active-tab':!isJobSearch}" (click)='searchJobs(false)'>
           <span><b class="text-color">WORKERS</b></span>
         </div>
       </div>
@@ -35,28 +35,30 @@
           <div class="col-md-3 padding-10">
             <span class="search-label">Where</span>
           </div>
-          <div class="col-md-9">
-            <select class="form-control mouse-pointer">
-              <option *ngFor='let city of cities;'>
-                {{city}}
-              </option>
-            </select>
+          <div class="col-md-9" [ngClass]="{'has-error': showMessage(city) }">
+            <ng-select
+              [items]="cities"
+              [(ngModel)]="city"
+              [placeholder]="'select city'">
+            </ng-select>
+            <span class="error-message">{{showMessage(city)}}</span>
           </div>
         </div>
         <div class="form-group-lg col-md-5 padding-20">
           <div class="col-md-3 padding-10">
             <span class="search-label">Profession</span>
           </div>
-          <div class="col-md-9">
-            <select class="form-control mouse-pointer">
-              <option *ngFor='let prof of professions'>
-                {{prof}}
-              </option>
-            </select>
+          <div class="col-md-9" [ngClass]="{'has-error': showMessage(proffesion) }">
+            <ng-select
+              [items]="professions"
+              [(ngModel)]="proffesion"
+              [placeholder]="'select profession'">
+            </ng-select>
+            <span class="error-message">{{showMessage(proffesion)}}</span>
           </div>
         </div>
         <div class="col-md-2 search-button padding-20">
-          <button class="btn btn-default btn-lg" (click)='TabToggle()'>Search</button>
+          <button class="btn btn-default btn-lg" (click)='search()'>Search</button>
         </div>
       </div>
 

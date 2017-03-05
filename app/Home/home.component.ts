@@ -12,16 +12,23 @@ import { CITIES, PROFFESSIONS, Option } from '../global-consts';
 export class HomeComponent {
   cities: Option[] = CITIES;
   professions: Option[] = PROFFESSIONS;
-  isJobActive: boolean;
+  isJobSearch: boolean = true;
+  startSearch: boolean = false;
+  proffesion: Option;
+  city: Option;
 
-  constructor() {
-    this.isJobActive = true;
-    this.cities = CITIES;
-    this.professions = PROFFESSIONS;
+  showMessage(selected: Option): string {
+    if (selected === undefined && this.startSearch) {
+      return 'Please select one';
+    }
+    return '';
   }
 
-  public TabToggle (): void {
-    this.isJobActive = !this.isJobActive;
-    console.log('I"m in');
+  public searchJobs (value: boolean): void {
+    this.isJobSearch = value;
+  }
+
+  search(): void {
+    this.startSearch = true;
   }
 }
