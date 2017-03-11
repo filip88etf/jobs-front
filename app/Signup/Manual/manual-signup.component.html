@@ -1,28 +1,30 @@
 <div class="manual-signup-form">
 
   <form (ngSubmit)="manualSignup()" [formGroup]="signupForm">
-    <div class="row">
-      <div class="col-md-3">
+
+    <div class="row label-padding">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Name</b></span>
       </div>
-      <div class="col-md-6 padding-top-bottom-10"
-      [ngClass]="{'has-error': !signupForm.get('firstName').valid && signupForm.get('firstName').touched}">
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-4 control-padding"
+      [ngClass]="{'has-error': validateControl('firstName')}">
         <input type="text"
                class="form-control"
-               placeholder="First Name"
+               placeholder="First"
                formControlName="firstName" />
         <validation-message [control]="signupForm.get('firstName')">
         </validation-message>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6 padding-top-bottom-10"
-      [ngClass]="{'has-error': !signupForm.get('lastName').valid && signupForm.get('lastName').touched}">
+      <div class="col-md-4 control-padding"
+      [ngClass]="{'has-error': validateControl('lastName')}">
         <input type="text"
                class="form-control"
-               placeholder="Last Name"
+               placeholder="Last"
                formControlName="lastName" />
         <validation-message [control]="signupForm.get('lastName')">
         </validation-message>
@@ -30,13 +32,18 @@
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Gender</b></span>
       </div>
-      <div class="col-md-6 padding-top-bottom-10">
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding">
         <div class="ng2-select-wrapper">
           <ng-select
             [items]="genderItems"
-            [placeholder]="'Select Gender'"
             [(ngModel)]="gender"
             [ngModelOptions]="{standalone: true}">
           </ng-select>
@@ -45,26 +52,39 @@
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Birthday</b></span>
       </div>
-      <div class="col-md-6 padding-top-bottom-10">
-        <div class="ng2-select-wrapper">
-          <!-- <ng-select
-            [options]="birthDateList"
-            [placeholder]="'Select birth year'">
-          </ng-select> -->
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding float-left"
+      [ngClass]="{'has-error': validateControl('birthday')}">
+          <my-date-picker
+                [options]=birthdayOptions
+                formControlName="birthday"
+                [(ngModel)]="birthday">
+          </my-date-picker>
+        <validation-message [control]="signupForm.get('birthday')">
+        </validation-message>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Phone</b></span>
       </div>
-      <div class="col-md-6 padding-top-bottom-10"
-      [ngClass]="{'has-error': !signupForm.get('phone').valid && signupForm.get('phone').touched}">
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding"
+      [ngClass]="{'has-error': validateControl('phone')}">
         <input type="tel"
                class="form-control"
-               placeholder="Phone"
                formControlName="phone" />
         <validation-message [control]="signupForm.get('phone')">
         </validation-message>
@@ -72,13 +92,37 @@
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Email</b></span>
       </div>
-      <div class="col-md-6 padding-top-bottom-10"
-      [ngClass]="{'has-error': !signupForm.get('username').valid && signupForm.get('username').touched}">
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding"
+      [ngClass]="{'has-error': validateControl('email')}">
+        <input type="email"
+               class="form-control"
+               formControlName="email" />
+        <validation-message [control]="signupForm.get('email')">
+        </validation-message>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Username</b></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding"
+      [ngClass]="{'has-error': validateControl('username')}">
         <input type="text"
                class="form-control"
-               placeholder="Username"
                formControlName='username' />
         <validation-message [control]="signupForm.get('username')">
         </validation-message>
@@ -88,13 +132,18 @@
     <div formGroupName="passwordGroup">
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Password</b></span>
         </div>
-        <div class="col-md-6 padding-top-bottom-10"
-        [ngClass]="{'has-error': !signupForm.get('passwordGroup.password').valid && signupForm.get('passwordGroup.password').touched}">
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 control-padding"
+        [ngClass]="{'has-error': validateControl('passwordGroup.password') || signupForm.get('passwordGroup').errors?.match}">
           <input type="text"
                  class="form-control"
-                 placeholder="Password"
                  formControlName='password' />
           <validation-message [control]="signupForm.get('passwordGroup.password')">
           </validation-message>
@@ -102,54 +151,32 @@
       </div>
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Confirm Password</b></span>
         </div>
-        <div class="col-md-6 padding-top-bottom-10"
-        [ngClass]="{'has-error': !signupForm.get('passwordGroup.confirmPassword').valid && signupForm.get('passwordGroup.confirmPassword').touched}">
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 control-padding"
+        [ngClass]="{'has-error': validateControl('passwordGroup.confirmPassword') || signupForm.get('passwordGroup').errors?.match}">
           <input type="text"
                  class="form-control"
-                 placeholder="Confirm Password"
                  formControlName="confirmPassword" />
           <validation-message [control]="signupForm.get('passwordGroup.confirmPassword')">
           </validation-message>
+          <span class="error-message" *ngIf="signupForm.get('passwordGroup').errors?.match">These passwords don't match</span>
         </div>
       </div>
 
     </div>
 
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6 padding-top-bottom-10"
-      [ngClass]="{'has-error': !signupForm.get('securityQuestion').valid && signupForm.get('securityQuestion').touched}">
-        <input type="text"
-               class="form-control"
-               placeholder="Security Question"
-               formControlName="securityQuestion" />
-        <validation-message [control]="signupForm.get('securityQuestion')">
-        </validation-message>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-6 padding-top-bottom-10"
-      [ngClass]="{'has-error': !signupForm.get('securityAnswer').valid && signupForm.get('securityAnswer').touched}">
-        <input type="text"
-               class="form-control"
-               placeholder="Answer"
-               formControlName="securityAnswer" />
-        <validation-message [control]="signupForm.get('securityAnswer')">
-        </validation-message>
-      </div>
-    </div>
-
     <div class="row padding-top-bottom-10">
-      <div class="col-md-3">
+      <div class="col-md-2">
       </div>
-      <div class="col-md-6">
-        <button type="submit" class="col-md-12 btn btn-primary">Sign up</button>
+      <div class="col-md-8">
+        <button type="submit" [disabled]="!signupForm.valid" class="col-md-12 btn btn-primary">Sign up</button>
       </div>
     </div>
 

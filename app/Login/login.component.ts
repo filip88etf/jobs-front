@@ -12,8 +12,5 @@ export class LoginComponent {
   private password: string = '';
 
   login (): void {
-    console.log(this.username);
-    console.log(this.password);
-    console.log('login is click');
   }
 }

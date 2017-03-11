@@ -4,7 +4,6 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 
 gulp.task('build',['sass'],function(){
-  console.log("Build is finished");
 });
 
 gulp.task('sass', function () {

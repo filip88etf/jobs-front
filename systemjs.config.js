@@ -24,6 +24,7 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
       'ng2-select': 'node_modules/ng2-select',
+      'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
 
       // other libraries
       'rxjs':                      'npm:rxjs',
