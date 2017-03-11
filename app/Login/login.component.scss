@@ -23,9 +23,18 @@
 .login-form {
   display: table;
   position: absolute;
-
   width: 24vw;
   height: 310px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 10px;
+}
+
+.reset-form {
+  display: table;
+  position: absolute;
+  width: 24vw;
+  height: 210px;
   text-align: center;
   background-color: rgba(255,255,255,0.8);
   border-radius: 10px;

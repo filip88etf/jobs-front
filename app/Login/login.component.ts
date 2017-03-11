@@ -10,7 +10,11 @@ import { Component } from '@angular/core';
 export class LoginComponent {
   private username: string = '';
   private password: string = '';
+  private resetForm: boolean = false;
 
   login (): void {
+  }
+
+  resetPassword(): void {
   }
 }

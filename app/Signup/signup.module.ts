@@ -10,7 +10,7 @@ import { SignupComponent } from './signup.component';
 import { ManualSignupComponent } from './Manual/manual-signup.component';
 
 const signupRoutes: Routes = [
-  { path: '', component : SignupComponent },
+  { path: '', component: SignupComponent }
 ];
 
 @NgModule({
