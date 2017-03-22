@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { UserComponent } from './user.component';
+import { ProfileComponent } from './profile.component';
 import { LoginModule } from '../Login/login.module';
 import { SignupModule } from '../Signup/signup.module';
 import { LoginComponent } from '../Login/login.component';
@@ -17,7 +17,7 @@ export const userRoutes: Routes = [
 @NgModule({
   imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
     CommonModule ],
-  declarations: [ UserComponent ],
+  declarations: [ ProfileComponent ],
   providers: [ HttpModule, UserService ]
 })
 

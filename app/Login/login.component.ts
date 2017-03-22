@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +13,11 @@ export class LoginComponent {
   private password: string = '';
   private resetForm: boolean = false;
 
+  constructor(private router: Router) {
+  }
+
   login (): void {
+    this.router.navigate(['user/profile']);
   }
 
   resetPassword(): void {
