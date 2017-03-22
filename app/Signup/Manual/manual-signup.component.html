@@ -1,4 +1,4 @@
-<div class="manual-signup-form">
+<div class="manual-signup-form" *ngIf="!isEmployee">
 
   <form (ngSubmit)="manualSignup()" [formGroup]="signupForm">
 
@@ -43,9 +43,9 @@
       <div class="col-md-8 control-padding">
         <div class="ng2-select-wrapper">
           <ng-select
-            [items]="genderItems"
+            [items]="genders"
             [(ngModel)]="gender"
-            [ngModelOptions]="{standalone: true}">
+            [ngModelOptions]="{standalone: true}" >
           </ng-select>
         </div>
       </div>
@@ -172,13 +172,40 @@
 
     </div>
 
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Role</b></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding">
+        <div class="ng2-select-wrapper">
+          <ng-select
+            [items]="roles"
+            [(ngModel)]="role"
+            [ngModelOptions]="{standalone: true}" >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
     <div class="row padding-top-bottom-10">
       <div class="col-md-2">
       </div>
       <div class="col-md-8">
-        <button type="submit" [disabled]="!signupForm.valid" class="col-md-12 btn btn-primary">Sign up</button>
+        <!-- [disabled]="!signupForm.valid" -->
+        <button type="submit"  class="col-md-12 btn btn-primary">
+          <span *ngIf="role[0].id === 'employee'">Next</span>
+          <span *ngIf="role[0].id !== 'employee'">Sing up</span>
+        </button>
       </div>
     </div>
 
   </form>
+</div>
+<div *ngIf="isEmployee">
+  <app-employee-signup [user]="user"></app-employee-signup>
 </div>

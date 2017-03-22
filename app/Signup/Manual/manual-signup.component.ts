@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormsModule, Validators, AbstractControl } from '@angular/forms';
 import { IMyOptions } from 'mydatepicker';
 
+import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
-import { GENDER_LIST, CALENDAR_SETTINGS, Option } from '../../global-consts';
+import { GENDER_LIST, ROLES, CALENDAR_SETTINGS, Option } from '../../global-consts';
 import { User } from '../../User/User';
 
 const MIN_LENGHT: number = 2;
@@ -28,13 +29,17 @@ function passwordMatcher(focus: boolean = true) {
 })
 
 export class ManualSignupComponent implements OnInit {
-  genderItems: Option[] = GENDER_LIST;
   signupForm: FormGroup;
+  birthdayOptions: IMyOptions = CALENDAR_SETTINGS;
+  birthday: any;
+  genders: Option[] = GENDER_LIST;
   gender: Option[] = [GENDER_LIST[0]];
-  birthday: Object;
-  private birthdayOptions: IMyOptions = CALENDAR_SETTINGS;
+  roles: Option[] = ROLES;
+  role: Option[] = [ROLES[0]];
+  isEmployee: boolean;
+  user: User;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userSerivce: UserService) {
   }
 
   ngOnInit() {
@@ -50,6 +55,7 @@ export class ManualSignupComponent implements OnInit {
         confirmPassword: ['', [Validators.required]]
       }, {validator: passwordMatcher()})
     });
+    this.user = new User();
   }
 
   validateControl(controlName: string): boolean {
@@ -59,5 +65,24 @@ export class ManualSignupComponent implements OnInit {
   }
 
   manualSignup(): void {
+    this.userSerivce.getAll().subscribe(() => {console.log('bbbb'); });
+    this.mapFormToUser();
+    if (this.role[0].id === 'employer') {
+          this.userSerivce.create(this.user).subscribe(() => {console.log('aaaaa'); });
+      return;
+    }
+
+    this.isEmployee = true;
+  }
+
+  private mapFormToUser (): void {
+    this.user.firstName = this.signupForm.get('firstName').value;
+    this.user.lastName = this.signupForm.get('lastName').value;
+    this.user.birth = this.birthday.jsdate.toString();
+    this.user.gender = this.gender[0].id;
+    this.user.phone = this.signupForm.get('phone').value;
+    this.user.email = this.signupForm.get('email').value;
+    this.user.username = this.signupForm.get('username').value;
+    this.user.password = this.signupForm.get('passwordGroup').get('password').value;
   }
 }

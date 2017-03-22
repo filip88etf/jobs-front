@@ -1,0 +1,73 @@
+<div class="employee-signup-form">
+
+  <form (ngSubmit)="employeeSignup()" [formGroup]="employeeForm">
+
+    <div class="row label-padding">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Proffession</b></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding">
+        <div class="ng2-select-wrapper">
+          <ng-select
+            [items]="professions"
+            [(ngModel)]="user.profession"
+            [ngModelOptions]="{standalone: true}" >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Cities that you cover</b></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padding">
+        <div class="ng2-select-wrapper">
+          <ng-select
+            [items]="cities"
+            [(ngModel)]="user.city"
+            [ngModelOptions]="{standalone: true}"
+            [multiple]="true" >
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+        <span class="float-left"><b>Job description</b></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8 control-padd2ing">
+        <textarea
+               class="form-control"
+               formControlName="jobDescription"
+               rows="3">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="row padding-top-bottom-10">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <button type="submit" [disabled]="!employeeForm.valid || !user.city?.length || !user.profession" class="col-md-12 btn btn-primary">Done</button>
+      </div>
+    </div>
+
+  </form>
+</div>

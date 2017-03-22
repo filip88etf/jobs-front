@@ -14,6 +14,11 @@ export const CITIES = [
   { id: 'Krusevac', text: 'Krusevac'}
 ];
 
+export const ROLES = [
+  { id: 'employee', text: 'Employee'},
+  { id: 'employer', text: 'Employer'}
+];
+
 export const GENDER_LIST = [
   { id: 1, text: 'Female'},
   { id: 2, text: 'Male'},

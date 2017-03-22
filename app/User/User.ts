@@ -3,11 +3,18 @@ export class User {
   id: number;
   firstName: string;
   lastName: string;
-  birth: number;
+  birth: string;
   gender: string;
   phone: string;
+  email: string;
   username: string;
   password: string;
-  securityQuestion: string;
-  securityAnswer: string;
+  fbId: string = '21e3dsaf';
+  fbToken: string = '1243723985698753'
+}
+
+export class Employee extends User {
+  profession: string;
+  cities: string[];
+  jobDescription: string;
 }
