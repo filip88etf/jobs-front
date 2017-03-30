@@ -1,0 +1,27 @@
+<div class="col-md-12">
+
+  <div class="col-md-3">
+  </div>
+  <div class="profile-container col-md-6">
+
+    <div>
+      <nav class="row user-menu-container padding-bottom-5">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9">
+          <span [routerLink]="['/user/profile']" (click)="active=1;"
+                [ngClass]="{'active-menu-item': active === 1}"
+                class="menu-item">Profile</span>
+          <span [routerLink]="['/suer/jobs']" (click)="active=2;"
+                [ngClass]="{'active-menu-item': active === 2}"
+                class="menu-item">Jobs</span>
+          <span [routerLink]="['']" (click)="active=3;"
+                [ngClass]="{'active-menu-item': active === 3}"
+                class="menu-item">Search</span>
+        </div>
+      </nav>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

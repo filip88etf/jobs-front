@@ -1,0 +1,28 @@
+@import "global_variables.scss";
+
+.profile-container {
+  background-color: white;
+  height: 100vh;
+  display: table;
+}
+
+.menu-item {
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  color: white;
+}
+
+.user-menu-container {
+  background-color: $brand-color;
+}
+
+.active-menu-item {
+  border-bottom: 2px solid white;
+}
+
+.menu-item:hover {
+  font-weight: 900;
+}

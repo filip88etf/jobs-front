@@ -2,7 +2,7 @@
 
   <form (ngSubmit)="manualSignup()" [formGroup]="signupForm">
 
-    <div class="row label-padding">
+    <div class="row padding-top-10">
       <div class="col-md-2"></div>
       <div class="col-md-10">
         <span class="float-left"><b>Name</b></span>
@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-4 control-padding"
+      <div class="col-md-4 padding-bottom-10"
       [ngClass]="{'has-error': validateControl('firstName')}">
         <input type="text"
                class="form-control"
@@ -20,7 +20,7 @@
         <validation-message [control]="signupForm.get('firstName')">
         </validation-message>
       </div>
-      <div class="col-md-4 control-padding"
+      <div class="col-md-4 padding-bottom-10"
       [ngClass]="{'has-error': validateControl('lastName')}">
         <input type="text"
                class="form-control"
@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-8 control-padding">
+      <div class="col-md-8 padding-bottom-10">
         <div class="ng2-select-wrapper">
           <ng-select
             [items]="genders"
@@ -60,7 +60,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-8 control-padding float-left"
+      <div class="col-md-8 padding-bottom-10 float-left"
       [ngClass]="{'has-error': validateControl('birthday')}">
           <my-date-picker
                 [options]=birthdayOptions
@@ -81,7 +81,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-8 control-padding"
+      <div class="col-md-8 padding-bottom-10"
       [ngClass]="{'has-error': validateControl('phone')}">
         <input type="tel"
                class="form-control"
@@ -100,7 +100,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-8 control-padding"
+      <div class="col-md-8 padding-bottom-10"
       [ngClass]="{'has-error': validateControl('email')}">
         <input type="email"
                class="form-control"
@@ -119,7 +119,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-8 control-padding"
+      <div class="col-md-8 padding-bottom-10"
       [ngClass]="{'has-error': validateControl('username')}">
         <input type="text"
                class="form-control"
@@ -140,7 +140,7 @@
       <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8 control-padding"
+        <div class="col-md-8 padding-bottom-10"
         [ngClass]="{'has-error': validateControl('passwordGroup.password') || signupForm.get('passwordGroup').errors?.match}">
           <input type="text"
                  class="form-control"
@@ -159,7 +159,7 @@
       <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8 control-padding"
+        <div class="col-md-8 padding-bottom-10"
         [ngClass]="{'has-error': validateControl('passwordGroup.confirmPassword') || signupForm.get('passwordGroup').errors?.match}">
           <input type="text"
                  class="form-control"
@@ -181,7 +181,7 @@
     <div class="row">
       <div class="col-md-2">
       </div>
-      <div class="col-md-8 control-padding">
+      <div class="col-md-8 padding-bottom-10">
         <div class="ng2-select-wrapper">
           <ng-select
             [items]="roles"
