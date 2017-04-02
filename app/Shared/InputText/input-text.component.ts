@@ -10,5 +10,4 @@ export class InputTextComponent {
   @Input() model: string;
   @Input() label: string;
   @Input() required: boolean = false;
-  @Input() minLength: number = 10;
 }

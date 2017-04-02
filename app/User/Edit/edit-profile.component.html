@@ -23,14 +23,13 @@
                   [model]="user.lastName"
                   [required]="true">
   </app-input-text>
-  <app-input-text [label]="'Gender'"
-                  [model]="user.gender"
-                  [required]="true">
-  </app-input-text>
-  <app-input-text [label]="'Birthday'"
-                  [model]="user.birth"
-                  [required]="true">
-  </app-input-text>
+  <app-input-select [label]="'Gender'"
+                    [options]="options"
+                    [selected]="selected">
+  </app-input-select>
+  <app-input-calendar [label]="'Birthday'"
+                  [model]="user.birth">
+  </app-input-calendar>
   <app-input-text [label]="'Phone'"
                   [model]="user.phone"
                   [required]="true">
