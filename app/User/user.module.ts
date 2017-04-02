@@ -11,6 +11,7 @@ import { SignupComponent } from '../Signup/signup.component';
 import { EditProfileComponent } from './Edit/edit-profile.component';
 import { UserService } from './user.service';
 import { UserComponent } from './user.component';
+import { SharedModule } from '../Shared/shared.module';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -25,7 +26,7 @@ export const userRoutes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
-    CommonModule ],
+    CommonModule, SharedModule ],
   declarations: [ EditProfileComponent, ProfileComponent, UserComponent ],
   providers: [ HttpModule, UserService ]
 })

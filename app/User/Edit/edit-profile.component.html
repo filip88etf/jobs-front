@@ -1,1 +1,43 @@
-<span>EDIT</span>
+<div class="row padding-10">
+
+  <div class="row">
+    <div class="col-md-6">
+      <img src="assets/no-profile-pic.png" height="200px" width="200px"/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="btn btn-default upload-button">
+        <span class="glyphicon glyphicon-camera"></span>
+        <span>Upload Picture</span>
+      </button>
+    </div>
+  </div>
+
+  <app-input-text [label]="'First Name'"
+                  [model]="user.firstName"
+                  [required]="true">
+  </app-input-text>
+  <app-input-text [label]="'Last Name'"
+                  [model]="user.lastName"
+                  [required]="true">
+  </app-input-text>
+  <app-input-text [label]="'Gender'"
+                  [model]="user.gender"
+                  [required]="true">
+  </app-input-text>
+  <app-input-text [label]="'Birthday'"
+                  [model]="user.birth"
+                  [required]="true">
+  </app-input-text>
+  <app-input-text [label]="'Phone'"
+                  [model]="user.phone"
+                  [required]="true">
+  </app-input-text>
+  <app-input-text [label]="'Email'"
+                  [model]="user.email"
+                  [required]="true">
+  </app-input-text>
+
+</div>
