@@ -10,12 +10,13 @@ import { ValidationMessage } from './ValidationMessage/validation-message.compon
 import { InputTextComponent } from './InputText/input-text.component';
 import { InputSelectComponent } from './InputSelect/input-select.component';
 import { InputCalendarComponent } from './InputCalendar/input-calendar.component';
+import { InputPasswordComponent } from './InputPassword/input-password.component';
 
 @NgModule({
   imports: [ FormsModule, RouterModule, CommonModule, SelectModule, MyDatePickerModule ],
-  declarations: [ MenuComponent, ValidationMessage,
+  declarations: [ MenuComponent, ValidationMessage, InputPasswordComponent,
     InputTextComponent, InputSelectComponent, InputCalendarComponent ],
-  exports: [ MenuComponent, ValidationMessage, MyDatePickerModule,
+  exports: [ MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
     InputTextComponent, InputSelectComponent, InputCalendarComponent ]
 })
 

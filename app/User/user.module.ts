@@ -12,6 +12,7 @@ import { EditProfileComponent } from './Edit/edit-profile.component';
 import { UserService } from './user.service';
 import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
+import { ResetPasswordComponent } from './ResetPassword/reset-password.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -20,14 +21,16 @@ export const userRoutes: Routes = [
   { path: 'profile', component: UserComponent, children:
   [
     { path: '', component: ProfileComponent },
-    { path: 'edit', component: EditProfileComponent }
+    { path: 'edit', component: EditProfileComponent },
+    { path: 'password', component: ResetPasswordComponent }
   ]},
 ];
 
 @NgModule({
   imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
     CommonModule, SharedModule ],
-  declarations: [ EditProfileComponent, ProfileComponent, UserComponent ],
+  declarations: [ EditProfileComponent, ResetPasswordComponent, ProfileComponent,
+    UserComponent ],
   providers: [ HttpModule, UserService ]
 })
 
