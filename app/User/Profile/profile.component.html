@@ -15,13 +15,15 @@
         <span>Reset password</span>
       </button>
       <button class="btn btn-default btn-large"
-              [routerLink]="['/user/profile/edit']">
+              (click)="openModal()">
         <span class="glyphicon glyphicon-sunglasses"></span>
         <span>Hide my profile</span>
       </button>
     </div>
   </div>
 </div>
+
+<app-confirm-modal (onSubmit)="hideProfile($event)"></app-confirm-modal>
 
 <div class="row">
   <span class="col-md-3 profile-label"><b>Full Name</b></span>

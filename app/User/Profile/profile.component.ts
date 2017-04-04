@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
+import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { User } from '../User';
 
@@ -11,6 +13,7 @@ import { User } from '../User';
 
 export class ProfileComponent implements OnInit {
   user: User;
+  @ViewChild(ConfirmModalComponent) public confirmModal: ConfirmModalComponent;
 
   ngOnInit() {
     this.user = new User();
@@ -21,5 +24,16 @@ export class ProfileComponent implements OnInit {
     this.user.email = 'eing.filip@gmail.com';
     this.user.birth = '06 Aug 1988';
     this.user.username = 'ficko';
+  }
+
+  openModal(): void {
+    this.confirmModal.open(
+      'Hide Profile',
+      'Your profile won\'t be visible on this site anymore. Are you sure you want to hide your profile?',
+      'Hide');
+  }
+
+  hideProfile(hide: boolean): void {
+    console.log('Profile is hidden');
   }
 }

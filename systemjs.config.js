@@ -23,10 +23,11 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
-      'ng2-select': 'node_modules/ng2-select',
-      'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
 
       // other libraries
+      'ng2-select': 'node_modules/ng2-select',
+      'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
+      'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
