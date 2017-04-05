@@ -14,6 +14,7 @@ import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ResetPasswordComponent } from './ResetPassword/reset-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
+import { UserJobItemComponent } from './Jobs/user-job-item.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -33,7 +34,7 @@ export const userRoutes: Routes = [
   imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
     CommonModule, SharedModule ],
   declarations: [ EditProfileComponent, ResetPasswordComponent, ProfileComponent,
-    UserComponent, UserJobsComponent ],
+    UserComponent, UserJobsComponent, UserJobItemComponent ],
   providers: [ HttpModule, UserService ]
 })
 

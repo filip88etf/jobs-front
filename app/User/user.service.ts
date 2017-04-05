@@ -46,17 +46,20 @@ export class UserService {
       {
         region: 'Belgrade',
         profession: 'Electrician',
-        description: 'Electrician to fix my garage door. Urgently!!'
+        description: 'Electrician to fix my garage door. Urgently!!',
+        createdDate: '12.03.2013'
       },
       {
         region: 'Belgrade',
         profession: 'Gardener',
-        description: 'Gardener! Mowing the my back yard.'
+        description: 'Gardener! Mowing the my back yard.',
+        createdDate: '02.10.2012'
       },
       {
         region: 'Belgrade',
         profession: 'Housekeeper',
-        description: 'I need housekeeper, for cleaning, ironing, cooking..'
+        description: 'I need housekeeper, for cleaning, ironing, cooking..',
+        createdDate: '01.08.2012'
       }
     ];
   }

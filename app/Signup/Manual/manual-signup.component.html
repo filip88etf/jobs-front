@@ -142,7 +142,7 @@
         </div>
         <div class="col-md-8 padding-bottom-10"
         [ngClass]="{'has-error': validateControl('passwordGroup.password') || signupForm.get('passwordGroup').errors?.match}">
-          <input type="text"
+          <input type="password"
                  class="form-control"
                  formControlName='password' />
           <validation-message [control]="signupForm.get('passwordGroup.password')">
@@ -161,7 +161,7 @@
         </div>
         <div class="col-md-8 padding-bottom-10"
         [ngClass]="{'has-error': validateControl('passwordGroup.confirmPassword') || signupForm.get('passwordGroup').errors?.match}">
-          <input type="text"
+          <input type="password"
                  class="form-control"
                  formControlName="confirmPassword" />
           <validation-message [control]="signupForm.get('passwordGroup.confirmPassword')">

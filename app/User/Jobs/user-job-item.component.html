@@ -1,0 +1,21 @@
+<div class="row padding-5">
+  <div class="col-md-12 job-wrapper">
+    <div class="col-md-2">
+      <img src="assets/jobHalm.jpeg" width="90px" height="70px" class="padding-5"/>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <span>{{job.profession}}, {{job.region}}, {{job.createdDate}}</span>
+      </div>
+      <div class="row">
+        <span>{{job.description}}</span>
+      </div>
+    </div>
+    <div class="col-md-2 delete-job">
+        <button (click)="deleteJob()" class="btn btn-default float-right">
+          <span>Delete</span>
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </div>
+  </div>
+</div>

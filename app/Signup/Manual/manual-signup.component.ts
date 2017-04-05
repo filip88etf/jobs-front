@@ -65,7 +65,6 @@ export class ManualSignupComponent implements OnInit {
   }
 
   manualSignup(): void {
-    this.userSerivce.getAll().subscribe(() => {console.log('bbbb'); });
     this.mapFormToUser();
     if (this.role[0].id === 'employer') {
           this.userSerivce.create(this.user).subscribe(() => {console.log('aaaaa'); });

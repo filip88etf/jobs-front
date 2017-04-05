@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { UserService } from '../../User/user.service';
+import { User } from '../../User/User';
 import { CITIES, PROFFESSIONS, Option } from '../../global-consts';
 
 @Component({
@@ -14,9 +16,9 @@ export class EmployeeSignup implements OnInit {
   employeeForm: FormGroup;
   cities: Option[] = CITIES;
   professions: Option[] = PROFFESSIONS;
-  @Input() user: Object;
+  @Input() user: User;
 
-  constructor (private formBuilder: FormBuilder) {
+  constructor (private formBuilder: FormBuilder, private userSerivce: UserService) {
   }
 
   ngOnInit () {
@@ -28,6 +30,7 @@ export class EmployeeSignup implements OnInit {
 
   employeeSignup(): void {
     console.log(this.user);
+    this.userSerivce.create(this.user).subscribe(() => {console.log('aaaaa'); });
   }
 
 }

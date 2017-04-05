@@ -1,1 +1,3 @@
-<h3>List of jobs that you posted</h3>
+<h3>Jobs that you posted</h3>
+<app-user-job *ngFor="let job of jobs" [job]="job" (onDelete)="openModal($event)"></app-user-job>
+<app-confirm-modal (onSubmit)="deleteJob($event)"></app-confirm-modal>
