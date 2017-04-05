@@ -36,9 +36,28 @@ export class UserService {
       })
       .catch(
         function fail(error: Response): any {
-          console.log('aaa');
       });
   }
   update() {}
   delete() {}
+
+  getJobs() {
+    return [
+      {
+        region: 'Belgrade',
+        profession: 'Electrician',
+        description: 'Electrician to fix my garage door. Urgently!!'
+      },
+      {
+        region: 'Belgrade',
+        profession: 'Gardener',
+        description: 'Gardener! Mowing the my back yard.'
+      },
+      {
+        region: 'Belgrade',
+        profession: 'Housekeeper',
+        description: 'I need housekeeper, for cleaning, ironing, cooking..'
+      }
+    ];
+  }
 }

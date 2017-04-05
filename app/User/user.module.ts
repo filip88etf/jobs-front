@@ -13,24 +13,27 @@ import { UserService } from './user.service';
 import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ResetPasswordComponent } from './ResetPassword/reset-password.component';
+import { UserJobsComponent } from './Jobs/user-jobs.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: UserComponent, children:
-  [
-    { path: '', component: ProfileComponent },
-    { path: 'edit', component: EditProfileComponent },
-    { path: 'password', component: ResetPasswordComponent }
-  ]},
+    [
+      { path: '', component: ProfileComponent },
+      { path: 'jobs', component: UserJobsComponent },
+      { path: 'edit', component: EditProfileComponent },
+      { path: 'password', component: ResetPasswordComponent }
+    ]
+  },
 ];
 
 @NgModule({
   imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
     CommonModule, SharedModule ],
   declarations: [ EditProfileComponent, ResetPasswordComponent, ProfileComponent,
-    UserComponent ],
+    UserComponent, UserJobsComponent ],
   providers: [ HttpModule, UserService ]
 })
 
