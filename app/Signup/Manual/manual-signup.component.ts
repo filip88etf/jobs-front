@@ -4,7 +4,8 @@ import { IMyOptions } from 'mydatepicker';
 
 import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
-import { GENDER_LIST, ROLES, CALENDAR_SETTINGS, Option } from '../../global-consts';
+import { GENDER_LIST, ROLES, CALENDAR_SETTINGS } from '../../global-consts';
+import { Option } from '../../global-types';
 import { User } from '../../User/User';
 
 const MIN_LENGHT: number = 2;

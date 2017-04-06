@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserService } from '../../User/user.service';
 import { User } from '../../User/User';
-import { CITIES, PROFFESSIONS, Option } from '../../global-consts';
+import { CITIES, PROFESSIONS } from '../../global-consts';
+import { Option } from '../../global-types';
 
 @Component({
   moduleId: module.id,
@@ -15,7 +16,7 @@ import { CITIES, PROFFESSIONS, Option } from '../../global-consts';
 export class EmployeeSignup implements OnInit {
   employeeForm: FormGroup;
   cities: Option[] = CITIES;
-  professions: Option[] = PROFFESSIONS;
+  professions: Option[] = PROFESSIONS;
   @Input() user: User;
 
   constructor (private formBuilder: FormBuilder, private userSerivce: UserService) {

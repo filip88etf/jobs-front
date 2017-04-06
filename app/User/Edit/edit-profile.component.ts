@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../User';
-import { GENDER_LIST, Option } from '../../global-consts';
+import { GENDER_LIST } from '../../global-consts';
+import { Option } from '../../global-types';
 
 @Component({
   moduleId: module.id,

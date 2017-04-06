@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { CITIES, PROFFESSIONS, Option } from '../global-consts';
+import { CITIES, PROFESSIONS } from '../global-consts';
+import { Option } from '../global-types';
 
 @Component({
   moduleId: module.id,
@@ -11,7 +12,7 @@ import { CITIES, PROFFESSIONS, Option } from '../global-consts';
 
 export class HomeComponent {
   cities: Option[] = CITIES;
-  professions: Option[] = PROFFESSIONS;
+  professions: Option[] = PROFESSIONS;
   isJobSearch: boolean = true;
   startSearch: boolean = false;
   proffesion: Option;

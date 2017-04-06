@@ -25,7 +25,7 @@ export const GENDER_LIST = [
   { id: 3, text: 'Other'}
 ];
 
-export const PROFFESSIONS = [
+export const PROFESSIONS = [
   { id: 'Electrician', text: 'Electrician'},
   { id: 'Plumber', text: 'Plumber'},
   { id: 'Housekeeper', text: 'Housekeeper'},
@@ -44,9 +44,4 @@ export const CALENDAR_SETTINGS = {
     markCurrentDay: false,
     disableUntil: {year: 1940, month: 1, day: 1},
     disableSince: {year: 2003, month: 1, day: 1}
-};
-
-export interface Option {
-  id: any;
-  text: string;
 };

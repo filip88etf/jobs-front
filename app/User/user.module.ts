@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { ProfileComponent } from './Profile/profile.component';
 import { LoginModule } from '../Login/login.module';
@@ -15,6 +16,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { ResetPasswordComponent } from './ResetPassword/reset-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { UserJobItemComponent } from './Jobs/user-job-item.component';
+import { PostJobComponent } from './Jobs/PostJob/post-job.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -32,9 +34,9 @@ export const userRoutes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
-    CommonModule, SharedModule ],
+    CommonModule, SharedModule, ModalModule ],
   declarations: [ EditProfileComponent, ResetPasswordComponent, ProfileComponent,
-    UserComponent, UserJobsComponent, UserJobItemComponent ],
+    UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent ],
   providers: [ HttpModule, UserService ]
 })
 

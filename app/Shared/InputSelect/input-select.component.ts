@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Option } from '../../global-consts';
+import { Option } from '../../global-types';
 
 @Component({
   moduleId: module.id,
