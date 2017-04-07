@@ -9,5 +9,9 @@
   </div>
 </div>
 
-<app-user-job *ngFor="let job of jobs" [job]="job" (onDelete)="openModal($event)"></app-user-job>
+<app-user-job *ngFor="let job of jobs" [job]="job"
+              (onDelete)="openDeleteModal($event)"
+              (onEdit)="openEditModal($event)">
+</app-user-job>
 <app-confirm-modal (onSubmit)="deleteJob($event)"></app-confirm-modal>
+<app-edit-job></app-edit-job>

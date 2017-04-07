@@ -15,11 +15,18 @@ import { InputPasswordComponent } from './InputPassword/input-password.component
 import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
 
 @NgModule({
-  imports: [ FormsModule, RouterModule, CommonModule, SelectModule, ModalModule.forRoot(), MyDatePickerModule ],
-  declarations: [ MenuComponent, ValidationMessage, InputPasswordComponent,
-    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent ],
-  exports: [ MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
-    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent ]
+  imports: [
+    FormsModule, RouterModule, CommonModule, SelectModule,
+    ModalModule.forRoot(), MyDatePickerModule
+  ],
+  declarations: [
+    MenuComponent, ValidationMessage, InputPasswordComponent,
+    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent
+  ],
+  exports: [
+    MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
+    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent
+  ]
 })
 
 export class SharedModule {

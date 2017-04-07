@@ -16,7 +16,8 @@ import { SharedModule } from '../Shared/shared.module';
 import { ResetPasswordComponent } from './ResetPassword/reset-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { UserJobItemComponent } from './Jobs/user-job-item.component';
-import { PostJobComponent } from './Jobs/PostJob/post-job.component';
+import { PostJobComponent } from './Jobs/Post/post-job.component';
+import { EditJobComponent } from './Jobs/Edit/edit-job.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -33,10 +34,14 @@ export const userRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(userRoutes), LoginModule, SignupModule,
-    CommonModule, SharedModule, ModalModule ],
-  declarations: [ EditProfileComponent, ResetPasswordComponent, ProfileComponent,
-    UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent ],
+  imports: [
+    RouterModule.forChild(userRoutes), LoginModule, SignupModule,
+    CommonModule, SharedModule, ModalModule
+  ],
+  declarations: [
+    EditProfileComponent, ResetPasswordComponent, ProfileComponent, EditJobComponent,
+    UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent
+  ],
   providers: [ HttpModule, UserService ]
 })
 
