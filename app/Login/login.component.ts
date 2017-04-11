@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../User/user.service';
+import { AuthorizationService } from '../authorization.service';
 
 @Component({
   moduleId: module.id,
@@ -15,11 +16,12 @@ export class LoginComponent {
   private password: string = '';
   private resetForm: boolean = false;
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService,
+    private authorizationSerivce: AuthorizationService) {
   }
 
   login (): void {
-    this.userService.authorize('bar', 'barsecret').subscribe((result: any) => { console.log(result); });
+    this.authorizationSerivce.authorize('bar', 'barsecret').subscribe((result: any) => { console.log(result); });
     this.router.navigate(['user/profile']);
   }
 

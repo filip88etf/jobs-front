@@ -7,6 +7,7 @@ import { UserService } from '../User/user.service';
 import { LoginComponent } from './login.component';
 import { SharedModule } from '../Shared/shared.module';
 
+
 @NgModule({
   imports: [ RouterModule, FormsModule, CommonModule, SharedModule ],
   declarations: [LoginComponent],

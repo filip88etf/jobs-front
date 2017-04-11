@@ -13,36 +13,6 @@ export class UserService {
   constructor (private http: Http) {
   }
 
-  authorize(username: string, password: string): any {
-    let headers = new Headers();
-    let data = {
-      grant_type: 'password',
-      client_id: 'foo',
-      client_secret: 'foosecret',
-      username: 'bar',
-      password: 'barsecret'
-    };
-
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Authorization', 'Basic Zm9vOmZvb3NlY3JldA==');
-    let options = new RequestOptions(
-    {
-      headers: headers
-    });
-    return this.http.post('https://jobsy-kp-api.herokuapp.com/oauth/token', 'grant_type=password&client_id=foo&client_secret=foosecret&username=bar&password=barsecret', options)
-      .map(
-        function success(response: Response): any {
-          return response.json();
-        }
-      )
-      .catch(function fail(error: Response): any {
-        console.log('fail auth start');
-        console.log(error.json());
-        console.log('fail auth end');
-        return 'filip';
-      });
-  }
-
   getAll(): Observable<User[]> {
     return this.http.get(this.baseUrl).map(function success() {
       console.log('aaa');
