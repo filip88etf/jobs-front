@@ -18,6 +18,7 @@ import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { UserJobItemComponent } from './Jobs/user-job-item.component';
 import { PostJobComponent } from './Jobs/Post/post-job.component';
 import { EditJobComponent } from './Jobs/Edit/edit-job.component';
+import { JobService } from '../Job/job.service';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -42,7 +43,7 @@ export const userRoutes: Routes = [
     EditProfileComponent, ResetPasswordComponent, ProfileComponent, EditJobComponent,
     UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent
   ],
-  providers: [ HttpModule, UserService ]
+  providers: [ HttpModule, UserService, JobService ]
 })
 
 export class UserModule {}

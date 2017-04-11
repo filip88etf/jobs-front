@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormsModule, Validators, AbstractControl } from '@angular/forms';
 import { IMyOptions } from 'mydatepicker';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
@@ -40,7 +41,7 @@ export class ManualSignupComponent implements OnInit {
   isEmployee: boolean;
   user: User;
 
-  constructor(private formBuilder: FormBuilder, private userSerivce: UserService) {
+  constructor(private formBuilder: FormBuilder, private userSerivce: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -68,7 +69,12 @@ export class ManualSignupComponent implements OnInit {
   manualSignup(): void {
     this.mapFormToUser();
     if (this.role[0].id === 'employer') {
-          this.userSerivce.create(this.user).subscribe(() => {console.log('aaaaa'); });
+          this.userSerivce.create(this.user).subscribe(
+            (response) => {
+              console.log(response);
+              this.router.navigate(['user/profile']);
+            }
+          );
       return;
     }
 

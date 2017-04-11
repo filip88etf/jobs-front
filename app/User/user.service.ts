@@ -13,6 +13,36 @@ export class UserService {
   constructor (private http: Http) {
   }
 
+  authorize(username: string, password: string): any {
+    let headers = new Headers();
+    let data = {
+      grant_type: 'password',
+      client_id: 'foo',
+      client_secret: 'foosecret',
+      username: 'bar',
+      password: 'barsecret'
+    };
+
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Authorization', 'Basic Zm9vOmZvb3NlY3JldA==');
+    let options = new RequestOptions(
+    {
+      headers: headers
+    });
+    return this.http.post('https://jobsy-kp-api.herokuapp.com/oauth/token', 'grant_type=password&client_id=foo&client_secret=foosecret&username=bar&password=barsecret', options)
+      .map(
+        function success(response: Response): any {
+          return response.json();
+        }
+      )
+      .catch(function fail(error: Response): any {
+        console.log('fail auth start');
+        console.log(error.json());
+        console.log('fail auth end');
+        return 'filip';
+      });
+  }
+
   getAll(): Observable<User[]> {
     return this.http.get(this.baseUrl).map(function success() {
       console.log('aaa');
@@ -31,36 +61,16 @@ export class UserService {
     return this.http.post(this.baseUrl, user, options)
       .map(
         function success(response: Response): any {
-          console.log(response);
-          ;
+          console.error(response);
+          return response.json();
       })
       .catch(
         function fail(error: Response): any {
+          console.log('fail start');
+          console.error(error);
+          console.log('fail end');
       });
   }
   update() {}
   delete() {}
-
-  getJobs() {
-    return [
-      {
-        region: 'Belgrade',
-        profession: 'Electrician',
-        description: 'Electrician to fix my garage door. Urgently!!',
-        createdDate: '12.03.2013'
-      },
-      {
-        region: 'Belgrade',
-        profession: 'Gardener',
-        description: 'Gardener! Mowing the my back yard.',
-        createdDate: '02.10.2012'
-      },
-      {
-        region: 'Belgrade',
-        profession: 'Housekeeper',
-        description: 'I need housekeeper, for cleaning, ironing, cooking..',
-        createdDate: '01.08.2012'
-      }
-    ];
-  }
 }

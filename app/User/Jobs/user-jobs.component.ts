@@ -1,8 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 
-import { UserService } from '../user.service';
+import { JobService } from '../../Job/job.service';
 import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { EditJobComponent } from './Edit/edit-job.component';
+import { Job } from '../../Job/Job';
 
 @Component({
   moduleId: module.id,
@@ -11,15 +12,17 @@ import { EditJobComponent } from './Edit/edit-job.component';
 })
 
 export class UserJobsComponent implements OnInit {
-  jobs: Object[];
+  jobs: Job[];
   @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
 
-  constructor (private userService: UserService) {
+  constructor (private jobService: JobService) {
   }
 
   ngOnInit(): void {
-    this.jobs = this.userService.getJobs();
+    this.jobService.getJobs('user id goes here').subscribe(
+      (response) => { this.jobs = response; }
+    );
   }
 
   openDeleteModal(job: Object): void {

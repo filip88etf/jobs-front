@@ -3,6 +3,8 @@ import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
+import { Job } from '../../../Job/Job';
+import { JobService } from '../../../Job/job.service';
 
 @Component({
   moduleId: module.id,
@@ -14,12 +16,15 @@ export class PostJobComponent implements OnInit {
   selected: Option[];
   locations: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
-  job: Object;
+  job: Job;
   @ViewChild('postJobModal') public modal: ModalDirective;
-  @Output() onSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onSubmit: EventEmitter<Job> = new EventEmitter<Job>();
+
+  constructor(private jobService: JobService) {
+  }
 
   ngOnInit() {
-    this.job = {description: '', location: undefined, profession: undefined};
+    this.job = new Job();
   }
 
   open() {
@@ -27,7 +32,8 @@ export class PostJobComponent implements OnInit {
   }
 
   postJob(): void {
-    this.onSubmit.emit(true);
+    this.jobService.create(this.job);
+    this.onSubmit.emit(this.job);
     this.close();
   }
 
