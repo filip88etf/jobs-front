@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
+const accessTokenUrl: string = 'https://jobsy-kp-api.herokuapp.com/oauth/token';
+
 @Injectable()
 export class AuthorizationService {
-  private accessTokenUrl: string = 'https://jobsy-kp-api.herokuapp.com/oauth/token';
+  private accessToken: string;
+  private refreshToken: string;
+  private tokenType: string;
 
   constructor(private http: Http) {
     console.log('Constructor of Authorization Serivce is executed!');
@@ -18,21 +22,21 @@ export class AuthorizationService {
       grant_type: 'password',
       client_id: 'foo',
       client_secret: 'foosecret',
-      username: 'bar',
-      password: 'barsecret'
+      username: username,
+      password: password
     };
     let options = new RequestOptions({headers: headers});
 
-    return this.http.post(this.accessTokenUrl, this.encodeUrl(data), options)
+    return this.http.post(accessTokenUrl, this.encodeUrl(data), options)
       .map(
         function success(response: Response): any {
-          return response.json();
+          let authData = response.json();
+          localStorage.setItem('accessToken', authData.access_token);
+          localStorage.setItem('refreshToken', authData.refresh_token);
+          localStorage.setItem('tokenType', authData.token_type);
+          return authData;
         }
-      )
-      .catch(
-        function fail(error: Response): any {
-          console.error(error.json());
-      });
+      );
   }
 
   private encodeUrl(data: Object) {

@@ -21,7 +21,22 @@ export class LoginComponent {
   }
 
   login (): void {
-    this.authorizationSerivce.authorize('bar', 'barsecret').subscribe((result: any) => { console.log(result); });
+    this.authorizationSerivce.authorize('bar', 'barsecret').subscribe(
+      function authorizeSuccess (result: any) {
+        this.userService.getByUsername('sdfasd').subscribe(
+          function getSuccess (result: any) {
+            console.log('aaaa');
+          },
+          function getFail (result: any) {
+            console.log('bbbb');
+          }
+        );
+        console.log(result);
+      }.bind(this),
+      function fail (result: any) {
+        console.log(result);
+      }
+    );
     this.router.navigate(['user/profile']);
   }
 
