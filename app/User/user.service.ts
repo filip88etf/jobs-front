@@ -8,11 +8,11 @@ import { User } from './User';
 import { BaseService } from '../base-service';
 
 @Injectable()
-export class UserService extends BaseService {
+export class UserService extends BaseService<User> {
   private user: User;
 
   constructor (private http: Http) {
-    super('users');
+    super('users', http);
     console.log('UserService constructor is executed');
   }
 
@@ -58,8 +58,4 @@ export class UserService extends BaseService {
           console.error(error);
       });
   }
-
-  update() {}
-
-  delete() {}
 }

@@ -8,10 +8,10 @@ import { Job } from './Job';
 import { BaseService } from '../base-service';
 
 @Injectable()
-export class JobService extends BaseService {
+export class JobService extends BaseService<Job> {
 
   constructor (private http: Http) {
-    super('jobs');
+    super('jobs', http);
   }
 
   getByUserId(userId: string) {
@@ -23,45 +23,6 @@ export class JobService extends BaseService {
       })
     .catch(
       function fail (error: any) {
-        console.error(error.json());
-        return Observable.throw(error.json());
-      }
-    );
-  }
-
-  create(job: Job): Observable<Job> {
-    return this.http.post(this.apiUrl, job, this.options).map(
-      function success (response: Response) {
-        return response.json();
-      })
-    .catch(
-      function fail (error: any) {
-        console.error(error.json());
-        return Observable.throw(error.json());
-      }
-    );
-  }
-
-  update(job: Job): Observable<Job> {
-    return this.http.put(this.apiUrl, job, this.options).map(
-      function success (response: Response) {
-        return response.json();
-      })
-    .catch(
-      function fail (error: any) {
-        console.error(error.json());
-        return Observable.throw(error.json());
-      }
-    );
-  }
-
-  getJobs(userId: string): Observable<Job[]> {
-    return this.http.get(this.apiUrl).map(
-      function success (response: Response) {
-        return response.json();
-      })
-    .catch(
-      function fail (error: Response) {
         console.error(error.json());
         return Observable.throw(error.json());
       }
