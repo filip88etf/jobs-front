@@ -19,7 +19,7 @@ import { UserJobItemComponent } from './Jobs/user-job-item.component';
 import { PostJobComponent } from './Jobs/Post/post-job.component';
 import { EditJobComponent } from './Jobs/Edit/edit-job.component';
 import { JobService } from '../Job/job.service';
-import { AuthorizationModule } from '../authorization.module';
+import { ServiceModule } from '../service.module';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -38,13 +38,13 @@ export const userRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(userRoutes), LoginModule, SignupModule,
-    CommonModule, SharedModule, ModalModule, AuthorizationModule
+    CommonModule, SharedModule, ModalModule, ServiceModule
   ],
   declarations: [
     EditProfileComponent, ResetPasswordComponent, ProfileComponent, EditJobComponent,
     UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent
   ],
-  providers: [ HttpModule, UserService, JobService ]
+  providers: [ HttpModule, JobService ]
 })
 
 export class UserModule {}

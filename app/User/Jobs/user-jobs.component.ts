@@ -4,6 +4,7 @@ import { JobService } from '../../Job/job.service';
 import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { EditJobComponent } from './Edit/edit-job.component';
 import { Job } from '../../Job/Job';
+import { UserService } from '../user.service';
 
 @Component({
   moduleId: module.id,
@@ -16,13 +17,14 @@ export class UserJobsComponent implements OnInit {
   @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
 
-  constructor (private jobService: JobService) {
+  constructor (private jobService: JobService, private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.jobService.getJobs('user id goes here').subscribe(
-      (response) => { this.jobs = response; }
-    );
+    this.jobs = [new Job()];
+    // this.jobService.getJobs('user id goes here').subscribe(
+    //   (response) => { this.jobs = response; }
+    // );
   }
 
   openDeleteModal(job: Object): void {

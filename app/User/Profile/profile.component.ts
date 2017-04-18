@@ -3,6 +3,7 @@ import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.c
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { User } from '../User';
+import { UserService } from '../user.service';
 
 @Component({
   moduleId: module.id,
@@ -15,15 +16,11 @@ export class ProfileComponent implements OnInit {
   user: User;
   @ViewChild(ConfirmModalComponent) public confirmModal: ConfirmModalComponent;
 
+  constructor(private userService: UserService) {
+
+  }
   ngOnInit() {
-    this.user = new User();
-    this.user.firstName = 'Filip';
-    this.user.lastName = 'Djordjevic';
-    this.user.gender = 'Male';
-    this.user.phone = '0601434835';
-    this.user.email = 'eing.filip@gmail.com';
-    this.user.birth = '06 Aug 1988';
-    this.user.username = 'ficko';
+    this.user = this.userService.getUser();
   }
 
   openModal(): void {

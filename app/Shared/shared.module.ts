@@ -25,7 +25,7 @@ import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
   ],
   exports: [
     MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
-    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent
+    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule
   ]
 })
 

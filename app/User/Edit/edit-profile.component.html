@@ -14,37 +14,40 @@
       </button>
     </div>
   </div>
+  <form (ngSubmit)="editSave()" #editUserForm="ngForm">
+    <app-input-text [label]="'First Name'"
+                    [model]="user.firstName"
+                    [required]="true">
+    </app-input-text>
+    <app-input-text [label]="'Last Name'"
+                    [model]="user.lastName"
+                    [required]="true">
+    </app-input-text>
+    <app-input-select [label]="'Gender'"
+                      [options]="options"
+                      [selected]="selected">
+    </app-input-select>
+    <app-input-calendar [label]="'Birthday'"
+                    [model]="user.birth">
+    </app-input-calendar>
+    <app-input-text [label]="'Phone'"
+                    [model]="user.phone"
+                    [required]="true">
+    </app-input-text>
+    <app-input-text [label]="'Email'"
+                    [model]="user.email"
+                    [required]="true">
+    </app-input-text>
 
-  <app-input-text [label]="'First Name'"
-                  [model]="user.firstName"
-                  [required]="true">
-  </app-input-text>
-  <app-input-text [label]="'Last Name'"
-                  [model]="user.lastName"
-                  [required]="true">
-  </app-input-text>
-  <app-input-select [label]="'Gender'"
-                    [options]="options"
-                    [selected]="selected">
-  </app-input-select>
-  <app-input-calendar [label]="'Birthday'"
-                  [model]="user.birth">
-  </app-input-calendar>
-  <app-input-text [label]="'Phone'"
-                  [model]="user.phone"
-                  [required]="true">
-  </app-input-text>
-  <app-input-text [label]="'Email'"
-                  [model]="user.email"
-                  [required]="true">
-  </app-input-text>
-
-  <div class="row padding-20">
-    <div class="col-md-12">
-      <div class="float-right">
-        <button [routerLink]="['/user/profile']" class="btn btn-default">Cancel</button>
-        <button class="btn brand-btn">Save</button>
+    <div class="row padding-20">
+      <div class="col-md-12">
+        <div class="float-right">
+          <button [routerLink]="['/user/profile']" class="btn btn-default">Cancel</button>
+          <button class="btn brand-btn">Save</button>
+        </div>
       </div>
     </div>
-  </div>
+    
+  </form>
+
 </div>

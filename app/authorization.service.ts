@@ -30,6 +30,32 @@ export class AuthorizationService {
     return this.http.post(accessTokenUrl, this.encodeUrl(data), options)
       .map(
         function success(response: Response): any {
+          console.log('success');
+          let authData = response.json();
+          localStorage.setItem('accessToken', authData.access_token);
+          localStorage.setItem('refreshToken', authData.refresh_token);
+          localStorage.setItem('tokenType', authData.token_type);
+          return authData;
+        }
+      );
+  }
+
+  public refreshAccessToken(): any {
+    let headers = new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic Zm9vOmZvb3NlY3JldA=='
+    });
+    let data = {
+      grant_type: 'refresh_token',
+      client_id: 'foo',
+      client_secret: 'foosecret',
+      refresh_token: localStorage.getItem('refreshToken')
+    };
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.post(accessTokenUrl, this.encodeUrl(data), options)
+      .map(
+        function success(response: Response): any {
           let authData = response.json();
           localStorage.setItem('accessToken', authData.access_token);
           localStorage.setItem('refreshToken', authData.refresh_token);
