@@ -10,6 +10,7 @@ export class BaseService <T> {
   httpService: Http;
 
   constructor(route: string = '', http: Http) {
+    console.log('construt base service for ' + route);
     this.apiUrl += route ? '/' + route : '';
     this.headers = new Headers({
       'Content-Type': 'application/json',
@@ -22,7 +23,16 @@ export class BaseService <T> {
   getById(entityId: string) {
   }
 
-  list() {
+  list(): Observable<T[]> {
+    return this.httpService.get(this.apiUrl).map(
+      function success(response: Response) {
+        return response.json();
+      })
+    .catch(
+      function fail(error: any) {
+        return Observable.throw(error.json());
+      }
+    );
   }
 
   create(entity: T): Observable<T> {

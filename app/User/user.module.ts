@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProfileComponent } from './Profile/profile.component';
 import { LoginModule } from '../Login/login.module';
@@ -37,7 +38,7 @@ export const userRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(userRoutes), LoginModule, SignupModule,
+    RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule, ReactiveFormsModule,
     CommonModule, SharedModule, ModalModule, ServiceModule
   ],
   declarations: [

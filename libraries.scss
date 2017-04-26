@@ -1,0 +1,14 @@
+@import 'global_variables.scss';
+// Custome styles of npm libs
+
+// Custom ng-select style
+
+ng-select > div {
+  border-radius: 4px !important;
+}
+select-dropdown .selected.highlighted {
+  background-color: $brand-color !important;
+}
+select-dropdown .highlighted {
+  background-color: $brand-color !important;
+}

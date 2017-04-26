@@ -1,36 +1,36 @@
 export const CITIES = [
-  { id: 'Beograd', text: 'Beograd'},
-  { id: 'Novi Sad', text: 'Novi Sad'},
-  { id: 'Cacak', text: 'Cacak'},
-  { id: 'Nis', text: 'Nis'},
-  { id: 'Uzice', text: 'Uzice'},
-  { id: 'Kragujevac', text: 'Kragujevac'},
-  { id: 'Zrenjanin', text: 'Zrenjanin'},
-  { id: 'Subotica', text: 'Subotica'},
-  { id: 'Sabac', text: 'Sabac'},
-  { id: 'Jagodina', text: 'Jagodina'},
-  { id: 'Smederevo', text: 'Smederevo'},
-  { id: 'Leskovac', text: 'Leskovac'},
-  { id: 'Krusevac', text: 'Krusevac'}
+  { value: 'Beograd', label: 'Beograd'},
+  { value: 'Novi Sad', label: 'Novi Sad'},
+  { value: 'Cacak', label: 'Cacak'},
+  { value: 'Nis', label: 'Nis'},
+  { value: 'Uzice', label: 'Uzice'},
+  { value: 'Kragujevac', label: 'Kragujevac'},
+  { value: 'Zrenjanin', label: 'Zrenjanin'},
+  { value: 'Subotica', label: 'Subotica'},
+  { value: 'Sabac', label: 'Sabac'},
+  { value: 'Jagodina', label: 'Jagodina'},
+  { value: 'Smederevo', label: 'Smederevo'},
+  { value: 'Leskovac', label: 'Leskovac'},
+  { value: 'Krusevac', label: 'Krusevac'}
 ];
 
 export const ROLES = [
-  { id: 'employee', text: 'Employee'},
-  { id: 'employer', text: 'Employer'}
+  { value: 'employee', label: 'Employee'},
+  { value: 'employer', label: 'Employer'}
 ];
 
 export const GENDER_LIST = [
-  { id: 1, text: 'Female'},
-  { id: 2, text: 'Male'},
-  { id: 3, text: 'Other'}
+  { value: '1', label: 'Female'},
+  { value: '2', label: 'Male'},
+  { value: '3', label: 'Other'}
 ];
 
 export const PROFESSIONS = [
-  { id: 'Electrician', text: 'Electrician'},
-  { id: 'Plumber', text: 'Plumber'},
-  { id: 'Housekeeper', text: 'Housekeeper'},
-  { id: 'Gardener', text: 'Gardener'},
-  { id: 'Bricklayer', text: 'Bricklayer'},
+  { value: 'Electrician', label: 'Electrician'},
+  { value: 'Plumber', label: 'Plumber'},
+  { value: 'Housekeeper', label: 'Housekeeper'},
+  { value: 'Gardener', label: 'Gardener'},
+  { value: 'Bricklayer', label: 'Bricklayer'},
 ];
 
 export const CALENDAR_SETTINGS = {

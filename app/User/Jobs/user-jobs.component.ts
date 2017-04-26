@@ -28,16 +28,13 @@ export class UserJobsComponent implements OnInit {
   }
 
   openDeleteModal(job: Object): void {
-    console.log(job);
     this.confirmModal.open('Delete Job', 'Are you sure you want to delete this job?', 'delete');
   }
 
   openEditModal(job: Object): void {
-    console.log(job);
     this.editModal.open(job);
   }
 
   deleteJob(): void {
-    console.log('delete job');
   }
 }

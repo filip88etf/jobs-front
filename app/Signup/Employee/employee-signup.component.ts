@@ -22,7 +22,7 @@ export class EmployeeSignup implements OnInit {
   constructor (private formBuilder: FormBuilder, private userSerivce: UserService) {
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.employeeForm = this.formBuilder.group({
       jobDescription: ['', [Validators.required]],
       city: ''
@@ -30,8 +30,7 @@ export class EmployeeSignup implements OnInit {
   }
 
   employeeSignup(): void {
-    console.log(this.user);
-    this.userSerivce.create(this.user).subscribe(() => {console.log('aaaaa'); });
+    this.userSerivce.create(this.user).subscribe(() => {});
   }
 
 }

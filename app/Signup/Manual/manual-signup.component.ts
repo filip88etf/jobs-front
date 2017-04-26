@@ -35,9 +35,7 @@ export class ManualSignupComponent implements OnInit {
   birthdayOptions: IMyOptions = CALENDAR_SETTINGS;
   birthday: any;
   genders: Option[] = GENDER_LIST;
-  gender: Option[] = [GENDER_LIST[0]];
   roles: Option[] = ROLES;
-  role: Option[] = [ROLES[0]];
   isEmployee: boolean;
   user: User;
 
@@ -48,6 +46,7 @@ export class ManualSignupComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
       lastName: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
+      gender: undefined,
       birthday: ['', [Validators.required]],
       phone: ['', Validators.required],
       email: ['', [Validators.required, GlobalValidators.emailValidator]],
@@ -55,7 +54,8 @@ export class ManualSignupComponent implements OnInit {
       passwordGroup: this.formBuilder.group({
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]]
-      }, {validator: passwordMatcher()})
+      }, {validator: passwordMatcher()}),
+      role: 'employer'
     });
     this.user = new User();
   }
@@ -68,10 +68,9 @@ export class ManualSignupComponent implements OnInit {
 
   manualSignup(): void {
     this.mapFormToUser();
-    if (this.role[0].id === 'employer') {
+    if (this.signupForm.get('role').value === 'employer') {
           this.userSerivce.create(this.user).subscribe(
             (response) => {
-              console.log(response);
               this.router.navigate(['user/profile']);
             }
           );
@@ -85,7 +84,7 @@ export class ManualSignupComponent implements OnInit {
     this.user.firstName = this.signupForm.get('firstName').value;
     this.user.lastName = this.signupForm.get('lastName').value;
     this.user.birth = this.birthday.jsdate.toString();
-    this.user.gender = this.gender[0].id;
+    this.user.gender = this.signupForm.get('gender').value;
     this.user.phone = this.signupForm.get('phone').value;
     this.user.email = this.signupForm.get('email').value;
     this.user.username = this.signupForm.get('username').value;

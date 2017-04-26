@@ -36,11 +36,13 @@
             <span class="search-label">Where</span>
           </div>
           <div class="col-md-9" [ngClass]="{'has-error': showMessage(city) }">
-            <ng-select
-              [items]="cities"
-              [(ngModel)]="city"
-              [placeholder]="'select city'">
-            </ng-select>
+            <div class="ng-select-wrapper">
+              <ng-select
+                [options]="cities"
+                [(ngModel)]="city"
+                [placeholder]="'select city'">
+              </ng-select>
+            </div>
             <span class="error-message">{{showMessage(city)}}</span>
           </div>
         </div>
@@ -49,11 +51,13 @@
             <span class="search-label">Profession</span>
           </div>
           <div class="col-md-9" [ngClass]="{'has-error': showMessage(proffesion) }">
-            <ng-select
-              [items]="professions"
-              [(ngModel)]="proffesion"
-              [placeholder]="'select profession'">
-            </ng-select>
+            <div class="ng-select-wrapper">
+              <ng-select
+                [options]="professions"
+                [(ngModel)]="proffesion"
+                [placeholder]="'select profession'">
+              </ng-select>
+            </div>
             <span class="error-message">{{showMessage(proffesion)}}</span>
           </div>
         </div>

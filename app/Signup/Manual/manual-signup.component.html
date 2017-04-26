@@ -41,13 +41,10 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-8 padding-bottom-10">
-        <div class="ng2-select-wrapper">
-          <ng-select
-            [items]="genders"
-            [(ngModel)]="gender"
-            [ngModelOptions]="{standalone: true}" >
-          </ng-select>
-        </div>
+        <app-input-select formControlName="gender" ngDefaultControl
+                          [options]="genders"
+                          [required]="true">
+        </app-input-select>
       </div>
     </div>
 
@@ -62,11 +59,11 @@
       </div>
       <div class="col-md-8 padding-bottom-10 float-left"
       [ngClass]="{'has-error': validateControl('birthday')}">
-          <my-date-picker
-                [options]=birthdayOptions
-                formControlName="birthday"
-                [(ngModel)]="birthday">
-          </my-date-picker>
+        <my-date-picker
+              [options]=birthdayOptions
+              formControlName="birthday"
+              [(ngModel)]="birthday">
+        </my-date-picker>
         <validation-message [control]="signupForm.get('birthday')">
         </validation-message>
       </div>
@@ -182,13 +179,10 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-8 padding-bottom-10">
-        <div class="ng2-select-wrapper">
-          <ng-select
-            [items]="roles"
-            [(ngModel)]="role"
-            [ngModelOptions]="{standalone: true}" >
-          </ng-select>
-        </div>
+        <app-input-select formControlName="role" ngDefaultControl
+                          [options]="roles"
+                          [required]="true">
+        </app-input-select>
       </div>
     </div>
 
@@ -196,10 +190,9 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-8">
-        <!-- [disabled]="!signupForm.valid" -->
         <button type="submit"  class="col-md-12 btn btn-primary">
-          <span *ngIf="role[0].id === 'employee'">Next</span>
-          <span *ngIf="role[0].id !== 'employee'">Sing up</span>
+          <span *ngIf="this.signupForm.get('role').value === 'employee'">Next</span>
+          <span *ngIf="this.signupForm.get('role').value !== 'employee'">Sing up</span>
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 @import 'global_variables.scss';
+@import 'libraries.scss';
 
 .body {
   font-family: $text-font-family;
@@ -82,7 +83,7 @@
   padding-bottom: 20px;
 }
 
-.ng2-select-wrapper {
+.ng-select-wrapper {
   width: 100%;
   display: table;
   background-color: white;
@@ -97,4 +98,9 @@
 .brand-btn {
   background-color: $brand-color;
   color: white;
+}
+
+.input-error {
+  border: 1px solid #a94442;
+  border-radius: 4px;
 }

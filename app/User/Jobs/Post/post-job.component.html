@@ -7,36 +7,42 @@
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Post New Job</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="postJobModal.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-input-select [label]="'Location'"
-                          [options]="locations"
-                          [selected]="job.location">
-        </app-input-select>
-        <app-input-select [label]="'Profession'"
-                          [options]="professions"
-                          [selected]="job.profession">
-        </app-input-select>
-        <app-input-text [label]="'Description'"
-                        [model]="job.description"
-                        [required]="true">
-        </app-input-text>
-      </div>
-      <div class="modal-footer">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="float-right">
-              <button (click)="postJobModal.hide()" class="btn btn-default">Cancel</button>
-              <button (click)="postJob()" class="btn brand-btn">Post</button>
+
+      <form (ngSubmit)="postJob()" [formGroup]="postJobForm">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Post New Job</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="postJobModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-input-select formControlName="location" ngDefaultControl
+                            [label]="'Location'"
+                            [options]="locations"
+                            [required]="true">
+          </app-input-select>
+          <app-input-select formControlName="profession" ngDefaultControl
+                            [label]="'Profession'"
+                            [options]="professions"
+                            [required]="true">
+          </app-input-select>
+          <app-input-text [label]="'Description'"
+                          [model]="job.description"
+                          [required]="true">
+          </app-input-text>
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="float-right">
+                <button type="reset" (click)="close()" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn brand-btn">Post</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
 </div>

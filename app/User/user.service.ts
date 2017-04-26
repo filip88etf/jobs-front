@@ -17,19 +17,12 @@ export class UserService extends BaseService<User> {
   }
 
   getByUsername(username: string) {
-    let routeUrl = '/search/findByUsername?username=' + 'bar';
+    let routeUrl = '/search/findByUsername?username=' + username;
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
         function success(response: Response): any {
-          this.user = new User();
-          this.user.firstName = 'Filip';
-          this.user.lastName = 'Djordjevic';
-          this.user.gender = 'Male';
-          this.user.phone = '0601434835';
-          this.user.email = 'eing.filip@gmail.com';
-          this.user.username = 'filipo';
-          return this.user;
+          return response.json();
       }.bind(this))
       .catch(
         function fail(error): any {

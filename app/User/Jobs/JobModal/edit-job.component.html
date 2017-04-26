@@ -15,12 +15,10 @@
       </div>
       <div class="modal-body">
         <app-input-select [label]="'Location'"
-                          [options]="locations"
-                          [selected]="job.location">
+                          [options]="locations">
         </app-input-select>
         <app-input-select [label]="'Profession'"
-                          [options]="professions"
-                          [selected]="job.profession">
+                          [options]="professions">
         </app-input-select>
         <app-input-text [label]="'Description'"
                         [model]="job.description"

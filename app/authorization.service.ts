@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import 'rxjs/add/operator/catch';
 
 const accessTokenUrl: string = 'https://jobsy-kp-api.herokuapp.com/oauth/token';
 
@@ -10,7 +11,6 @@ export class AuthorizationService {
   private tokenType: string;
 
   constructor(private http: Http) {
-    console.log('Constructor of Authorization Serivce is executed!');
   }
 
   public authorize(username: string, password: string): any {
@@ -30,12 +30,16 @@ export class AuthorizationService {
     return this.http.post(accessTokenUrl, this.encodeUrl(data), options)
       .map(
         function success(response: Response): any {
-          console.log('success');
           let authData = response.json();
           localStorage.setItem('accessToken', authData.access_token);
           localStorage.setItem('refreshToken', authData.refresh_token);
           localStorage.setItem('tokenType', authData.token_type);
           return authData;
+        }
+      )
+      .catch(
+        function fail(): any {
+          console.log('authorization has faild');
         }
       );
   }

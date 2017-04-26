@@ -21,17 +21,16 @@ export class LoginComponent {
   }
 
   login (): void {
-    this.authorizationSerivce.authorize('bar', 'barsecret').subscribe(
+    this.authorizationSerivce.authorize(this.username, this.password).subscribe(
       function authorizeSuccess (result: any) {
         console.log('authorizeSuccess');
-        this.userService.getByUsername('sdfasd').subscribe(
+        this.userService.getByUsername(this.username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },
           (result: any) => { console.log('error in getByUsername'); }
         );
-        console.log(result);
       }.bind(this),
       function authorizeFail (result: any) {
-        console.log(result);
+        console.log('authorizeFail');
       }
     );
   }

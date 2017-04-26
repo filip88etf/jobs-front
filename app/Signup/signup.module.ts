@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { MyDatePickerModule } from 'mydatepicker';
-import { SelectModule } from 'ng2-select';
+import { SelectModule } from 'ng-select';
 import { SharedModule } from '../Shared/shared.module';
 import { SignupComponent } from './signup.component';
 import { ManualSignupComponent } from './Manual/manual-signup.component';

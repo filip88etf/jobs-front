@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MyDatePickerModule } from 'mydatepicker';
-import { SelectModule } from 'ng2-select';
+import { SelectModule } from 'ng-select';
 import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { MenuComponent } from './Menu/menu.component';

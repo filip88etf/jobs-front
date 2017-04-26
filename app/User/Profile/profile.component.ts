@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.user = new User();//= this.userService.getUser();
   }
 
   openModal(): void {

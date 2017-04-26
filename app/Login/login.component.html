@@ -31,12 +31,12 @@
                     #usernameControl="ngModel"
                     placeholder="Username"
                     required
-                    minlength="6"/>
+                    minlength="3"/>
             <span class="error-message" *ngIf="usernameControl.touched && usernameControl.errors?.required">
               Username is required
             </span>
             <span class="error-message" *ngIf="usernameControl.touched && usernameControl.errors?.minlength">
-              Minlength for username is 6
+              Minlength for username is 3
             </span>
           </div>
         </div>

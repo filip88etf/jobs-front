@@ -25,7 +25,7 @@
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
 
       // other libraries
-      'ng2-select': 'node_modules/ng2-select',
+      'ng-select': 'node_modules/ng-select',
       'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
       'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
       'rxjs':                      'npm:rxjs',
@@ -40,7 +40,7 @@
       rxjs: {
         defaultExtension: 'js'
       },
-      'ng2-select': {
+      'ng-select': {
         main: 'index.js',
         defaultExtension: 'js'
       }
