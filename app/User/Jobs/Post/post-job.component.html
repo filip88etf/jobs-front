@@ -26,10 +26,10 @@
                             [options]="professions"
                             [required]="true">
           </app-input-select>
-          <app-input-text [label]="'Description'"
-                          [model]="job.description"
-                          [required]="true">
-          </app-input-text>
+          <app-text-area formControlName="description" ngDefaultControl
+                         [label]="'Description'"
+                         [required]="true">
+          </app-text-area>
         </div>
         <div class="modal-footer">
           <div class="row">

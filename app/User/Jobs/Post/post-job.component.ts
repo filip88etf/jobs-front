@@ -28,7 +28,8 @@ export class PostJobComponent implements OnInit {
     this.job = new Job();
     this.postJobForm = this.formBuilder.group({
       location: null,
-      profession: null
+      profession: null,
+      description: ''
     });
   }
 

@@ -13,6 +13,7 @@ import { InputSelectComponent } from './InputSelect/input-select.component';
 import { InputCalendarComponent } from './InputCalendar/input-calendar.component';
 import { InputPasswordComponent } from './InputPassword/input-password.component';
 import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
+import { TextAreaComponent } from './TextArea/text-area.component';
 
 @NgModule({
   imports: [
@@ -20,11 +21,11 @@ import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
     ModalModule.forRoot(), MyDatePickerModule
   ],
   declarations: [
-    MenuComponent, ValidationMessage, InputPasswordComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent,
     InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent
   ],
   exports: [
-    MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
+    MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent, TextAreaComponent,
     InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule
   ]
 })
