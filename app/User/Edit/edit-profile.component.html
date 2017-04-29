@@ -16,11 +16,9 @@
   </div>
   <form (ngSubmit)="editSave()" #editUserForm="ngForm">
     <app-input-text [label]="'First Name'"
-                    [model]="user.firstName"
                     [required]="true">
     </app-input-text>
     <app-input-text [label]="'Last Name'"
-                    [model]="user.lastName"
                     [required]="true">
     </app-input-text>
     <app-input-select [label]="'Gender'"
@@ -30,11 +28,9 @@
                     [model]="user.birth">
     </app-input-calendar>
     <app-input-text [label]="'Phone'"
-                    [model]="user.phone"
                     [required]="true">
     </app-input-text>
     <app-input-text [label]="'Email'"
-                    [model]="user.email"
                     [required]="true">
     </app-input-text>
 

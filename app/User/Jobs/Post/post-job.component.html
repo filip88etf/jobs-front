@@ -30,6 +30,11 @@
                          [label]="'Description'"
                          [required]="true">
           </app-text-area>
+          <app-input-text formControlName="prvi" ngDefaultControl
+                          [label]="'prvi input'"
+                          [required]="true"
+                          [minLength]="10">
+          </app-input-text>
         </div>
         <div class="modal-footer">
           <div class="row">
