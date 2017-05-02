@@ -41,14 +41,49 @@ export class UserService extends BaseService<User> {
   }
 
   create(user: User): Observable<User> {
-    return this.http.post(this.apiUrl, user, this.options)
+    let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
+
+    return this.http.post(this.apiUrl, user, options)
       .map(
         function success(response: Response): any {
           return response.json();
       })
       .catch(
-        function fail(error: Response): any {
+        function fail(error: any): any {
           console.error(error);
       });
+  }
+
+  verifyPassword(password: string): Observable<boolean> {
+    let data = {
+      username: this.user.username,
+      password: password
+    };
+
+    return this.http.post(this.apiUrl, data, this.options)
+      .map(
+        function success(response: Response): any {
+          console.log(response.json());
+        }
+      )
+      .catch(
+        function fail(error: any): any{
+          console.error(error);
+        }
+      );
+  }
+
+  changePassword(newPassword: string): Observable<boolean> {
+    return this.http.patch(this.apiUrl + '/' + this.user.id, {password: newPassword}, this.options)
+      .map(
+        function success(response: Response): any {
+          return true;
+        }
+      )
+      .catch(
+        function fail(error: any): any {
+          return false;
+        }
+      );
   }
 }

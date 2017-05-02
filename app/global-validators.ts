@@ -10,4 +10,16 @@ export class GlobalValidators {
     }
     return null;
   }
+
+  static passwordMatcher(firstInputName: string, secondInputName: string) {
+    return (control: AbstractControl) => {
+      let password = control.get(firstInputName),
+          confirmPassword = control.get(secondInputName);
+
+      if (password.pristine || confirmPassword.pristine || password.value === confirmPassword.value) {
+        return null;
+      }
+      return {match: true};
+    };
+  }
 }

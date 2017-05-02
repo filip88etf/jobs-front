@@ -41,9 +41,9 @@ export class BaseService <T> {
         return response.json();
       })
     .catch(
-      function fail (error: any) {
-        console.error(error.json());
-        return Observable.throw(error.json());
+      function fail (error: Error) {
+        console.log(error);
+        return Observable.throw(error);
       }
     );
   }

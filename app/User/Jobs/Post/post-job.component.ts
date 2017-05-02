@@ -1,11 +1,12 @@
 import { Component, ViewChild, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
 import { Job } from '../../../Job/Job';
 import { JobService } from '../../../Job/job.service';
+import { Helper } from '../../../helper';
 
 @Component({
   moduleId: module.id,
@@ -34,8 +35,11 @@ export class PostJobComponent implements OnInit {
   }
 
   postJob(): void {
-    for (let control in this.postJobForm.controls) {
-      this.postJobForm.controls[control].updateValueAndValidity();
+    if (Helper.validateForm(this.postJobForm)) {
+      Helper.submitForm(this.postJobForm, this.job);
+      this.jobService.create(this.job).subscribe(
+        () => { this.onSubmit.emit(this.job); }
+      );
     }
   }
 

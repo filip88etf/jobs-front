@@ -14,7 +14,7 @@ import { EditProfileComponent } from './Edit/edit-profile.component';
 import { UserService } from './user.service';
 import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
-import { ResetPasswordComponent } from './ResetPassword/reset-password.component';
+import { ChangePasswordComponent } from './ChangePassword/change-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { UserJobItemComponent } from './Jobs/user-job-item.component';
 import { PostJobComponent } from './Jobs/Post/post-job.component';
@@ -31,7 +31,7 @@ export const userRoutes: Routes = [
       { path: '', component: ProfileComponent },
       { path: 'jobs', component: UserJobsComponent },
       { path: 'edit', component: EditProfileComponent },
-      { path: 'password', component: ResetPasswordComponent }
+      { path: 'password', component: ChangePasswordComponent }
     ]
   },
 ];
@@ -42,7 +42,7 @@ export const userRoutes: Routes = [
     CommonModule, SharedModule, ModalModule, ServiceModule
   ],
   declarations: [
-    EditProfileComponent, ResetPasswordComponent, ProfileComponent, EditJobComponent,
+    EditProfileComponent, ChangePasswordComponent, ProfileComponent, EditJobComponent,
     UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent
   ],
   providers: [ HttpModule, JobService ]

@@ -11,17 +11,7 @@ import { User } from '../../User/User';
 
 const MIN_LENGHT: number = 2;
 
-function passwordMatcher(focus: boolean = true) {
-  return (control: AbstractControl) => {
-    let password = control.get('password'),
-        confirmPassword = control.get('confirmPassword');
 
-    if (password.pristine || confirmPassword.pristine || password.value === confirmPassword.value) {
-      return null;
-    }
-    return {match: true};
-  };
-}
 
 @Component({
   selector: 'app-manual-signup',
@@ -54,7 +44,7 @@ export class ManualSignupComponent implements OnInit {
       passwordGroup: this.formBuilder.group({
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]]
-      }, {validator: passwordMatcher()}),
+      }, {validator: GlobalValidators.passwordMatcher('password', 'confirmPassword')}),
       role: 'employer'
     });
     this.user = new User();
