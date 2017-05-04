@@ -12,12 +12,16 @@ export class BaseService <T> {
   constructor(route: string = '', http: Http) {
     console.log('construt base service for ' + route);
     this.apiUrl += route ? '/' + route : '';
+    this.httpService = http;
+    this.initOptions();
+  }
+
+  initOptions () {
     this.headers = new Headers({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('tokenType') + ' ' + localStorage.getItem('accessToken')
     });
     this.options = new RequestOptions({ headers: this.headers });
-    this.httpService = http;
   }
 
   getById(entityId: string) {

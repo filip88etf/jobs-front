@@ -6,6 +6,7 @@ import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
 import { Job } from '../../../Job/Job';
 import { JobService } from '../../../Job/job.service';
+import { UserService } from '../../user.service';
 import { Helper } from '../../../helper';
 
 @Component({
@@ -22,7 +23,7 @@ export class PostJobComponent implements OnInit {
   job: Job;
   postJobForm: FormGroup;
 
-  constructor(private jobService: JobService, private formBuilder: FormBuilder) {
+  constructor(private jobService: JobService, private userService: UserService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -37,8 +38,12 @@ export class PostJobComponent implements OnInit {
   postJob(): void {
     if (Helper.validateForm(this.postJobForm)) {
       Helper.submitForm(this.postJobForm, this.job);
+      this.job.userId = this.userService.getUser().id;
       this.jobService.create(this.job).subscribe(
-        () => { this.onSubmit.emit(this.job); }
+        () => {
+          this.onSubmit.emit(this.job);
+          this.close();
+        }
       );
     }
   }

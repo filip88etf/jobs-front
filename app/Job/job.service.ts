@@ -17,9 +17,9 @@ export class JobService extends BaseService<Job> {
   getByUserId(userId: string) {
     let routeUrl = '/search/findByUserId?userId=' + userId;
 
-    return this.http.get(this.apiUrl, this.options).map(
+    return this.http.get(this.apiUrl + routeUrl, this.options).map(
       function success (response: Response) {
-        return response.json();
+        return response.json().content;
       })
     .catch(
       function fail (error: any) {

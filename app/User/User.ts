@@ -1,6 +1,6 @@
 // User model
 export class User {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   birth: string;

@@ -38,7 +38,7 @@ export class AuthorizationService {
         }
       )
       .catch(
-        function fail(): any {
+        function fail(error: any): any {
           console.log('authorization has faild');
         }
       );

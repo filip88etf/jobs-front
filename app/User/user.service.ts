@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 
 import { User } from './User';
 import { BaseService } from '../base-service';
@@ -16,13 +17,17 @@ export class UserService extends BaseService<User> {
     console.log('UserService constructor is executed');
   }
 
-  getByUsername(username: string) {
+  getByUsername(username: string): Observable<User> {
     let routeUrl = '/search/findByUsername?username=' + username;
+    this.initOptions();
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
         function success(response: Response): any {
-          return response.json();
+          this.user = new User();
+          Object.assign(this.user, response.json());
+          localStorage.setItem('username', this.user.username);
+          return this.user;
       }.bind(this))
       .catch(
         function fail(error): any {
@@ -30,8 +35,11 @@ export class UserService extends BaseService<User> {
       });
   }
 
-  getUser(): User {
-    return this.user;
+  getUser(): Observable<User> {
+    if (!this.user) {
+      return this.getByUsername(localStorage.getItem('username'));
+    }
+    return Observable.of(this.user);
   }
 
   getAll(): Observable<User[]> {

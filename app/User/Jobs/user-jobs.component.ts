@@ -13,18 +13,18 @@ import { UserService } from '../user.service';
 })
 
 export class UserJobsComponent implements OnInit {
-  jobs: Job[];
   @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
+  jobs: Job[];
 
   constructor (private jobService: JobService, private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.jobs = [new Job()];
-    // this.jobService.getJobs('user id goes here').subscribe(
-    //   (response) => { this.jobs = response; }
-    // );
+    this.jobService.getByUserId(this.userService.getUser().id).subscribe(
+      (response) => { this.jobs = response; }
+    )
+    ;
   }
 
   openDeleteModal(job: Object): void {
@@ -36,5 +36,9 @@ export class UserJobsComponent implements OnInit {
   }
 
   deleteJob(): void {
+  }
+
+  addJob(job: Job): void {
+    this.jobs.push(job);
   }
 }
