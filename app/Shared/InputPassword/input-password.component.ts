@@ -23,8 +23,8 @@ export class InputPasswordComponent implements ControlValueAccessor, OnInit {
   @Input() label: string;
   @Input() required: boolean = false;
   @Input() minLength: number = 0;
-  @Input() valid: boolean = true;
   private propagateChange = (_: any) => {};
+  valid: boolean = true;
   touched: boolean = false;
   model: any;
   minLengthError: boolean = false;
@@ -42,13 +42,21 @@ export class InputPasswordComponent implements ControlValueAccessor, OnInit {
 
     if (this.touched && this.required) {
       this.requiredError = !(value && value.length);
+    } else {
+      this.requiredError = false;
     }
-    if (this.touched && this.minLength > 0 && value) {
+    if (this.touched && this.minLength > 0 && value && !this.requiredError) {
       this.minLengthError = value.length < this.minLength;
+    } else {
+      this.minLengthError = false;
     }
     if (this.touched) {
       this.valid = !(this.minLengthError || this.requiredError);
     }
+
+    setTimeout(function checkFormErrors() {
+      this.valid = this.valid && !(control.errors && control.errors['match']);
+    }.bind(this), 250);
     this.touched = true;
   }
 

@@ -1,148 +1,64 @@
-<div class="manual-signup-form" *ngIf="!isEmployee">
+<div class="signup-container">
+  <app-menu></app-menu>
+  <div class="manual-signup-form" *ngIf="!isEmployee">
 
-  <form (ngSubmit)="manualSignup()" [formGroup]="signupForm">
+    <form (ngSubmit)="manualSignup()" [formGroup]="signupForm">
 
-    <div class="row padding-top-10">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Name</b></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-4 padding-bottom-10"
-      [ngClass]="{'has-error': validateControl('firstName')}">
-        <input type="text"
-               class="form-control"
-               placeholder="First"
-               formControlName="firstName" />
-        <validation-message [control]="signupForm.get('firstName')">
-        </validation-message>
-      </div>
-      <div class="col-md-4 padding-bottom-10"
-      [ngClass]="{'has-error': validateControl('lastName')}">
-        <input type="text"
-               class="form-control"
-               placeholder="Last"
-               formControlName="lastName" />
-        <validation-message [control]="signupForm.get('lastName')">
-        </validation-message>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Gender</b></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8 padding-bottom-10">
-        <app-input-select formControlName="gender" ngDefaultControl
-                          [options]="genders"
-                          [required]="true">
-        </app-input-select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Birthday</b></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8 padding-bottom-10 float-left"
-      [ngClass]="{'has-error': validateControl('birthday')}">
-        <my-date-picker
-              [options]=birthdayOptions
-              formControlName="birthday"
-              [(ngModel)]="birthday">
-        </my-date-picker>
-        <validation-message [control]="signupForm.get('birthday')">
-        </validation-message>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Phone</b></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8 padding-bottom-10"
-      [ngClass]="{'has-error': validateControl('phone')}">
-        <input type="tel"
-               class="form-control"
-               formControlName="phone" />
-        <validation-message [control]="signupForm.get('phone')">
-        </validation-message>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Email</b></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8 padding-bottom-10"
-      [ngClass]="{'has-error': validateControl('email')}">
-        <input type="email"
-               class="form-control"
-               formControlName="email" />
-        <validation-message [control]="signupForm.get('email')">
-        </validation-message>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Username</b></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8 padding-bottom-10"
-      [ngClass]="{'has-error': validateControl('username')}">
-        <input type="text"
-               class="form-control"
-               formControlName='username' />
-        <validation-message [control]="signupForm.get('username')">
-        </validation-message>
-      </div>
-    </div>
-
-    <div formGroupName="passwordGroup">
-
-      <div class="row">
+      <div class="row padding-top-10">
         <div class="col-md-2"></div>
         <div class="col-md-10">
-          <span class="float-left"><b>Password</b></span>
+          <span class="float-left"><b>Name</b></span>
         </div>
       </div>
       <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8 padding-bottom-10"
-        [ngClass]="{'has-error': validateControl('passwordGroup.password') || signupForm.get('passwordGroup').errors?.match}">
-          <input type="password"
-                 class="form-control"
-                 formControlName='password' />
-          <validation-message [control]="signupForm.get('passwordGroup.password')">
+        <div class="col-md-4 padding-bottom-10">
+          <app-input-text formControlName="firstName"
+            [required]="true"
+            [placeholder]="'First'"></app-input-text>
+        </div>
+        <div class="col-md-4 padding-bottom-10">
+          <app-input-text formControlName="lastName"
+            [required]="true"
+            [placeholder]="'Last'"></app-input-text>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Gender</b></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10">
+          <app-input-select formControlName="gender"
+                            [options]="genders"
+                            [required]="true">
+          </app-input-select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Birthday</b></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10 float-left"
+        [ngClass]="{'has-error': validateControl('birthday')}">
+          <my-date-picker
+                [options]=birthdayOptions
+                formControlName="birthday"
+                [(ngModel)]="birthday">
+          </my-date-picker>
+          <validation-message [control]="signupForm.get('birthday')">
           </validation-message>
         </div>
       </div>
@@ -150,55 +66,124 @@
       <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-10">
-          <span class="float-left"><b>Confirm Password</b></span>
+          <span class="float-left"><b>Phone</b></span>
         </div>
       </div>
       <div class="row">
         <div class="col-md-2">
         </div>
-        <div class="col-md-8 padding-bottom-10"
-        [ngClass]="{'has-error': validateControl('passwordGroup.confirmPassword') || signupForm.get('passwordGroup').errors?.match}">
-          <input type="password"
-                 class="form-control"
-                 formControlName="confirmPassword" />
-          <validation-message [control]="signupForm.get('passwordGroup.confirmPassword')">
-          </validation-message>
-          <span class="error-message" *ngIf="signupForm.get('passwordGroup').errors?.match">These passwords don't match</span>
+        <div class="col-md-8 padding-bottom-10">
+          <app-input-text formControlName="phone"
+            [required]="true"></app-input-text>
         </div>
       </div>
 
-    </div>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Email</b></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': signupForm.get('email').errors?.email}">
+          <app-input-text formControlName="email"
+            [required]="true"></app-input-text>
+            <span class="error-message" *ngIf="signupForm.get('email').errors?.email">
+              Invalid email
+            </span>
+        </div>
+      </div>
 
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-10">
-        <span class="float-left"><b>Role</b></span>
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Username</b></span>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10">
+          <app-input-text formControlName="username"
+            [required]="true"
+            [minLength]="3"></app-input-text>
+        </div>
       </div>
-      <div class="col-md-8 padding-bottom-10">
-        <app-input-select formControlName="role" ngDefaultControl
-                          [options]="roles"
-                          [required]="true">
-        </app-input-select>
-      </div>
-    </div>
 
-    <div class="row padding-top-bottom-10">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8">
-        <button type="submit"  class="col-md-12 btn btn-primary">
-          <span *ngIf="this.signupForm.get('role').value === 'employee'">Next</span>
-          <span *ngIf="this.signupForm.get('role').value !== 'employee'">Sing up</span>
-        </button>
-      </div>
-    </div>
+      <div formGroupName="passwordGroup">
 
-  </form>
-</div>
-<div *ngIf="isEmployee">
-  <app-employee-signup [user]="user"></app-employee-signup>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <span class="float-left"><b>Password</b></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': signupForm.get('passwordGroup').errors?.match}">
+            <app-input-password formControlName="password"
+                                [required]="true"
+                                [minLength]="8">
+            </app-input-password>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <span class="float-left"><b>Confirm Password</b></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': signupForm.get('passwordGroup').errors?.match}">
+            <app-input-password formControlName="confirmPassword"
+                                [required]="true"
+                                [minLength]="8">
+            </app-input-password>
+            <span class="error-message" *ngIf="signupForm.get('passwordGroup').errors?.match">
+              These passwords don't match
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Role</b></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10">
+          <app-input-select formControlName="role" ngDefaultControl
+                            [options]="roles"
+                            [required]="true">
+          </app-input-select>
+        </div>
+      </div>
+
+      <div class="row padding-top-bottom-10">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+          <button type="submit"  class="col-md-12 btn btn-primary">
+            <span *ngIf="this.signupForm.get('role').value === 'employee'">Next</span>
+            <span *ngIf="this.signupForm.get('role').value !== 'employee'">Sing up</span>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div *ngIf="isEmployee">
+    <app-employee-signup [user]="user"></app-employee-signup>
+  </div>
 </div>

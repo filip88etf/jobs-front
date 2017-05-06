@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 
 export class ChangePasswordComponent implements OnInit {
   user: User;
-  resetPasswordForm: FormGroup;
+  changePasswordForm: FormGroup;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder) {
   }
@@ -21,7 +21,7 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit () {
     this.user = new User();
     this.user.password = '';
-    this.resetPasswordForm = this.formBuilder.group({
+    this.changePasswordForm = this.formBuilder.group({
       oldPassword: '',
       newPasswordGroup: this.formBuilder.group({
         newPassword: '',
@@ -31,7 +31,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword() {
-    let controls = this.resetPasswordForm.controls;
+    let controls = this.changePasswordForm.controls;
 
     // this.userService.verifyPassword(controls['oldPassword'].value).subscribe(
     //   function success(isOk: boolean) {

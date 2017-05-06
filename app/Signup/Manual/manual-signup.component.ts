@@ -34,18 +34,18 @@ export class ManualSignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
-      lastName: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
+      firstName: '',
+      lastName: '',
       gender: undefined,
       birthday: ['', [Validators.required]],
-      phone: ['', Validators.required],
-      email: ['', [Validators.required, GlobalValidators.emailValidator]],
-      username: ['', [Validators.required, Validators.minLength(MIN_LENGHT)]],
+      phone: '',
+      email: ['', [GlobalValidators.emailValidator]],
+      username: '',
       passwordGroup: this.formBuilder.group({
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', [Validators.required]]
+        password: '',
+        confirmPassword: ''
       }, {validator: GlobalValidators.passwordMatcher('password', 'confirmPassword')}),
-      role: 'employer'
+      role: undefined
     });
     this.user = new User();
   }

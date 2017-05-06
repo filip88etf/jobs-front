@@ -8,8 +8,4 @@ import { Component } from '@angular/core';
 })
 
 export class SignupComponent {
-  isManual: boolean = false;
-  signupManual(): void {
-    this.isManual = !this.isManual;
-  }
 }

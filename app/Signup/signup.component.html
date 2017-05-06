@@ -1,6 +1,6 @@
 <div class="signup-container">
   <app-menu></app-menu>
-  <div *ngIf="!isManual" class="signup-form">
+  <div class="signup-form">
 
     <div class="row">
       <div class="col-md-3">
@@ -24,7 +24,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6">
-        <button (click)="signupManual()" class="btn btn-default google-button">
+        <button [routerLink]="['/user/signup/manual']" class="btn btn-default google-button">
           <span class="float-left glyphicon glyphicon-envelope"></span>
           <span>Sign up</span>
         </button>
@@ -42,7 +42,4 @@
 
   </div>
 
-  <div *ngIf="isManual">
-    <app-manual-signup></app-manual-signup>
-  </div>
 </div>
