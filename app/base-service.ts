@@ -1,18 +1,26 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
+import { AuthorizationService } from './authorization.service';
 
 export class BaseService <T> {
   apiUrl: string = 'https://jobsy-kp-api.herokuapp.com';
   headers: Headers;
   options: RequestOptions;
   httpService: Http;
+  authorizationService: AuthorizationService;
+  router: Router;
 
-  constructor(route: string = '', http: Http) {
+  constructor(route: string = '', http: Http, authorizationService: AuthorizationService, router: Router) {
     console.log('construt base service for ' + route);
     this.apiUrl += route ? '/' + route : '';
     this.httpService = http;
+    this.authorizationService = authorizationService;
+    this.router = router;
     this.initOptions();
   }
 
@@ -34,8 +42,8 @@ export class BaseService <T> {
       })
     .catch(
       function fail(error: any) {
-        return Observable.throw(error.json());
-      }
+        return this.errorHandler(error);
+      }.bind(this)
     );
   }
 
@@ -46,9 +54,8 @@ export class BaseService <T> {
       })
     .catch(
       function fail (error: Error) {
-        console.log(error);
-        return Observable.throw(error);
-      }
+        return this.errorHandler(error);
+      }.bind(this)
     );
   }
 
@@ -59,9 +66,8 @@ export class BaseService <T> {
       })
     .catch(
       function fail (error: any) {
-        console.error(error.json());
-        return Observable.throw(error.json());
-      }
+        return this.errorHandler(error);
+      }.bind(this)
     );
   }
 
@@ -72,9 +78,23 @@ export class BaseService <T> {
       })
     .catch(
       function fail (error: any) {
-        console.error(error.json());
-        return Observable.throw(error.json());
-      }
+        return this.errorHandler(error);
+      }.bind(this)
     );
+  }
+
+  errorHandler(error: any) {
+    switch (error.status) {
+      case 401:
+        this.authorizationService.refreshAccessToken().subscribe(
+          (response: Response) => { location.reload(); },
+          (error: any) => { this.router.navigate(['user/login']); }
+        );
+        return Observable.throw(error);
+      case 404:
+        return Observable.throw(error);
+      default:
+        return Observable.throw(error);
+    }
   }
 }

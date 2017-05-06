@@ -1,7 +1,7 @@
 <div class="login-container">
   <app-menu></app-menu>
   <div class="log-wrapper">
-    <div class="login-form" *ngIf="!resetForm">
+    <div class="login-form" *ngIf="!showReset">
 
       <div class="row">
         <div class="col-md-3">
@@ -23,7 +23,7 @@
         <div class="row padding-top-bottom-10">
           <div class="col-md-3">
           </div>
-          <div class="col-md-6" [ngClass]="{'has-error': !usernameControl.valid && usernameControl.touched}">
+          <div class="col-md-6" [ngClass]="{'has-error': ((!usernameControl.valid && usernameControl.touched) || badCredentials)}">
             <input  class="col-md-12 form-control"
                     type="text"
                     name="username"
@@ -45,7 +45,7 @@
           <div class="col-md-3">
           </div>
 
-          <div class="col-md-6" [ngClass]="{'has-error': !passwordControl.valid && passwordControl.touched}">
+          <div class="col-md-6" [ngClass]="{'has-error': ((!passwordControl.valid && passwordControl.touched) || badCredentials)}">
             <input  class="col-md-12 form-control"
                   type="password"
                   name="password"
@@ -59,6 +59,9 @@
             </span>
             <span class="error-message" *ngIf="passwordControl.touched && passwordControl.errors?.minlength">
               Minlength for password is 6
+            </span>
+            <span class="error-message" *ngIf="badCredentials">
+              Wrong password or wrong username. Try again.
             </span>
           </div>
         </div>
@@ -77,13 +80,13 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-          <a class="pull-left mouse-pointer" (click)="resetForm = true">Forgot password?</a>
+          <a class="pull-left mouse-pointer" (click)="showReset = true">Forgot password?</a>
         </div>
       </div>
 
     </div>
 
-    <div class="reset-form" *ngIf="resetForm">
+    <div class="reset-form" *ngIf="showReset">
       <div class="row">
         <div class="col-md-3">
         </div>
@@ -124,12 +127,12 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-          <button class="btn btn-default login-button" (click)="resetForm = false">Return to login</button>
+          <button class="btn btn-default login-button" (click)="showReset = false">Return to login</button>
         </div>
       </div>
     </div>
 
-    <div class="create-form" *ngIf="!resetForm">
+    <div class="create-form" *ngIf="!showReset">
       <div class="row padding-top-bottom-10">
         <div class="col-md-3">
         </div>

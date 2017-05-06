@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -7,13 +8,14 @@ import 'rxjs/add/observable/of';
 
 import { User } from './User';
 import { BaseService } from '../base-service';
+import { AuthorizationService } from '../authorization.service';
 
 @Injectable()
 export class UserService extends BaseService<User> {
   private user: User;
 
-  constructor (private http: Http) {
-    super('users', http);
+  constructor (private http: Http, authorizationService: AuthorizationService, router: Router) {
+    super('users', http, authorizationService, router);
     console.log('UserService constructor is executed');
   }
 
@@ -30,9 +32,10 @@ export class UserService extends BaseService<User> {
           return this.user;
       }.bind(this))
       .catch(
-        function fail(error): any {
-          console.error(error);
-      });
+        function fail(error: any): any {
+          return this.errorHandler(error);
+        }.bind(this)
+      );
   }
 
   getUser(): Observable<User> {
@@ -43,9 +46,16 @@ export class UserService extends BaseService<User> {
   }
 
   getAll(): Observable<User[]> {
-    return this.http.get(this.apiUrl).map(function success() {
-      return [new User()];
-    });
+    return this.http.get(this.apiUrl)
+      .map(
+        function success(response: Response) {
+          return [new User()];
+      })
+      .catch(
+        function fail(error: any) {
+          return this.errorHandler(error);
+        }.bind(this)
+      );
   }
 
   create(user: User): Observable<User> {
@@ -58,8 +68,9 @@ export class UserService extends BaseService<User> {
       })
       .catch(
         function fail(error: any): any {
-          console.error(error);
-      });
+          return this.errorHandler(error);
+        }.bind(this)
+      );
   }
 
   verifyPassword(password: string): Observable<boolean> {
@@ -76,8 +87,8 @@ export class UserService extends BaseService<User> {
       )
       .catch(
         function fail(error: any): any{
-          console.error(error);
-        }
+          return this.errorHandler(error);
+        }.bind(this)
       );
   }
 
@@ -90,8 +101,8 @@ export class UserService extends BaseService<User> {
       )
       .catch(
         function fail(error: any): any {
-          return false;
-        }
+          return this.errorHandler(error);
+        }.bind(this)
       );
   }
 }

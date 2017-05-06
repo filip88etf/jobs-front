@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs/Observable';
 
 const accessTokenUrl: string = 'https://jobsy-kp-api.herokuapp.com/oauth/token';
 
@@ -39,7 +41,7 @@ export class AuthorizationService {
       )
       .catch(
         function fail(error: any): any {
-          console.log('authorization has faild');
+          return Observable.throw(error);
         }
       );
   }

@@ -14,24 +14,28 @@ import { AuthorizationService } from '../authorization.service';
 export class LoginComponent {
   private username: string = '';
   private password: string = '';
-  private resetForm: boolean = false;
+  private showReset: boolean = false;
+  private badCredentials: boolean = false;
 
   constructor(private router: Router, private userService: UserService,
     private authorizationSerivce: AuthorizationService) {
   }
 
   login (): void {
+    this.badCredentials = false;
     this.authorizationSerivce.authorize(this.username, this.password).subscribe(
       function authorizeSuccess (result: any) {
         console.log('authorizeSuccess');
         this.userService.getByUsername(this.username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },
-          (result: any) => { console.log('error in getByUsername'); }
+          (error: any) => { console.log('error in getByUsername'); }
         );
       }.bind(this),
-      function authorizeFail (result: any) {
-        console.log('authorizeFail');
-      }
+      function authorizeFail (error: any) {
+        if (error.status === 400) {
+          this.badCredentials = true;
+        }
+      }.bind(this)
     );
   }
 

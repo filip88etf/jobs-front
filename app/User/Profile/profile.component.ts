@@ -17,11 +17,14 @@ export class ProfileComponent implements OnInit {
   @ViewChild(ConfirmModalComponent) public confirmModal: ConfirmModalComponent;
 
   constructor(private userService: UserService) {
-
   }
+
   ngOnInit() {
     this.userService.getUser().subscribe(
-      (user: User) => { this.user = user; }
+      (user: User) => {
+        this.user = user;
+        console.log(this.user);
+      }
     );
   }
 
