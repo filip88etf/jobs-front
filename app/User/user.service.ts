@@ -105,4 +105,22 @@ export class UserService extends BaseService<User> {
         }.bind(this)
       );
   }
+
+  resetPassword(email: string): Observable<boolean> {
+    let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) }),
+        routeUrl = 'reset',
+        data = { email: email};
+
+    return this.http.post(this.apiUrl + '/' + routeUrl, data, options)
+      .map(
+        function success(response: Response): any {
+          return response.json();
+        }
+      )
+      .catch(
+        function fail(error: any): any {
+          return Observable.throw(error);
+        }
+      );
+  }
 }

@@ -21,10 +21,12 @@ import { PostJobComponent } from './Jobs/Post/post-job.component';
 import { EditJobComponent } from './Jobs/Edit/edit-job.component';
 import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../service.module';
+import { ResetPasswordComponent } from '../Login/reset-password.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
+  { path: 'resetpassword', component: ResetPasswordComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: UserComponent, children:
     [

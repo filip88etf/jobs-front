@@ -14,7 +14,6 @@ import { AuthorizationService } from '../authorization.service';
 export class LoginComponent {
   private username: string = '';
   private password: string = '';
-  private showReset: boolean = false;
   private badCredentials: boolean = false;
 
   constructor(private router: Router, private userService: UserService,
