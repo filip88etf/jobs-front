@@ -43,9 +43,13 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
 
     if (this.touched && this.required) {
       this.requiredError = !(value && value.length);
+    } else {
+      this.requiredError = false;
     }
     if (this.touched && this.minLength > 0 && value && !this.requiredError) {
       this.minLengthError = value.length < this.minLength;
+    } else {
+      this.minLengthError = false;
     }
     this.valid = !(this.minLengthError || this.requiredError);
     this.touched = true;

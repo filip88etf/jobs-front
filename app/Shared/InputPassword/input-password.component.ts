@@ -50,13 +50,7 @@ export class InputPasswordComponent implements ControlValueAccessor, OnInit {
     } else {
       this.minLengthError = false;
     }
-    if (this.touched) {
-      this.valid = !(this.minLengthError || this.requiredError);
-    }
-
-    setTimeout(function checkFormErrors() {
-      this.valid = this.valid && !(control.errors && control.errors['match']);
-    }.bind(this), 250);
+    this.valid = !(this.minLengthError || this.requiredError);
     this.touched = true;
   }
 

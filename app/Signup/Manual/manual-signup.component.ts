@@ -3,11 +3,13 @@ import { FormGroup, FormBuilder, FormsModule, Validators, AbstractControl } from
 import { IMyOptions } from 'mydatepicker';
 import { Router } from '@angular/router';
 
+import { AuthorizationService } from '../../authorization.service';
 import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
 import { GENDER_LIST, ROLES, CALENDAR_SETTINGS } from '../../global-consts';
 import { Option } from '../../global-types';
 import { User } from '../../User/User';
+import { Helper } from '../../helper';
 
 const MIN_LENGHT: number = 2;
 
@@ -29,7 +31,8 @@ export class ManualSignupComponent implements OnInit {
   isEmployee: boolean;
   user: User;
 
-  constructor(private formBuilder: FormBuilder, private userSerivce: UserService, private router: Router) {
+  constructor(private formBuilder: FormBuilder,  private router: Router,
+    private userService: UserService, private authorizationSerivce: AuthorizationService) {
   }
 
   ngOnInit() {
@@ -45,7 +48,7 @@ export class ManualSignupComponent implements OnInit {
         password: '',
         confirmPassword: ''
       }, {validator: GlobalValidators.passwordMatcher('password', 'confirmPassword')}),
-      role: undefined
+      role: 'employee'
     });
     this.user = new User();
   }
@@ -57,11 +60,18 @@ export class ManualSignupComponent implements OnInit {
   }
 
   manualSignup(): void {
-    this.mapFormToUser();
+    let isValid = Helper.submitForm(this.signupForm, this.user);
+
+    if (!isValid)
+      return;
+
     if (this.signupForm.get('role').value === 'employer') {
-          this.userSerivce.create(this.user).subscribe(
+          this.userService.create(this.user).subscribe(
             (response) => {
-              this.router.navigate(['user/profile']);
+              let username = this.signupForm.get('username').value,
+                  password = this.signupForm.get('passwordGroup').get('password').value;
+
+              this.authorizeAndLogin(username, password);
             }
           );
       return;
@@ -70,14 +80,17 @@ export class ManualSignupComponent implements OnInit {
     this.isEmployee = true;
   }
 
-  private mapFormToUser (): void {
-    this.user.firstName = this.signupForm.get('firstName').value;
-    this.user.lastName = this.signupForm.get('lastName').value;
-    this.user.birth = this.birthday.jsdate.toString();
-    this.user.gender = this.signupForm.get('gender').value;
-    this.user.phone = this.signupForm.get('phone').value;
-    this.user.email = this.signupForm.get('email').value;
-    this.user.username = this.signupForm.get('username').value;
-    this.user.password = this.signupForm.get('passwordGroup').get('password').value;
+  authorizeAndLogin(username: string, password: string) {
+    this.authorizationSerivce.authorize(username, password).subscribe(
+      function authorizeSuccess (result: any) {
+        console.log('authorizeSuccess');
+        this.userService.getByUsername(username).subscribe(
+          (result: any) => { this.router.navigate(['user/profile']); },
+          (error: any) => { console.log('error in getByUsername'); }
+        );
+      }.bind(this),
+    );
+
   }
+
 }
