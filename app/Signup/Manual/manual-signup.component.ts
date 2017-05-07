@@ -60,6 +60,7 @@ export class ManualSignupComponent implements OnInit {
   }
 
   manualSignup(): void {
+        this.isEmployee = true;
     let isValid = Helper.submitForm(this.signupForm, this.user);
 
     if (!isValid)

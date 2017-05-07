@@ -24,8 +24,9 @@ export class EmployeeSignup implements OnInit {
 
   ngOnInit() {
     this.employeeForm = this.formBuilder.group({
-      jobDescription: ['', [Validators.required]],
-      city: ''
+      profession: '',
+      region: '',
+      description: ''
     });
   }
 

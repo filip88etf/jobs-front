@@ -13,15 +13,19 @@ import { UserService } from '../User/user.service';
 export class ResetPasswordComponent {
   email: string;
   resetSuccess: boolean = false;
+  resetFail: boolean = false;
 
   constructor(private userService: UserService) {
   }
 
   resetPassword(): void {
     this.userService.resetPassword(this.email).subscribe(
-      () => { this.resetSuccess = true; },
-      () => { this.resetSuccess = false; }
+      (isDone) => { this.resetSuccess = isDone; this.resetFail = !isDone; },
+      (value) => { this.resetSuccess = false; this.resetFail = true; }
     );
-    console.log(this.email);
+  }
+
+  tryAgain(): void {
+    this.resetFail = false;
   }
 }

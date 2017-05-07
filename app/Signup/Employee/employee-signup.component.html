@@ -12,11 +12,10 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-8 padding-bottom-10">
-        <div class="ng-select-wrapper">
-          <ng-select
-            [options]="professions" >
-          </ng-select>
-        </div>
+        <app-input-select formControlName="profession" ngDefaultControl
+                          [options]="professions"
+                          [required]="true">
+        </app-input-select>
       </div>
     </div>
 
@@ -30,10 +29,10 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-8 padding-bottom-10">
-        <ng-select
-          [options]="cities"
-          [multiple]="true" >
-        </ng-select>
+        <app-input-select formControlName="region" ngDefaultControl
+                          [options]="cities"
+                          [required]="true">
+        </app-input-select>
       </div>
     </div>
 
@@ -47,11 +46,9 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-8 control-padd2ing">
-        <textarea
-               class="form-control"
-               formControlName="jobDescription"
-               rows="3">
-        </textarea>
+        <app-text-area formControlName="description" ngDefaultControl
+                       [required]="true">
+        </app-text-area>
       </div>
     </div>
 
