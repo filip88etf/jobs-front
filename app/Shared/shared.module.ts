@@ -14,6 +14,7 @@ import { InputCalendarComponent } from './InputCalendar/input-calendar.component
 import { InputPasswordComponent } from './InputPassword/input-password.component';
 import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
 import { TextAreaComponent } from './TextArea/text-area.component';
+import { InputMultiselectComponent } from './InputMultiselect/input-multiselect.component';
 
 @NgModule({
   imports: [
@@ -22,11 +23,13 @@ import { TextAreaComponent } from './TextArea/text-area.component';
   ],
   declarations: [
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent,
-    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent
+    InputMultiselectComponent, InputTextComponent, InputSelectComponent,
+    InputCalendarComponent, ConfirmModalComponent
   ],
   exports: [
-    MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent, TextAreaComponent,
-    InputTextComponent, InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule
+    MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
+    TextAreaComponent, InputMultiselectComponent, InputTextComponent,
+    InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule
   ]
 })
 

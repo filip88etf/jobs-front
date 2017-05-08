@@ -8,17 +8,23 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { SelectModule } from 'ng-select';
 import { SharedModule } from '../Shared/shared.module';
 import { SignupComponent } from './signup.component';
-import { ManualSignupComponent } from './Manual/manual-signup.component';
-import { EmployeeSignup } from './Employee/employee-signup.component';
+import { EmployerSignupComponent } from './Employer/employer-signup.component';
+import { EmployeeSignupComponent } from './Employee/employee-signup.component';
+import { PickRoleComponent } from './PickRole/pick-role.component';
 
 const signupRoutes: Routes = [
-  { path: '', component: SignupComponent }
+  { path: '', component: SignupComponent },
+  { path: 'signup', component: SignupComponent},
+  { path: 'signup/role', component: PickRoleComponent },
+  { path: 'signup/employee', component: EmployeeSignupComponent },
+  { path: 'signup/employer', component: EmployerSignupComponent }
 ];
 
 @NgModule({
   imports: [HttpModule, RouterModule.forChild(signupRoutes), CommonModule, SelectModule,
             MyDatePickerModule, ReactiveFormsModule, SharedModule, FormsModule],
-  declarations: [SignupComponent, ManualSignupComponent, EmployeeSignup]
+  declarations: [SignupComponent, EmployerSignupComponent, EmployeeSignupComponent,
+            PickRoleComponent]
 })
 
 export class SignupModule {}

@@ -1,0 +1,41 @@
+<div *ngIf="label" class="padding-top-bottom-10">
+  <div class="row">
+    <div class="col-md-6 padding-bottom-5">
+      <span><b>{{label}}</b></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="ng-select-wrapper" [ngClass]="{'input-error' : !valid}">
+        <ng-select
+          [options]="options"
+          [(ngModel)]="selected"
+          (closed)='closed()'
+          [ngModelOptions]="{standalone: true}"
+          [multiple]="true">
+        </ng-select>
+      </div>
+      <span class="error-message" *ngIf="!valid" >
+        This filed is required
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- no label => no control style -->
+<div *ngIf="!label">
+  <div class="ng-select-wrapper" [ngClass]="{'input-error' : !valid}">
+    <ng-select
+      [options]="options"
+      [(ngModel)]="selected"
+      (closed)='closed()'
+      [ngModelOptions]="{standalone: true}"
+      [multiple]="true">
+    </ng-select>
+  </div>
+  <span class="error-message" *ngIf="!valid" >
+    This filed is required
+  </span>
+
+</div>

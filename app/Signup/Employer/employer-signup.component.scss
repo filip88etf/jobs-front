@@ -1,4 +1,4 @@
-.manual-signup-form {
+.employer-signup-form {
   display: table;
   position: absolute;
   left: 38vw;
@@ -10,10 +10,10 @@
   border-radius: 10px;
 }
 
-.signup-container {
+.employer-signup-container {
   height: calc( 100vh );
   width: 100%;
-  background: url(assets/signup3.jpg) no-repeat center center fixed;
+  background: url(assets/employer.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

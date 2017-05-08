@@ -14,11 +14,6 @@ export const CITIES = [
   { value: 'Krusevac', label: 'Krusevac'}
 ];
 
-export const ROLES = [
-  { value: 'employee', label: 'Employee'},
-  { value: 'employer', label: 'Employer'}
-];
-
 export const GENDER_LIST = [
   { value: '1', label: 'Female'},
   { value: '2', label: 'Male'},
