@@ -1,8 +1,8 @@
-<div class="employee-signup-container">
+<div class="worker-signup-container">
   <app-menu></app-menu>
-  <div class="employee-signup-form">
+  <div class="worker-signup-form">
 
-    <form (ngSubmit)="employeeSignup()" [formGroup]="employeeForm">
+    <form (ngSubmit)="workerSignup()" [formGroup]="workerForm">
 
     <div class="row">
 
@@ -62,7 +62,7 @@
                   formControlName="birthday"
                   [(ngModel)]="birthday">
             </my-date-picker>
-            <validation-message [control]="employeeForm.get('birthday')">
+            <validation-message [control]="workerForm.get('birthday')">
             </validation-message>
           </div>
         </div>
@@ -94,7 +94,7 @@
           <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': employeeForm.get('passwordGroup').errors?.match}">
+            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': workerForm.get('passwordGroup').errors?.match}">
               <app-input-password formControlName="password"
                                   [required]="true"
                                   [minLength]="8">
@@ -111,12 +111,12 @@
           <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': employeeForm.get('passwordGroup').errors?.match}">
+            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': workerForm.get('passwordGroup').errors?.match}">
               <app-input-password formControlName="confirmPassword"
                                   [required]="true"
                                   [minLength]="8">
               </app-input-password>
-              <span class="error-message" *ngIf="employeeForm.get('passwordGroup').errors?.match">
+              <span class="error-message" *ngIf="workerForm.get('passwordGroup').errors?.match">
                 These passwords don't match
               </span>
             </div>
@@ -152,10 +152,10 @@
         <div class="row">
           <div class="col-md-2">
           </div>
-          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': employeeForm.get('email').errors?.email}">
+          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': workerForm.get('email').errors?.email}">
             <app-input-text formControlName="email"
               [required]="true"></app-input-text>
-              <span class="error-message" *ngIf="employeeForm.get('email').errors?.email">
+              <span class="error-message" *ngIf="workerForm.get('email').errors?.email">
                 Invalid email
               </span>
           </div>

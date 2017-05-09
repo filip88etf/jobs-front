@@ -29,7 +29,7 @@ export class EmployerSignupComponent implements OnInit {
   genders: Option[] = GENDER_LIST;
   user: User;
 
-  constructor(private formBuilder: FormBuilder,  private router: Router,
+  constructor(private formBuilder: FormBuilder, private router: Router,
     private userService: UserService, private authorizationService: AuthorizationService) {
   }
 

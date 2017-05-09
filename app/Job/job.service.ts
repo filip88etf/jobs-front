@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Job } from './Job';
-import { BaseService } from '../base-service';
+import { BaseService } from '../base.service';
 import { AuthorizationService } from '../authorization.service';
 
 @Injectable()

@@ -9,9 +9,7 @@ import { ProfileComponent } from './Profile/profile.component';
 import { LoginModule } from '../Login/login.module';
 import { SignupModule } from '../Signup/signup.module';
 import { LoginComponent } from '../Login/login.component';
-import { SignupComponent } from '../Signup/signup.component';
 import { EditProfileComponent } from './Edit/edit-profile.component';
-import { UserService } from './user.service';
 import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ChangePasswordComponent } from './ChangePassword/change-password.component';
@@ -22,9 +20,6 @@ import { EditJobComponent } from './Jobs/Edit/edit-job.component';
 import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
-import { PickRoleComponent } from '../Signup/PickRole/pick-role.component';
-import { EmployeeSignupComponent } from '../Signup/Employee/employee-signup.component';
-import { EmployerSignupComponent } from '../Signup/Employer/employer-signup.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },

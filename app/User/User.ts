@@ -9,12 +9,11 @@ export class User {
   email: string;
   username: string;
   password: string;
+  type: string;
   fbId: string = '21e3dsaf';
   fbToken: string = '1243723985698753';
-}
 
-export class Employee extends User {
-  profession: string;
-  cities: string[];
-  jobDescription: string;
+  constructor(type: string = 'user') {
+    this.type = type;
+  }
 }

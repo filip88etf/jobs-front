@@ -48,15 +48,18 @@ export class BaseService <T> {
   }
 
   create(entity: T): Observable<T> {
-    return this.httpService.post(this.apiUrl, entity, this.options).map(
-      function success (response: Response) {
-        return response.json();
-      })
-    .catch(
-      function fail (error: Error) {
-        return this.errorHandler(error);
-      }.bind(this)
-    );
+    let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
+
+    return this.httpService.post(this.apiUrl, entity, options)
+      .map(
+        function success (response: Response) {
+          return response.json();
+        })
+      .catch(
+        function fail (error: Error) {
+          return this.errorHandler(error);
+        }.bind(this)
+      );
   }
 
   update(entity: T): Observable<T> {

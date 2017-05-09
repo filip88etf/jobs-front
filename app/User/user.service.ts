@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
 import { User } from './User';
-import { BaseService } from '../base-service';
+import { BaseService } from '../base.service';
 import { AuthorizationService } from '../authorization.service';
 
 @Injectable()
