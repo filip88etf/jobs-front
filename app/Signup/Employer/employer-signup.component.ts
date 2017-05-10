@@ -11,10 +11,6 @@ import { Option } from '../../global-types';
 import { User } from '../../User/User';
 import { Helper } from '../../helper';
 
-const MIN_LENGHT: number = 2;
-
-
-
 @Component({
   selector: 'app-employer-signup',
   moduleId: module.id,

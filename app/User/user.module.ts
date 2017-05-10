@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ModalModule, BsDropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProfileComponent } from './Profile/profile.component';
@@ -20,6 +20,7 @@ import { EditJobComponent } from './Jobs/Edit/edit-job.component';
 import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
+import { UserMenuComponent } from './Menu/user-menu.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -38,11 +39,11 @@ export const userRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule, ReactiveFormsModule,
-    CommonModule, SharedModule, ModalModule, ServiceModule
+    CommonModule, SharedModule, ModalModule, ServiceModule, BsDropdownModule.forRoot()
   ],
   declarations: [
     EditProfileComponent, ChangePasswordComponent, ProfileComponent, EditJobComponent,
-    UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent
+    UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent, UserMenuComponent
   ],
   providers: [ HttpModule, JobService ]
 })

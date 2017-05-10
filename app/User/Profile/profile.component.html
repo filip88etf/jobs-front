@@ -9,21 +9,9 @@
         <span class="glyphicon glyphicon-edit"></span>
         <span>Edit</span>
       </button>
-      <button class="btn btn-default btn-large"
-              [routerLink]="['/user/profile/password']">
-        <span class="glyphicon glyphicon-link"></span>
-        <span>Reset password</span>
-      </button>
-      <button class="btn btn-default btn-large"
-              (click)="openModal()">
-        <span class="glyphicon glyphicon-sunglasses"></span>
-        <span>Hide my profile</span>
-      </button>
     </div>
   </div>
 </div>
-
-<app-confirm-modal (onSubmit)="hideProfile($event)"></app-confirm-modal>
 
 <div *ngIf="user">
 

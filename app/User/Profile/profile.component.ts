@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { User } from '../User';
@@ -14,7 +13,6 @@ import { UserService } from '../user.service';
 
 export class ProfileComponent implements OnInit {
   user: User;
-  @ViewChild(ConfirmModalComponent) public confirmModal: ConfirmModalComponent;
 
   constructor(private userService: UserService) {
   }
@@ -26,13 +24,6 @@ export class ProfileComponent implements OnInit {
         console.log(this.user);
       }
     );
-  }
-
-  openModal(): void {
-    this.confirmModal.open(
-      'Hide Profile',
-      'Your profile won\'t be visible on this site anymore. Are you sure you want to hide your profile?',
-      'Hide');
   }
 
   hideProfile(hide: boolean): void {

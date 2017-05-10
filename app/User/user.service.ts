@@ -74,15 +74,16 @@ export class UserService extends BaseService<User> {
   }
 
   verifyPassword(password: string): Observable<boolean> {
-    let data = {
-      username: this.user.username,
-      password: password
-    };
+    let routeUrl = this.apiUrl + '/verify',
+        data = {
+          username: this.user.username,
+          password: password
+        };
 
-    return this.http.post(this.apiUrl, data, this.options)
+    return this.http.post(routeUrl, data, this.options)
       .map(
         function success(response: Response): any {
-          console.log(response.json());
+          return response.json();
         }
       )
       .catch(
@@ -108,10 +109,10 @@ export class UserService extends BaseService<User> {
 
   resetPassword(email: string): Observable<boolean> {
     let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) }),
-        routeUrl = 'reset',
+        routeUrl = '/reset',
         data = { email: email};
 
-    return this.http.post(this.apiUrl + '/' + routeUrl, data, options)
+    return this.http.post(this.apiUrl + routeUrl, data, options)
       .map(
         function success(response: Response): any {
           return response.json();

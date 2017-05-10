@@ -1,0 +1,12 @@
+<div class="btn-group" dropdown placement="bottom right">
+  <a dropdownToggle type="button" class="dropdown-toggle">
+    <span class="caret"></span>
+  </a>
+  <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+    <li role="menuitem"><a class="dropdown-item" (click)="openPasswordModal()">Change Password</a></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Log out</a></li>
+  </ul>
+</div>
+
+<app-change-password></app-change-password>
