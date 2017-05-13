@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
-import { EditJobComponent } from './Edit/edit-job.component';
+import { EditJobComponent } from '../Edit/edit-job.component';
 
 @Component({
   moduleId: module.id,

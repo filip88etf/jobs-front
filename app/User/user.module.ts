@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ModalModule, BsDropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { UserJobModule } from './Jobs/user-job.module';
 import { ProfileComponent } from './Profile/profile.component';
 import { LoginModule } from '../Login/login.module';
 import { SignupModule } from '../Signup/signup.module';
@@ -14,9 +15,6 @@ import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ChangePasswordComponent } from './ChangePassword/change-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
-import { UserJobItemComponent } from './Jobs/user-job-item.component';
-import { PostJobComponent } from './Jobs/Post/post-job.component';
-import { EditJobComponent } from './Jobs/Edit/edit-job.component';
 import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
@@ -38,12 +36,12 @@ export const userRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule, ReactiveFormsModule,
+    UserJobModule, RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule, ReactiveFormsModule,
     CommonModule, SharedModule, ModalModule, ServiceModule, BsDropdownModule.forRoot()
   ],
   declarations: [
-    EditProfileComponent, ChangePasswordComponent, ProfileComponent, EditJobComponent,
-    UserComponent, UserJobsComponent, UserJobItemComponent, PostJobComponent, UserMenuComponent
+    EditProfileComponent, ChangePasswordComponent, ProfileComponent,
+    UserComponent, UserMenuComponent
   ],
   providers: [ HttpModule, JobService ]
 })
