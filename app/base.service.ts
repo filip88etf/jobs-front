@@ -63,7 +63,7 @@ export class BaseService <T> {
   }
 
   update(entity: T): Observable<T> {
-    return this.httpService.put(this.apiUrl, entity, this.options).map(
+    return this.httpService.patch(this.apiUrl + '/' + entity['id'], entity, this.options).map(
       function success (response: Response) {
         return response.json();
       })

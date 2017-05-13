@@ -40,4 +40,10 @@ export class Helper {
 
     return isValid;
   }
+
+  static updateForm(form: FormGroup, entiti: Object): void {
+    for (let control in form.controls) {
+      form.controls[control].patchValue(entiti[control]);
+    }
+  }
 }

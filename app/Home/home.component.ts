@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { CITIES, PROFESSIONS } from '../global-consts';
 import { Option } from '../global-types';
-import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 
 @Component({
   moduleId: module.id,
@@ -19,7 +18,7 @@ export class HomeComponent {
   proffesion: Option;
   city: Option;
 
-  constructor(private toastyService: ToastyService) {}
+  constructor() {}
 
   showMessage(selected: Option): string {
     if (selected === undefined && this.startSearch) {
@@ -33,16 +32,6 @@ export class HomeComponent {
   }
 
   search(): void {
-    let toastOptions: ToastOptions = {
-        title: 'My title',
-        msg: 'The message',
-        showClose: true,
-        timeout: 5000,
-        theme: 'bootstrap'
-    };
-        // Add see all possible types in one shot
-    this.toastyService.info(toastOptions);
-    this.toastyService.default('Idemo saliso!!!!!!');
     this.startSearch = true;
   }
 }

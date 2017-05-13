@@ -15,9 +15,8 @@ export const CITIES = [
 ];
 
 export const GENDER_LIST = [
-  { value: '1', label: 'Female'},
-  { value: '2', label: 'Male'},
-  { value: '3', label: 'Other'}
+  { value: 'Female', label: 'Female'},
+  { value: 'Male', label: 'Male'}
 ];
 
 export const PROFESSIONS = [

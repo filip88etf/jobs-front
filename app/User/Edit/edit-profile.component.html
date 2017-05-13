@@ -14,7 +14,7 @@
       </button>
     </div>
   </div>
-  <form (ngSubmit)="editSave()" [formGroup]="editForm">
+  <form (ngSubmit)="save()" [formGroup]="editForm">
     <app-input-text formControlName="firstName"
                     [label]="'First Name'"
                     [required]="true">

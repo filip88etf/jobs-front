@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -9,4 +10,7 @@ import { Component } from '@angular/core';
 
 export class UserComponent {
   active: number = 1;
+  constructor(private router: Router) {
+    this.active = this.router['location'].path() === '/user/profile' ? 1 : 2;
+  }
 }
