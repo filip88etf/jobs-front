@@ -25,6 +25,7 @@
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
 
       // other libraries
+      'ng2-toasty': 'node_modules/ng2-toasty/bundles/index.umd.js',
       'ng-select': 'node_modules/ng-select',
       'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
       'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ngx-bootstrap.umd.js',

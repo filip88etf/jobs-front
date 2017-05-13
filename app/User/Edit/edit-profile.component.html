@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <img src="assets/no-profile-pic.png" height="200px" width="200px"/>
+      <img src="assets/images/no-profile-pic.png" height="200px" width="200px"/>
     </div>
   </div>
 
@@ -14,31 +14,36 @@
       </button>
     </div>
   </div>
-  <form (ngSubmit)="editSave()" #editUserForm="ngForm">
-    <app-input-text [label]="'First Name'"
+  <form (ngSubmit)="editSave()" [formGroup]="editForm">
+    <app-input-text formControlName="firstName"
+                    [label]="'First Name'"
                     [required]="true">
     </app-input-text>
-    <app-input-text [label]="'Last Name'"
+    <app-input-text formControlName="lastName"
+                    [label]="'Last Name'"
                     [required]="true">
     </app-input-text>
-    <app-input-select [label]="'Gender'"
+    <app-input-select formControlName="gender"
+                      [label]="'Gender'"
                       [options]="options">
     </app-input-select>
     <app-input-calendar [label]="'Birthday'"
                     [model]="user.birth">
     </app-input-calendar>
-    <app-input-text [label]="'Phone'"
+    <app-input-text formControlName="phone"
+                    [label]="'Phone'"
                     [required]="true">
     </app-input-text>
-    <app-input-text [label]="'Email'"
+    <app-input-text formControlName="email"
+                    [label]="'Email'"
                     [required]="true">
     </app-input-text>
 
     <div class="row padding-20">
       <div class="col-md-12">
         <div class="float-right">
-          <button [routerLink]="['/user/profile']" class="btn btn-default">Cancel</button>
-          <button class="btn brand-btn">Save</button>
+          <button type="reset" [routerLink]="['/user/profile']" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn brand-btn">Save</button>
         </div>
       </div>
     </div>

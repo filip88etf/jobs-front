@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { User } from '../User';
 import { GENDER_LIST } from '../../global-consts';
@@ -16,14 +17,21 @@ export class EditProfileComponent implements OnInit {
   user: User;
   selected: Option[] = [GENDER_LIST[0]];
   options: Option[] = GENDER_LIST;
-
-  constructor(private userService: UserService) {
+  editForm: FormGroup;
+  constructor(private userService: UserService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit () {
-    this.user = this.userService.getUser();
+    this.userService.getUser().subscribe(
+      (response) => { this.user = response; },
+      (error) => { console.log(error); }
+    );
+    this.editForm = this.formBuilder.group({
+      
+    });
   }
 
   editSave() {
+
   }
 }

@@ -38,6 +38,11 @@ export class UserService extends BaseService<User> {
       );
   }
 
+  logOut() {
+    this.user = null;
+    this.router.navigate(['/user/login']);
+  }
+
   getUser(): Observable<User> {
     if (!this.user) {
       return this.getByUsername(localStorage.getItem('username'));

@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 
 import { GlobalValidators } from '../../global-validators';
-import { User } from '../User';
 import { UserService } from '../user.service';
+import { Helper } from '../../helper';
 
 @Component({
   moduleId: module.id,
@@ -14,17 +15,15 @@ import { UserService } from '../user.service';
 })
 
 export class ChangePasswordComponent implements OnInit {
-  user: User;
   changePasswordForm: FormGroup;
   wrongPassword: boolean = false;
   @ViewChild('changePasswordModal') public modal: ModalDirective;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private formBuilder: FormBuilder,
+    private toastyService: ToastyService) {
   }
 
   ngOnInit () {
-    this.user = new User();
-    this.user.password = '';
     this.changePasswordForm = this.formBuilder.group({
       oldPassword: '',
       newPasswordGroup: this.formBuilder.group({
@@ -35,6 +34,17 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   close() {
+    let toastOptions: ToastOptions = {
+        title: 'My title',
+        msg: 'The message',
+        showClose: true,
+        timeout: 5000,
+        theme: 'bootstrap'
+    };
+        // Add see all possible types in one shot
+    this.toastyService.info(toastOptions);
+    this.wrongPassword = false;
+    this.changePasswordForm.reset();
     this.modal.hide();
   }
 
@@ -48,6 +58,9 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     let controls = this.changePasswordForm.controls;
+
+    if (!Helper.submitForm(this.changePasswordForm, {}))
+      return;
 
     this.userService.verifyPassword(controls['oldPassword'].value).subscribe(
       function success(isOk: boolean) {
@@ -66,6 +79,5 @@ export class ChangePasswordComponent implements OnInit {
         console.log(error);
       }
     );
-    console.log(controls['oldPassword'].value);
   }
 }

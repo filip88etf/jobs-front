@@ -3,9 +3,13 @@
     <span class="caret"></span>
   </a>
   <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
-    <li role="menuitem"><a class="dropdown-item" (click)="openPasswordModal()">Change Password</a></li>
+    <li role="menuitem mouse-pointer">
+      <a class="mouse-pointer dropdown-item" (click)="openPasswordModal()">Change Password</a>
+    </li>
     <li class="divider dropdown-divider"></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Log out</a></li>
+    <li role="menuitem">
+      <a class="dropdown-item" (click)="logOut()">Log out</a>
+    </li>
   </ul>
 </div>
 
