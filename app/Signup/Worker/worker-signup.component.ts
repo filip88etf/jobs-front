@@ -28,6 +28,7 @@ export class WorkerSignupComponent implements OnInit {
   professions: Option[] = PROFESSIONS;
   workerForm: FormGroup;
   user: User;
+  worker: Worker;
 
   constructor (private formBuilder: FormBuilder, private userService: UserService, private workerService: WorkerService,
           private authorizationService: AuthorizationService, private router: Router) {
@@ -50,7 +51,8 @@ export class WorkerSignupComponent implements OnInit {
       region: [],
       description: ''
     });
-    this.user = new User();
+    this.user = new User('worker');
+    this.worker = new Worker();
   }
 
   validateControl(controlName: string): boolean {
@@ -73,23 +75,27 @@ export class WorkerSignupComponent implements OnInit {
 
         worker.profession = this.workerForm.get('profession').value;
         worker.description = this.workerForm.get('description').value;
-        worker.region = this.workerForm.get('region').value.toString();  ///////////////////////////// TOOOOO DOOOOO!
+        worker.region = this.workerForm.get('region').value.toString();
         worker.userId = response.id;
 
         this.workerService.create(worker).subscribe(
-          () => { this.authorizeAndLogin(username, password); }
+          () => { this.authorizeAndLogin(username, password, response.id); }
         );
       }
     );
   }
 
-  authorizeAndLogin(username: string, password: string): void {
+  authorizeAndLogin(username: string, password: string, userId: string): void {
     this.authorizationService.authorize(username, password).subscribe(
       function authorizeSuccess (result: any) {
         console.log('authorizeSuccess');
         this.userService.getByUsername(username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },
           (error: any) => { console.log('error in getByUsername'); }
+        );
+        this.workerService.getByUserId(userId).subscribe(
+          (response: any) => {},
+          (error: any) => {}
         );
       }.bind(this),
     );

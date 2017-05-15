@@ -3,6 +3,7 @@ import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { User } from '../User';
 import { UserService } from '../user.service';
+import { WorkerService } from '../../Worker/worker.service';
 
 @Component({
   moduleId: module.id,
@@ -13,15 +14,21 @@ import { UserService } from '../user.service';
 
 export class ProfileComponent implements OnInit {
   user: User;
+  worker: Worker;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private workerService: WorkerService) {
   }
 
   ngOnInit() {
     this.userService.getUser().subscribe(
       (user: User) => {
         this.user = user;
-        console.log(this.user);
+        if (user.userType === 'worker') {
+          this.workerService.getWorker(user.id).subscribe(
+            (value: any) => { this.worker = value; },
+            (error: any) => { console.log(error); }
+          );
+        }
       }
     );
   }
