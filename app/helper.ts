@@ -43,7 +43,10 @@ export class Helper {
 
   static updateForm(form: FormGroup, entiti: Object): void {
     for (let control in form.controls) {
-      form.controls[control].patchValue(entiti[control]);
+      if (entiti[control]) {
+        form.controls[control].patchValue(entiti[control]);
+      }
     }
   }
+
 }

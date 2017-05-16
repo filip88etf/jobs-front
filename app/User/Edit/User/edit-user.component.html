@@ -1,0 +1,53 @@
+<div class="row padding-10">
+
+  <div class="row">
+    <div class="col-md-6">
+      <img src="assets/images/no-profile-pic.png" height="200px" width="200px"/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button class="btn btn-default upload-button">
+        <span class="glyphicon glyphicon-camera"></span>
+        <span>Upload Picture</span>
+      </button>
+    </div>
+  </div>
+  <form (ngSubmit)="save()" [formGroup]="editForm">
+    <app-input-text formControlName="firstName"
+                    [label]="'First Name'"
+                    [required]="true">
+    </app-input-text>
+    <app-input-text formControlName="lastName"
+                    [label]="'Last Name'"
+                    [required]="true">
+    </app-input-text>
+    <app-input-select formControlName="gender"
+                      [label]="'Gender'"
+                      [options]="options">
+    </app-input-select>
+    <app-input-calendar [label]="'Birthday'"
+                    [model]="user.birth">
+    </app-input-calendar>
+    <app-input-text formControlName="phone"
+                    [label]="'Phone'"
+                    [required]="true">
+    </app-input-text>
+    <app-input-text formControlName="email"
+                    [label]="'Email'"
+                    [required]="true">
+    </app-input-text>
+
+    <div class="row padding-20">
+      <div class="col-md-12">
+        <div class="float-right">
+          <button type="reset" [routerLink]="['/user/profile']" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn brand-btn">Save</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+</div>

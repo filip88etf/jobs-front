@@ -11,6 +11,8 @@ import { LoginModule } from '../Login/login.module';
 import { SignupModule } from '../Signup/signup.module';
 import { LoginComponent } from '../Login/login.component';
 import { EditProfileComponent } from './Edit/edit-profile.component';
+import { EditWorkerComponent } from './Edit/Worker/edit-worker.component';
+import { EditUserComponent } from './Edit/User/edit-user.component';
 import { UserComponent } from './user.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ChangePasswordComponent } from './ChangePassword/change-password.component';
@@ -41,7 +43,7 @@ export const userRoutes: Routes = [
   ],
   declarations: [
     EditProfileComponent, ChangePasswordComponent, ProfileComponent,
-    UserComponent, UserMenuComponent
+    UserComponent, UserMenuComponent, EditWorkerComponent, EditUserComponent
   ],
   providers: [ HttpModule, JobService ]
 })

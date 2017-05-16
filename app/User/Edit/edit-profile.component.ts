@@ -1,63 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastService } from '../../toast.service';
+import { Component } from '@angular/core';
 
-import { User } from '../User';
-import { GENDER_LIST } from '../../global-consts';
-import { Option } from '../../global-types';
+import { EditUserComponent } from './User/edit-user.component';
+import { EditWorkerComponent } from './Worker/edit-worker.component';
 import { UserService } from '../user.service';
-import { Helper } from '../../helper';
+import { User } from '../User';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-edit-profile',
-  templateUrl: 'edit-profile.component.html',
-  styleUrls: ['edit-profile.component.css']
+  moduleId: module.id,
+  templateUrl: 'edit-profile.component.html'
 })
 
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent {
   user: User;
-  selected: Option[] = [GENDER_LIST[0]];
-  options: Option[] = GENDER_LIST;
-  editForm: FormGroup;
-  constructor(private userService: UserService, private formBuilder: FormBuilder,
-    private router: Router, private toastService: ToastService) {
+
+  constructor(private userService: UserService) {
   }
 
-  ngOnInit () {
-    this.user = new User();
-    this.editForm = this.formBuilder.group({
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      gender: this.user.gender,
-      phone: this.user.phone,
-      email: this.user.email
-    });
-
+  ngOnInit() {
     this.userService.getUser().subscribe(
-      (response) => {
+      (response: any) => {
         this.user = response;
-        Helper.updateForm(this.editForm, this.user);
       },
-      (error) => { console.log(error); }
+      (error: any) => { console.log(error); }
     );
-  }
-
-  save() {
-    let user = Object.assign(new User(), this.user);
-
-    if (Helper.submitForm(this.editForm, user)) {
-      this.userService.update(user).subscribe(
-        (response) => {
-          Object.assign(this.user, response);
-          this.router.navigate(['/user/profile']);
-          this.toastService.success('You successfully updated your profile!');
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
   }
 }

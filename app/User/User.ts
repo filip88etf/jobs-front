@@ -9,11 +9,11 @@ export class User {
   email: string;
   username: string;
   password: string;
-  userType: string;
+  type: string;
   fbId: string = '21e3dsaf';
   fbToken: string = '1243723985698753';
 
   constructor(type: string = 'user') {
-    this.userType = type;
+    this.type = type;
   }
 }

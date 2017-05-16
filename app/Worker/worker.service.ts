@@ -24,8 +24,11 @@ export class WorkerService extends BaseService<Worker> {
     return this.http.get(routeUrl, this.options)
       .map(
         (response: any) => {
+          let region: string[] = response.json().region.split(',');
           this.worker = new Worker();
+
           Object.assign(this.worker, response.json());
+          this.worker.region = region;
           return this.worker;
         }
       )

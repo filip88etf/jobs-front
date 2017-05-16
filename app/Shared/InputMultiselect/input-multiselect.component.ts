@@ -29,7 +29,7 @@ export class InputMultiselectComponent implements ControlValueAccessor, OnInit {
   // a placeholder for a method that takes one parameter,
   // we use it to emit changes back to the form
   private propagateChange = (_: any) => {};
-  selected: Option;
+  selected: Option[];
   touched: boolean = false;
   valid: boolean = true;
 

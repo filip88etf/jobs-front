@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser().subscribe(
       (user: User) => {
         this.user = user;
-        if (user.userType === 'worker') {
+        if (user.type === 'worker') {
           this.workerService.getWorker(user.id).subscribe(
             (value: any) => { this.worker = value; },
             (error: any) => { console.log(error); }
