@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { EditJobComponent } from '../Edit/edit-job.component';
+import { Job } from '../../../Job/Job';
 
 @Component({
   moduleId: module.id,
@@ -10,9 +11,9 @@ import { EditJobComponent } from '../Edit/edit-job.component';
 })
 
 export class UserJobItemComponent {
-  @Input() job: Object;
-  @Output() onDelete: EventEmitter<Object> = new EventEmitter<Object>();
-  @Output() onEdit: EventEmitter<Object> = new EventEmitter<Object>();
+  @Input() job: Job;
+  @Output() onDelete: EventEmitter<Job> = new EventEmitter<Job>();
+  @Output() onEdit: EventEmitter<Job> = new EventEmitter<Job>();
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
 
   deleteJob(): void {

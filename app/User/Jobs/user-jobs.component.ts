@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 
+import { ToastService } from '../../toast.service';
 import { JobService } from '../../Job/job.service';
 import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { EditJobComponent } from './Edit/edit-job.component';
@@ -17,14 +18,17 @@ export class UserJobsComponent implements OnInit {
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
   jobs: Job[];
 
-  constructor (private jobService: JobService, private userService: UserService) {
+  constructor (private jobService: JobService, private userService: UserService, private toastService: ToastService) {
   }
 
   ngOnInit(): void {
-    this.jobService.getByUserId(this.userService.getUser().id).subscribe(
-      (response) => { this.jobs = response; }
-    )
-    ;
+    this.userService.getUser().subscribe(
+      (user) => {
+        this.jobService.getByUserId(user.id).subscribe(
+          (response) => { this.jobs = response; } );
+      },
+      (error) => { console.log(error); }
+    );
   }
 
   openDeleteModal(job: Object): void {
@@ -35,7 +39,15 @@ export class UserJobsComponent implements OnInit {
     this.editModal.open(job);
   }
 
-  deleteJob(): void {
+  deleteJob(job: Job): void {
+    this.jobService.delete(job.id).subscribe(
+      (response: any) => {
+        this.toastService.success('Job is deleted!');
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 
   addJob(job: Job): void {

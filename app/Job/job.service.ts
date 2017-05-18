@@ -16,6 +16,19 @@ export class JobService extends BaseService<Job> {
     super('jobs', http, authorizationService, router);
   }
 
+  create(entity: Job): Observable<Job> {
+    return this.httpService.post(this.apiUrl, entity, this.options)
+      .map(
+        function success (response: Response) {
+          return response.json();
+        })
+      .catch(
+        function fail (error: Error) {
+          return this.errorHandler(error);
+        }.bind(this)
+      );
+  }
+
   getByUserId(userId: string) {
     let routeUrl = '/search/findByUserId?userId=' + userId;
 

@@ -61,33 +61,38 @@ export class EditWorkerComponent implements OnInit {
   }
 
   save() {
-    let user = Object.assign(new User(), this.user),
-        worker = Object.assign(new Worker(), this.worker);
+    let user = Object.assign(new User(), this.user);
 
     if (Helper.submitForm(this.editForm, user)) {
       this.userService.update(user).subscribe(
         (response) => {
           Object.assign(this.user, response);
-          this.router.navigate(['/user/profile']);
-          this.toastService.success('You successfully updated your profile!');
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      worker.profession = this.editForm.get('profession').value;
-      worker.region = this.editForm.get('region').value.toString();
-      worker.description = this.editForm.get('description').value;
-
-      this.workerService.update(worker).subscribe(
-        (response) => {
-          Object.assign(this.worker, response);
-          this.worker.region = response.region.toString().split(',');
+          this.updateWorker();
         },
         (error) => {
           console.log(error);
         }
       );
     }
+  }
+
+  private updateWorker() {
+    let worker = Object.assign(new Worker(), this.worker);
+
+    worker.profession = this.editForm.get('profession').value;
+    worker.region = this.editForm.get('region').value.toString();
+    worker.description = this.editForm.get('description').value;
+
+    this.workerService.update(worker).subscribe(
+      (response) => {
+        Object.assign(this.worker, response);
+        this.worker.region = response.region.toString().split(',');
+        this.router.navigate(['/user/profile']);
+        this.toastService.success('You successfully updated your profile!');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -6,6 +6,7 @@ import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
 import { Job } from '../../../Job/Job';
 import { JobService } from '../../../Job/job.service';
+import { User } from '../../User';
 import { UserService } from '../../user.service';
 import { Helper } from '../../../helper';
 
@@ -21,6 +22,7 @@ export class PostJobComponent implements OnInit {
   locations: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
   job: Job;
+  user: User;
   postJobForm: FormGroup;
 
   constructor(private jobService: JobService, private userService: UserService, private formBuilder: FormBuilder) {
@@ -33,14 +35,16 @@ export class PostJobComponent implements OnInit {
       profession: null,
       description: ''
     });
+    this.userService.getUser().subscribe(
+      (user) => { this.user = user; }
+    );
   }
 
   postJob(): void {
-    if (Helper.validateForm(this.postJobForm)) {
-      Helper.submitForm(this.postJobForm, this.job);
-      this.job.userId = this.userService.getUser().id;
+    if (Helper.submitForm(this.postJobForm, this.job)) {
+      this.job.userId = this.user.id;
       this.jobService.create(this.job).subscribe(
-        () => {
+        (job) => {
           this.onSubmit.emit(this.job);
           this.close();
         }
