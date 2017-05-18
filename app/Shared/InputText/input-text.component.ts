@@ -55,6 +55,11 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
     this.touched = true;
   }
 
+  clearValidation() {
+    this.valid = true;
+    this.minLengthError = this.requiredError = false;
+  }
+
   public writeValue(obj: any) {
     this.model = obj;
     this.valid = true;

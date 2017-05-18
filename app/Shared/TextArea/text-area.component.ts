@@ -41,6 +41,10 @@ export class TextAreaComponent implements ControlValueAccessor, OnInit {
     this.touched = true;
   }
 
+  clearValidation() {
+    this.valid = true;
+  }
+
   public writeValue(obj: any) {
     this.model = obj;
     this.valid = true;

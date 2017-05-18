@@ -12,8 +12,8 @@
         <input class="col-md-12 form-control"
                 type="text"
                 [(ngModel)]="model"
+                (focus)="clearValidation()"
                 (blur)="valueChanged()"
-                (keyup)="valueChanged()"
                 [placeholder]="placeholder"/>
         <span class="error-message" *ngIf="requiredError">
           This field is required
@@ -31,8 +31,8 @@
   <input class="form-control"
           type="text"
           [(ngModel)]="model"
+          (focus)="clearValidation()"
           (blur)="valueChanged()"
-          (keyup)="valueChanged()"
           [placeholder]="placeholder"/>
   <span class="error-message" *ngIf="requiredError">
     This field is required

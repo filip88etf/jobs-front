@@ -46,6 +46,10 @@ export class InputMultiselectComponent implements ControlValueAccessor, OnInit {
     this.touched = true;
   }
 
+  deselected() {
+    this.propagateChange(this.selected);
+  }
+
   // this is the initial value set to the component
   public writeValue(obj: any) {
     this.selected = obj;
