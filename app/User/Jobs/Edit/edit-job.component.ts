@@ -1,8 +1,9 @@
 import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
-import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Option } from '../../../global-types';
 import { CITIES, PROFESSIONS } from '../../../global-consts';
+import { Job } from '../../../Job/Job';
 
 @Component({
   moduleId: module.id,
@@ -14,25 +15,20 @@ export class EditJobComponent {
   selected: Option[];
   locations: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
-  job: Object;
-  @ViewChild('editJobModal') public modal: ModalDirective;
-  @Output() onSubmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  job: Job;
 
-  ngOnInit() {
-    this.job = {description: '', location: undefined, profession: undefined};
+  constructor(public activeModal: NgbActiveModal) {
   }
 
-  open(job: Object) {
+  init(job: Job) {
     this.job = job;
-    this.modal.show();
   }
 
-  editJob(): void {
-    this.onSubmit.emit(true);
-    this.close();
+  submit(): void {
+    this.activeModal.close(this.job);
   }
 
   close(): void {
-    this.modal.hide();
+    this.activeModal.dismiss('close');
   }
 }

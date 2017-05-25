@@ -19,6 +19,14 @@ export class Helper {
     return isValid;
   }
 
+  static getControlValue(value: any): any {
+    if (typeof value === 'object' && value.day) {
+      value = value.day + '/' + value.month + '/' + value.year;
+    }
+
+    return value;
+  }
+
   static mapFormToEntity(form: FormGroup, entity: Object): void {
     for (let property in form.controls) {
       let control = form.controls[property];
@@ -26,7 +34,7 @@ export class Helper {
       if (control['controls']) {
         Helper.mapFormToEntity(<FormGroup>control, entity);
       } else {
-        entity[property] = control.value;
+        entity[property] = Helper.getControlValue(control.value);
       }
     }
   }
@@ -49,4 +57,20 @@ export class Helper {
     }
   }
 
+  static subtractYear(years: number = 18) {
+    let date = new Date(),
+        year = date.getFullYear() - years;
+
+    date['setYear'](year);
+
+    return date;
+  }
+
+  static datePickerFormat(date: Date) {
+    return {
+      year: date.getFullYear(),
+      month: date.getMonth(),
+      day: date.getDay()
+    };
+  }
 }

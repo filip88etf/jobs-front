@@ -1,3 +1,13 @@
+<div class="col text-right">
+  <div ngbDropdown class="d-inline-block">
+    <img src="assets/images/no-profile-pic.png" height="30px" width="30px" id="dropdownBasic" ngbDropdownToggle/>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
+      <button class="dropdown-item" (click)="openPasswordModal()">Change Password</button>
+      <button class="dropdown-item" (click)="logOut()">Log out</button>
+    </div>
+  </div>
+</div>
+<!--
 <div class="btn-group" dropdown placement="bottom right">
   <a dropdownToggle type="button" class="dropdown-toggle">
     <span class="caret"></span>
@@ -11,6 +21,4 @@
       <a class="mouse-pointer dropdown-item" (click)="logOut()">Log out</a>
     </li>
   </ul>
-</div>
-
-<app-change-password></app-change-password>
+</div> -->

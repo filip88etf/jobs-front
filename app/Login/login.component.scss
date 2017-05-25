@@ -22,7 +22,7 @@
 
 .login-form {
   display: table;
-  position: absolute;
+  position: relative;
   width: 24vw;
   height: 310px;
   text-align: center;
@@ -32,8 +32,8 @@
 
 .create-form {
   display: table;
-  position: absolute;
-  top: 350px;
+  position: relative;
+  top: 10px;
   width: 24vw;
   height: 54px;
   text-align: center;

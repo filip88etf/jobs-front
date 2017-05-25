@@ -25,10 +25,10 @@
       '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
 
       // other libraries
-      'ng2-toasty': 'node_modules/ng2-toasty/bundles/index.umd.js',
-      'ng-select': 'node_modules/ng-select',
+      '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
+      'ng2-toasty': 'npm:ng2-toasty/bundles/index.umd.js',
+      'ng-select': 'npm:ng-select',
       'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
-      'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ngx-bootstrap.umd.js',
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },

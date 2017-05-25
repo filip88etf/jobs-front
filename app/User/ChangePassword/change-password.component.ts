@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../../toast.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GlobalValidators } from '../../global-validators';
 import { UserService } from '../user.service';
@@ -17,10 +18,9 @@ import { Helper } from '../../helper';
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   wrongPassword: boolean = false;
-  @ViewChild('changePasswordModal') public modal: ModalDirective;
 
   constructor(private userService: UserService, private formBuilder: FormBuilder,
-    private toastService: ToastService) {
+    private toastService: ToastService, public activeModal: NgbActiveModal) {
   }
 
   ngOnInit () {
@@ -33,21 +33,11 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  close() {
-    this.wrongPassword = false;
-    this.changePasswordForm.reset();
-    this.modal.hide();
-  }
-
-  open() {
-    this.modal.show();
-  }
-
   revalidate() {
     this.wrongPassword = false;
   }
 
-  changePassword() {
+  submit() {
     let controls = this.changePasswordForm.controls;
 
     if (!Helper.submitForm(this.changePasswordForm, {}))
@@ -60,7 +50,7 @@ export class ChangePasswordComponent implements OnInit {
 
           this.userService.changePassword(group.controls['newPassword'].value).subscribe(
             (response: any) => {
-              this.close();
+              this.activeModal.close();
               this.toastService.success('You successfully change your password!');
             },
             (error: any) => { this.close(); }
@@ -73,5 +63,9 @@ export class ChangePasswordComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  close() {
+    this.activeModal.dismiss('close');
   }
 }

@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ChangePasswordComponent } from '../ChangePassword/change-password.component';
 import { UserService } from '../user.service';
 import { WorkerService } from '../../Worker/worker.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   moduleId: module.id,
@@ -12,13 +13,16 @@ import { WorkerService } from '../../Worker/worker.service';
 
 export class UserMenuComponent {
   show: boolean = false;
-  @ViewChild(ChangePasswordComponent) public passwordModal: ChangePasswordComponent;
 
-  constructor(private userService: UserService, private workerService: WorkerService) {
+  constructor(private userService: UserService, private workerService: WorkerService, private modalService: NgbModal) {
   }
 
   openPasswordModal() {
-    this.passwordModal.open();
+    let modal = this.modalService.open(ChangePasswordComponent);
+    modal.result.then(
+      (result) => { console.log('result = ' + result); },
+      (reason) => { console.log('reason = ' + reason); }
+    );
   }
 
   logOut() {

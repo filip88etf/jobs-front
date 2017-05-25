@@ -2,9 +2,8 @@
       <source src="assets/videos/Professions.mp4" type="video/mp4">
 </video>
 <app-menu></app-menu>
-<div class="home-content">
-
-  <h1 class="text-color search-title"><b>What are you searching for?</b></h1>
+<div class="container">
+  <h2 class="text-color search-title"><b>What are you searching for?</b></h2>
 
   <div class="form-container">
 
@@ -12,13 +11,13 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-3 mouse-pointer">
-        <div class="search-title padding-10" [ngClass]="{'active-tab':isJobSearch}" (click)='searchJobs(true)'>
+        <div class="choice-button" [ngClass]="{'active-tab':isJobSearch}" (click)='searchJobs(true)'>
           <span><b class="text-color">JOBS</b></span>
         </div>
       </div>
 
       <div class="col-md-3 mouse-pointer">
-        <div class="search-title padding-10" [ngClass]="{'active-tab':!isJobSearch}" (click)='searchJobs(false)'>
+        <div class="choice-button" [ngClass]="{'active-tab':!isJobSearch}" (click)='searchJobs(false)'>
           <span><b class="text-color">WORKERS</b></span>
         </div>
       </div>
@@ -26,49 +25,49 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-1">
-      </div>
+    <div class="row form-content">
 
-      <div class="col-md-10 form-content">
         <div class="form-group-lg col-md-5 padding-20">
-          <div class="col-md-3 padding-10">
-            <span class="search-label">Where</span>
-          </div>
-          <div class="col-md-9" [ngClass]="{'has-error': showMessage(city) }">
-            <div class="ng-select-wrapper">
-              <ng-select
-                [options]="cities"
-                [(ngModel)]="city"
-                [placeholder]="'select city'">
-              </ng-select>
+          <div class="row">
+            <div class="col-md-3 padding-10">
+              <span class="search-label">Where</span>
             </div>
-            <span class="error-message">{{showMessage(city)}}</span>
-          </div>
-        </div>
-        <div class="form-group-lg col-md-5 padding-20">
-          <div class="col-md-3 padding-10">
-            <span class="search-label">Profession</span>
-          </div>
-          <div class="col-md-9" [ngClass]="{'has-error': showMessage(proffesion) }">
-            <div class="ng-select-wrapper">
-              <ng-select
-                [options]="professions"
-                [(ngModel)]="proffesion"
-                [placeholder]="'select profession'">
-              </ng-select>
+            <div class="col-md-9 padding-10" [ngClass]="{'has-danger': showMessage(city) }">
+              <div class="ng-select-wrapper">
+                <ng-select
+                  [options]="cities"
+                  [(ngModel)]="city"
+                  [placeholder]="'select city'">
+                </ng-select>
+              </div>
+              <span class="error-message">{{showMessage(city)}}</span>
             </div>
-            <span class="error-message">{{showMessage(proffesion)}}</span>
           </div>
         </div>
-        <div class="col-md-2 search-button padding-20">
-          <button class="btn btn-default btn-lg" (click)='search()'>Search</button>
-        </div>
-      </div>
 
-      <div class="col-md-1">
-      </div>
+        <div class="form-group-lg col-md-5 padding-20">
+          <div class="row">
+            <div class="col-md-3 padding-10">
+              <span class="search-label">Profession</span>
+            </div>
+            <div class="col-md-9 padding-10" [ngClass]="{'has-danger': showMessage(proffesion) }">
+              <div class="ng-select-wrapper">
+                <ng-select
+                  [options]="professions"
+                  [(ngModel)]="proffesion"
+                  [placeholder]="'select profession'">
+                </ng-select>
+              </div>
+              <span class="error-message">{{showMessage(proffesion)}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group-lg search-button col-md-2">
+          <button class="btn btn-secondary" (click)='search()'>Search</button>
+        </div>
 
     </div>
+
   </div>
 </div>

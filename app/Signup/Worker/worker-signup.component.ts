@@ -29,17 +29,24 @@ export class WorkerSignupComponent implements OnInit {
   workerForm: FormGroup;
   user: User;
   worker: Worker;
+  dateModel: Object;
+  calendarSettings: Object = {};
 
   constructor (private formBuilder: FormBuilder, private userService: UserService, private workerService: WorkerService,
           private authorizationService: AuthorizationService, private router: Router) {
   }
 
   ngOnInit() {
+    this.calendarSettings = {
+      maxDate: Helper.datePickerFormat(Helper.subtractYear(18)),
+      minDate: Helper.datePickerFormat(Helper.subtractYear(70))
+    };
+
     this.workerForm = this.formBuilder.group({
       firstName: '',
       lastName: '',
       gender: undefined,
-      birthday: ['', [Validators.required]],
+      birthday: '',
       phone: '',
       email: ['', [GlobalValidators.emailValidator]],
       username: '',
@@ -53,12 +60,6 @@ export class WorkerSignupComponent implements OnInit {
     });
     this.user = new User('worker');
     this.worker = new Worker();
-  }
-
-  validateControl(controlName: string): boolean {
-    let control = this.workerForm.get(controlName);
-
-    return !control.valid && control.touched;
   }
 
   workerSignup(): void {

@@ -1,9 +1,11 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToastService } from '../../toast.service';
 import { JobService } from '../../Job/job.service';
 import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { EditJobComponent } from './Edit/edit-job.component';
+import { PostJobComponent } from './Post/post-job.component';
 import { Job } from '../../Job/Job';
 import { UserService } from '../user.service';
 
@@ -16,9 +18,11 @@ import { UserService } from '../user.service';
 export class UserJobsComponent implements OnInit {
   @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
+
   jobs: Job[];
 
-  constructor (private jobService: JobService, private userService: UserService, private toastService: ToastService) {
+  constructor (private jobService: JobService, private userService: UserService,
+    private toastService: ToastService, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -31,12 +35,31 @@ export class UserJobsComponent implements OnInit {
     );
   }
 
+  openPostModal(): void {
+    let modal = this.modalService.open(PostJobComponent, {size: 'lg'});
+
+    modal.result.then(
+      (result) => { console.log('result = ' + result); },
+      (reason) => { console.log('reason = ' + reason); }
+    );
+  }
+
   openDeleteModal(job: Object): void {
-    this.confirmModal.open('Delete Job', 'Are you sure you want to delete this job?', 'delete');
+    let modal = this.modalService.open(ConfirmModalComponent);
+
+    modal.result.then(
+      (result) => { console.log('result = ' + result); },
+      (reason) => { console.log('reason = ' + reason); }
+    );
   }
 
   openEditModal(job: Object): void {
-    this.editModal.open(job);
+    let modal = this.modalService.open(EditJobComponent);
+
+    modal.result.then(
+      (result) => { console.log('result = ' + result); },
+      (reason) => { console.log('reason = ' + reason); }
+    );
   }
 
   deleteJob(job: Job): void {

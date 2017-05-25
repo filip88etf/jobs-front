@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { ModalModule, BsDropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UserJobModule } from './Jobs/user-job.module';
 import { ProfileComponent } from './Profile/profile.component';
@@ -38,8 +38,8 @@ export const userRoutes: Routes = [
 
 @NgModule({
   imports: [
-    UserJobModule, RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule, ReactiveFormsModule,
-    CommonModule, SharedModule, ModalModule, ServiceModule, BsDropdownModule.forRoot()
+    UserJobModule, RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule,
+    ReactiveFormsModule, CommonModule, SharedModule, ServiceModule, NgbModule.forRoot()
   ],
   declarations: [
     EditProfileComponent, ChangePasswordComponent, ProfileComponent,

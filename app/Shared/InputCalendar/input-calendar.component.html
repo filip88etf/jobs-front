@@ -1,4 +1,4 @@
-<div class="padding-top-bottom-10">
+<div *ngIf="label" class="padding-top-bottom-10">
   <div class="row">
     <div class="col-md-6 padding-bottom-5">
       <span><b>{{label}}</b></span>
@@ -7,10 +7,43 @@
 
   <div class="row">
     <div class="col-md-6">
-      <my-date-picker
-            [options]=calendarOptions
-            [(ngModel)]="model">
-      </my-date-picker>
+      <div class="form-group" [ngClass]="{'has-danger' : !valid}">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                 [minDate]="settings.minDate"
+                 [maxDate]="settings.maxDate"
+                 (focus)="clearValidation()"
+                 (navigate)="clearValidation()"
+                 (blur)="valueChanged()" />
+          <div class="input-group-addon" (click)="toggle(d)" >
+            <img src="assets/images/icons/icon-calendar.png" style="width: 20px; height: 20px; cursor: pointer;"/>
+          </div>
+        </div>
+        <span class="error-message" *ngIf="!valid" >
+          This filed is required
+        </span>
+      </div>
     </div>
+  </div>
+</div>
+
+<div *ngIf="!label">
+  <div class="form-group" [ngClass]="{'has-danger' : !valid}">
+    <div class="input-group">
+      <input class="form-control" placeholder="yyyy-mm-dd"
+             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+             [minDate]="settings.minDate"
+             [maxDate]="settings.maxDate"
+             (focus)="clearValidation()"
+             (blur)="valueChanged()"
+             (navigate)="clearValidation($event)" />
+      <div class="input-group-addon" (click)="toggle(d)" >
+        <img src="assets/images/icons/icon-calendar.png" style="width: 20px; height: 20px; cursor: pointer;"/>
+      </div>
+    </div>
+    <span class="error-message" *ngIf="!valid" >
+      This filed is required
+    </span>
   </div>
 </div>

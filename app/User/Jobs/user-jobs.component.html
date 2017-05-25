@@ -4,7 +4,10 @@
   </div>
   <div class="col-md-6">
     <div class="float-right padding-top-bottom-20">
-      <app-post-job (onSubmit)="addJob($event)"></app-post-job>
+      <button (click)="openPostModal()" class="btn btn-secondary">
+        <span>Post Job</span>
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
     </div>
   </div>
 </div>
@@ -13,5 +16,3 @@
               (onDelete)="openDeleteModal($event)"
               (onEdit)="openEditModal($event)">
 </app-user-job>
-<app-confirm-modal (onSubmit)="deleteJob($event)"></app-confirm-modal>
-<app-edit-job></app-edit-job>

@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <button class="btn btn-default upload-button">
+      <button class="btn btn-secondary upload-button">
         <span class="glyphicon glyphicon-camera"></span>
         <span>Upload Picture</span>
       </button>
@@ -27,8 +27,7 @@
                       [label]="'Gender'"
                       [options]="options">
     </app-input-select>
-    <app-input-calendar [label]="'Birthday'"
-                    [model]="user.birth">
+    <app-input-calendar [label]="'Birthday'">
     </app-input-calendar>
     <app-input-text formControlName="phone"
                     [label]="'Phone'"
@@ -42,7 +41,7 @@
     <div class="row padding-20">
       <div class="col-md-12">
         <div class="float-right">
-          <button type="reset" [routerLink]="['/user/profile']" class="btn btn-default">Cancel</button>
+          <button type="reset" [routerLink]="['/user/profile']" class="btn btn-secondary">Cancel</button>
           <button type="submit" class="btn brand-btn">Save</button>
         </div>
       </div>

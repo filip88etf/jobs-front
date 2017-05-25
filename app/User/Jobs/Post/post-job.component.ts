@@ -1,6 +1,6 @@
-import { Component, ViewChild, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ModalDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
@@ -17,15 +17,14 @@ import { Helper } from '../../../helper';
 })
 
 export class PostJobComponent implements OnInit {
-  @ViewChild('postJobModal') public modal: ModalDirective;
-  @Output() onSubmit: EventEmitter<Job> = new EventEmitter<Job>();
   locations: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
   job: Job;
   user: User;
   postJobForm: FormGroup;
 
-  constructor(private jobService: JobService, private userService: UserService, private formBuilder: FormBuilder) {
+  constructor(private jobService: JobService, private userService: UserService,
+    private formBuilder: FormBuilder, private activeModal: NgbActiveModal) {
   }
 
   ngOnInit() {
@@ -40,23 +39,18 @@ export class PostJobComponent implements OnInit {
     );
   }
 
-  postJob(): void {
+  submit() {
     if (Helper.submitForm(this.postJobForm, this.job)) {
       this.job.userId = this.user.id;
       this.jobService.create(this.job).subscribe(
         (job) => {
-          this.onSubmit.emit(this.job);
-          this.close();
+          this.activeModal.close(this.job);
         }
       );
     }
   }
 
-  open() {
-    this.modal.show();
-  }
-
-  close(): void {
-    this.modal.hide();
+  close() {
+    this.activeModal.dismiss('close');
   }
 }

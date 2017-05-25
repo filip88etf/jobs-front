@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ConfirmModalComponent } from '../Shared/ConfirmModal/confirm-modal.component';
 import { CITIES, PROFESSIONS } from '../global-consts';
 import { Option } from '../global-types';
 
@@ -18,7 +20,7 @@ export class HomeComponent {
   proffesion: Option;
   city: Option;
 
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
   showMessage(selected: Option): string {
     if (selected === undefined && this.startSearch) {
@@ -32,6 +34,13 @@ export class HomeComponent {
   }
 
   search(): void {
+    let modal = this.modalService.open(ConfirmModalComponent);
+
+    modal.componentInstance.init('Info', 'Are you sure?');
+    modal.result.then(
+      (result) => { console.log('result = ' + result); },
+      (reason) => { console.log('reason = ' + reason); }
+    );
     this.startSearch = true;
   }
 }

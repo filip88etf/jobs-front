@@ -1,13 +1,17 @@
-<nav class="nav-menu">
-  <div class="col-md-3">
-    <img src="assets/images/profesionalci-logo-white.png" height="50px" width="50px"/>
-  </div>
-  <div class="container pullDown col-md-6">
-    <a class="text-color">Offer Service</a>
-    <a class="text-color">Offer Job</a>
-  </div>
-  <div class="container pullDown col-md-3">
-    <a [routerLink]="['/user/login']" class="text-color right-menu-item"><span>Log In</span></a>
-    <a class="text-color right-menu-item">About</a>
+<nav class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-3 left-menu">
+      <img src="assets/images/profesionalci-logo-white.png" height="50px" width="50px"/>
+    </div>
+    <div class="col-md-6 center-menu">
+      <a class="menu-item">Offer Service</a>
+      <a class="menu-item">Offer Job</a>
+    </div>
+    <div class="col-md-3 right-menu">
+      <a class="menu-item" [routerLink]="['/user/login']"><span>Log In</span></a>
+      <a class="menu-item">About</a>
+    </div>
+
   </div>
 </nav>

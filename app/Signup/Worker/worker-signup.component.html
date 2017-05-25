@@ -14,7 +14,7 @@
             <span class="float-left"><b>Name</b></span>
           </div>
         </div>
-        <div class="row">
+        <div class="row no-gutters">
           <div class="col-md-2">
           </div>
           <div class="col-md-4 padding-bottom-10">
@@ -32,6 +32,23 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-10">
+            <span class="float-left"><b>Birthday</b></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8 padding-bottom-10 float-left">
+            <app-input-calendar formControlName="birthday"
+              [required]="true"
+              [settings]="calendarSettings">
+            </app-input-calendar>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
             <span class="float-left"><b>Gender</b></span>
           </div>
         </div>
@@ -43,27 +60,6 @@
                               [options]="genders"
                               [required]="true">
             </app-input-select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
-            <span class="float-left"><b>Birthday</b></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10 float-left"
-          [ngClass]="{'has-error': validateControl('birthday')}">
-            <my-date-picker
-                  [options]=birthdayOptions
-                  formControlName="birthday"
-                  [(ngModel)]="birthday">
-            </my-date-picker>
-            <validation-message [control]="workerForm.get('birthday')">
-            </validation-message>
           </div>
         </div>
 
@@ -94,7 +90,7 @@
           <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': workerForm.get('passwordGroup').errors?.match}">
+            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('passwordGroup').errors?.match}">
               <app-input-password formControlName="password"
                                   [required]="true"
                                   [minLength]="8">
@@ -111,7 +107,7 @@
           <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': workerForm.get('passwordGroup').errors?.match}">
+            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('passwordGroup').errors?.match}">
               <app-input-password formControlName="confirmPassword"
                                   [required]="true"
                                   [minLength]="8">
@@ -152,7 +148,7 @@
         <div class="row">
           <div class="col-md-2">
           </div>
-          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-error': workerForm.get('email').errors?.email}">
+          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('email').errors?.email}">
             <app-input-text formControlName="email"
               [required]="true"></app-input-text>
               <span class="error-message" *ngIf="workerForm.get('email').errors?.email">
@@ -219,7 +215,7 @@
       <div class="col-md-2">
       </div>
       <div class="col-md-4">
-        <button type="reset" [routerLink]="['/user/signup/role']" class="col-md-12 btn btn-default">Previous</button>
+        <button type="reset" [routerLink]="['/user/signup/role']" class="col-md-12 btn btn-secondary">Previous</button>
       </div>
       <div class="col-md-4">
         <button type="submit" class="col-md-12 btn btn-primary">Done</button>
