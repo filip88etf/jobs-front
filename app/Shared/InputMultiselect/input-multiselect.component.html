@@ -7,12 +7,14 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="ng-select-wrapper" [ngClass]="{'input-error' : !valid}">
+      <div class="ng-select-wrapper" [ngClass]="{'input-error' : !valid, 'input-warning' : maxLimit}">
         <ng-select
+          #selectControl
           [options]="options"
           [(ngModel)]="selected"
-          (closed)='closed()'
-          (deselected)='deselected()'
+          (opened)="opened(selectControl)"
+          (closed)="closed()"
+          (deselected)="deselected()"
           [ngModelOptions]="{standalone: true}"
           [multiple]="true">
         </ng-select>
@@ -20,24 +22,32 @@
       <span class="error-message" *ngIf="!valid" >
         This filed is required
       </span>
+      <span class="warning-message" *ngIf="valid && maxLimit" >
+        Select maximum {{max}}
+      </span>
     </div>
   </div>
 </div>
 
 <!-- no label => no control style -->
 <div *ngIf="!label">
-  <div class="ng-select-wrapper" [ngClass]="{'input-error' : !valid}">
+  <div class="ng-select-wrapper" [ngClass]="{'input-error' : !valid, 'input-warning' : maxLimit}">
     <ng-select
+      #selectControl
       [options]="options"
       [(ngModel)]="selected"
-      (closed)='closed()'
-      (deselected)='deselected()'
+      (opened)="opened(selectControl)"
+      (closed)="closed()"
+      (deselected)="deselected()"
       [ngModelOptions]="{standalone: true}"
       [multiple]="true">
     </ng-select>
   </div>
   <span class="error-message" *ngIf="!valid" >
     This filed is required
+  </span>
+  <span class="warning-message" *ngIf="valid && maxLimit" >
+    Select maximum {{max}}
   </span>
 
 </div>

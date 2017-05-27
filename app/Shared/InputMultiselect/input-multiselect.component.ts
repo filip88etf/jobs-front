@@ -25,12 +25,14 @@ export class InputMultiselectComponent implements ControlValueAccessor, OnInit {
   @Input() options: Option[];
   @Input() label: string;
   @Input() required: boolean;
+  @Input() max: number = 100;
   // the method set in registerOnChange, it is just
   // a placeholder for a method that takes one parameter,
   // we use it to emit changes back to the form
   private propagateChange = (_: any) => {};
   selected: Option[];
   touched: boolean = false;
+  maxLimit: boolean = false;
   valid: boolean = true;
 
   ngOnInit() {}
@@ -48,6 +50,14 @@ export class InputMultiselectComponent implements ControlValueAccessor, OnInit {
 
   deselected() {
     this.propagateChange(this.selected);
+  }
+
+  opened(control: any) {
+    if (this.selected && this.selected.length === this.max) {
+      control.close();
+      this.maxLimit = true;
+      setTimeout(() => { this.maxLimit = false; }, 2500);
+    }
   }
 
   // this is the initial value set to the component

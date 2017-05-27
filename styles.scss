@@ -78,6 +78,11 @@
   float: left;
 }
 
+.warning-message {
+  color: #f0ad4e;
+  float: left;
+}
+
 .full-width {
   width: 100%;
 }
@@ -108,5 +113,10 @@
 
 .input-error {
   border: 1px solid #d9534f;
+  border-radius: 4px;
+}
+
+.input-warning {
+  border: 1px solid #f0ad4e;
   border-radius: 4px;
 }
