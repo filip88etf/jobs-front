@@ -35,7 +35,12 @@ export class JobService extends BaseService<Job> {
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
         function success (response: Response) {
-          return response.json().content;
+          let list = response.json().content;
+
+          if (list && list[0] && list[0].collectionValue) // backend can't fix response
+            list = [];
+
+          return list;
         })
       .catch(
         function fail (error: any) {

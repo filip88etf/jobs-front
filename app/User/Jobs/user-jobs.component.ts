@@ -39,8 +39,11 @@ export class UserJobsComponent implements OnInit {
     let modal = this.modalService.open(PostJobComponent, {size: 'lg'});
 
     modal.result.then(
-      (result) => { console.log('result = ' + result); },
-      (reason) => { console.log('reason = ' + reason); }
+      (result) => {
+        this.jobs.push(result);
+        this.toastService.success('You successfully posted new job!');
+      },
+      (reason) => { }
     );
   }
 
