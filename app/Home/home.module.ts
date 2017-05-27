@@ -11,8 +11,7 @@ import { ConfirmModalComponent } from '../Shared/ConfirmModal/confirm-modal.comp
 @NgModule({
   imports: [BrowserModule, FormsModule, AppRoutingModule, SelectModule, SharedModule],
   declarations: [HomeComponent],
-  exports: [HomeComponent],
-  entryComponents: [ConfirmModalComponent]
+  exports: [HomeComponent]
 })
 
 export class HomeModule {}

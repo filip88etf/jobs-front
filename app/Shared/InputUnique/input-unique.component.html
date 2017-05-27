@@ -1,0 +1,49 @@
+<div *ngIf="label">
+  <div class="padding-top-bottom-10">
+
+    <div class="row">
+      <div class="col-md-6 padding-bottom-5">
+        <span><b>{{label}}</b></span>
+      </div>
+    </div>
+
+    <div class="row" [ngClass]="{'has-danger': !valid}">
+      <div class="col-md-6">
+        <input class="col-md-12 form-control"
+                type="text"
+                [(ngModel)]="model"
+                (focus)="clearValidation()"
+                (blur)="valueChanged()"
+                [placeholder]="placeholder"/>
+        <span class="error-message" *ngIf="requiredError">
+          This field is required
+        </span>
+        <span class="error-message" *ngIf="minLengthError">
+          Minimal length is {{minLength}}
+        </span>
+        <span class="error-message" *ngIf="uniqueError">
+          This {{field}} is already taken
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- no label => no control style -->
+<div *ngIf="!label" [ngClass]="{'has-danger': !valid}">
+  <input class="form-control"
+          type="text"
+          [(ngModel)]="model"
+          (focus)="clearValidation()"
+          (blur)="valueChanged()"
+          [placeholder]="placeholder"/>
+  <span class="error-message" *ngIf="requiredError">
+    This field is required
+  </span>
+  <span class="error-message" *ngIf="minLengthError">
+    Minimal length is {{minLength}}
+  </span>
+  <span class="error-message" *ngIf="uniqueError">
+    This {{field}} is already taken
+  </span>
+</div>

@@ -16,10 +16,10 @@
                       [options]="professions"
                       [required]="true">
     </app-input-select>
-    <app-input-text formControlName="description"
-                    [label]="'Description'"
-                    [required]="true">
-    </app-input-text>
+    <app-text-area formControlName="description"
+                   [label]="'Description'"
+                   [required]="true">
+    </app-text-area>
   </div>
   <div class="modal-footer">
     <button (click)="close()" class="btn btn-secondary">Cancel</button>

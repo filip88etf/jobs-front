@@ -129,4 +129,20 @@ export class UserService extends BaseService<User> {
         }
       );
   }
+
+  checkIsUnique(value: any, field: string): Observable<boolean> {
+    let routeUrl = '/search/existsBy' + field[0].toUpperCase() + field.slice(1) + '?' + field + '=' + value;
+
+    return this.http.get(this.apiUrl + routeUrl)
+      .map(
+        function success(response): boolean {
+          return response.json();
+        }
+      )
+      .catch(
+        function fail(error: any): any {
+          return this.errorHandler(error);
+        }
+      );
+  }
 }

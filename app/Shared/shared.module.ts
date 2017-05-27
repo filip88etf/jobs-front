@@ -16,6 +16,7 @@ import { InputPasswordComponent } from './InputPassword/input-password.component
 import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
 import { TextAreaComponent } from './TextArea/text-area.component';
 import { InputMultiselectComponent } from './InputMultiselect/input-multiselect.component';
+import { InputUniqueComponent } from './InputUnique/input-unique.component';
 
 @NgModule({
   imports: [
@@ -25,11 +26,11 @@ import { InputMultiselectComponent } from './InputMultiselect/input-multiselect.
   declarations: [
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent,
     InputMultiselectComponent, InputTextComponent, InputSelectComponent,
-    InputCalendarComponent, ConfirmModalComponent
+    InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent
   ],
   exports: [
     MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
-    TextAreaComponent, InputMultiselectComponent, InputTextComponent,
+    TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent,
     InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule
   ]
 })

@@ -4,7 +4,10 @@
     </div>
     <div class="col-md-8">
       <div class="row">
-        <span>{{job.profession}}, {{job.region}}, {{job.createdDate}}</span>
+        <span>{{job.profession}}, {{job.region}}</span>
+      </div>
+      <div class="row">
+        <span>{{job.createdDate | date: medium}}</span>
       </div>
       <div class="row">
         <span>{{job.description}}</span>

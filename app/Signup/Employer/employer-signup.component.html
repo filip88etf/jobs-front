@@ -87,8 +87,9 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': employerForm.get('email').errors?.email}">
-          <app-input-text formControlName="email"
-            [required]="true"></app-input-text>
+          <app-input-unique formControlName="email"
+                            [field]="'email'"
+                            [required]="true"></app-input-unique>
             <span class="error-message" *ngIf="employerForm.get('email').errors?.email">
               Invalid email
             </span>
@@ -105,9 +106,10 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8 padding-bottom-10">
-          <app-input-text formControlName="username"
-            [required]="true"
-            [minLength]="3"></app-input-text>
+          <app-input-unique formControlName="username"
+                            [field]="'username'"
+                            [minLength]="3"
+                            [required]="true"></app-input-unique>
         </div>
       </div>
 

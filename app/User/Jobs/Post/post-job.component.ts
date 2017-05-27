@@ -44,7 +44,7 @@ export class PostJobComponent implements OnInit {
       this.job.userId = this.user.id;
       this.jobService.create(this.job).subscribe(
         (job) => {
-          this.activeModal.close(this.job);
+          this.activeModal.close(job);
         }
       );
     }
