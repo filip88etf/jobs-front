@@ -12,7 +12,8 @@ import { UserService } from '../user.service';
 @Component({
   moduleId: module.id,
   selector: 'app-user-jobs',
-  templateUrl: 'user-jobs.component.html'
+  templateUrl: 'user-jobs.component.html',
+  styleUrls: ['user-jobs.component.css']
 })
 
 export class UserJobsComponent implements OnInit {
@@ -40,43 +41,25 @@ export class UserJobsComponent implements OnInit {
 
     modal.result.then(
       (result) => {
-        this.jobs.push(result);
-        this.toastService.success('You successfully posted new job!');
+        this.addJob(result);
       },
       (reason) => { }
     );
   }
 
-  openDeleteModal(job: Object): void {
-    let modal = this.modalService.open(ConfirmModalComponent);
+  removeJobFromList(jobId: string): void {
+    let i = 0;
 
-    modal.result.then(
-      (result) => { console.log('result = ' + result); },
-      (reason) => { console.log('reason = ' + reason); }
-    );
-  }
-
-  openEditModal(job: Object): void {
-    let modal = this.modalService.open(EditJobComponent);
-
-    modal.result.then(
-      (result) => { console.log('result = ' + result); },
-      (reason) => { console.log('reason = ' + reason); }
-    );
-  }
-
-  deleteJob(job: Job): void {
-    this.jobService.delete(job.id).subscribe(
-      (response: any) => {
-        this.toastService.success('Job is deleted!');
-      },
-      (error: any) => {
-        console.log(error);
+    for (i = 0; i < this.jobs.length; i++) {
+      if (this.jobs[i].id === jobId) {
+        this.jobs.splice(i, 1);
+        break;
       }
-    );
+    }
   }
 
   addJob(job: Job): void {
     this.jobs.push(job);
+    this.toastService.success('You successfully posted new job!');
   }
 }

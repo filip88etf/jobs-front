@@ -1,21 +1,28 @@
-<div class="modal-header">
-  <h4 class="modal-title">Edit Job</h4>
-  <button type="button" class="close" aria-label="Close" (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <app-input-select [label]="'Location'"
-                    [options]="locations">
-  </app-input-select>
-  <app-input-select [label]="'Profession'"
-                    [options]="professions">
-  </app-input-select>
-  <app-input-text [label]="'Description'"
-                  [required]="true">
-  </app-input-text>
-</div>
-<div class="modal-footer">
-  <button (click)="close()" class="btn btn-secondary">Cancel</button>
-  <button (click)="submit()" class="btn brand-btn">Save</button>
-</div>
+<form (ngSubmit)="submit()" [formGroup]="editJobForm">
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Job</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-input-select formControlName="region"
+                      [label]="'Region'"
+                      [options]="regions"
+                      [required]="true">
+    </app-input-select>
+    <app-input-select formControlName="profession"
+                      [label]="'Profession'"
+                      [options]="professions"
+                      [required]="true">
+    </app-input-select>
+    <app-input-text formControlName="description"
+                    [label]="'Description'"
+                    [required]="true">
+    </app-input-text>
+  </div>
+  <div class="modal-footer">
+    <button (click)="close()" class="btn btn-secondary">Cancel</button>
+    <button type="submit" class="btn brand-btn">Save</button>
+  </div>
+</form>

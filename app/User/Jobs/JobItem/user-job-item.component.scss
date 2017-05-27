@@ -1,8 +1,8 @@
 @import "global_variables.scss";
 
 .job-wrapper {
-  border: solid $brand-color 2px;
-  border-radius: 5px;
+  margin: 20px;
+  border-bottom: solid $brand-color 2px;
   padding-right: 0px !important;
   padding-left: 0px !important;
 }

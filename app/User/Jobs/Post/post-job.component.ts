@@ -17,7 +17,7 @@ import { Helper } from '../../../helper';
 })
 
 export class PostJobComponent implements OnInit {
-  locations: Option[] = CITIES;
+  regions: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
   job: Job;
   user: User;
@@ -30,7 +30,7 @@ export class PostJobComponent implements OnInit {
   ngOnInit() {
     this.job = new Job();
     this.postJobForm = this.formBuilder.group({
-      location: null,
+      region: null,
       profession: null,
       description: ''
     });

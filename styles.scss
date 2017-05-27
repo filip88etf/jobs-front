@@ -98,7 +98,9 @@
 .app-body {
   background-color: #e9eaec;
 }
-
+.brand-color {
+  color: $brand-color;
+}
 .brand-btn {
   background-color: $brand-color;
   color: white;

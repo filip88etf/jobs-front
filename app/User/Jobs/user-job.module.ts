@@ -13,7 +13,7 @@ import { SharedModule } from '../../Shared/shared.module';
   imports: [CommonModule, SharedModule, NgbModule, FormsModule, ReactiveFormsModule],
   declarations: [UserJobsComponent, UserJobItemComponent, EditJobComponent, PostJobComponent],
   exports: [UserJobsComponent, UserJobItemComponent, EditJobComponent, PostJobComponent],
-  entryComponents: [PostJobComponent]
+  entryComponents: [PostJobComponent, EditJobComponent]
 })
 
 export class UserJobModule {

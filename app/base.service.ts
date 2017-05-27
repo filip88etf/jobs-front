@@ -75,7 +75,7 @@ export class BaseService <T> {
   }
 
   delete(id: string): Observable<boolean> {
-    return this.httpService.delete(this.apiUrl, this.options).map(
+    return this.httpService.delete(this.apiUrl + '/' + id, this.options).map(
       function success (response: Response) {
         return response.json();
       })
