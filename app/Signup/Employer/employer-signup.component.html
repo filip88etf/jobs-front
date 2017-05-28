@@ -35,13 +35,10 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-8 padding-bottom-10 float-left">
-          <my-date-picker
-                [options]=birthdayOptions
-                formControlName="birthday"
-                [(ngModel)]="birthday">
-          </my-date-picker>
-          <validation-message [control]="employerForm.get('birthday')">
-          </validation-message>
+          <app-input-calendar formControlName="birthday"
+            [required]="true"
+            [settings]="calendarSettings">
+          </app-input-calendar>
         </div>
       </div>
 

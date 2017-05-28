@@ -22,12 +22,18 @@ export class EmployerSignupComponent implements OnInit {
   birthday: any;
   genders: Option[] = GENDER_LIST;
   user: User;
+  calendarSettings: Object = {};
 
   constructor(private formBuilder: FormBuilder, private router: Router,
     private userService: UserService, private authorizationService: AuthorizationService) {
   }
 
   ngOnInit() {
+    this.calendarSettings = {
+      maxDate: Helper.datePickerFormat(Helper.subtractYear(18)),
+      minDate: Helper.datePickerFormat(Helper.subtractYear(70))
+    };
+
     this.employerForm = this.formBuilder.group({
       firstName: '',
       lastName: '',
