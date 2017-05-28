@@ -21,7 +21,10 @@ export class Helper {
 
   static getControlValue(value: any): any {
     if (typeof value === 'object' && value.day) {
-      value = value.day + '/' + value.month + '/' + value.year;
+      let month = value.month < 10 ? '0' + value.month : value.month.toString();
+      let day = value.day < 10 ? '0' + value.day : value.day.toString();
+
+      value = value.year + '-' + month + '-' + day + ' 00:00:00';
     }
 
     return value;
