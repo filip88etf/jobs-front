@@ -3,7 +3,6 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS } f
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { Helper } from '../../helper';
-import { CALENDAR_SETTINGS } from '../../global-consts';
 
 @Component({
   moduleId: module.id,

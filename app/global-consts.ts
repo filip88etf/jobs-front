@@ -26,16 +26,3 @@ export const PROFESSIONS = [
   { value: 'Gardener', label: 'Gardener'},
   { value: 'Bricklayer', label: 'Bricklayer'},
 ];
-
-export const CALENDAR_SETTINGS = {
-    dateFormat: 'dd mmm yyyy',
-    showClearDateBtn: false,
-    selectionTxtFontSize: '14 px',
-    showTodayBtn: false,
-    sunHighlight: false,
-    minYear: 1939,
-    maxYear: 2004,
-    markCurrentDay: false,
-    disableUntil: {year: 1940, month: 1, day: 1},
-    disableSince: {year: 2003, month: 1, day: 1}
-};
