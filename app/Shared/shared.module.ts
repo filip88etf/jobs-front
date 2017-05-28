@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MyDatePickerModule } from 'mydatepicker';
 import { SelectModule } from 'ng-select';
 import { ToastyModule } from 'ng2-toasty';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +20,7 @@ import { InputUniqueComponent } from './InputUnique/input-unique.component';
 @NgModule({
   imports: [
     FormsModule, RouterModule, CommonModule, SelectModule,
-    NgbModule, MyDatePickerModule, ToastyModule.forRoot()
+    NgbModule, ToastyModule.forRoot()
   ],
   declarations: [
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent,
@@ -29,7 +28,7 @@ import { InputUniqueComponent } from './InputUnique/input-unique.component';
     InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent
   ],
   exports: [
-    MenuComponent, ValidationMessage, MyDatePickerModule, InputPasswordComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent,
     InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule
   ]

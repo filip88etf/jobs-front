@@ -2,14 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { IMyOptions } from 'mydatepicker';
 
 import { GlobalValidators } from '../../global-validators';
 import { UserService } from '../../User/user.service';
 import { WorkerService } from '../../Worker/worker.service';
 import { User } from '../../User/User';
 import { Worker } from '../../Worker/Worker';
-import { GENDER_LIST, CALENDAR_SETTINGS, CITIES, PROFESSIONS } from '../../global-consts';
+import { GENDER_LIST, CITIES, PROFESSIONS } from '../../global-consts';
 import { Option } from '../../global-types';
 import { Helper } from '../../helper';
 import { AuthorizationService } from '../../authorization.service';
@@ -23,7 +22,6 @@ import { AuthorizationService } from '../../authorization.service';
 
 export class WorkerSignupComponent implements OnInit {
   cities: Option[] = CITIES;
-  birthdayOptions: IMyOptions = CALENDAR_SETTINGS;
   genders: Option[] = GENDER_LIST;
   professions: Option[] = PROFESSIONS;
   workerForm: FormGroup;

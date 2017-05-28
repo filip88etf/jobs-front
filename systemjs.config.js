@@ -28,7 +28,6 @@
       '@ng-bootstrap/ng-bootstrap': 'npm:@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
       'ng2-toasty': 'npm:ng2-toasty/bundles/index.umd.js',
       'ng-select': 'npm:ng-select',
-      'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.js',
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },

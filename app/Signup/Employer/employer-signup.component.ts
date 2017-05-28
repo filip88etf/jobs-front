@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormsModule, Validators, AbstractControl } from '@angular/forms';
-import { IMyOptions } from 'mydatepicker';
 import { Router } from '@angular/router';
 
 import { AuthorizationService } from '../../authorization.service';
 import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
-import { GENDER_LIST, CALENDAR_SETTINGS } from '../../global-consts';
+import { GENDER_LIST } from '../../global-consts';
 import { Option } from '../../global-types';
 import { User } from '../../User/User';
 import { Helper } from '../../helper';
@@ -20,7 +19,6 @@ import { Helper } from '../../helper';
 
 export class EmployerSignupComponent implements OnInit {
   employerForm: FormGroup;
-  birthdayOptions: IMyOptions = CALENDAR_SETTINGS;
   birthday: any;
   genders: Option[] = GENDER_LIST;
   user: User;

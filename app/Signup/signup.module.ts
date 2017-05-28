@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { MyDatePickerModule } from 'mydatepicker';
 import { SelectModule } from 'ng-select';
 import { SharedModule } from '../Shared/shared.module';
 import { SignupComponent } from './signup.component';
@@ -23,7 +22,7 @@ const signupRoutes: Routes = [
 
 @NgModule({
   imports: [HttpModule, RouterModule.forChild(signupRoutes), CommonModule, SelectModule,
-            NgbModule, MyDatePickerModule, ReactiveFormsModule, SharedModule, FormsModule],
+            NgbModule, ReactiveFormsModule, SharedModule, FormsModule],
   declarations: [SignupComponent, EmployerSignupComponent, WorkerSignupComponent,
             PickRoleComponent]
 })
