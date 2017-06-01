@@ -36,10 +36,6 @@ export class InputCalendarComponent implements ControlValueAccessor, OnInit {
     this.settings = this.settings || {};
   }
 
-  ngOnChanges(model: any) {
-    console.log(this.model);
-  }
-
   valueChanged() {
     this.propagateChange(this.model);
   }
@@ -67,6 +63,9 @@ export class InputCalendarComponent implements ControlValueAccessor, OnInit {
   }
   // this is the initial value set to the component
   public writeValue(date: Date) {
+    if (typeof date === 'string') {
+      date = new Date(date);
+    }
     this.model = date ? Helper.datePickerFormat(date) : {};
     this.valid = true;
     this.touched = false;

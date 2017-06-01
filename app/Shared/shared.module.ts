@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SelectModule } from 'ng-select';
 import { ToastyModule } from 'ng2-toasty';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ImageCropperComponent } from 'ng2-img-cropper';
 
 import { MenuComponent } from './Menu/menu.component';
 import { ValidationMessage } from './ValidationMessage/validation-message.component';
@@ -16,6 +17,7 @@ import { ConfirmModalComponent } from './ConfirmModal/confirm-modal.component';
 import { TextAreaComponent } from './TextArea/text-area.component';
 import { InputMultiselectComponent } from './InputMultiselect/input-multiselect.component';
 import { InputUniqueComponent } from './InputUnique/input-unique.component';
+import { PictureCropperComponent } from './PictureCropper/picture-cropper.component';
 
 @NgModule({
   imports: [
@@ -24,13 +26,16 @@ import { InputUniqueComponent } from './InputUnique/input-unique.component';
   ],
   declarations: [
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent,
-    InputMultiselectComponent, InputTextComponent, InputSelectComponent,
-    InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent
+    InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent,
+    InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent
   ],
   exports: [
-    MenuComponent, ValidationMessage, InputPasswordComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent,
     InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule
+  ],
+  entryComponents: [
+    PictureCropperComponent
   ]
 })
 

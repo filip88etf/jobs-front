@@ -2,18 +2,19 @@
 
   <div class="row">
     <div class="col-md-6">
-      <img src="assets/images/no-profile-pic.png" height="200px" width="200px"/>
+      <img [src]="user?.imageURL" height="200px" width="200px"/>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <button class="btn btn-secondary upload-button">
+      <button class="btn btn-secondary upload-button" (click)="openCropModal()">
         <span class="fa fa-camera"></span>
         <span>Upload Picture</span>
       </button>
     </div>
   </div>
+
   <form (ngSubmit)="save()" [formGroup]="editForm">
     <app-input-text formControlName="firstName"
                     [label]="'First Name'"
@@ -23,12 +24,14 @@
                     [label]="'Last Name'"
                     [required]="true">
     </app-input-text>
+    <app-input-calendar formControlName="birthday"
+                        [label]="'Birthday'"
+                        [required]="true">
+    </app-input-calendar>
     <app-input-select formControlName="gender"
                       [label]="'Gender'"
                       [options]="options">
     </app-input-select>
-    <app-input-calendar [label]="'Birthday'">
-    </app-input-calendar>
     <app-input-text formControlName="phone"
                     [label]="'Phone'"
                     [required]="true">

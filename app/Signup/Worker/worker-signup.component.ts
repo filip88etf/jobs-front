@@ -89,7 +89,7 @@ export class WorkerSignupComponent implements OnInit {
       function authorizeSuccess (result: any) {
         this.userService.getByUsername(username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },
-          (error: any) => { console.log('error in getByUsername'); }
+          (error: any) => { console.log(error); }
         );
         this.workerService.getByUserId(userId).subscribe(
           (response: any) => {},

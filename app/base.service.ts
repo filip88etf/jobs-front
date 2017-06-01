@@ -16,7 +16,6 @@ export class BaseService <T> {
   router: Router;
 
   constructor(route: string = '', http: Http, authorizationService: AuthorizationService, router: Router) {
-    console.log('construt base service for ' + route);
     this.apiUrl += route ? '/' + route : '';
     this.httpService = http;
     this.authorizationService = authorizationService;

@@ -29,7 +29,7 @@ export class UserJobItemComponent {
     modal.componentInstance.init('Delete Job', 'Are you sure you want to delete this job?', 'Delete');
     modal.result.then(
       (result) => { this.deleteJob(); },
-      (reason) => { console.log('reason = ' + reason); }
+      (reason) => { }
     );
   }
 
@@ -51,7 +51,7 @@ export class UserJobItemComponent {
     modal.componentInstance.init(this.job);
     modal.result.then(
       (result) => { this.toastService.success('You updated your job!'); },
-      (reason) => { console.log('reason = ' + reason); }
+      (reason) => { }
     );
   }
 }

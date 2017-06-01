@@ -3,7 +3,7 @@ export class User {
   id: string;
   firstName: string;
   lastName: string;
-  birth: string;
+  birthday: string;
   gender: string;
   phone: string;
   email: string;
@@ -11,9 +11,11 @@ export class User {
   password: string;
   type: string;
   fbId: string = '21e3dsaf';
+  imageURL: string = 'assets/images/no-profile-pic.png';
   fbToken: string = '1243723985698753';
+  picture: string;
 
-  constructor(type: string = 'user') {
+  constructor(type: string = 'employer') {
     this.type = type;
   }
 }

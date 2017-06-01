@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../toast.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from '../../User';
 import { Worker } from '../../../Worker/Worker';
@@ -10,6 +11,7 @@ import { Option } from '../../../global-types';
 import { UserService } from '../../user.service';
 import { WorkerService } from '../../../Worker/worker.service';
 import { Helper } from '../../../helper';
+import { PictureCropperComponent } from '../../../Shared/PictureCropper/picture-cropper.component';
 
 @Component({
   moduleId: module.id,
@@ -26,8 +28,9 @@ export class EditWorkerComponent implements OnInit {
   editForm: FormGroup;
   regions: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
+
   constructor(private userService: UserService, private workerService: WorkerService, private formBuilder: FormBuilder,
-    private router: Router, private toastService: ToastService) {
+    private router: Router, private toastService: ToastService, private modalService: NgbModal) {
   }
 
   ngOnInit () {
@@ -36,6 +39,7 @@ export class EditWorkerComponent implements OnInit {
     this.editForm = this.formBuilder.group({
       firstName: this.user.firstName,
       lastName: this.user.lastName,
+      birthday: this.user.birthday,
       gender: this.user.gender,
       phone: this.user.phone,
       email: this.user.email,
@@ -46,34 +50,17 @@ export class EditWorkerComponent implements OnInit {
 
     this.userService.getUser().subscribe(
       (response) => {
+        this.user = response;
         this.workerService.getWorker(response.id).subscribe(
           (worker: Worker) => {
             this.worker = worker;
             Helper.updateForm(this.editForm, this.worker);
           }
         );
-        this.user = response;
         Helper.updateForm(this.editForm, this.user);
-
       },
       (error) => { console.log(error); }
     );
-  }
-
-  save() {
-    let user = Object.assign(new User(), this.user);
-
-    if (Helper.submitForm(this.editForm, user)) {
-      this.userService.update(user).subscribe(
-        (response) => {
-          Object.assign(this.user, response);
-          this.updateWorker();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }
   }
 
   private updateWorker() {
@@ -93,6 +80,42 @@ export class EditWorkerComponent implements OnInit {
       (error) => {
         console.log(error);
       }
+    );
+  }
+
+  save() {
+    let user = Object.assign(new User(), this.user);
+
+    if (Helper.submitForm(this.editForm, user)) {
+      this.userService.update(user).subscribe(
+        (response) => {
+          Object.assign(this.user, response);
+          this.updateWorker();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  openCropModal() {
+    let modalSettings = {
+      headerText: 'Upload Profile Picture',
+      submitText: 'Upload',
+      cancelText: 'Cancel'
+    };
+    let modal = this.modalService.open(PictureCropperComponent, {size: 'lg'});
+
+    modal.componentInstance.init(modalSettings);
+    modal.result.then(
+      (result) => {
+        this.userService.uploadProfilePicture(result).subscribe(
+          (response: any) => { this.user.imageURL = response; },
+          (error) => { console.log(error); }
+        );
+      },
+      (reason) => { }
     );
   }
 }

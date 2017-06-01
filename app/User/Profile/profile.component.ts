@@ -34,6 +34,5 @@ export class ProfileComponent implements OnInit {
   }
 
   hideProfile(hide: boolean): void {
-    console.log('Profile is hidden');
   }
 }

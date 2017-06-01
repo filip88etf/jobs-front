@@ -24,10 +24,9 @@ export class LoginComponent {
     this.badCredentials = false;
     this.authorizationSerivce.authorize(this.username, this.password).subscribe(
       function authorizeSuccess (result: any) {
-        console.log('authorizeSuccess');
         this.userService.getByUsername(this.username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },
-          (error: any) => { console.log('error in getByUsername'); }
+          (error: any) => { console.log(error); }
         );
       }.bind(this),
       function authorizeFail (error: any) {

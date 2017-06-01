@@ -1,5 +1,5 @@
 import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   moduleId: module.id,

@@ -16,7 +16,6 @@ export class UserService extends BaseService<User> {
 
   constructor (private http: Http, authorizationService: AuthorizationService, router: Router) {
     super('users', http, authorizationService, router);
-    console.log('UserService constructor is executed');
   }
 
   getByUsername(username: string): Observable<User> {
@@ -26,7 +25,7 @@ export class UserService extends BaseService<User> {
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
         function success(response: Response): any {
-          this.user = new User();
+          this.user = this.user || new User();
           Object.assign(this.user, response.json());
           localStorage.setItem('username', this.user.username);
           return this.user;
@@ -144,5 +143,38 @@ export class UserService extends BaseService<User> {
           return this.errorHandler(error);
         }
       );
+  }
+
+  uploadProfilePicture(picture: any): Observable<boolean> {
+    let routeUrl = '/profile/image?username=' + this.user.username;
+
+    return this.http.post(this.apiUrl + routeUrl, picture, this.options)
+      .map(
+        function success(response: any): boolean {
+          return response['_body'];
+        }.bind(this)
+      )
+      .catch(
+        function fail(error: any): any {
+          return this.errorHandler(error);
+        }
+      );
+  }
+
+  getProfilePicture(username: string): Observable<string> {
+    let routeUrl = '/profile/image?username=' + username;
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        function success(response): string {
+          return response['_body'];
+        }
+      )
+      .catch(
+        function fail(error: any): any {
+          return this.errorHandler(error);
+        }
+      );
+
   }
 }

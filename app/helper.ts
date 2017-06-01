@@ -72,8 +72,8 @@ export class Helper {
   static datePickerFormat(date: Date) {
     return {
       year: date.getFullYear(),
-      month: date.getMonth(),
-      day: date.getDay()
+      month: date.getMonth() + 1,
+      day: date.getDate()
     };
   }
 }
