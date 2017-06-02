@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastService } from '../../../toast.service';
+import { ToastService } from '../../../Core/Services/toast.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from '../../User';

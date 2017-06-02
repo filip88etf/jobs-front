@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormsModule, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthorizationService } from '../../authorization.service';
+import { AuthorizationService } from '../../Core/Services/authorization.service';
 import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
 import { GENDER_LIST } from '../../global-consts';

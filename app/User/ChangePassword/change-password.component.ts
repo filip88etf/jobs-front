@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastService } from '../../toast.service';
+import { ToastService } from '../../Core/Services/toast.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GlobalValidators } from '../../global-validators';

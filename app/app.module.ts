@@ -8,7 +8,7 @@ import { SharedModule } from './Shared/shared.module';
 import { HomeModule } from './Home/home.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ServiceModule } from './service.module';
+import { ServiceModule } from './Core/Services/service.module';
 
 @NgModule({
   imports: [ BrowserModule, AppRoutingModule, SharedModule, HomeModule,

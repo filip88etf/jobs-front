@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ToastService } from '../../toast.service';
+import { ToastService } from '../../Core/Services/toast.service';
 import { JobService } from '../../Job/job.service';
 import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { EditJobComponent } from './Edit/edit-job.component';

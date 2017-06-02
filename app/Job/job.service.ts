@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Job } from './Job';
-import { BaseService } from '../base.service';
-import { AuthorizationService } from '../authorization.service';
+import { BaseService } from '../Core/Services/base.service';
+import { AuthorizationService } from '../Core/Services/authorization.service';
 
 @Injectable()
 export class JobService extends BaseService<Job> {

@@ -18,7 +18,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { ChangePasswordComponent } from './ChangePassword/change-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { JobService } from '../Job/job.service';
-import { ServiceModule } from '../service.module';
+import { ServiceModule } from '../Core/Services/service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
 import { UserMenuComponent } from './Menu/user-menu.component';
 

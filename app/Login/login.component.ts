@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from '../User/user.service';
-import { AuthorizationService } from '../authorization.service';
+import { AuthorizationService } from '../Core/Services/authorization.service';
 
 @Component({
   moduleId: module.id,

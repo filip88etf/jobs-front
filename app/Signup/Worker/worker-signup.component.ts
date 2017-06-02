@@ -11,7 +11,7 @@ import { Worker } from '../../Worker/Worker';
 import { GENDER_LIST, CITIES, PROFESSIONS } from '../../global-consts';
 import { Option } from '../../global-types';
 import { Helper } from '../../helper';
-import { AuthorizationService } from '../../authorization.service';
+import { AuthorizationService } from '../../Core/Services/authorization.service';
 
 @Component({
   moduleId: module.id,
