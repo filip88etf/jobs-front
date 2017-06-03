@@ -21,17 +21,17 @@ import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../Core/Services/service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
 import { UserMenuComponent } from './Menu/user-menu.component';
+import { AuthGuardService } from '../Core/Services/auth-guard.service';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
-  { path: 'profile', component: UserComponent, children:
+  { path: 'profile', canActivate: [AuthGuardService], component: UserComponent, children:
     [
-      { path: '', component: ProfileComponent },
-      { path: 'jobs', component: UserJobsComponent },
-      { path: 'edit', component: EditProfileComponent },
-      { path: 'password', component: ChangePasswordComponent }
+      { path: '', canActivate: [AuthGuardService], component: ProfileComponent },
+      { path: 'jobs', canActivate: [AuthGuardService], component: UserJobsComponent },
+      { path: 'edit', canActivate: [AuthGuardService], component: EditProfileComponent }
     ]
   },
 ];

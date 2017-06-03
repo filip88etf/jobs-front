@@ -37,12 +37,12 @@ export class AuthorizationService {
           localStorage.setItem('refreshToken', authData.refresh_token);
           localStorage.setItem('tokenType', authData.token_type);
           return authData;
-        }
+        }.bind(this)
       )
       .catch(
         function fail(error: any): any {
           return Observable.throw(error);
-        }
+        }.bind(this)
       );
   }
 
@@ -71,7 +71,11 @@ export class AuthorizationService {
       );
   }
 
-  private encodeUrl(data: Object) {
+  public isAuthorized (): boolean {
+    return !!localStorage.getItem('accessToken');
+  }
+
+  private encodeUrl(data: Object): string {
     let encodedUrl: string = '';
 
     for (let property in data) {

@@ -36,7 +36,7 @@ export class UserMenuComponent {
   }
 
   logOut() {
-    this.userService.logOut();
     this.workerService.logOut();
+    this.userService.logOut();
   }
 }

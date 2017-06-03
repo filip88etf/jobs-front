@@ -99,4 +99,11 @@ export class BaseService <T> {
         return Observable.throw(error);
     }
   }
+
+  clearStorage() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('tokenType');
+    localStorage.removeItem('username');
+  }
 }

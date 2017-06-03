@@ -39,6 +39,7 @@ export class UserService extends BaseService<User> {
 
   logOut() {
     this.user = null;
+    this.clearStorage();
     this.router.navigate(['/user/login']);
   }
 
