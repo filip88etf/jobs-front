@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
 
 import { UserService } from '../User/user.service';
 import { AuthorizationService } from '../Core/Services/authorization.service';
@@ -11,18 +12,27 @@ import { AuthorizationService } from '../Core/Services/authorization.service';
   styleUrls: ['login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private username: string = '';
   private password: string = '';
   private badCredentials: boolean = false;
 
-  constructor(private router: Router, private userService: UserService,
-    private authorizationSerivce: AuthorizationService) {
+  constructor(private router: Router, private userService: UserService, private facebookService: FacebookService,
+    private authorizationService: AuthorizationService) {
   }
+
+  ngOnInit() {
+    this.facebookService.init({
+      appId      : '1490087824391764',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+  };
 
   login (): void {
     this.badCredentials = false;
-    this.authorizationSerivce.authorize(this.username, this.password).subscribe(
+    this.authorizationService.authorize(this.username, this.password).subscribe(
       function authorizeSuccess (result: any) {
         this.userService.getByUsername(this.username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },
@@ -37,6 +47,33 @@ export class LoginComponent {
     );
   }
 
-  resetPassword(): void {
+  loginWithFacebook(): void {
+    this.facebookService.login({scope: 'public_profile'})
+      .then(
+        (response: any) => {
+          localStorage.setItem('facebookAccessToken', response.authResponse.accessToken);
+          this.authorizeAndLogin(response);
+      })
+      .catch(
+        (error: any) => {
+          console.log(error);
+      });
+  }
+
+  private authorizeAndLogin(facebookData: Object): void {
+    let username = facebookData['authResponse'].userID,
+        facebookAccessToken = facebookData['authResponse'].accessToken;
+
+    this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
+      (result: any) => {
+        this.userService.getByUsername(username).subscribe(
+          (result: any) => { this.router.navigate(['user/profile']); },
+          (error: any) => { console.log(error); }
+        );
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
 }

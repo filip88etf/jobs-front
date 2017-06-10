@@ -1,0 +1,55 @@
+<div class="employer-signup-container">
+  <app-menu></app-menu>
+  <div class="employer-signup-form">
+
+    <form (ngSubmit)="employerSignup()" [formGroup]="employerForm">
+
+      <div class="row padding-top-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Birthday</b></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10 float-left">
+          <app-input-calendar formControlName="birthday"
+            [required]="true"
+            [settings]="calendarSettings">
+          </app-input-calendar>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+          <span class="float-left"><b>Phone</b></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 padding-bottom-10">
+          <app-input-text formControlName="phone"
+            [required]="true"></app-input-text>
+        </div>
+      </div>
+
+      <div class="row padding-top-bottom-10">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-4">
+          <button type="reset" [routerLink]="['/user/signup/facebook_role']" class="col-md-12 btn btn-secondary">Previous</button>
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="col-md-12 btn btn-primary">
+            <span>Done</span>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

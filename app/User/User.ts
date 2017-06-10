@@ -10,10 +10,9 @@ export class User {
   username: string;
   password: string;
   type: string;
-  fbId: string = '21e3dsaf';
+  fbId: string;
   imageURL: string = 'assets/images/no-profile-pic.png';
-  fbToken: string = '1243723985698753';
-  picture: string;
+  fbToken: string;
 
   constructor(type: string = 'employer') {
     this.type = type;

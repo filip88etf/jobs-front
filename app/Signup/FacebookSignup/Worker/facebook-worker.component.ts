@@ -3,26 +3,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
-import { GlobalValidators } from '../../global-validators';
-import { UserService } from '../../User/user.service';
-import { WorkerService } from '../../Worker/worker.service';
-import { User } from '../../User/User';
-import { Worker } from '../../Worker/Worker';
-import { GENDER_LIST, CITIES, PROFESSIONS } from '../../global-consts';
-import { Option } from '../../global-types';
-import { Helper } from '../../helper';
-import { AuthorizationService } from '../../Core/Services/authorization.service';
+import { UserService } from '../../../User/user.service';
+import { WorkerService } from '../../../Worker/worker.service';
+import { User } from '../../../User/User';
+import { Worker } from '../../../Worker/Worker';
+import { CITIES, PROFESSIONS } from '../../../global-consts';
+import { Option } from '../../../global-types';
+import { Helper } from '../../../helper';
+import { AuthorizationService } from '../../../Core/Services/authorization.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-worker-signup',
-  templateUrl: 'worker-signup.component.html',
-  styleUrls: ['worker-signup.component.css']
+  selector: 'app-facebook-worker',
+  templateUrl: 'facebook-worker.component.html',
+  styleUrls: ['facebook-worker.component.css']
 })
 
-export class WorkerSignupComponent implements OnInit {
+export class FacebookWorkerComponent implements OnInit {
   cities: Option[] = CITIES;
-  genders: Option[] = GENDER_LIST;
   professions: Option[] = PROFESSIONS;
   workerForm: FormGroup;
   user: User;
@@ -40,35 +38,27 @@ export class WorkerSignupComponent implements OnInit {
     };
 
     this.workerForm = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
-      gender: undefined,
       birthday: '',
       phone: '',
-      email: ['', [GlobalValidators.emailValidator]],
-      username: '',
-      passwordGroup: this.formBuilder.group({
-        password: '',
-        confirmPassword: ''
-      }, {validator: GlobalValidators.passwordMatcher('password', 'confirmPassword')}),
       profession: '',
       region: [],
       description: ''
     });
-    this.user = new User('worker');
+
+    this.userService.getUser().subscribe(
+      (response: any) => { this.user = response; }
+    );
     this.worker = new Worker();
   }
 
-  workerSignup(): void {
-    let isValid = Helper.submitForm(this.workerForm, this.user);
-
-    if (!isValid)
+  public workerSignup(): void {
+    if (!Helper.submitForm(this.workerForm, this.user))
       return;
 
     this.userService.create(this.user).subscribe(
       (response) => {
-        let username = this.workerForm.get('username').value,
-            password = this.workerForm.get('passwordGroup').get('password').value,
+        let username = this.user.username,
+            facebookAccessToken = localStorage.getItem('facebookAccessToken'),
             worker = new Worker();
 
         worker.profession = this.workerForm.get('profession').value;
@@ -77,14 +67,14 @@ export class WorkerSignupComponent implements OnInit {
         worker.userId = response.id;
 
         this.workerService.create(worker).subscribe(
-          () => { this.authorizeAndLogin(username, password, response.id); }
+          () => { this.authorizeAndLogin(username, facebookAccessToken, response.id); }
         );
       }
     );
   }
 
-  authorizeAndLogin(username: string, password: string, userId: string): void {
-    this.authorizationService.authorize(username, password).subscribe(
+  private authorizeAndLogin(username: string, facebookAccessToken: string, userId: string): void {
+    this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       function authorizeSuccess (result: any) {
         this.userService.getByUsername(username).subscribe(
           (result: any) => { this.router.navigate(['user/profile']); },

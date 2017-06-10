@@ -12,16 +12,66 @@
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="systemjs.config.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>
 
+    <!-- <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1490087824391764',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+       function statusChangeCallback(response) {
+         FB.api('/me', {fields: 'last_name,first_name,email,gender,picture,age_range'}, function (response) {
+           console.log(response);
+         });
+       }
+
+       function facebookLogin() {
+         FB.login(function(response) {
+           if(response.status !== "connected") {
+             debugger;
+             FB.getLoginStatus(function (response){
+               console.log("my facelogin");
+               console.log(response);
+             });
+           } else {
+             console.log("Ulogovan");
+           }
+         }, {scope: 'public_profile'});
+       }
+
+    </script> -->
   </head>
 
   <body class="app-body">
+    <!-- <button onclick="facebookLogin()">Faceee!!</button> -->
+    <!-- <fb:login-button
+      scope="public_profile,email"
+      onlogin="checkLoginState();">
+    </fb:login-button> -->
     <app-component>I'm loading!</app-component>
   </body>
 </html>

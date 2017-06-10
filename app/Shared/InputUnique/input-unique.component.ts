@@ -61,7 +61,7 @@ export class InputUniqueComponent implements ControlValueAccessor, OnInit {
     this.valid = !(this.minLengthError || this.requiredError);
 
     if (this.field && this.valid && this.touched) {
-      this.userService.checkIsUnique(this.model, this.field).subscribe(
+      this.userService.doesExist(this.model, this.field).subscribe(
         (exist) => {
           this.uniqueError = exist;
           this.valid = this.valid && !this.uniqueError;

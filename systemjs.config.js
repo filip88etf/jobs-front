@@ -29,6 +29,7 @@
       'ng2-toasty': 'npm:ng2-toasty/bundles/index.umd.js',
       'ng-select': 'npm:ng-select',
       'ng2-img-cropper': 'npm:ng2-img-cropper',
+      'ngx-facebook': 'npm:ngx-facebook/dist/umd',
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
@@ -46,6 +47,10 @@
         defaultExtension: 'js'
       },
       'ng2-img-cropper': {
+        main: 'index.js',
+        defaultExtension: 'js'
+      },
+      'ngx-facebook': {
         main: 'index.js',
         defaultExtension: 'js'
       }

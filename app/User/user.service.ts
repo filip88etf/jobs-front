@@ -130,7 +130,7 @@ export class UserService extends BaseService<User> {
       );
   }
 
-  checkIsUnique(value: any, field: string): Observable<boolean> {
+  doesExist(value: any, field: string): Observable<boolean> {
     let routeUrl = '/search/existsBy' + field[0].toUpperCase() + field.slice(1) + '?' + field + '=' + value;
 
     return this.http.get(this.apiUrl + routeUrl)
@@ -162,20 +162,13 @@ export class UserService extends BaseService<User> {
       );
   }
 
-  getProfilePicture(username: string): Observable<string> {
-    let routeUrl = '/profile/image?username=' + username;
+  updateUser(object: Object): void {
+    this.user = this.user || new User();
 
-    return this.http.get(this.apiUrl + routeUrl, this.options)
-      .map(
-        function success(response): string {
-          return response['_body'];
-        }
-      )
-      .catch(
-        function fail(error: any): any {
-          return this.errorHandler(error);
-        }
-      );
+    for (let property in object) {
+      this.user[property] = object[property];
+    }
 
+    localStorage.setItem('username', this.user.username);
   }
 }
