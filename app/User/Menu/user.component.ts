@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-user-menu',
-  templateUrl: 'user-menu.component.html',
-  styleUrls: ['user-menu.component.css']
+  selector: 'app-user',
+  templateUrl: 'user.component.html',
+  styleUrls: ['user.component.css']
 })
 
 export class UserMenuComponent implements OnInit {

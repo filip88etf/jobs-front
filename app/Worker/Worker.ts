@@ -1,8 +1,12 @@
 // worker model
+import { User } from '../User/User';
 
-export class Worker {
+export class Worker extends User {
   profession: string;
   region: string[];
   description: string;
-  userId: string;
+
+  constructor() {
+    super('worker');
+  }
 }

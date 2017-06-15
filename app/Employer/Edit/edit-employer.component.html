@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <img [src]="user?.imageURL" height="200px" width="200px"/>
+      <img [src]="employer?.imageURL" height="200px" width="200px"/>
     </div>
   </div>
 
@@ -14,7 +14,6 @@
       </button>
     </div>
   </div>
-
   <form (ngSubmit)="save()" [formGroup]="editForm">
     <app-input-text formControlName="firstName"
                     [label]="'First Name'"
@@ -25,8 +24,9 @@
                     [required]="true">
     </app-input-text>
     <app-input-calendar formControlName="birthday"
-                        [label]="'Birthday'"
-                        [required]="true">
+                      [label]="'Birthday'"
+                      [required]="true"
+                      [settings]="calendarSettings">
     </app-input-calendar>
     <app-input-select formControlName="gender"
                       [label]="'Gender'"
@@ -41,27 +41,10 @@
                     [required]="true">
     </app-input-text>
 
-    <app-input-select formControlName="profession" ngDefaultControl
-                      [label]="'Proffession'"
-                      [options]="professions"
-                      [required]="true">
-    </app-input-select>
-
-    <app-input-multiselect formControlName="region" ngDefaultControl
-                      [label]="'Region'"
-                      [options]="regions"
-                      [required]="true">
-    </app-input-multiselect>
-
-    <app-text-area formControlName="description" ngDefaultControl
-                   [label]="'Description'"
-                   [required]="true">
-    </app-text-area>
-
     <div class="row padding-20">
       <div class="col-md-12">
         <div class="float-right">
-          <button type="reset" [routerLink]="['/user/profile']" class="btn btn-secondary">Cancel</button>
+          <button type="reset" [routerLink]="['/employer/profile']" class="btn btn-secondary">Cancel</button>
           <button type="submit" class="btn brand-btn">Save</button>
         </div>
       </div>

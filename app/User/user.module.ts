@@ -10,42 +10,32 @@ import { ProfileComponent } from './Profile/profile.component';
 import { LoginModule } from '../Login/login.module';
 import { SignupModule } from '../Signup/signup.module';
 import { LoginComponent } from '../Login/login.component';
-import { EditProfileComponent } from './Edit/edit-profile.component';
-import { EditWorkerComponent } from './Edit/Worker/edit-worker.component';
-import { EditUserComponent } from './Edit/User/edit-user.component';
-import { UserComponent } from './user.component';
+import { UserMenuComponent } from './Menu/user-menu.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ChangePasswordComponent } from './ChangePassword/change-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../Core/Services/service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
-import { UserMenuComponent } from './Menu/user-menu.component';
-import { AuthGuardService } from '../Core/Services/auth-guard.service';
+import { DropDownMenuComponent } from './DropDownMenu/drop-down-menu.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'resetpassword', component: ResetPasswordComponent },
-  { path: 'profile', canActivate: [AuthGuardService], component: UserComponent, children:
-    [
-      { path: '', canActivate: [AuthGuardService], component: ProfileComponent },
-      { path: 'jobs', canActivate: [AuthGuardService], component: UserJobsComponent },
-      { path: 'edit', canActivate: [AuthGuardService], component: EditProfileComponent }
-    ]
-  },
 ];
 
 @NgModule({
   imports: [
-    UserJobModule, RouterModule.forChild(userRoutes), LoginModule, SignupModule, FormsModule,
-    ReactiveFormsModule, CommonModule, SharedModule, ServiceModule, NgbModule.forRoot()
+    UserJobModule, RouterModule.forChild(userRoutes), LoginModule,
+    SignupModule, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, ServiceModule, NgbModule.forRoot()
   ],
   declarations: [
-    EditProfileComponent, ChangePasswordComponent, ProfileComponent,
-    UserComponent, UserMenuComponent, EditWorkerComponent, EditUserComponent
+    ChangePasswordComponent, ProfileComponent, UserMenuComponent, DropDownMenuComponent
   ],
-  providers: [ HttpModule, JobService ]
+  exports: [ UserJobModule ],
+  providers: [ HttpModule, JobService ],
+  entryComponents: [ChangePasswordComponent]
 })
 
 export class UserModule {}

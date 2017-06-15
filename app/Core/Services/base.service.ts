@@ -20,7 +20,6 @@ export class BaseService <T> {
     this.httpService = http;
     this.authorizationService = authorizationService;
     this.router = router;
-    this.initOptions();
   }
 
   initOptions () {
@@ -48,6 +47,7 @@ export class BaseService <T> {
 
   create(entity: T): Observable<T> {
     let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
+    this.mapEntityForBackend(entity);
 
     return this.httpService.post(this.apiUrl, entity, options)
       .map(
@@ -62,6 +62,7 @@ export class BaseService <T> {
   }
 
   update(entity: T): Observable<T> {
+    this.mapEntityForBackend(entity);
     return this.httpService.patch(this.apiUrl + '/' + entity['id'], entity, this.options).map(
       function success (response: Response) {
         return response.json();
@@ -100,10 +101,18 @@ export class BaseService <T> {
     }
   }
 
-  clearStorage() {
+  clearStorage(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('tokenType');
     localStorage.removeItem('username');
+  }
+
+  mapEntityForBackend(entity: T): void {
+    for (let property in entity) {
+      if (entity[property] && Array.isArray(entity[property])) {
+        entity[property] = entity[property].toString();
+      }
+    }
   }
 }

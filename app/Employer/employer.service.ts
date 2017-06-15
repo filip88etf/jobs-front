@@ -6,37 +6,38 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 
-import { Worker } from './Worker';
+import { Employer } from './Employer';
 import { BaseService } from '../Core/Services/base.service';
 import { AuthorizationService } from '../Core/Services/authorization.service';
 
 @Injectable()
-export class WorkerService extends BaseService<Worker> {
-  private worker: Worker;
+
+export class EmployerService extends BaseService<Employer> {
+  private employer: Employer;
 
   constructor(private http: Http, authorizationService: AuthorizationService, router: Router) {
-    super('workers', http, authorizationService, router);
+    super('employers', http, authorizationService, router);
   }
 
-  getWorker(): Observable<Worker> {
+  getEmployer(): Observable<Employer> {
     if (!this.options) { this.initOptions(); }
-    if (!this.worker) {
+    if (!this.employer) {
       return this.getByUsername(localStorage.getItem('username'));
     }
-    return Observable.of(this.worker);
+    return Observable.of(this.employer);
   }
 
-  getByUsername(username: string): Observable<Worker> {
+  getByUsername(username: string): Observable<Employer> {
     let routeUrl = '/search/findByUsername?username=' + username;
     this.initOptions();
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
         function success(response: Response): any {
-          this.worker = this.worker || new Worker();
-          Object.assign(this.worker, response.json());
-          localStorage.setItem('username', this.worker.username);
-          return this.worker;
+          this.employer = this.employer || new Employer();
+          Object.assign(this.employer, response.json());
+          localStorage.setItem('username', this.employer.username);
+          return this.employer;
       }.bind(this))
       .catch(
         function fail(error: any): any {
@@ -45,8 +46,23 @@ export class WorkerService extends BaseService<Worker> {
       );
   }
 
+  create(user: Employer): Observable<Employer> {
+    let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
+
+    return this.http.post(this.apiUrl, user, options)
+      .map(
+        function success(response: Response): any {
+          return response.json();
+      })
+      .catch(
+        function fail(error: any): any {
+          return this.errorHandler(error);
+        }.bind(this)
+      );
+  }
+
   uploadProfilePicture(picture: any): Observable<boolean> {
-    let routeUrl = '/profile/image?username=' + this.worker.username;
+    let routeUrl = '/profile/image?username=' + this.employer.username;
 
     return this.http.post(this.apiUrl + routeUrl, picture, this.options)
       .map(
@@ -62,12 +78,12 @@ export class WorkerService extends BaseService<Worker> {
   }
 
   logOut() {
-    this.worker = null;
+    this.employer = null;
     this.clearStorage();
     this.router.navigate(['/user/login']);
   }
 
-  setWorker(worker: Worker): void {
-    this.worker = worker;
+  setEmployer(employer: Employer) {
+    this.employer = employer;
   }
 }

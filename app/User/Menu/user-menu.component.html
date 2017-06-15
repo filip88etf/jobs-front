@@ -1,12 +1,24 @@
-<div class="col text-right">
-  <div ngbDropdown class="d-inline-block">
-    <div>
-      <img [src]="user?.imageURL" height="30px" width="30px" id="dropdownBasic" ngbDropdownToggle/>
+<div class="container profile-container">
+
+  <nav class="row user-menu-container padding-bottom-5">
+    <div class="col-md-3">
     </div>
-    <div class="caret-style fa fa-caret-down"></div>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
-      <button class="dropdown-item" (click)="openPasswordModal()">Change Password</button>
-      <button class="dropdown-item" (click)="logOut()">Log out</button>
+    <div class="col-md-9">
+      <span class="user-menu">
+        <app-drop-down-menu></app-drop-down-menu>
+      </span>
+      <span [routerLink]="userRoute" (click)="active=1;"
+            [ngClass]="{'active-menu-item': active === 1}"
+            class="menu-item">Profile</span>
+      <span [routerLink]="jobsRoute" (click)="active=2;"
+            [ngClass]="{'active-menu-item': active === 2}"
+            class="menu-item">Jobs</span>
+      <span [routerLink]="['']" (click)="active=3;"
+            [ngClass]="{'active-menu-item': active === 3}"
+            class="menu-item">Search</span>
     </div>
-  </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+
 </div>

@@ -6,7 +6,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GlobalValidators } from '../../global-validators';
 import { UserService } from '../user.service';
+import { EmployerService } from '../../Employer/employer.service';
+import { WorkerService } from '../../Worker/worker.service';
 import { Helper } from '../../helper';
+import { User } from '../User';
 
 @Component({
   moduleId: module.id,
@@ -18,12 +21,14 @@ import { Helper } from '../../helper';
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm: FormGroup;
   wrongPassword: boolean = false;
+  user: User;
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder,
-    private toastService: ToastService, public activeModal: NgbActiveModal) {
+  constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal, private toastService: ToastService,
+    private userService: UserService, private employerService: EmployerService, private workerService: WorkerService) {
   }
 
   ngOnInit () {
+    this.userService.getUser().subscribe((user) => { this.user = user; });
     this.changePasswordForm = this.formBuilder.group({
       oldPassword: '',
       newPasswordGroup: this.formBuilder.group({

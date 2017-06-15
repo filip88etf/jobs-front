@@ -8,6 +8,9 @@
         </div>
         <div class="col-md-6 facebook-wrapper">
           <button (click)="loginWithFacebook()" class="btn btn-primary facebook-button">Log in with Facebook</button>
+          <div>
+            <span class="error-message" *ngIf="noFacebookAccount">You don't have account, please signup with facebook</span>
+          </div>
         </div>
       </div>
 

@@ -7,14 +7,13 @@ export class User {
   gender: string;
   phone: string;
   email: string;
+  type: string;
   username: string;
   password: string;
-  type: string;
   fbId: string;
   imageURL: string = 'assets/images/no-profile-pic.png';
-  fbToken: string;
 
-  constructor(type: string = 'employer') {
+  constructor(type: string) {
     this.type = type;
   }
 }

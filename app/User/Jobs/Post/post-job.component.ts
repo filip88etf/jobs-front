@@ -41,7 +41,7 @@ export class PostJobComponent implements OnInit {
 
   submit() {
     if (Helper.submitForm(this.postJobForm, this.job)) {
-      this.job.userId = this.user.id;
+      this.job.username = this.user.username;
       this.jobService.create(this.job).subscribe(
         (job) => {
           this.activeModal.close(job);

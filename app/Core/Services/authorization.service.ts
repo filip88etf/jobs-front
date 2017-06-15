@@ -49,7 +49,7 @@ export class AuthorizationService {
     });
     const options = new RequestOptions({ headers: header });
 
-    return this.http.post(ACCESS_TOKEN_URL + '/facebook', data, options)
+    return this.http.post(ACCESS_TOKEN_URL.replace('oauth/token', 'users/facebook/login'), data, options)
       .map(
         function success(response: any): any {
           return this.getAuthData(response.json());

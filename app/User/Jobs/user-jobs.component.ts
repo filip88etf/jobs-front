@@ -29,7 +29,7 @@ export class UserJobsComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUser().subscribe(
       (user) => {
-        this.jobService.getByUserId(user.id).subscribe(
+        this.jobService.getByUsername(user.username).subscribe(
           (response) => { this.jobs = response; } );
       },
       (error) => { console.log(error); }

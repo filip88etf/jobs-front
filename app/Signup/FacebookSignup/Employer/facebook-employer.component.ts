@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 
 import { AuthorizationService } from '../../../Core/Services/authorization.service';
 import { UserService } from '../../../User/user.service';
+import { EmployerService } from '../../../Employer/employer.service';
 import { Option } from '../../../global-types';
-import { User } from '../../../User/User';
+import { Employer } from '../../../Employer/Employer';
 import { Helper } from '../../../helper';
 
 @Component({
@@ -18,10 +19,10 @@ import { Helper } from '../../../helper';
 export class FacebookEmployerComponent implements OnInit {
   employerForm: FormGroup;
   birthday: any;
-  user: User;
+  employer: Employer;
   calendarSettings: Object = {};
 
-  constructor(private formBuilder: FormBuilder, private router: Router,
+  constructor(private formBuilder: FormBuilder, private router: Router, private employerService: EmployerService,
     private userService: UserService, private authorizationService: AuthorizationService) {
   }
 
@@ -35,9 +36,11 @@ export class FacebookEmployerComponent implements OnInit {
       birthday: ['', [Validators.required]],
       phone: ''
     });
+
     this.userService.getUser().subscribe(
-      (response) => {
-        this.user = response;
+      (response: any) => {
+        this.employer = Object.assign(new Employer(), response);
+        this.employer.type = 'employer';
       });
   }
 
@@ -48,15 +51,18 @@ export class FacebookEmployerComponent implements OnInit {
   }
 
   employerSignup(): void {
-    if (!Helper.submitForm(this.employerForm, this.user))
+    if (!Helper.submitForm(this.employerForm, this.employer))
       return;
 
-    this.userService.create(this.user).subscribe(
+    this.employerService.create(this.employer).subscribe(
       (response) => {
-        let username = this.user.username,
+        let username = this.employer.username,
             facebookAccessToken = localStorage.getItem('facebookAccessToken');
 
         this.authorizeAndLogin(username, facebookAccessToken);
+      },
+      (error) => {
+        console.log(error);
       }
     );
   }
@@ -64,9 +70,9 @@ export class FacebookEmployerComponent implements OnInit {
   authorizeAndLogin(username: string, facebookAccessToken: string) {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       function authorizeSuccess (result: any) {
-        this.userService.getUser().subscribe(
+        this.employerService.getEmployer().subscribe(
           (result: any) => {
-            this.router.navigate(['user/profile']);
+            this.router.navigate(['employer/profile']);
           },
           (error: any) => { console.log(error); }
         );

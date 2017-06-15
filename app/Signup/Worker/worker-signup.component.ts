@@ -4,7 +4,6 @@ import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { GlobalValidators } from '../../global-validators';
-import { UserService } from '../../User/user.service';
 import { WorkerService } from '../../Worker/worker.service';
 import { User } from '../../User/User';
 import { Worker } from '../../Worker/Worker';
@@ -25,11 +24,10 @@ export class WorkerSignupComponent implements OnInit {
   genders: Option[] = GENDER_LIST;
   professions: Option[] = PROFESSIONS;
   workerForm: FormGroup;
-  user: User;
   worker: Worker;
   calendarSettings: Object = {};
 
-  constructor (private formBuilder: FormBuilder, private userService: UserService, private workerService: WorkerService,
+  constructor (private formBuilder: FormBuilder, private workerService: WorkerService,
           private authorizationService: AuthorizationService, private router: Router) {
   }
 
@@ -55,46 +53,32 @@ export class WorkerSignupComponent implements OnInit {
       region: [],
       description: ''
     });
-    this.user = new User('worker');
     this.worker = new Worker();
   }
 
   workerSignup(): void {
-    let isValid = Helper.submitForm(this.workerForm, this.user);
-
-    if (!isValid)
+    if (!Helper.submitForm(this.workerForm, this.worker))
       return;
 
-    this.userService.create(this.user).subscribe(
+    this.workerService.create(this.worker).subscribe(
       (response) => {
         let username = this.workerForm.get('username').value,
-            password = this.workerForm.get('passwordGroup').get('password').value,
-            worker = new Worker();
+            password = this.workerForm.get('passwordGroup').get('password').value;
 
-        worker.profession = this.workerForm.get('profession').value;
-        worker.description = this.workerForm.get('description').value;
-        worker.region = this.workerForm.get('region').value.toString();
-        worker.userId = response.id;
-
-        this.workerService.create(worker).subscribe(
-          () => { this.authorizeAndLogin(username, password, response.id); }
-        );
+        this.worker = Object.assign(new Worker(), response);
+        this.authorizeAndLogin(username, password);
       }
     );
   }
 
-  authorizeAndLogin(username: string, password: string, userId: string): void {
+  authorizeAndLogin(username: string, password: string): void {
     this.authorizationService.authorize(username, password).subscribe(
-      function authorizeSuccess (result: any) {
-        this.userService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['user/profile']); },
+      (result: any) => {
+        this.workerService.getByUsername(username).subscribe(
+          (result: any) => { this.router.navigate(['worker/profile']); },
           (error: any) => { console.log(error); }
         );
-        this.workerService.getByUserId(userId).subscribe(
-          (response: any) => {},
-          (error: any) => {}
-        );
-      }.bind(this),
+      },
     );
   }
 }

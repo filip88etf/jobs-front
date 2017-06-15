@@ -1,7 +1,7 @@
 // Job model
 export class Job {
   id: string;
-  userId: string;
+  username: string;
   profession: string;
   region: string;
   description: string;

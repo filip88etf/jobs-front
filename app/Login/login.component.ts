@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   private username: string = '';
   private password: string = '';
   private badCredentials: boolean = false;
+  private noFacebookAccount = false;
 
   constructor(private router: Router, private userService: UserService, private facebookService: FacebookService,
     private authorizationService: AuthorizationService) {
@@ -28,14 +29,14 @@ export class LoginComponent implements OnInit {
       xfbml      : true,
       version    : 'v2.8'
     });
-  };
+  }
 
   login (): void {
     this.badCredentials = false;
     this.authorizationService.authorize(this.username, this.password).subscribe(
       function authorizeSuccess (result: any) {
         this.userService.getByUsername(this.username).subscribe(
-          (result: any) => { this.router.navigate(['user/profile']); },
+          (user: any) => { this.router.navigate([user.type + '/profile']); },
           (error: any) => { console.log(error); }
         );
       }.bind(this),
@@ -67,8 +68,16 @@ export class LoginComponent implements OnInit {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       (result: any) => {
         this.userService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['user/profile']); },
-          (error: any) => { console.log(error); }
+          (user: any) => {
+            if (user) {
+              this.router.navigate([user.type + '/profile']);
+            } else {
+              this.noFacebookAccount = true;
+            }
+          },
+          (error: any) => {
+            this.noFacebookAccount = true;
+          }
         );
       },
       (error: any) => {

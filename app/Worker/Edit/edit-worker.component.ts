@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastService } from '../../../Core/Services/toast.service';
+import { ToastService } from '../../Core/Services/toast.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { User } from '../../User';
-import { Worker } from '../../../Worker/Worker';
-import { PROFESSIONS, CITIES, GENDER_LIST } from '../../../global-consts';
-import { Option } from '../../../global-types';
-import { UserService } from '../../user.service';
-import { WorkerService } from '../../../Worker/worker.service';
-import { Helper } from '../../../helper';
-import { PictureCropperComponent } from '../../../Shared/PictureCropper/picture-cropper.component';
+import { Worker } from '../Worker';
+import { PROFESSIONS, CITIES, GENDER_LIST } from '../../global-consts';
+import { Option } from '../../global-types';
+import { WorkerService } from '../worker.service';
+import { Helper } from '../../helper';
+import { PictureCropperComponent } from '../../Shared/PictureCropper/picture-cropper.component';
 
 @Component({
   moduleId: module.id,
@@ -21,43 +19,39 @@ import { PictureCropperComponent } from '../../../Shared/PictureCropper/picture-
 })
 
 export class EditWorkerComponent implements OnInit {
-  user: User;
   worker: Worker;
-  selected: Option[] = [GENDER_LIST[0]];
-  options: Option[] = GENDER_LIST;
-  editForm: FormGroup;
+  genders: Option[] = GENDER_LIST;
   regions: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
+  editForm: FormGroup;
+  calendarSettings: Object = {};
 
-  constructor(private userService: UserService, private workerService: WorkerService, private formBuilder: FormBuilder,
+  constructor(private workerService: WorkerService, private formBuilder: FormBuilder,
     private router: Router, private toastService: ToastService, private modalService: NgbModal) {
   }
 
   ngOnInit () {
-    this.user = new User();
+    this.calendarSettings = {
+      maxDate: Helper.datePickerFormat(Helper.subtractYear(18)),
+      minDate: Helper.datePickerFormat(Helper.subtractYear(70))
+    };
     this.worker = new Worker();
     this.editForm = this.formBuilder.group({
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      birthday: this.user.birthday,
-      gender: this.user.gender,
-      phone: this.user.phone,
-      email: this.user.email,
+      firstName: this.worker.firstName,
+      lastName: this.worker.lastName,
+      birthday: this.worker.birthday,
+      gender: this.worker.gender,
+      phone: this.worker.phone,
+      email: this.worker.email,
       profession: this.worker.profession,
       region: this.worker.region,
       description: this.worker.description
     });
 
-    this.userService.getUser().subscribe(
+    this.workerService.getWorker().subscribe(
       (response) => {
-        this.user = response;
-        this.workerService.getWorker(response.id).subscribe(
-          (worker: Worker) => {
-            this.worker = worker;
-            Helper.updateForm(this.editForm, this.worker);
-          }
-        );
-        Helper.updateForm(this.editForm, this.user);
+        this.worker = response;
+        Helper.updateForm(this.editForm, this.worker);
       },
       (error) => { console.log(error); }
     );
@@ -66,15 +60,11 @@ export class EditWorkerComponent implements OnInit {
   private updateWorker() {
     let worker = Object.assign(new Worker(), this.worker);
 
-    worker.profession = this.editForm.get('profession').value;
-    worker.region = this.editForm.get('region').value.toString();
-    worker.description = this.editForm.get('description').value;
-
     this.workerService.update(worker).subscribe(
       (response) => {
         Object.assign(this.worker, response);
         this.worker.region = response.region.toString().split(',');
-        this.router.navigate(['/user/profile']);
+        this.router.navigate(['/worker/profile']);
         this.toastService.success('You successfully updated your profile!');
       },
       (error) => {
@@ -84,12 +74,12 @@ export class EditWorkerComponent implements OnInit {
   }
 
   save() {
-    let user = Object.assign(new User(), this.user);
+    let user = Object.assign(new Worker(), this.worker);
 
     if (Helper.submitForm(this.editForm, user)) {
-      this.userService.update(user).subscribe(
+      this.workerService.update(user).subscribe(
         (response) => {
-          Object.assign(this.user, response);
+          Object.assign(this.worker, response);
           this.updateWorker();
         },
         (error) => {
@@ -110,8 +100,8 @@ export class EditWorkerComponent implements OnInit {
     modal.componentInstance.init(modalSettings);
     modal.result.then(
       (result) => {
-        this.userService.uploadProfilePicture(result).subscribe(
-          (response: any) => { this.user.imageURL = response; },
+        this.workerService.uploadProfilePicture(result).subscribe(
+          (response: any) => { this.worker.imageURL = response; },
           (error) => { console.log(error); }
         );
       },

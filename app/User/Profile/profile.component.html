@@ -5,6 +5,7 @@
   <div class="col-md-6">
     <div class="float-right">
       <button class="btn btn-secondary btn-large"
+              (click)=goToEdit();
               [routerLink]="['/user/profile/edit']">
         <span class="fa fa-pencil-square-o"></span>
         <span>Edit</span>
@@ -40,20 +41,20 @@
     <span class="col-md-9 profile-data">{{user.email}}</span>
   </div>
 
-  <div *ngIf="worker">
+  <div *ngIf="user.type==='worker'">
     <div class="row">
       <span class="col-md-3 profile-label"><b>Profession</b></span>
-      <span class="col-md-9 profile-data">{{worker.profession}}</span>
+      <span class="col-md-9 profile-data">{{user.profession}}</span>
     </div>
 
     <div class="row">
       <span class="col-md-3 profile-label"><b>Locations that you cover</b></span>
-      <span class="col-md-9 profile-data">{{worker.region}}</span>
+      <span class="col-md-9 profile-data">{{user.region}}</span>
     </div>
 
     <div class="row">
       <span class="col-md-3 profile-label"><b>Description</b></span>
-      <span class="col-md-9 profile-data">{{worker.description}}</span>
+      <span class="col-md-9 profile-data">{{user.description}}</span>
     </div>
   </div>
 

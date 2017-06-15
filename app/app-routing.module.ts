@@ -6,7 +6,9 @@ import { LoginComponent } from './Login/login.component';
 
 const routes: Routes = [
   { path: '', component : HomeComponent },
-  { path: 'user', loadChildren : 'app/User/user.module#UserModule' }
+  { path: 'user', loadChildren : 'app/User/user.module#UserModule' },
+  { path: 'worker', loadChildren: 'app/Worker/worker.module#WorkerModule' },
+  { path: 'employer', loadChildren: 'app/Employer/employer.module#EmployerModule' }
 ];
 
 @NgModule ({

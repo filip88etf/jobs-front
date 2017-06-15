@@ -3,11 +3,11 @@ import { FormGroup, FormBuilder, FormsModule, Validators, AbstractControl } from
 import { Router } from '@angular/router';
 
 import { AuthorizationService } from '../../Core/Services/authorization.service';
-import { UserService } from '../../User/user.service';
+import { EmployerService } from '../../Employer/employer.service';
 import { GlobalValidators } from '../../global-validators';
 import { GENDER_LIST } from '../../global-consts';
 import { Option } from '../../global-types';
-import { User } from '../../User/User';
+import { Employer } from '../../Employer/Employer';
 import { Helper } from '../../helper';
 
 @Component({
@@ -21,11 +21,11 @@ export class EmployerSignupComponent implements OnInit {
   employerForm: FormGroup;
   birthday: any;
   genders: Option[] = GENDER_LIST;
-  user: User;
+  employer: Employer;
   calendarSettings: Object = {};
 
   constructor(private formBuilder: FormBuilder, private router: Router,
-    private userService: UserService, private authorizationService: AuthorizationService) {
+    private employerService: EmployerService, private authorizationService: AuthorizationService) {
   }
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class EmployerSignupComponent implements OnInit {
         confirmPassword: ''
       }, {validator: GlobalValidators.passwordMatcher('password', 'confirmPassword')})
     });
-    this.user = new User();
+    this.employer = new Employer();
   }
 
   validateControl(controlName: string): boolean {
@@ -57,12 +57,10 @@ export class EmployerSignupComponent implements OnInit {
   }
 
   employerSignup(): void {
-    let isValid = Helper.submitForm(this.employerForm, this.user);
-
-    if (!isValid)
+    if (!Helper.submitForm(this.employerForm, this.employer))
       return;
 
-    this.userService.create(this.user).subscribe(
+    this.employerService.create(this.employer).subscribe(
       (response) => {
         let username = this.employerForm.get('username').value,
             password = this.employerForm.get('passwordGroup').get('password').value;
@@ -75,8 +73,8 @@ export class EmployerSignupComponent implements OnInit {
   authorizeAndLogin(username: string, password: string) {
     this.authorizationService.authorize(username, password).subscribe(
       function authorizeSuccess (result: any) {
-        this.userService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['user/profile']); },
+        this.employerService.getByUsername(username).subscribe(
+          (result: any) => { this.router.navigate(['employer/profile']); },
           (error: any) => { console.log(error); }
         );
       }.bind(this),

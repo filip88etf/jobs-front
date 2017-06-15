@@ -3,9 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
-import { UserService } from '../../../User/user.service';
 import { WorkerService } from '../../../Worker/worker.service';
-import { User } from '../../../User/User';
+import { UserService } from '../../../User/user.service';
 import { Worker } from '../../../Worker/Worker';
 import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
@@ -23,12 +22,11 @@ export class FacebookWorkerComponent implements OnInit {
   cities: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
   workerForm: FormGroup;
-  user: User;
   worker: Worker;
   calendarSettings: Object = {};
 
-  constructor (private formBuilder: FormBuilder, private userService: UserService, private workerService: WorkerService,
-          private authorizationService: AuthorizationService, private router: Router) {
+  constructor (private formBuilder: FormBuilder, private workerService: WorkerService,
+    private userService: UserService, private authorizationService: AuthorizationService, private router: Router) {
   }
 
   ngOnInit() {
@@ -46,43 +44,33 @@ export class FacebookWorkerComponent implements OnInit {
     });
 
     this.userService.getUser().subscribe(
-      (response: any) => { this.user = response; }
-    );
-    this.worker = new Worker();
-  }
-
-  public workerSignup(): void {
-    if (!Helper.submitForm(this.workerForm, this.user))
-      return;
-
-    this.userService.create(this.user).subscribe(
-      (response) => {
-        let username = this.user.username,
-            facebookAccessToken = localStorage.getItem('facebookAccessToken'),
-            worker = new Worker();
-
-        worker.profession = this.workerForm.get('profession').value;
-        worker.description = this.workerForm.get('description').value;
-        worker.region = this.workerForm.get('region').value.toString();
-        worker.userId = response.id;
-
-        this.workerService.create(worker).subscribe(
-          () => { this.authorizeAndLogin(username, facebookAccessToken, response.id); }
-        );
+      (response: any) => {
+        this.worker = Object.assign(new Worker(), response);
+        this.worker.type = 'worker';
       }
     );
   }
 
-  private authorizeAndLogin(username: string, facebookAccessToken: string, userId: string): void {
+  public workerSignup(): void {
+    if (!Helper.submitForm(this.workerForm, this.worker))
+      return;
+
+    this.workerService.create(this.worker).subscribe(
+      (response) => {
+        let username = response.username,
+            facebookAccessToken = localStorage.getItem('facebookAccessToken');
+
+        this.authorizeAndLogin(username, facebookAccessToken);
+      }
+    );
+  }
+
+  private authorizeAndLogin(username: string, facebookAccessToken: string): void {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       function authorizeSuccess (result: any) {
-        this.userService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['user/profile']); },
+        this.workerService.getByUsername(username).subscribe(
+          (result: any) => { this.router.navigate(['worker/profile']); },
           (error: any) => { console.log(error); }
-        );
-        this.workerService.getByUserId(userId).subscribe(
-          (response: any) => {},
-          (error: any) => {}
         );
       }.bind(this),
     );

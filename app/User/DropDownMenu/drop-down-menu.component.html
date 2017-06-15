@@ -1,0 +1,12 @@
+<div class="col text-right">
+  <div ngbDropdown class="d-inline-block">
+    <div>
+      <img [src]="user?.imageURL" height="30px" width="30px" id="dropdownBasic" ngbDropdownToggle/>
+    </div>
+    <div class="caret-style fa fa-caret-down"></div>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
+      <button class="dropdown-item" (click)="openPasswordModal()">Change Password</button>
+      <button class="dropdown-item" (click)="logOut()">Log out</button>
+    </div>
+  </div>
+</div>

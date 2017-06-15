@@ -29,8 +29,9 @@ export class JobService extends BaseService<Job> {
       );
   }
 
-  getByUserId(userId: string) {
-    let routeUrl = '/search/findByUserId?userId=' + userId;
+  getByUsername(username: string) {
+    let routeUrl = '/search/findByUsername?username=' + username;
+    if (!this.options) { this.initOptions(); }
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(

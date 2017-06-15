@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 import { User } from '../User';
 import { UserService } from '../user.service';
-import { WorkerService } from '../../Worker/worker.service';
 
 @Component({
   moduleId: module.id,
@@ -14,23 +14,20 @@ import { WorkerService } from '../../Worker/worker.service';
 
 export class ProfileComponent implements OnInit {
   user: User;
-  worker: Worker;
 
-  constructor(private userService: UserService, private workerService: WorkerService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
     this.userService.getUser().subscribe(
       (user: User) => {
         this.user = user;
-        if (user.type === 'worker') {
-          this.workerService.getWorker(user.id).subscribe(
-            (value: any) => { this.worker = value; },
-            (error: any) => { console.log(error); }
-          );
-        }
       }
     );
+  }
+
+  goToEdit() {
+    this.router.navigate([this.user.type + '/profile/edit']);
   }
 
   hideProfile(hide: boolean): void {
