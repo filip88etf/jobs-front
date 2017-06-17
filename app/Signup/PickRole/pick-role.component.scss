@@ -1,3 +1,5 @@
+@import "global_variables.scss";
+
 .pickrole-container {
   height: calc( 100vh );
   width: 100%;
@@ -9,13 +11,17 @@
   text-align: center;
 }
 
+.pick-role-title {
+  color: $brand-color;
+}
+
 .pick-role-form {
   display: table;
   position: absolute;
-  left: 35vw;
   top: 25vh;
-  width: 30vw;
   height: 150px;
+  left: 31vw;
+  width: 38vw;
   text-align: center;
   background-color: rgba(255,255,255,0.8);
   border-radius: 10px;
@@ -27,10 +33,10 @@
 
 .worker-role-left {
   padding: 20px 40px;
-  border-right: 1px solid black;
+  border-right: 1px solid $brand-color;
 }
 
 .employer-role-right {
   padding: 20px 40px;
-  border-right: 1px solid black;
+  border-right: 1px solid $brand-color;
 }
