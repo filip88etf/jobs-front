@@ -14,7 +14,7 @@ export class UserMenuComponent implements OnInit {
   jobsRoute: string[];
 
   constructor(private router: Router) {
-    this.active = this.router['location'].path() === '/user/profile' ? 1 : 2;
+    this.active = this.router['location'].path().indexOf('jobs') !== -1 ? 2 : 1;
   }
 
   ngOnInit() {

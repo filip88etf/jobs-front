@@ -1,21 +1,24 @@
 <div class="container profile-container">
 
-  <nav class="row user-menu-container padding-bottom-5">
+  <nav class="row user-menu-container">
     <div class="col-md-3">
     </div>
     <div class="col-md-9">
       <span class="user-menu">
         <app-drop-down-menu></app-drop-down-menu>
       </span>
-      <span [routerLink]="userRoute" (click)="active=1;"
-            [ngClass]="{'active-menu-item': active === 1}"
-            class="menu-item">Profile</span>
-      <span [routerLink]="jobsRoute" (click)="active=2;"
-            [ngClass]="{'active-menu-item': active === 2}"
-            class="menu-item">Jobs</span>
-      <span [routerLink]="['']" (click)="active=3;"
-            [ngClass]="{'active-menu-item': active === 3}"
-            class="menu-item">Search</span>
+      <nav [routerLink]="userRoute" (click)="active=1;"
+           class="menu-item cl-effect-4">
+        <a [ngClass]="{'active-menu-item' : active==1}">Profile</a>
+      </nav>
+      <nav [routerLink]="jobsRoute" (click)="active=2;"
+           class="menu-item cl-effect-4">
+        <a [ngClass]="{'active-menu-item' : active==2}">Jobs</a>
+      </nav>
+      <nav [routerLink]="['']" (click)="active=3;"
+           class="menu-item cl-effect-4">
+        <a>Search</a>
+      </nav>
     </div>
   </nav>
 
