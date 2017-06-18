@@ -14,29 +14,29 @@
    background-size: cover;
 }
 
-.home-content {
-  position: absolute;
-  top: 25vh;
-  left: 20vw;
-  width: 60vw;
-}
-
 .search-title {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 20vh;
 }
 
 .choice-button {
   text-align: center;
   padding: 10px;
+  width: 250px;
+  height: 50px;
 }
 
 .search-button {
   padding: 25px 20px 20px 20px;
 }
 
-.form-container {
-    margin-top: 80px;
+.btn-store {
+  background-color: black;
+  color: white;
+}
+
+.choice-container {
+    margin-top: 15vh;
 }
 
 .form-content {
@@ -44,6 +44,10 @@
   text-align: center;
   background-color: rgba(255,255,255,0.7);
   border-radius: 10px;
+}
+
+.mobile-store-container {
+  margin-top: 35vh;
 }
 
 .active-tab {

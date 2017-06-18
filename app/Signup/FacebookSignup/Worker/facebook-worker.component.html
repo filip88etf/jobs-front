@@ -2,7 +2,7 @@
   <app-menu></app-menu>
   <div class="worker-signup-form">
 
-    <form (ngSubmit)="workerSignup()" [formGroup]="workerForm">
+    <form (ngSubmit)="workerSignup()" [formGroup]="workerForm" class="brand-color">
 
       <div class="row padding-top-10">
         <div class="col-md-2"></div>
@@ -94,7 +94,7 @@
         <button type="reset" [routerLink]="['/user/signup/facebook_role']" class="col-md-12 btn btn-secondary">Previous</button>
       </div>
       <div class="col-md-4">
-        <button type="submit" class="col-md-12 btn btn-primary">Done</button>
+        <button type="submit" class="col-md-12 btn brand-btn">Done</button>
       </div>
     </div>
 

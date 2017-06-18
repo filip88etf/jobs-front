@@ -72,14 +72,6 @@
   padding-bottom: 5px;
 }
 
-.float-left {
-  float: left !important;
-}
-
-.float-right {
-  float: right !important;
-}
-
 .error-message {
   color: #d9534f;
   float: left;
@@ -111,15 +103,19 @@
   text-align: center;
 }
 
+// APP STYLE
 .app-body {
   background-color: #e9eaec;
 }
+
 .brand-color {
   color: $brand-color;
 }
+
 .brand-btn {
   background-color: $brand-color;
   color: white;
+  cursor: pointer;
   &:hover {
     color: $active-color;
   }
@@ -133,4 +129,16 @@
 .input-warning {
   border: 1px solid #f0ad4e;
   border-radius: 4px;
+}
+
+.btn {
+  cursor: pointer !important;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
 }

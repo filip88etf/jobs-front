@@ -1,23 +1,24 @@
-<div class="container-fluid">
+<div class="container-fluid main-menu">
   <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-4">
       <nav class="cl-effect-4">
         <img src="assets/images/profesionalci-logo-white.png" height="50px" width="50px"/>
       </nav>
     </div>
 
-    <div class="col-md-6 center-menu ">
+    <div class="col-md-4 center-menu ">
       <nav class="cl-effect-4">
-        <a class="">Offer Service</a>
-        <a class="">Offer Job</a>
+        <a [routerLink]="['/user/signup/worker']">Offer Services</a>
+        <a [routerLink]="['/user/signup/employer']">Offer Jobs</a>
       </nav>
     </div>
 
-    <div class="col-md-3 right-menu">
+    <div class="col-md-4 right-menu">
       <nav class="cl-effect-4">
-        <a class="" [routerLink]="['/user/login']"><span>Log In</span></a>
-        <a class="">About</a>
+        <a>About</a>
+        <a [routerLink]="['/user/signup']"><span>Join Us</span></a>
+        <a [routerLink]="['/user/login']"><span>Log In</span></a>
       </nav>
     </div>
 

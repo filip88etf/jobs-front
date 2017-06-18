@@ -3,29 +3,25 @@
 </video>
 <app-menu></app-menu>
 <div class="container">
-  <h2 class="text-color search-title"><b>What are you searching for?</b></h2>
+  <h1 class="text-color search-title"><b>What are you searching for?</b></h1>
 
-  <div class="form-container">
+  <div class="choice-container">
 
     <div class="row">
       <div class="col-md-3">
       </div>
       <div class="col-md-3 mouse-pointer">
-        <div class="choice-button" [ngClass]="{'active-tab':isJobSearch}" (click)='searchJobs(true)'>
-          <span><b class="text-color">JOBS</b></span>
-        </div>
+        <button class="btn brand-btn choice-button"><b>JOBS</b></button>
       </div>
 
       <div class="col-md-3 mouse-pointer">
-        <div class="choice-button" [ngClass]="{'active-tab':!isJobSearch}" (click)='searchJobs(false)'>
-          <span><b class="text-color">WORKERS</b></span>
-        </div>
+        <button class="btn brand-btn choice-button"><b>WORKERS</b></button>
       </div>
       <div class="col-md-3">
       </div>
     </div>
 
-    <div class="row form-content">
+    <!-- <div class="row form-content">
 
         <div class="form-group-lg col-md-5 padding-20">
           <div class="row">
@@ -67,6 +63,30 @@
           <button class="btn btn-secondary" (click)='search()'>Search</button>
         </div>
 
+    </div> -->
+
+  </div>
+
+  <div class="mobile-store-container">
+
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-store float-right">
+          <img src="assets/images/playLogo.png" height="30px"/>
+          <b>Comming soon</b>
+        </button>
+      </div>
+
+      <div class="col-md-3">
+        <button class="btn btn-store float-left">
+          <img src="assets/images/appleLogo.png" height="30px"/>
+          <b>Comming soon</b>
+        </button>
+      </div>
+      <div class="col-md-3">
+      </div>
     </div>
 
   </div>

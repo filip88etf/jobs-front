@@ -12,7 +12,7 @@
   cursor: pointer;
   float: right;
   font-size: 16px;
-  color: $active-color;
+  color: white;
 }
 
 .user-menu-container {
@@ -20,7 +20,7 @@
 }
 
 .active-menu-item {
-  border-bottom: 3px solid $active-color;
+  border-bottom: 3px solid white;
 }
 
 .menu-item:hover {
@@ -37,12 +37,15 @@ nav a {
 	display: inline-block;
 	margin: 0px 10px;
 	outline: none;
-	color: $active-color;
+	color: white;
 	text-decoration: none;
 	letter-spacing: 1px;
 	font-weight: 400;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
 	font-size: 1.35em;
+  &:hover {
+    color: $active-color;
+  }
 }
 
 nav a:hover,

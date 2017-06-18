@@ -1,3 +1,9 @@
+@import "global_variables.scss";
+
+.main-menu {
+  background-color: $brand-color;
+}
+
 .left-menu {
   text-align: left;
   margin-top: 10px;
@@ -5,12 +11,12 @@
 
 .center-menu {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .right-menu {
   text-align: right;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .menu-item {
@@ -23,12 +29,15 @@ nav a {
 	display: inline-block;
 	margin: 0px 10px;
 	outline: none;
-	color: #fff;
+	color: white;
 	text-decoration: none;
 	letter-spacing: 1px;
 	font-weight: 400;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
 	font-size: 1.35em;
+  &:hover {
+    color: $active-color;
+  }
 }
 
 nav a:hover,
@@ -46,7 +55,7 @@ nav a:focus {
 	left: 0;
 	width: 100%;
 	height: 1px;
-	background: #fff;
+	background: $active-color;
 	content: '';
 	opacity: 0;
 	-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;

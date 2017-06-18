@@ -1,3 +1,5 @@
+@import "global_variables.scss";
+
 .pickrole-container {
   height: calc( 100vh );
   width: 100%;
@@ -21,6 +23,16 @@
   border-radius: 10px;
 }
 
-.or-pick {
-  padding-top: 7px;
+.pick-role-title {
+  color: $brand-color;
+}
+
+.worker-role-left {
+  padding: 20px 40px;
+  border-right: 1px solid $brand-color;
+}
+
+.employer-role-right {
+  padding: 20px 40px;
+  border-right: 1px solid $brand-color;
 }
