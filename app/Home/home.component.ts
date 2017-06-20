@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { CITIES, PROFESSIONS } from '../global-consts';
 import { Option } from '../global-types';
@@ -10,26 +11,32 @@ import { Option } from '../global-types';
   styleUrls: ['home.component.css']
 })
 
-export class HomeComponent {
-  cities: Option[] = CITIES;
+export class HomeComponent implements OnInit {
+  regions: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
-  isJobSearch: boolean = true;
-  startSearch: boolean = false;
-  proffesion: Option;
-  city: Option;
+  searchForm: FormGroup;
+  searchType: string = 'jobs';
+  isSelected: boolean = false;
 
-  showMessage(selected: Option): string {
-    if (selected === undefined && this.startSearch) {
-      return 'Please select one';
-    }
-    return '';
+  constructor(private formBuilder: FormBuilder) {
   }
 
-  public searchJobs (value: boolean): void {
-    this.isJobSearch = value;
+  ngOnInit() {
+    this.searchForm = this.formBuilder.group({
+      region: undefined,
+      profession: undefined
+    });
   }
 
-  search(): void {
-    this.startSearch = true;
+  public selected(type: string): void {
+    this.searchType = type;
+    this.isSelected = true;
+  }
+
+  public search(): void {
+  }
+
+  public back(): void {
+    this.isSelected = false;
   }
 }

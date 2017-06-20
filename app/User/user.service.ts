@@ -31,16 +31,15 @@ export class UserService extends BaseService<User> {
       .map(
         function success(response: Response): any {
           let user = response.json();
-          if (!this.user) {
-            if (user.type === 'worker') {
-              this.user = new Worker();
-              this.workerService.setWorker(this.user);
-            } else {
-              this.user = new Employer();
-              this.employerService.setEmployer(this.user);
-            }
+
+          if (user.type === 'worker') {
+            this.user = Object.assign(new Worker(), user);
+            this.workerService.setWorker(this.user);
+          } else {
+            this.user = Object.assign(new Employer(), user);
+            this.employerService.setEmployer(this.user);
           }
-          Object.assign(this.user, response.json());
+
           localStorage.setItem('username', this.user.username);
           return this.user;
       }.bind(this))
@@ -141,5 +140,9 @@ export class UserService extends BaseService<User> {
     }
 
     localStorage.setItem('username', this.user.username);
+  }
+
+  logOut(): void {
+    this.user = null;
   }
 }

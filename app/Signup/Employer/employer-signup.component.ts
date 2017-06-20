@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthorizationService } from '../../Core/Services/authorization.service';
 import { EmployerService } from '../../Employer/employer.service';
+import { UserService } from '../../User/user.service';
 import { GlobalValidators } from '../../global-validators';
 import { GENDER_LIST } from '../../global-consts';
 import { Option } from '../../global-types';
@@ -24,7 +25,7 @@ export class EmployerSignupComponent implements OnInit {
   employer: Employer;
   calendarSettings: Object = {};
 
-  constructor(private formBuilder: FormBuilder, private router: Router,
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
     private employerService: EmployerService, private authorizationService: AuthorizationService) {
   }
 
@@ -74,7 +75,10 @@ export class EmployerSignupComponent implements OnInit {
     this.authorizationService.authorize(username, password).subscribe(
       function authorizeSuccess (result: any) {
         this.employerService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['employer/profile']); },
+          (result: any) => {
+            this.employerService.getEmployer().subscribe((employer: any) => { this.userService.setUser(employer); });
+            this.router.navigate(['employer/profile']);
+          },
           (error: any) => { console.log(error); }
         );
       }.bind(this),

@@ -57,30 +57,16 @@ export class EditWorkerComponent implements OnInit {
     );
   }
 
-  private updateWorker() {
+  save() {
     let worker = Object.assign(new Worker(), this.worker);
 
-    this.workerService.update(worker).subscribe(
-      (response) => {
-        Object.assign(this.worker, response);
-        this.worker.region = response.region.toString().split(',');
-        this.router.navigate(['/worker/profile']);
-        this.toastService.success('You successfully updated your profile!');
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
-  save() {
-    let user = Object.assign(new Worker(), this.worker);
-
-    if (Helper.submitForm(this.editForm, user)) {
-      this.workerService.update(user).subscribe(
+    if (Helper.submitForm(this.editForm, worker)) {
+      this.workerService.update(worker).subscribe(
         (response) => {
           Object.assign(this.worker, response);
-          this.updateWorker();
+          this.worker.region = response.region.toString().split(',');
+          this.router.navigate(['/worker/profile']);
+          this.toastService.success('You successfully updated your profile!');
         },
         (error) => {
           console.log(error);

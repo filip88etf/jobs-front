@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { GlobalValidators } from '../../global-validators';
 import { WorkerService } from '../../Worker/worker.service';
+import { UserService } from '../../User/user.service';
 import { User } from '../../User/User';
 import { Worker } from '../../Worker/Worker';
 import { GENDER_LIST, CITIES, PROFESSIONS } from '../../global-consts';
@@ -27,7 +28,7 @@ export class WorkerSignupComponent implements OnInit {
   worker: Worker;
   calendarSettings: Object = {};
 
-  constructor (private formBuilder: FormBuilder, private workerService: WorkerService,
+  constructor (private formBuilder: FormBuilder, private workerService: WorkerService, private userService: UserService,
           private authorizationService: AuthorizationService, private router: Router) {
   }
 
@@ -75,7 +76,9 @@ export class WorkerSignupComponent implements OnInit {
     this.authorizationService.authorize(username, password).subscribe(
       (result: any) => {
         this.workerService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['worker/profile']); },
+          (result: any) => {
+            this.workerService.getWorker().subscribe((worker: any) => { this.userService.setUser(worker); });
+            this.router.navigate(['worker/profile']); },
           (error: any) => { console.log(error); }
         );
       },

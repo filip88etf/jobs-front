@@ -69,7 +69,9 @@ export class FacebookWorkerComponent implements OnInit {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       function authorizeSuccess (result: any) {
         this.workerService.getByUsername(username).subscribe(
-          (result: any) => { this.router.navigate(['worker/profile']); },
+          (result: any) => {
+            this.workerService.getWorker().subscribe((worker: any) => { this.userService.setUser(worker); });
+            this.router.navigate(['worker/profile']); },
           (error: any) => { console.log(error); }
         );
       }.bind(this),

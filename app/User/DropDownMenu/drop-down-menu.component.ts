@@ -38,6 +38,7 @@ export class DropDownMenuComponent {
   }
 
   logOut() {
+    this.userService.logOut();
     this.user.type === 'employer' ? this.employerService.logOut() : this.workerService.logOut();
   }
 }

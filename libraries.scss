@@ -6,9 +6,40 @@
 ng-select > div {
   border-radius: 4px !important;
 }
+
 select-dropdown .selected.highlighted {
   background-color: $brand-color !important;
 }
+
 select-dropdown .highlighted {
   background-color: $brand-color !important;
+}
+
+.below {
+  .single {
+    height: 35px;
+    .value {
+      padding-top: 3px;
+    }
+    .toggle {
+      padding-top: 3px;
+    }
+  }
+  .multiple {
+    min-height: 35px;
+    .option {
+      background-color: $brand-color;
+      color: white;
+      padding-top: 3px;
+      .deselect-option {
+        color: white;
+      }
+    }
+    .value {
+      padding-top: 3px;
+    }
+    .toggle {
+      padding-top: 3px;
+    }
+  }
 }

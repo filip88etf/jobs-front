@@ -35,6 +35,7 @@ export class WorkerService extends BaseService<Worker> {
         function success(response: Response): any {
           this.worker = this.worker || new Worker();
           Object.assign(this.worker, response.json());
+          this.worker.region = this.worker.region.split(',');
           localStorage.setItem('username', this.worker.username);
           return this.worker;
       }.bind(this))
@@ -69,5 +70,6 @@ export class WorkerService extends BaseService<Worker> {
 
   setWorker(worker: Worker): void {
     this.worker = worker;
+    this.worker.region = this.worker.region.toString().split(',');
   }
 }

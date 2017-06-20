@@ -7,63 +7,45 @@
 
   <div class="choice-container">
 
-    <div class="row">
-      <div class="col-md-3">
+    <div *ngIf="!isSelected" class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3 mouse-pointer">
+        <button class="btn brand-btn choice-button" (click)="selected('jobs')"><b>JOBS</b></button>
       </div>
       <div class="col-md-3 mouse-pointer">
-        <button class="btn brand-btn choice-button"><b>JOBS</b></button>
-      </div>
-
-      <div class="col-md-3 mouse-pointer">
-        <button class="btn brand-btn choice-button"><b>WORKERS</b></button>
-      </div>
-      <div class="col-md-3">
+        <button class="btn brand-btn choice-button" (click)="selected('workers')"><b>WORKERS</b></button>
       </div>
     </div>
 
-    <!-- <div class="row form-content">
-
-        <div class="form-group-lg col-md-5 padding-20">
-          <div class="row">
-            <div class="col-md-3 padding-10">
-              <span class="search-label">Where</span>
-            </div>
-            <div class="col-md-9 padding-10" [ngClass]="{'has-danger': showMessage(city) }">
-              <div class="ng-select-wrapper">
-                <ng-select
-                  [options]="cities"
-                  [(ngModel)]="city"
-                  [placeholder]="'select city'">
-                </ng-select>
-              </div>
-              <span class="error-message">{{showMessage(city)}}</span>
-            </div>
-          </div>
+    <form *ngIf="isSelected" (ngSubmit)="search()" [formGroup]="searchForm">
+      <div class="row padding-20 home-search-form">
+        <div class="col-md-1">
+          <button class="btn brand-btn" (click)="back()">Back</button>
         </div>
-
-        <div class="form-group-lg col-md-5 padding-20">
-          <div class="row">
-            <div class="col-md-3 padding-10">
-              <span class="search-label">Profession</span>
-            </div>
-            <div class="col-md-9 padding-10" [ngClass]="{'has-danger': showMessage(proffesion) }">
-              <div class="ng-select-wrapper">
-                <ng-select
-                  [options]="professions"
-                  [(ngModel)]="proffesion"
-                  [placeholder]="'select profession'">
-                </ng-select>
-              </div>
-              <span class="error-message">{{showMessage(proffesion)}}</span>
-            </div>
-          </div>
+        <div class="col-md-1">
+          <div class="search-label">Where</div>
         </div>
-
-        <div class="form-group-lg search-button col-md-2">
-          <button class="btn btn-secondary" (click)='search()'>Search</button>
+        <div class="col-md-4 mouse-pointer">
+          <app-input-select formControlName="region"
+                            [options]="regions"
+                            [required]="true">
+          </app-input-select>
         </div>
+        <div class="col-md-1">
+          <div class="search-label">Profession</div>
+        </div>
+        <div class="col-md-4 mouse-pointer">
+          <app-input-select formControlName="profession"
+                            [options]="professions"
+                            [required]="true">
+          </app-input-select>
+        </div>
+        <div class="col-md-1">
+          <button class="btn brand-btn">Search</button>
+        </div>
+      </div>
+    </form>
 
-    </div> -->
 
   </div>
 

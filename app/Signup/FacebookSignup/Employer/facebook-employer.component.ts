@@ -72,6 +72,7 @@ export class FacebookEmployerComponent implements OnInit {
       function authorizeSuccess (result: any) {
         this.employerService.getEmployer().subscribe(
           (result: any) => {
+            this.employerService.getEmployer().subscribe((employer: any) => { this.userService.setUser(employer); });
             this.router.navigate(['employer/profile']);
           },
           (error: any) => { console.log(error); }
