@@ -86,10 +86,12 @@ export class EditWorkerComponent implements OnInit {
     modal.componentInstance.init(modalSettings);
     modal.result.then(
       (result) => {
-        this.workerService.uploadProfilePicture(result).subscribe(
-          (response: any) => { this.worker.imageURL = response; },
-          (error) => { console.log(error); }
-        );
+        if (result) {
+          this.workerService.uploadProfilePicture(result).subscribe(
+            (response: any) => { this.worker.imageURL = response; },
+            (error) => { console.log(error); }
+          );
+        }
       },
       (reason) => { }
     );

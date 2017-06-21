@@ -81,10 +81,12 @@ export class EditEmployerComponent implements OnInit {
     modal.componentInstance.init(modalSettings);
     modal.result.then(
       (result) => {
-        this.employerService.uploadProfilePicture(result).subscribe(
-          (response: any) => { this.employer.imageURL = response; },
-          (error) => { console.log(error); }
-        );
+        if (result) {
+          this.employerService.uploadProfilePicture(result).subscribe(
+            (response: any) => { this.employer.imageURL = response; },
+            (error) => { console.log(error); }
+          );
+        }
       },
       (reason) => { }
     );

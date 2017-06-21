@@ -13,14 +13,16 @@ import { BaseService } from '../Core/Services/base.service';
 import { AuthorizationService } from '../Core/Services/authorization.service';
 import { EmployerService } from '../Employer/employer.service';
 import { WorkerService } from '../Worker/worker.service';
+import { NotificationService } from '../Core/Services/notification.service';
 
 @Injectable()
 export class UserService extends BaseService<User> {
   private user: User;
 
   constructor (private http: Http, authorizationService: AuthorizationService, router: Router,
-  private employerService: EmployerService, private workerService: WorkerService) {
-    super('', http, authorizationService, router);
+    notificationService: NotificationService, private employerService: EmployerService,
+    private workerService: WorkerService) {
+    super('', http, authorizationService, notificationService, router);
   }
 
   getByUsername(username: string): Observable<User> {

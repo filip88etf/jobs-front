@@ -9,13 +9,15 @@ import 'rxjs/add/observable/of';
 import { Worker } from './Worker';
 import { BaseService } from '../Core/Services/base.service';
 import { AuthorizationService } from '../Core/Services/authorization.service';
+import { NotificationService } from '../Core/Services/notification.service';
 
 @Injectable()
 export class WorkerService extends BaseService<Worker> {
   private worker: Worker;
 
-  constructor(private http: Http, authorizationService: AuthorizationService, router: Router) {
-    super('workers', http, authorizationService, router);
+  constructor(private http: Http, authorizationService: AuthorizationService,
+    notificationService: NotificationService, router: Router) {
+    super('workers', http, authorizationService, notificationService, router);
   }
 
   getWorker(): Observable<Worker> {
@@ -49,14 +51,17 @@ export class WorkerService extends BaseService<Worker> {
   uploadProfilePicture(picture: any): Observable<boolean> {
     let routeUrl = '/profile/image?username=' + this.worker.username;
 
+    this.notificationService.startLoading();
     return this.http.post(this.apiUrl + routeUrl, picture, this.options)
       .map(
         function success(response: any): boolean {
+          this.notificationService.stopLoading();
           return response['_body'];
         }.bind(this)
       )
       .catch(
         function fail(error: any): any {
+          this.notificationService.stopLoading();
           return this.errorHandler(error);
         }
       );

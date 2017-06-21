@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { AuthorizationService } from './authorization.service';
+import { NotificationService } from './notification.service';
 
 export class BaseService <T> {
   apiUrl: string = 'https://jobsy-kp-api.herokuapp.com';
@@ -15,7 +16,8 @@ export class BaseService <T> {
   authorizationService: AuthorizationService;
   router: Router;
 
-  constructor(route: string = '', http: Http, authorizationService: AuthorizationService, router: Router) {
+  constructor(route: string = '', http: Http, authorizationService: AuthorizationService,
+    protected notificationService: NotificationService, router: Router) {
     this.apiUrl += route ? '/' + route : '';
     this.httpService = http;
     this.authorizationService = authorizationService;

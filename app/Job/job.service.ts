@@ -8,12 +8,14 @@ import 'rxjs/add/operator/catch';
 import { Job } from './Job';
 import { BaseService } from '../Core/Services/base.service';
 import { AuthorizationService } from '../Core/Services/authorization.service';
+import { NotificationService } from '../Core/Services/notification.service';
 
 @Injectable()
 export class JobService extends BaseService<Job> {
 
-  constructor (private http: Http, authorizationService: AuthorizationService, router: Router) {
-    super('jobs', http, authorizationService, router);
+  constructor (private http: Http, authorizationService: AuthorizationService,
+    notificationService: NotificationService, router: Router) {
+    super('jobs', http, authorizationService, notificationService, router);
   }
 
   create(entity: Job): Observable<Job> {

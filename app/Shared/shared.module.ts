@@ -18,6 +18,7 @@ import { TextAreaComponent } from './TextArea/text-area.component';
 import { InputMultiselectComponent } from './InputMultiselect/input-multiselect.component';
 import { InputUniqueComponent } from './InputUnique/input-unique.component';
 import { PictureCropperComponent } from './PictureCropper/picture-cropper.component';
+import { LoaderComponent } from './Loader/loader.component';
 
 @NgModule({
   imports: [
@@ -25,12 +26,12 @@ import { PictureCropperComponent } from './PictureCropper/picture-cropper.compon
     NgbModule, ToastyModule.forRoot()
   ],
   declarations: [
-    MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent,
     InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent,
     InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent
   ],
   exports: [
-    MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent,
     InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule
   ],

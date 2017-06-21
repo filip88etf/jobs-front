@@ -9,14 +9,16 @@ import 'rxjs/add/observable/of';
 import { Employer } from './Employer';
 import { BaseService } from '../Core/Services/base.service';
 import { AuthorizationService } from '../Core/Services/authorization.service';
+import { NotificationService } from '../Core/Services/notification.service';
 
 @Injectable()
 
 export class EmployerService extends BaseService<Employer> {
   private employer: Employer;
 
-  constructor(private http: Http, authorizationService: AuthorizationService, router: Router) {
-    super('employers', http, authorizationService, router);
+  constructor(private http: Http, authorizationService: AuthorizationService,
+    notificationService: NotificationService, router: Router) {
+    super('employers', http, authorizationService, notificationService, router);
   }
 
   getEmployer(): Observable<Employer> {
@@ -64,14 +66,17 @@ export class EmployerService extends BaseService<Employer> {
   uploadProfilePicture(picture: any): Observable<boolean> {
     let routeUrl = '/profile/image?username=' + this.employer.username;
 
+    this.notificationService.startLoading();
     return this.http.post(this.apiUrl + routeUrl, picture, this.options)
       .map(
         function success(response: any): boolean {
+          this.notificationService.stopLoading();
           return response['_body'];
         }.bind(this)
       )
       .catch(
         function fail(error: any): any {
+          this.notificationService.stopLoading();
           return this.errorHandler(error);
         }
       );
