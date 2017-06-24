@@ -16,8 +16,14 @@
    background-size: cover;
 }
 
+.choice-form {
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
 .home-search-form {
-  background-color: white;
+  background-color: rgba(255,255,255,0.8);
   border-radius: 5px;
 }
 
@@ -68,5 +74,6 @@
 
 .search-label {
   margin-top: 5px;
-  color: $brand-color;
+  color: black;
+  float: right;
 }

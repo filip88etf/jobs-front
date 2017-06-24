@@ -2,43 +2,37 @@
   <app-menu></app-menu>
   <div class="worker-signup-form">
 
-    <form (ngSubmit)="workerSignup()" [formGroup]="workerForm" class="brand-color">
+    <form (ngSubmit)="workerSignup()" [formGroup]="workerForm" class="neutral-color">
 
     <div class="row">
 
       <div class="col-md-6">
 
-        <div class="row padding-top-10">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
+        <div class="row justify-content-end padding-top-10">
+          <div class="col-md-11">
             <span class="float-left"><b>Name</b></span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-4 padding-bottom-10">
+        <div class="row justify-content-end">
+          <div class="col-md-5 signup-first-name padding-bottom-10">
             <app-input-text formControlName="firstName"
               [required]="true"
               [placeholder]="'First'"></app-input-text>
           </div>
-          <div class="col-md-4 padding-bottom-10">
+          <div class="col-md-6 signup-last-name padding-bottom-10">
             <app-input-text formControlName="lastName"
               [required]="true"
               [placeholder]="'Last'"></app-input-text>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
+        <div class="row justify-content-end">
+          <div class="col-md-11">
             <span class="float-left"><b>Birthday</b></span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10 float-left">
+        <div class="row justify-content-end">
+          <div class="col-md-11 padding-bottom-10">
             <app-input-calendar formControlName="birthday"
               [required]="true"
               [settings]="calendarSettings">
@@ -46,16 +40,13 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
+        <div class="row justify-content-end">
+          <div class="col-md-11">
             <span class="float-left"><b>Gender</b></span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10">
+        <div class="row justify-content-end">
+          <div class="col-md-11 padding-bottom-10">
             <app-input-select formControlName="gender"
                               [options]="genders"
                               [required]="true">
@@ -63,35 +54,30 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
+        <div class="row justify-content-end">
+          <div class="col-md-11">
             <span class="float-left"><b>Username</b></span>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10">
+        <div class="row justify-content-end">
+          <div class="col-md-11 padding-bottom-10">
             <app-input-unique formControlName="username"
                               [field]="'username'"
                               [minLength]="3"
-                              [required]="true"></app-input-unique>
+                              [required]="true">
+            </app-input-unique>
           </div>
         </div>
 
         <div formGroupName="passwordGroup">
 
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
+          <div class="row justify-content-end">
+            <div class="col-md-11">
               <span class="float-left"><b>Password</b></span>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('passwordGroup').errors?.match}">
+          <div class="row justify-content-end">
+            <div class="col-md-11 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('passwordGroup').errors?.match}">
               <app-input-password formControlName="password"
                                   [required]="true"
                                   [minLength]="8">
@@ -99,16 +85,13 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
+          <div class="row justify-content-end">
+            <div class="col-md-11">
               <span class="float-left"><b>Confirm Password</b></span>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('passwordGroup').errors?.match}">
+          <div class="row justify-content-end">
+            <div class="col-md-11 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('passwordGroup').errors?.match}">
               <app-input-password formControlName="confirmPassword"
                                   [required]="true"
                                   [minLength]="8">
@@ -126,49 +109,42 @@
       <div class="col-md-6">
 
         <div class="row padding-top-10">
-          <div class="col-md-2"></div>
           <div class="col-md-10">
             <span class="float-left"><b>Phone</b></span>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10">
+          <div class="col-md-11 padding-bottom-10">
             <app-input-text formControlName="phone"
               [required]="true"></app-input-text>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10">
+          <div class="col-md-11">
             <span class="float-left"><b>Email</b></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('email').errors?.email}">
-            <app-input-unique formControlName="email"
-                              [field]="'email'"
-                              [required]="true"></app-input-unique>
-              <span class="error-message" *ngIf="workerForm.get('email').errors?.email">
-                Invalid email
-              </span>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-2"></div>
+          <div class="col-md-11 padding-bottom-10" [ngClass]="{'has-danger': workerForm.get('email').errors?.email ? true : false}">
+            <app-input-unique formControlName="email"
+                              [field]="'email'"
+                              [required]="true">
+            </app-input-unique>
+            <span class="error-message" *ngIf="workerForm.get('email').errors?.email">
+              Invalid email
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-10">
             <span class="float-left"><b>Proffession</b></span>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10">
+          <div class="col-md-11 padding-bottom-10">
             <app-input-select formControlName="profession" ngDefaultControl
                               [options]="professions"
                               [required]="true">
@@ -177,15 +153,12 @@
         </div>
 
         <div class="row">
-          <div class="col-md-2"></div>
           <div class="col-md-10">
             <span class="float-left"><b>Cities that you cover</b></span>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 padding-bottom-10">
+          <div class="col-md-11 padding-bottom-10">
             <app-input-multiselect formControlName="region" ngDefaultControl
                               [options]="cities"
                               [required]="true"
@@ -195,15 +168,12 @@
         </div>
 
         <div class="row">
-          <div class="col-md-2"></div>
           <div class="col-md-10">
             <span class="float-left"><b>Job description</b></span>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-8 control-padd2ing">
+          <div class="col-md-11 control-padd2ing">
             <app-text-area formControlName="description" ngDefaultControl
                            [required]="true">
             </app-text-area>

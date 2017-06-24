@@ -21,7 +21,8 @@ import { UserService } from '../../User/user.service';
   ]
 })
 
-export class InputUniqueComponent implements ControlValueAccessor, OnInit {
+export class InputUniqueComponent implements ControlValueAccessor {
+  @Input() ignoreValue: string;
   @Input() label: string;
   @Input() required: boolean = false;
   @Input() minLength: number = 0;
@@ -36,9 +37,6 @@ export class InputUniqueComponent implements ControlValueAccessor, OnInit {
   uniqueError: boolean = false;
 
   constructor(private userService: UserService) {
-  }
-
-  ngOnInit() {
   }
 
   valueChanged() {
@@ -60,7 +58,7 @@ export class InputUniqueComponent implements ControlValueAccessor, OnInit {
     }
     this.valid = !(this.minLengthError || this.requiredError);
 
-    if (this.field && this.valid && this.touched) {
+    if (this.field && this.valid && this.touched && this.ignoreValue !== this.model) {
       this.userService.doesExist(this.model, this.field).subscribe(
         (exist) => {
           this.uniqueError = exist;

@@ -1,4 +1,4 @@
-<div class="padding-10 brand-color">
+<div class="padding-10 neutral-color">
 
   <div class="row">
     <div class="col-md-6">
@@ -36,10 +36,17 @@
                     [label]="'Phone'"
                     [required]="true">
     </app-input-text>
-    <app-input-text formControlName="email"
-                    [label]="'Email'"
-                    [required]="true">
-    </app-input-text>
+    <div [ngClass]="{'has-danger': editForm.get('email').errors?.email ? true : false}">
+      <app-input-unique formControlName="email"
+                        [ignoreValue]="ignoreEmail"
+                        [label]="'Email'"
+                        [field]="'email'"
+                        [required]="true">
+      </app-input-unique>
+      <span class="error-message" *ngIf="editForm.get('email').errors?.email">
+        Invalid email
+      </span>
+    </div>
 
     <div class="row padding-20">
       <div class="col-md-12">

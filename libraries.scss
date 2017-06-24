@@ -8,11 +8,11 @@ ng-select > div {
 }
 
 select-dropdown .selected.highlighted {
-  background-color: $brand-color !important;
+  background-color: $active-color !important;
 }
 
 select-dropdown .highlighted {
-  background-color: $brand-color !important;
+  background-color: $active-color !important;
 }
 
 .below {
@@ -28,7 +28,7 @@ select-dropdown .highlighted {
   .multiple {
     min-height: 35px;
     .option {
-      background-color: $brand-color;
+      background-color: $active-color;
       color: white;
       padding-top: 3px;
       .deselect-option {

@@ -11,10 +11,6 @@
   text-align: center;
 }
 
-.pick-role-title {
-  color: $brand-color;
-}
-
 .pick-role-form {
   display: table;
   position: absolute;
@@ -29,10 +25,10 @@
 
 .worker-role-left {
   padding: 20px 40px;
-  border-right: 1px solid $brand-color;
+  border-right: 1px solid $active-color;
 }
 
 .employer-role-right {
   padding: 20px 40px;
-  border-right: 1px solid $brand-color;
+  border-left: 1px solid $active-color;
 }

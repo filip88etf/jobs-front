@@ -1,9 +1,9 @@
 .employer-signup-form {
   display: table;
   position: absolute;
-  left: 38vw;
+  left: 33vw;
   top: 11vh;
-  width: 24vw;
+  width: 33vw;
   height: 600px;
   text-align: center;
   background-color: rgba(255,255,255,0.8);
@@ -19,4 +19,12 @@
   -o-background-size: cover;
   background-size: cover;
   text-align: center;
+}
+
+.signup-first-name {
+  padding-right: 2px;
+}
+
+.signup-last-name {
+  padding-left: 2px;
 }

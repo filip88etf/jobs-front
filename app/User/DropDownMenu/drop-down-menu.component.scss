@@ -1,0 +1,17 @@
+@import "global_variables.scss";
+
+.caret-style {
+  color: white;
+  display: block;
+  margin: -4px 0px;
+  padding: 0px 9px
+}
+
+.drop-menu-item {
+  padding: 5px 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: $active-color;
+    color: $brand-color;
+  }
+}

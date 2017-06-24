@@ -16,7 +16,7 @@
 }
 
 .user-menu-container {
-  background-color: $brand-color;
+  background-color: $active-color;
 }
 
 .active-menu-item {
@@ -44,7 +44,7 @@ nav a {
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
 	font-size: 1.35em;
   &:hover {
-    color: $active-color;
+    color: $neutral-color;
   }
 }
 
@@ -63,7 +63,7 @@ nav a:focus {
 	left: 0;
 	width: 100%;
 	height: 1px;
-	background: $active-color;
+	background: $neutral-color;
 	content: '';
 	opacity: 0;
 	-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;

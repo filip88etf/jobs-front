@@ -14,25 +14,21 @@
 .pick-role-form {
   display: table;
   position: absolute;
-  left: 38vw;
   top: 25vh;
-  width: 24vw;
   height: 150px;
+  left: 31vw;
+  width: 38vw;
   text-align: center;
   background-color: rgba(255,255,255,0.8);
   border-radius: 10px;
 }
 
-.pick-role-title {
-  color: $brand-color;
-}
-
 .worker-role-left {
   padding: 20px 40px;
-  border-right: 1px solid $brand-color;
+  border-right: 1px solid $active-color;
 }
 
 .employer-role-right {
   padding: 20px 40px;
-  border-right: 1px solid $brand-color;
+  border-left: 1px solid $active-color;
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../Shared/shared.module';
 import { UserModule } from '../User/user.module';
@@ -22,7 +23,8 @@ export const employerRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [ FormsModule, ReactiveFormsModule, SharedModule, RouterModule.forChild(employerRoutes), UserModule ],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, SharedModule,
+    RouterModule.forChild(employerRoutes), UserModule ],
   declarations: [ EditEmployerComponent ],
   exports: [ EditEmployerComponent ]
 })

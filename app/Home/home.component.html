@@ -8,12 +8,16 @@
   <div class="choice-container">
 
     <div *ngIf="!isSelected" class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-3 mouse-pointer">
-        <button class="btn brand-btn choice-button" (click)="selected('jobs')"><b>JOBS</b></button>
-      </div>
-      <div class="col-md-3 mouse-pointer">
-        <button class="btn brand-btn choice-button" (click)="selected('workers')"><b>WORKERS</b></button>
+      <div class="col-md-2"></div>
+      <div class="col-md-8 choice-form">
+        <div class="row">
+          <div class="col-md-6 mouse-pointer">
+            <button class="btn brand-btn choice-button" (click)="selected('jobs')"><b>JOBS</b></button>
+          </div>
+          <div class="col-md-6 mouse-pointer">
+            <button class="btn brand-btn choice-button" (click)="selected('workers')"><b>WORKERS</b></button>
+          </div>
+        </div>
       </div>
     </div>
 

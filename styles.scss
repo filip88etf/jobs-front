@@ -112,12 +112,20 @@
   color: $brand-color;
 }
 
+.active-color {
+  color: $active-color;
+}
+
+.neutral-color {
+  color: $neutral-color;
+}
+
 .brand-btn {
-  background-color: $brand-color;
-  color: white;
+  background-color: $active-color;
+  color: $brand-color;
   cursor: pointer;
   &:hover {
-    color: $active-color;
+    color: black;
   }
 }
 

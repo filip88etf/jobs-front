@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastService } from '../../Core/Services/toast.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { GlobalValidators } from '../../global-validators';
 import { Worker } from '../Worker';
 import { PROFESSIONS, CITIES, GENDER_LIST } from '../../global-consts';
 import { Option } from '../../global-types';
@@ -25,6 +26,7 @@ export class EditWorkerComponent implements OnInit {
   professions: Option[] = PROFESSIONS;
   editForm: FormGroup;
   calendarSettings: Object = {};
+  ignoreEmail: string;
 
   constructor(private workerService: WorkerService, private formBuilder: FormBuilder,
     private router: Router, private toastService: ToastService, private modalService: NgbModal) {
@@ -42,7 +44,7 @@ export class EditWorkerComponent implements OnInit {
       birthday: this.worker.birthday,
       gender: this.worker.gender,
       phone: this.worker.phone,
-      email: this.worker.email,
+      email: [this.worker.email, [GlobalValidators.emailValidator]],
       profession: this.worker.profession,
       region: this.worker.region,
       description: this.worker.description
@@ -51,6 +53,7 @@ export class EditWorkerComponent implements OnInit {
     this.workerService.getWorker().subscribe(
       (response) => {
         this.worker = response;
+        this.ignoreEmail = this.worker.email;
         Helper.updateForm(this.editForm, this.worker);
       },
       (error) => { console.log(error); }

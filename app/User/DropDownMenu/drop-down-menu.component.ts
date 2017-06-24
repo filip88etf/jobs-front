@@ -11,7 +11,7 @@ import { User } from '../User';
   moduleId: module.id,
   selector: 'app-drop-down-menu',
   templateUrl: 'drop-down-menu.component.html',
-  styles: ['.caret-style {color: white; display: block; margin: -4px 0px; padding: 0px 9px}']
+  styleUrls: ['drop-down-menu.component.css']
 })
 
 export class DropDownMenuComponent {

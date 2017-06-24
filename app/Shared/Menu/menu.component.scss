@@ -1,7 +1,7 @@
 @import "global_variables.scss";
 
 .main-menu {
-  background-color: $brand-color;
+  background-color: rgba(255,255,255,0.8);
 }
 
 .left-menu {
@@ -29,12 +29,9 @@ nav a {
 	display: inline-block;
 	margin: 0px 10px;
 	outline: none;
-	color: white;
+	color: black;
 	text-decoration: none;
 	letter-spacing: 1px;
-	font-weight: 400;
-	text-shadow: 0 0 1px rgba(255,255,255,0.3);
-	font-size: 1.35em;
   &:hover {
     color: $active-color;
   }
@@ -46,7 +43,7 @@ nav a:focus {
 }
 
 .cl-effect-4 a {
-	padding: 0 0 10px;
+	padding: 5px 0px 10px 0px;
 }
 
 .cl-effect-4 a::after {
