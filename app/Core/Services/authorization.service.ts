@@ -4,6 +4,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 
+import { NotificationService } from './notification.service';
+
 const ACCESS_TOKEN_URL: string = 'https://jobsy-kp-api.herokuapp.com/oauth/token';
 const HEADERS = new Headers({
   'Content-Type': 'application/x-www-form-urlencoded',
@@ -14,7 +16,7 @@ const HEADERS = new Headers({
 export class AuthorizationService {
   options: RequestOptions = new RequestOptions({headers: HEADERS});
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private notificationService: NotificationService) {
   }
 
   public authorize(username: string, password: string): any {
@@ -25,15 +27,18 @@ export class AuthorizationService {
       username: username,
       password: password
     };
+    this.notificationService.startLoading();
 
     return this.http.post(ACCESS_TOKEN_URL, this.encodeUrl(data), this.options)
       .map(
         function success(response: Response): any {
+          this.notificationService.stopLoading();
           return this.getAuthData(response.json());
         }.bind(this)
       )
       .catch(
         function fail(error: any): any {
+          this.notificationService.stopLoading();
           return Observable.throw(error);
         }.bind(this)
       );
@@ -49,14 +54,18 @@ export class AuthorizationService {
     });
     const options = new RequestOptions({ headers: header });
 
+    this.notificationService.startLoading();
+
     return this.http.post(ACCESS_TOKEN_URL.replace('oauth/token', 'users/facebook/login'), data, options)
       .map(
         function success(response: any): any {
+          this.notificationService.stopLoading();
           return this.getAuthData(response.json());
         }.bind(this)
       )
       .catch(
         function fail(error: any): any {
+          this.notificationService.stopLoading();
           return Observable.throw(error);
         }.bind(this)
       );
