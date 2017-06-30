@@ -1,5 +1,7 @@
 @import 'global_variables.scss';
-// Custome styles of npm libs
+
+// CUSTOM STYLES OF npm LIBS
+
 
 // Custom ng-select style
 
@@ -13,6 +15,10 @@ select-dropdown .selected.highlighted {
 
 select-dropdown .highlighted {
   background-color: $active-color !important;
+}
+
+select-dropdown > div {
+  z-index: 10 !important;
 }
 
 .below {
@@ -76,4 +82,18 @@ select-dropdown .highlighted {
   left: 0px;
   top: 0px;
   z-index: 100;
+}
+
+// CUSTOM PAGINATION OF NG-BOOTSTRAP STYLE
+.page-item {
+  .page-link {
+    color: $active-color;
+  }
+
+  &.active .page-link {
+    z-index: 2;
+    color: $brand-color;
+    background-color: $active-color !important;
+    border-color: $active-color !important;
+  }
 }

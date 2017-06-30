@@ -15,6 +15,7 @@ export class BaseService <T> {
   httpService: Http;
   authorizationService: AuthorizationService;
   router: Router;
+  pageSize: number = 10;
 
   constructor(route: string = '', http: Http, authorizationService: AuthorizationService,
     protected notificationService: NotificationService, router: Router) {
@@ -24,7 +25,7 @@ export class BaseService <T> {
     this.router = router;
   }
 
-  initOptions () {
+  public initOptions () {
     this.headers = new Headers({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('tokenType') + ' ' + localStorage.getItem('accessToken')
@@ -32,11 +33,11 @@ export class BaseService <T> {
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-  getById(entityId: string) {
-  }
+  public list(params: any): Observable<T[]> {
+    params.size = this.pageSize;
+    let url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(params);
 
-  list(): Observable<T[]> {
-    return this.httpService.get(this.apiUrl).map(
+    return this.httpService.get(url).map(
       function success(response: Response) {
         return response.json();
       })
@@ -47,7 +48,7 @@ export class BaseService <T> {
     );
   }
 
-  create(entity: T): Observable<T> {
+  public create(entity: T): Observable<T> {
     let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
     this.mapEntityForBackend(entity);
 
@@ -63,7 +64,7 @@ export class BaseService <T> {
       );
   }
 
-  update(entity: T): Observable<T> {
+  public update(entity: T): Observable<T> {
     this.mapEntityForBackend(entity);
     return this.httpService.patch(this.apiUrl + '/' + entity['id'], entity, this.options).map(
       function success (response: Response) {
@@ -76,7 +77,7 @@ export class BaseService <T> {
     );
   }
 
-  delete(id: string): Observable<boolean> {
+  public delete(id: string): Observable<boolean> {
     return this.httpService.delete(this.apiUrl + '/' + id, this.options).map(
       function success (response: Response) {
         return response.json();
@@ -88,7 +89,7 @@ export class BaseService <T> {
     );
   }
 
-  errorHandler(error: any) {
+  public errorHandler(error: any) {
     switch (error.status) {
       case 401:
         this.authorizationService.refreshAccessToken().subscribe(
@@ -103,18 +104,29 @@ export class BaseService <T> {
     }
   }
 
-  clearStorage(): void {
+  private clearStorage(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('tokenType');
     localStorage.removeItem('username');
   }
 
-  mapEntityForBackend(entity: T): void {
+  private mapEntityForBackend(entity: T): void {
     for (let property in entity) {
       if (entity[property] && Array.isArray(entity[property])) {
         entity[property] = entity[property].toString();
       }
     }
+  }
+
+  private encodeUrl(data: Object): string {
+    let encodedUrl: string = '';
+
+    for (let property in data) {
+      encodedUrl += property + '=' + data[property] + '&';
+    }
+    encodedUrl = encodedUrl.length ? encodedUrl.slice(0, encodedUrl.length - 1) : encodedUrl;
+
+    return encodedUrl;
   }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Filter } from '../global-types';
 
+import { Helper } from '../helper';
 import { CITIES, PROFESSIONS } from '../global-consts';
 import { Option } from '../global-types';
 
@@ -18,7 +21,7 @@ export class HomeComponent implements OnInit {
   searchType: string = 'jobs';
   isSelected: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit() {
@@ -34,6 +37,12 @@ export class HomeComponent implements OnInit {
   }
 
   public search(): void {
+    let params: Filter = new Filter();
+
+    if (Helper.submitForm(this.searchForm, params)) {
+      params.page = 1;
+      this.router.navigate(['/' + this.searchType, params]);
+    }
   }
 
   public back(): void {

@@ -1,0 +1,36 @@
+<div class="row worker-item">
+  <div class="col-md-12">
+    <div class="row">
+
+      <div class="col-md-3">
+        <img [src]="worker.imageURL ? worker.imageURL : 'assets/images/no-profile-pic.png'" (click)="openWorkerDetails()"class="worker-item-image"/>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          {{worker.firstName}} {{worker.lastName}}
+        </div>
+        <div class="row">
+          {{worker.phone}}
+        </div>
+        <div class="row">
+          {{worker.email}}
+        </div>
+        <div class="row">
+          {{worker.profession}}
+        </div>
+        <div class="row">
+          {{worker.region}}
+        </div>
+        <div class="row">
+          {{worker.description}}
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-md-4">
+        <span class="fa fa-exclamation-triangle float-right mouse-pointer"></span>
+      </div>
+    </div>
+  </div>
+
+</div>

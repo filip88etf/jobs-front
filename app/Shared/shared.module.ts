@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SelectModule } from 'ng-select';
 import { ToastyModule } from 'ng2-toasty';
@@ -19,21 +19,22 @@ import { InputMultiselectComponent } from './InputMultiselect/input-multiselect.
 import { InputUniqueComponent } from './InputUnique/input-unique.component';
 import { PictureCropperComponent } from './PictureCropper/picture-cropper.component';
 import { LoaderComponent } from './Loader/loader.component';
+import { SearchMenuComponent } from './SearchMenu/search-menu.component';
 
 @NgModule({
   imports: [
     FormsModule, RouterModule, CommonModule, SelectModule,
-    NgbModule, ToastyModule.forRoot()
+    NgbModule, ToastyModule.forRoot(), ReactiveFormsModule
   ],
   declarations: [
-    MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent, SearchMenuComponent,
     InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent,
     InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent
   ],
   exports: [
     MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
-    TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent,
-    InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule
+    TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent, SearchMenuComponent,
+    InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule,
   ],
   entryComponents: [
     PictureCropperComponent
