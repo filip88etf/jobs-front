@@ -104,7 +104,7 @@ export class BaseService <T> {
     }
   }
 
-  private clearStorage(): void {
+  protected clearStorage(): void {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('tokenType');

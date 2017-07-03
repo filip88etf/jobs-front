@@ -13,16 +13,12 @@ import { Worker } from '../../Worker/Worker';
 
 export class WorkerItemComponent {
   @Input() worker: Worker;
-  username: string;
 
   constructor(private router: Router) {
   }
 
   public openWorkerDetails() {
-    this.router.navigate(['workers/details']);
-  }
-
-  public shareOnFacebook() {
+    this.router.navigate(['workers/details', { username: this.worker.username}]);
   }
 
   public report() {

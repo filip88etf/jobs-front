@@ -18,7 +18,9 @@ export class WorkerDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.workerService.getByUsername(params['username']).subscribe(() => {
+      this.workerService.getDetails(params['username']).subscribe(
+        (worker: any) => {
+          this.worker = worker;
       });
     });
   }

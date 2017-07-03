@@ -20,7 +20,7 @@ export class WorkerService extends BaseService<Worker> {
     super('workers', http, authorizationService, notificationService, router);
   }
 
-  getWorker(): Observable<Worker> {
+  public getWorker(): Observable<Worker> {
     if (!this.options) { this.initOptions(); }
     if (!this.worker) {
       return this.getByUsername(localStorage.getItem('username'));
@@ -28,7 +28,24 @@ export class WorkerService extends BaseService<Worker> {
     return Observable.of(this.worker);
   }
 
-  getByUsername(username: string): Observable<Worker> {
+  public getDetails(username: string): Observable<Worker> {
+    let routeUrl = '/search/findByUsername?username=' + username;
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        function success(response: Response): any {
+          let worker = new Worker();
+          Object.assign(worker, response.json());
+          return worker;
+      }.bind(this))
+      .catch(
+        function fail(error: any): any {
+          console.log(error);
+        }.bind(this)
+      );
+  }
+
+  public getByUsername(username: string): Observable<Worker> {
     let routeUrl = '/search/findByUsername?username=' + username;
     this.initOptions();
 
@@ -48,7 +65,7 @@ export class WorkerService extends BaseService<Worker> {
       );
   }
 
-  uploadProfilePicture(picture: any): Observable<boolean> {
+  public uploadProfilePicture(picture: any): Observable<boolean> {
     let routeUrl = '/profile/image?username=' + this.worker.username;
 
     this.notificationService.startLoading();
@@ -67,13 +84,13 @@ export class WorkerService extends BaseService<Worker> {
       );
   }
 
-  logOut() {
+  public logOut() {
     this.worker = null;
     this.clearStorage();
     this.router.navigate(['/user/login']);
   }
 
-  setWorker(worker: Worker): void {
+  public setWorker(worker: Worker): void {
     this.worker = worker;
     this.worker.region = this.worker.region.toString().split(',');
   }

@@ -1,47 +1,37 @@
-<div>
-  Worker details
-</div>
-<div *ngIf="worker">
-
+<div class="container details-container" *ngIf="worker">
   <div class="row">
-    <span class="col-md-3 profile-label"><b>Full Name</b></span>
-    <span class="col-md-9 profile-data">{{worker.firstName + " " + worker.lastName}}</span>
+
+    <div class="col-md-4">
+      <img [src]="worker.imageURL" width="300px" height="300px"/>
+    </div>
+
+    <div class="col-md-8">
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Name</b></span><span class="col-md-9">{{worker.firstName + " " + worker.lastName}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Age</b></span><span class="col-md-9">{{worker.birthday | date: medium}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Phone</b></span><span class="col-md-9">{{worker.phone}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Email</b></span><span class="col-md-9">{{worker.email}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{worker.profession}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Regions</b></span><span class="col-md-9">{{worker.region}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Resume</b></span><span class="col-md-9">{{worker.description}}</span>
+      </div>
+    </div>
+
   </div>
 
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Gender</b></span>
-    <span class="col-md-9 profile-data">{{worker.gender}}</span>
+  <div class="row padding-10">
+    <div class="facebook-share"><img src="assets/images/facebook-logo-white.png" width="25px" height="25px"/></div>
   </div>
-
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Birthday</b></span>
-    <span class="col-md-9 profile-data">{{worker.birthday | date: medium}}</span>
-  </div>
-
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Phone</b></span>
-    <span class="col-md-9 profile-data">{{worker.phone}}</span>
-  </div>
-
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Email</b></span>
-    <span class="col-md-9 profile-data">{{worker.email}}</span>
-  </div>
-
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Profession</b></span>
-    <span class="col-md-9 profile-data">{{worker.profession}}</span>
-  </div>
-
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Regions</b></span>
-    <span class="col-md-9 profile-data">{{worker.region}}</span>
-  </div>
-
-  <div class="row">
-    <span class="col-md-3 profile-label"><b>Description</b></span>
-    <span class="col-md-9 profile-data">{{worker.description}}</span>
-  </div>
-
-
 </div>
