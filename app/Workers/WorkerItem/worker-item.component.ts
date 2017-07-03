@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
+import { WorkerService } from '../../Worker/worker.service';
 import { Worker } from '../../Worker/Worker';
 
 @Component({
@@ -11,9 +13,13 @@ import { Worker } from '../../Worker/Worker';
 
 export class WorkerItemComponent {
   @Input() worker: Worker;
+  username: string;
+
+  constructor(private router: Router) {
+  }
 
   public openWorkerDetails() {
-    console.log('click on image');
+    this.router.navigate(['workers/details']);
   }
 
   public shareOnFacebook() {

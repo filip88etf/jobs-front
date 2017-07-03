@@ -20,6 +20,9 @@ import { InputUniqueComponent } from './InputUnique/input-unique.component';
 import { PictureCropperComponent } from './PictureCropper/picture-cropper.component';
 import { LoaderComponent } from './Loader/loader.component';
 import { SearchMenuComponent } from './SearchMenu/search-menu.component';
+import { UserMenuComponent } from './UserMenu/user-menu.component';
+import { ChangePasswordComponent } from './ChangePassword/change-password.component';
+import { DropDownMenuComponent } from './DropDownMenu/drop-down-menu.component';
 
 @NgModule({
   imports: [
@@ -28,16 +31,18 @@ import { SearchMenuComponent } from './SearchMenu/search-menu.component';
   ],
   declarations: [
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent, SearchMenuComponent,
-    InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent,
-    InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent
+    InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent, DropDownMenuComponent,
+    InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent, UserMenuComponent,
+    ChangePasswordComponent
   ],
   exports: [
     MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent, SearchMenuComponent,
-    InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule,
+    InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule, UserMenuComponent,
+    DropDownMenuComponent, ChangePasswordComponent
   ],
   entryComponents: [
-    PictureCropperComponent
+    PictureCropperComponent, ChangePasswordComponent
   ]
 })
 

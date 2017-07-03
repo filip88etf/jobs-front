@@ -1,11 +1,5 @@
 @import "global_variables.scss";
 
-.profile-container {
-  background-color: white;
-  height: 100vh;
-  display: table;
-}
-
 .menu-item {
   padding: 10px 0px;
   display: inline-block;
@@ -44,7 +38,7 @@ nav a {
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
 	font-size: 1.35em;
   &:hover {
-    color: $neutral-color;
+    color: $brand-color;
   }
 }
 
@@ -63,7 +57,7 @@ nav a:focus {
 	left: 0;
 	width: 100%;
 	height: 1px;
-	background: $neutral-color;
+	background: $brand-color;
 	content: '';
 	opacity: 0;
 	-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;

@@ -9,11 +9,11 @@ import { EditWorkerComponent } from './Edit/edit-worker.component';
 import { AuthGuardService } from '../Core/Services/auth-guard.service';
 import { UserJobsComponent } from '../User/Jobs/user-jobs.component';
 import { ProfileComponent } from '../User/Profile/profile.component';
-import { UserMenuComponent } from '../User/Menu/user-menu.component';
+import { UserComponent } from '../User/User/user.component';
 
 export const workerRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'profile' },
-  { path: 'profile', canActivate: [AuthGuardService], component: UserMenuComponent, children:
+  { path: 'profile', canActivate: [AuthGuardService], component: UserComponent, children:
     [
       { path: '', canActivate: [AuthGuardService], component: ProfileComponent },
       { path: 'edit', canActivate: [AuthGuardService], component: EditWorkerComponent },

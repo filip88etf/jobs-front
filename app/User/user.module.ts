@@ -10,14 +10,12 @@ import { ProfileComponent } from './Profile/profile.component';
 import { LoginModule } from '../Login/login.module';
 import { SignupModule } from '../Signup/signup.module';
 import { LoginComponent } from '../Login/login.component';
-import { UserMenuComponent } from './Menu/user-menu.component';
+import { UserComponent } from './User/user.component';
 import { SharedModule } from '../Shared/shared.module';
-import { ChangePasswordComponent } from './ChangePassword/change-password.component';
 import { UserJobsComponent } from './Jobs/user-jobs.component';
 import { JobService } from '../Job/job.service';
 import { ServiceModule } from '../Core/Services/service.module';
 import { ResetPasswordComponent } from '../Login/reset-password.component';
-import { DropDownMenuComponent } from './DropDownMenu/drop-down-menu.component';
 
 export const userRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -31,11 +29,10 @@ export const userRoutes: Routes = [
     SignupModule, FormsModule, ReactiveFormsModule, CommonModule, SharedModule, ServiceModule, NgbModule.forRoot()
   ],
   declarations: [
-    ChangePasswordComponent, ProfileComponent, UserMenuComponent, DropDownMenuComponent
+    ProfileComponent, UserComponent
   ],
   exports: [ UserJobModule ],
-  providers: [ HttpModule, JobService ],
-  entryComponents: [ChangePasswordComponent]
+  providers: [ HttpModule, JobService ]
 })
 
 export class UserModule {}

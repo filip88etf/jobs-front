@@ -5,11 +5,11 @@ import { ToastService } from '../../Core/Services/toast.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GlobalValidators } from '../../global-validators';
-import { UserService } from '../user.service';
+import { UserService } from '../../User/user.service';
 import { EmployerService } from '../../Employer/employer.service';
 import { WorkerService } from '../../Worker/worker.service';
 import { Helper } from '../../helper';
-import { User } from '../User';
+import { User } from '../../User/User';
 
 @Component({
   moduleId: module.id,

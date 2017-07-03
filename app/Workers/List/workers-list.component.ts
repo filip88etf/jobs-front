@@ -17,7 +17,7 @@ export class WorkersListComponent {
   totalNumber: number;
   workers: Worker[];
   filter: Filter;
-  size: number = 30;
+  size: number = 10;
 
   constructor(private router: Router, private route: ActivatedRoute, private workerService: WorkerService) {
   }
@@ -25,17 +25,8 @@ export class WorkersListComponent {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.filter = Object.assign(new Filter(), params);
-
-      this.filter.page--; // REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEMOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
       this.workerService.list(this.filter).subscribe(
         (response: any) => {
-          // let worker1 = new Worker();
-          // worker1.firstName = 'filip';
-          // worker1.lastName = 'djordjevic';
-          // worker1.phone =
-          // let worker2 = new Worker();
-          // worker2.firstName = 'Ivan';
-          // worker2.lastName = 'Vukasinovic';
           this.workers = response.content;
           this.totalNumber = response.page.totalElements;
         }

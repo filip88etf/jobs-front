@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+
 
 import { Filter } from '../../global-types';
 
@@ -10,12 +10,4 @@ import { Filter } from '../../global-types';
 })
 
 export class WorkersComponent {
-  filter: Filter;
-  constructor(private route: ActivatedRoute) {
-    console.log('aaa');
-  }
-
-  public onFilterChange(filter: Filter) {
-    this.filter = filter;
-  }
 }

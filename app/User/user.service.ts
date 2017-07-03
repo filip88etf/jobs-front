@@ -144,6 +144,10 @@ export class UserService extends BaseService<User> {
     localStorage.setItem('username', this.user.username);
   }
 
+  isLogged(): boolean {
+    return !!this.user;
+  }
+
   logOut(): void {
     this.user = null;
   }

@@ -1,11 +1,11 @@
 import { Component, ViewChild, Input } from '@angular/core';
 
 import { ChangePasswordComponent } from '../ChangePassword/change-password.component';
-import { UserService } from '../user.service';
+import { UserService } from '../../User/user.service';
 import { WorkerService } from '../../Worker/worker.service';
 import { EmployerService } from '../../Employer/employer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { User } from '../User';
+import { User } from '../../User/User';
 
 @Component({
   moduleId: module.id,

@@ -1,0 +1,30 @@
+<nav class="row user-menu-container">
+  <div class="col-md-3">
+    <nav class="cl-effect-4 padding-5 float-left">
+      <img src="assets/images/profesionalci-logo-white.png" height="50px" width="50px" [routerLink]="['']"/>
+    </nav>
+  </div>
+  <div *ngIf="isLogged" class="col-md-9">
+    <span class="user-menu">
+      <app-drop-down-menu></app-drop-down-menu>
+    </span>
+    <nav (click)="profile()"
+         class="menu-item cl-effect-4">
+      <a [ngClass]="{'active-menu-item' : active==1}">Profile</a>
+    </nav>
+    <nav (click)="jobs()"
+         class="menu-item cl-effect-4">
+      <a [ngClass]="{'active-menu-item' : active==2}">Your Jobs</a>
+    </nav>
+    <nav (click)="search()"
+         class="menu-item cl-effect-4">
+      <a [ngClass]="{'active-menu-item' : active==3}">Search</a>
+    </nav>
+  </div>
+  <div *ngIf="!isLogged" class="col-md-9">
+    <nav [routerLink]="['/user/login']"
+         class="menu-item cl-effect-4">
+      <a>Log in</a>
+    </nav>
+  </div>
+</nav>
