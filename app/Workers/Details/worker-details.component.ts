@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
 
 import { WorkerService } from '../../Worker/worker.service';
 
@@ -7,13 +8,16 @@ import { WorkerService } from '../../Worker/worker.service';
   moduleId: module.id,
   selector: 'app-worker-details',
   templateUrl: 'worker-details.component.html',
-  styleUrls: ['worker-details.component.css']
+  styleUrls: ['worker-details.component.css'],
+  providers: [FacebookService]
 })
 
 export class WorkerDetailsComponent implements OnInit {
   worker: Worker;
+  profileLink: string;
 
-  constructor(private workerService: WorkerService, private route: ActivatedRoute) {
+  constructor(private facebookService: FacebookService, private workerService: WorkerService,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -23,5 +27,14 @@ export class WorkerDetailsComponent implements OnInit {
           this.worker = worker;
       });
     });
+
+    this.facebookService.init({
+      appId      : '1490087824391764',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+
+    this.profileLink = location.href;
   }
 }
