@@ -4,8 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CITIES, PROFESSIONS } from '../../../global-consts';
 import { Option } from '../../../global-types';
-import { Job } from '../../../Job/Job';
-import { JobService } from '../../../Job/job.service';
+import { Job } from '../../../Jobs/Job';
+import { JobService } from '../../../Jobs/job.service';
 import { User } from '../../User';
 import { UserService } from '../../user.service';
 import { Helper } from '../../../helper';

@@ -4,7 +4,6 @@ export interface Option {
 };
 
 export class Filter {
-  type: string;
   profession: string;
   region: string;
   page: number;

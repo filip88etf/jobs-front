@@ -1,16 +1,16 @@
 <form (submit)="filterData()" [formGroup]="filterGroup">
   <nav class="row filter-menu">
-    <div class="col-md-2">
-      <app-input-select formControlName="type"
-                        [options]="types"
-                        [required]="true">
-      </app-input-select>
+    <div class="col-md-1 padding-5">
+      Where
     </div>
     <div class="col-md-2">
       <app-input-select formControlName="region"
                         [options]="regions"
                         [required]="true">
       </app-input-select>
+    </div>
+    <div class="col-md-1 padding-5">
+      Profession
     </div>
     <div class="col-md-2">
       <app-input-select formControlName="profession"

@@ -144,6 +144,33 @@ export class UserService extends BaseService<User> {
     localStorage.setItem('username', this.user.username);
   }
 
+  tryGetUser(username: string): Observable<User> {
+    let routeUrl = '/users/findByUsername?username=' + username;
+    this.initOptions();
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        function success(response: Response): any {
+          let user = response.json();
+
+          if (user.type === 'worker') {
+            this.user = Object.assign(new Worker(), user);
+            this.workerService.setWorker(this.user);
+          } else {
+            this.user = Object.assign(new Employer(), user);
+            this.employerService.setEmployer(this.user);
+          }
+
+          localStorage.setItem('username', this.user.username);
+          return this.user;
+      }.bind(this))
+      .catch(
+        function fail(error: any): any {
+          return false;
+        }.bind(this)
+      );
+  }
+
   isLogged(): boolean {
     return !!this.user;
   }

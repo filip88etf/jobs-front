@@ -4,9 +4,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from '../../../Core/Services/toast.service';
 import { ConfirmModalComponent } from '../../../Shared/ConfirmModal/confirm-modal.component';
 import { Helper } from '../../../helper';
-import { JobService } from '../../../Job/job.service';
+import { JobService } from '../../../Jobs/job.service';
 import { EditJobComponent } from '../Edit/edit-job.component';
-import { Job } from '../../../Job/Job';
+import { Job } from '../../../Jobs/Job';
 
 @Component({
   moduleId: module.id,

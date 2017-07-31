@@ -27,7 +27,6 @@ export class FilterWorkersComponent {
 
   ngOnInit() {
     this.filterGroup = this.formBuilder.group({
-      type: 'workers',
       region: this.route.params['value'].region,
       profession: this.route.params['value'].profession
     });
@@ -36,11 +35,8 @@ export class FilterWorkersComponent {
 
   filterData(): void {
     if (Helper.submitForm(this.filterGroup, this.filter)) {
-      let type = this.filter.type;
-
       this.filter.page = this.route.params['value'].page;
-      delete this.filter.type;
-      this.router.navigate([type, this.filter]);
+      this.router.navigate(['workers', this.filter]);
     }
   }
 }

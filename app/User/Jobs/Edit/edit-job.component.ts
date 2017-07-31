@@ -2,11 +2,11 @@ import { Component, ViewChild, Output, EventEmitter, OnInit } from '@angular/cor
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { JobService } from '../../../Job/job.service';
+import { JobService } from '../../../Jobs/job.service';
 import { Helper } from '../../../helper';
 import { Option } from '../../../global-types';
 import { CITIES, PROFESSIONS } from '../../../global-consts';
-import { Job } from '../../../Job/Job';
+import { Job } from '../../../Jobs/Job';
 
 @Component({
   moduleId: module.id,

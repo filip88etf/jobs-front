@@ -16,9 +16,13 @@
          class="menu-item cl-effect-4">
       <a [ngClass]="{'active-menu-item' : active==2}">Your Jobs</a>
     </nav>
-    <nav (click)="search()"
+    <nav (click)="searchWorkers()"
          class="menu-item cl-effect-4">
-      <a [ngClass]="{'active-menu-item' : active==3}">Search</a>
+      <a [ngClass]="{'active-menu-item' : active==3}">Search Workers</a>
+    </nav>
+    <nav (click)="searchJobs()"
+         class="menu-item cl-effect-4">
+      <a [ngClass]="{'active-menu-item' : active==4}">Search Jobs</a>
     </nav>
   </div>
   <div *ngIf="!isLogged" class="col-md-9">

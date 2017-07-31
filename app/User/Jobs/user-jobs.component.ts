@@ -2,11 +2,11 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToastService } from '../../Core/Services/toast.service';
-import { JobService } from '../../Job/job.service';
+import { JobService } from '../../Jobs/job.service';
 import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.component';
 import { EditJobComponent } from './Edit/edit-job.component';
 import { PostJobComponent } from './Post/post-job.component';
-import { Job } from '../../Job/Job';
+import { Job } from '../../Jobs/Job';
 import { UserService } from '../user.service';
 
 @Component({

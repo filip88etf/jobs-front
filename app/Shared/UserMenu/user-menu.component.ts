@@ -22,13 +22,14 @@ export class UserMenuComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     let path = this.router['location'].path();
-    this.active = path.indexOf('jobs') !== -1 ? 2 : 1;
+    this.active = path.indexOf('profile/jobs') !== -1 ? 2 : 1;
     this.active = path.indexOf('workers') !== -1 ? 3 : this.active;
+    this.active = path.indexOf('jobs;') !== -1 ? 4 : this.active;
   }
 
   ngOnInit() {
     if (localStorage.getItem('username')) {
-      this.userService.getUser().subscribe(
+      this.userService.tryGetUser(localStorage.getItem('username')).subscribe(
         (user: any) => {
           this.isLogged = true;
           this.user = user;
@@ -48,12 +49,13 @@ export class UserMenuComponent implements OnInit {
     this.active = 2;
   }
 
-  public search() {
-    if (this.user.type === 'worker') {
-      this.router.navigate(['/workers', { profession: PROFESSIONS[0].value, region: CITIES[0].value , page: 1 }]);
-    } else {
-      this.router.navigate(['/workers', { profession: this.user['profession'], region: this.user['region'], page: 1 }]);
-    }
+  public searchWorkers() {
+    this.router.navigate(['/workers', { profession: PROFESSIONS[0].value, region: CITIES[0].value , page: 1 }]);
     this.active = 3;
+  }
+
+  public searchJobs() {
+    this.router.navigate(['/jobs', { profession: this.user['profession'], region: this.user['region'], page: 1 }]);
+    this.active = 4;
   }
 }
