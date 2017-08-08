@@ -1,0 +1,43 @@
+<div *ngIf="jobs">
+
+  <div *ngIf="totalNumber">
+    <div class="row top-pagination">
+      <div class="col-md-12 padding-top-15">
+        <ngb-pagination (pageChange)="pageChanged($event)"
+                        [rotate]="true"
+                        [pageSize]="size"
+                        [maxSize]='10'
+                        [collectionSize]="totalNumber"
+                        [(page)]="page"
+                        [directionLinks]="false">
+        </ngb-pagination>
+      </div>
+    </div>
+
+    <div class="row list">
+      <div class="col-md-12">
+        <app-job-item *ngFor="let job of jobs" [job]="job">
+        </app-job-item>
+      </div>
+    </div>
+
+    <div class="row bottom-pagination">
+      <div class="col-md-12">
+        <ngb-pagination (pageChange)="pageChanged($event)"
+                        [rotate]="true"
+                        [pageSize]="size"
+                        [maxSize]='10'
+                        [collectionSize]="totalNumber"
+                        [(page)]="page"
+                        [directionLinks]="false">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!totalNumber">
+    <div class="row justify-content-center">
+      <div class="col-md-4 no-results">No Results</div>
+    </div>
+  </div>
+</div>

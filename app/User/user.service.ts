@@ -52,6 +52,24 @@ export class UserService extends BaseService<User> {
       );
   }
 
+  public getDetails(username: string): Observable<User> {
+    let routeUrl = '/search/findByUsername?username=' + username;
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        function success(response: Response): any {
+          let user = response.json();
+
+          user = Object.assign(user.type === 'worker' ? new Worker() : new Employer(), user);
+          return user;
+      })
+      .catch(
+        function fail(error: any): any {
+          console.log(error);
+        }
+      );
+  }
+
   getUser(): Observable<User> {
     if (!this.user) {
       return this.getByUsername(localStorage.getItem('username'));
@@ -166,7 +184,7 @@ export class UserService extends BaseService<User> {
       }.bind(this))
       .catch(
         function fail(error: any): any {
-          return false;
+          return Observable.throw(false);
         }.bind(this)
       );
   }

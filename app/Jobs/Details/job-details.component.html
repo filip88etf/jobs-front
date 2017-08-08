@@ -1,0 +1,33 @@
+<div class="container details-container" *ngIf="job">
+  <div class="row">
+
+    <div class="col-md-4">
+      <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" width="300px" height="300px"/>
+    </div>
+
+    <div class="col-md-8">
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Location</b></span><span class="col-md-9">{{job.region}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Created</b></span><span class="col-md-9">{{job.createdDate | date: medium}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Updated</b></span><span class="col-md-9">{{job.modifiedDate | date: medium}}</span>
+      </div>
+      <!-- <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Email</b></span><span class="col-md-9">{{worker.email}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{worker.profession}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Regions</b></span><span class="col-md-9">{{worker.region}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Resume</b></span><span class="col-md-9">{{worker.description}}</span>
+      </div> -->
+    </div>
+
+  </div>
+</div>

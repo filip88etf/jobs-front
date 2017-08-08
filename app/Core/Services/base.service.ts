@@ -25,12 +25,19 @@ export class BaseService <T> {
     this.router = router;
   }
 
-  public initOptions () {
-    this.headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': localStorage.getItem('tokenType') + ' ' + localStorage.getItem('accessToken')
-    });
-    this.options = new RequestOptions({ headers: this.headers });
+  public get(id: string): Observable<T> {
+    let url = this.apiUrl + '?id=' + id;
+
+    return this.httpService.get(url).map(
+      (response: Response) => {
+        return response.json().content[0];
+      }
+    )
+    .catch(
+      (error: any) => {
+        return this.errorHandler(error, false);
+      }
+    );
   }
 
   public list(params: any): Observable<T[]> {
@@ -43,7 +50,7 @@ export class BaseService <T> {
       })
     .catch(
       function fail(error: any) {
-        return this.errorHandler(error);
+        return this.errorHandler(error, false);
       }.bind(this)
     );
   }
@@ -89,12 +96,16 @@ export class BaseService <T> {
     );
   }
 
-  public errorHandler(error: any) {
+  public errorHandler(error: any, redirect: boolean = true) {
     switch (error.status) {
       case 401:
         this.authorizationService.refreshAccessToken().subscribe(
           (response: Response) => { location.reload(); },
-          (error: any) => { this.router.navigate(['user/login']); }
+          (error: any) => {
+            if (redirect) {
+              this.router.navigate(['user/login']);
+            }
+          }
         );
         return Observable.throw(error);
       case 404:
@@ -102,6 +113,14 @@ export class BaseService <T> {
       default:
         return Observable.throw(error);
     }
+  }
+
+  public initOptions () {
+    this.headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('tokenType') + ' ' + localStorage.getItem('accessToken')
+    });
+    this.options = new RequestOptions({ headers: this.headers });
   }
 
   protected clearStorage(): void {
