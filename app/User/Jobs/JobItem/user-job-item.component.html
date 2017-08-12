@@ -1,6 +1,6 @@
 <div class="row job-wrapper padding-5">
     <div class="col-md-2">
-      <img src="assets/images/jobHalm.jpeg" width="90px" height="70px" class="padding-5"/>
+      <img [src]="job.imageURL ? job.imageURL : noPicture" width="100px" height="100px" class="padding-5"/>
     </div>
     <div class="col-md-8">
       <div class="row">

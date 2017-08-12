@@ -7,4 +7,5 @@ export class Job {
   description: string;
   createdDate: string;
   modifiedDate: string;
+  imageURL: string;
 }

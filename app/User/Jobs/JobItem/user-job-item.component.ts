@@ -16,6 +16,7 @@ import { Job } from '../../../Jobs/Job';
 })
 
 export class UserJobItemComponent {
+  noPicture: string = 'assets/images/no-job-picture.png';
   @Input() job: Job;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   @Output() onEdit: EventEmitter<Job> = new EventEmitter<Job>();

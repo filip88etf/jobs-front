@@ -39,7 +39,7 @@ import { DropDownMenuComponent } from './DropDownMenu/drop-down-menu.component';
     MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent, SearchMenuComponent,
     InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule, UserMenuComponent,
-    DropDownMenuComponent, ChangePasswordComponent
+    DropDownMenuComponent, ChangePasswordComponent, ImageCropperComponent
   ],
   entryComponents: [
     PictureCropperComponent, ChangePasswordComponent

@@ -23,13 +23,13 @@ export class PictureCropperComponent {
     this.data = {};
   }
 
-  init(modalSettings: Object = {}, cropWidth: number = 200, cropHeight: number = 200) {
+  public init(modalSettings: Object = {}, cropWidth: number = 200, cropHeight: number = 200) {
     this.modalSettings = modalSettings;
     this.cropperSettings.croppedWidth = cropWidth;
     this.cropperSettings.croppedHeight = cropHeight;
   }
 
-  fileChange(event: any) {
+  public fileChange(event: any) {
     let image: any = new Image(),
         file: File = event.target.files[0],
         myReader: FileReader = new FileReader();
@@ -42,11 +42,11 @@ export class PictureCropperComponent {
     myReader.readAsDataURL(file);
   }
 
-  submit() {
+  public submit() {
     this.activeModal.close(this.data.image);
   }
 
-  close() {
+  public close() {
     this.activeModal.dismiss('close');
   }
 }
