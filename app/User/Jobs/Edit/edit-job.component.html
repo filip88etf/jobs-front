@@ -6,6 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
+
     <app-input-select formControlName="region"
                       [label]="'Region'"
                       [options]="regions"
@@ -20,6 +21,25 @@
                    [label]="'Description'"
                    [required]="true">
     </app-text-area>
+    <div class="row justify-content-md-center image-cropper">
+      <div class="col-md-6">
+        <div class="file-upload">
+          <img-cropper #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+        </div>
+        <div class="file-upload">
+            <input accept="image/*" id="custom-input" class="form-control file-upload-input" type="file" (change)="fileChange($event)">
+        </div>
+      </div>
+      <div class="col-md-6 content-center">
+        <div class="result rounded" >
+            <img class="preview-profile-img" [src]="data.image ? data.image : noPicture" [width]="200" [height]="200">
+        </div>
+        <div class="">
+          <span>Job picture preview</span>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="modal-footer">
     <button (click)="close()" class="btn btn-secondary">Cancel</button>
