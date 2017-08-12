@@ -15,18 +15,18 @@
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Updated</b></span><span class="col-md-9">{{job.modifiedDate | date: medium}}</span>
       </div>
-      <!-- <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Email</b></span><span class="col-md-9">{{worker.email}}</span>
-      </div>
       <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{worker.profession}}</span>
+        <span class="col-md-3 active-color"><b>Posted by</b></span><span class="col-md-9">
+          <div class="job-details-user">
+            <img [src]="user.imageURL" style="margin-top: -15px;" width="100px" height="100px" />
+          </div>
+          <div class="job-details-user">
+            <div><span class="active-color">Name &nbsp;&nbsp;</span>{{user.firstName}} {{user.lastName}}</div>
+            <div><span class="active-color">Phone &nbsp;&nbsp;</span>{{user.phone}}</div>
+            <div><span class="active-color">Email &nbsp;&nbsp;</span>{{user.email}}</div>
+          </div>
+        </span>
       </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Regions</b></span><span class="col-md-9">{{worker.region}}</span>
-      </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Resume</b></span><span class="col-md-9">{{worker.description}}</span>
-      </div> -->
     </div>
 
   </div>

@@ -29,7 +29,7 @@ export class WorkerService extends BaseService<Worker> {
   }
 
   public getDetails(username: string): Observable<Worker> {
-    let routeUrl = '/search/findByUsername?username=' + username;
+    let routeUrl = '/details/findByUsername?username=' + username;
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(

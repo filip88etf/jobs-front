@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
 
+import { User } from '../../User/User';
 import { JobService } from '../job.service';
 import { Job } from '../Job';
 import { UserService } from '../../User/user.service';
@@ -16,6 +17,7 @@ import { UserService } from '../../User/user.service';
 
 export class JobDetailsComponent implements OnInit {
   job: Job;
+  user: User;
   profileLink: string;
 
   constructor(private facebookService: FacebookService, private jobService: JobService,
@@ -29,8 +31,8 @@ export class JobDetailsComponent implements OnInit {
           this.job = job;
       });
       this.userService.getDetails(params['username']).subscribe(
-        (job: any) => {
-          this.job = job;
+        (user: any) => {
+          this.user = user;
       });
     });
 

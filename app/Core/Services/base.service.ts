@@ -26,11 +26,11 @@ export class BaseService <T> {
   }
 
   public get(id: string): Observable<T> {
-    let url = this.apiUrl + '?id=' + id;
+    let url = this.apiUrl + '/' + id;
 
     return this.httpService.get(url).map(
       (response: Response) => {
-        return response.json().content[0];
+        return response.json();
       }
     )
     .catch(

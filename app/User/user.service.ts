@@ -53,7 +53,7 @@ export class UserService extends BaseService<User> {
   }
 
   public getDetails(username: string): Observable<User> {
-    let routeUrl = '/search/findByUsername?username=' + username;
+    let routeUrl = '/users/details/findByUsername?username=' + username;
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
