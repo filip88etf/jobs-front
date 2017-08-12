@@ -20,7 +20,7 @@
          class="menu-item cl-effect-4">
       <a [ngClass]="{'active-menu-item' : active==3}">Search Workers</a>
     </nav>
-    <nav (click)="searchJobs()"
+    <nav (click)="loggedSearchJobs()"
          class="menu-item cl-effect-4">
       <a [ngClass]="{'active-menu-item' : active==4}">Search Jobs</a>
     </nav>
@@ -29,6 +29,14 @@
     <nav [routerLink]="['/user/login']"
          class="menu-item cl-effect-4">
       <a>Log in</a>
+    </nav>
+    <nav (click)="searchWorkers()"
+         class="menu-item cl-effect-4">
+      <a [ngClass]="{'active-menu-item' : active==3}">Search Workers</a>
+    </nav>
+    <nav (click)="searchJobs()"
+         class="menu-item cl-effect-4">
+      <a [ngClass]="{'active-menu-item' : active==4}">Search Jobs</a>
     </nav>
   </div>
 </nav>

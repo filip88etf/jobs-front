@@ -54,8 +54,17 @@ export class UserMenuComponent implements OnInit {
     this.active = 3;
   }
 
+  public loggedSearchJobs() {
+    if (this.user.type === 'worker') {
+      this.router.navigate(['/jobs', { profession: this.user['profession'], region: this.user['region'][0], page: 1 }]);
+      this.active = 4;
+    } else {
+      this.searchJobs();
+    }
+  }
+
   public searchJobs() {
-    this.router.navigate(['/jobs', { profession: this.user['profession'], region: this.user['region'], page: 1 }]);
+    this.router.navigate(['/jobs', { profession: PROFESSIONS[0].value, region: CITIES[0].value, page: 1 }]);
     this.active = 4;
   }
 }
