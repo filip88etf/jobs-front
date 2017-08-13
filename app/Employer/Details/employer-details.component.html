@@ -1,0 +1,45 @@
+<div class="container details-container" *ngIf="employer">
+  <div class="row">
+
+    <div class="col-md-4">
+      <img [src]="employer.imageURL" width="300px" height="300px"/>
+    </div>
+
+    <div class="col-md-8">
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Name</b></span><span class="col-md-9">{{employer.firstName + " " + employer.lastName}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Phone</b></span><span class="col-md-9">{{employer.phone}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Email</b></span><span class="col-md-9">{{employer.email}}</span>
+      </div>
+      <div *ngIf="employer.type === 'worker'">
+
+        <div class="row padding-5">
+          <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{employer.profession}}</span>
+        </div>
+        <div class="row padding-5">
+          <span class="col-md-3 active-color"><b>Regions</b></span><span class="col-md-9">{{employer.region}}</span>
+        </div>
+        <div class="row padding-5">
+          <span class="col-md-3 active-color"><b>Resume</b></span><span class="col-md-9">{{employer.description}}</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row padding-10">
+    <div class="fb-share-button" [attr.href]="profileLink" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+      <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">
+        Share
+      </a>
+    </div>
+  </div>
+
+
+</div>

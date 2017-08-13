@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
 
 import { User } from '../../User/User';
@@ -21,7 +21,7 @@ export class JobDetailsComponent implements OnInit {
   profileLink: string;
 
   constructor(private facebookService: FacebookService, private jobService: JobService,
-    private userService: UserService, private route: ActivatedRoute) {
+    private userService: UserService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -33,6 +33,7 @@ export class JobDetailsComponent implements OnInit {
       this.userService.getDetails(params['username']).subscribe(
         (user: any) => {
           this.user = user;
+          this.user.username = params['username'];
       });
     });
 
@@ -44,5 +45,9 @@ export class JobDetailsComponent implements OnInit {
     });
 
     this.profileLink = location.href;
+  }
+
+  public openEmployerDetails() {
+    this.router.navigate(['employer/details', { username: this.user.username }]);
   }
 }

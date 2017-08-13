@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { EmployerDetailsComponent } from './Details/employer-details.component';
 import { SharedModule } from '../Shared/shared.module';
 import { UserModule } from '../User/user.module';
 import { UserComponent } from '../User/User/user.component';
@@ -20,12 +21,13 @@ export const employerRoutes: Routes = [
       { path: 'jobs', canActivate: [AuthGuardService], component: UserJobsComponent }
     ]
   },
+  { path: 'details', component: EmployerDetailsComponent }
 ];
 
 @NgModule({
   imports: [ CommonModule, FormsModule, ReactiveFormsModule, SharedModule,
     RouterModule.forChild(employerRoutes), UserModule ],
-  declarations: [ EditEmployerComponent ],
+  declarations: [ EditEmployerComponent, EmployerDetailsComponent ],
   exports: [ EditEmployerComponent ]
 })
 
