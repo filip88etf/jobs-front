@@ -18,7 +18,7 @@ export class JobService extends BaseService<Job> {
     super('jobs', http, authorizationService, notificationService, router);
   }
 
-  create(entity: Job): Observable<Job> {
+  public create(entity: Job): Observable<Job> {
     return this.httpService.post(this.apiUrl, entity, this.options)
       .map(
         function success (response: Response) {
@@ -31,7 +31,7 @@ export class JobService extends BaseService<Job> {
       );
   }
 
-  getByUsername(username: string) {
+  public getByUsername(username: string) {
     let routeUrl = '/search/findByUsername?username=' + username;
     if (!this.options) { this.initOptions(); }
 
@@ -49,6 +49,24 @@ export class JobService extends BaseService<Job> {
         function fail (error: any) {
           return this.errorHandler(error);
         }.bind(this)
+      );
+  }
+
+  public uploadPicture(picture: any, jobId: string): Observable<boolean> {
+    let routeUrl = '/image?id=' + jobId;
+
+    return this.http.post(this.apiUrl + routeUrl, picture, this.options)
+      .map(
+        function success(response: any): boolean {
+          this.notificationService.stopLoading();
+          return response['_body'];
+        }.bind(this)
+      )
+      .catch(
+        function fail(error: any): any {
+          this.notificationService.stopLoading();
+          return this.errorHandler(error);
+        }
       );
   }
 }

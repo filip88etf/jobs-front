@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 
 import { CITIES, PROFESSIONS } from '../../../global-consts';
+import { NotificationService } from '../../../Core/Services/notification.service';
 import { Option } from '../../../global-types';
 import { Job } from '../../../Jobs/Job';
 import { JobService } from '../../../Jobs/job.service';
@@ -27,10 +28,11 @@ export class PostJobComponent implements OnInit {
   user: User;
   noPicture: string = 'assets/images/no-job-picture.png';
   postJobForm: FormGroup;
+  imageURL: string;
   @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
 
-  constructor(private jobService: JobService, private userService: UserService,
-    private formBuilder: FormBuilder, private activeModal: NgbActiveModal) {
+  constructor(private jobService: JobService, private userService: UserService, private formBuilder: FormBuilder,
+    private activeModal: NgbActiveModal, private notificationService: NotificationService) {
       this.cropperSettings = new CropperSettings();
       this.cropperSettings.noFileInput = true;
       this.cropperSettings.allowedFilesRegex = (/\.(gif|jpg|jpeg|tiff|png)$/i);
@@ -52,11 +54,26 @@ export class PostJobComponent implements OnInit {
   public submit() {
     if (Helper.submitForm(this.postJobForm, this.job)) {
       this.job.username = this.user.username;
+      this.notificationService.startLoading();
       this.jobService.create(this.job).subscribe(
         (job) => {
-          this.activeModal.close(job);
+          this.job = job;
+          if (this.imageURL) {
+            this.jobService.uploadPicture(this.imageURL, job.id).subscribe(
+              (image: any) => {
+                this.job.imageURL = image;
+                this.activeModal.close(this.job);
+              },
+              (error: any) => {
+                this.activeModal.close();
+              }
+            );
+          } else {
+            this.activeModal.close(this.job);
+            this.notificationService.stopLoading();
+          }
         },
-        (error: any) => { this.activeModal.close(); }
+        (error: any) => {}
       );
     }
   }
@@ -68,7 +85,7 @@ export class PostJobComponent implements OnInit {
 
     myReader.onloadend = (loadEvent: any) => {
         image.src = loadEvent.target.result;
-        this.job.imageURL = image.src;
+        this.imageURL = image.src;
         this.cropper.setImage(image);
     };
 
