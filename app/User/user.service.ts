@@ -184,13 +184,20 @@ export class UserService extends BaseService<User> {
       }.bind(this))
       .catch(
         function fail(error: any): any {
-          return Observable.throw(false);
+          return Observable.of(false);
         }.bind(this)
       );
   }
 
-  isLogged(): boolean {
-    return !!this.user;
+  isLogged(username: string = ''): Observable<Object> {
+    username = username || localStorage.getItem('username');
+    if (!username || !localStorage.getItem('accessToken')) {
+        return Observable.of(false);
+    }
+    if (this.user) {
+      return Observable.of(this.user);
+    }
+    return this.tryGetUser(username);
   }
 
   logOut(): void {

@@ -28,15 +28,13 @@ export class UserMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('username')) {
-      this.userService.tryGetUser(localStorage.getItem('username')).subscribe(
-        (user: any) => {
-          this.isLogged = true;
-          this.user = user;
-        },
-        (error: any) => { this.isLogged = false; }
-      );
-    }
+    this.userService.isLogged().subscribe(
+      (user: any) => {
+        this.isLogged = !!user;
+        this.user = user;
+      },
+      (error: any) => { this.isLogged = false; }
+    );
   }
 
   public profile() {

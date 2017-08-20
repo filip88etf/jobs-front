@@ -1,11 +1,11 @@
 <div class="container details-container" *ngIf="job">
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-4 padding-10">
       <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" width="300px" height="300px"/>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 padding-10">
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Location</b></span><span class="col-md-9">{{job.region}}</span>
       </div>
@@ -15,8 +15,12 @@
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Updated</b></span><span class="col-md-9">{{job.modifiedDate | date: medium}}</span>
       </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Description</b></span><span class="col-md-9">{{job.description}}</span>
+      </div>
       <div class="row padding-5" *ngIf="user">
-        <span class="col-md-3 active-color"><b>Posted by</b></span><span class="col-md-9">
+        <span class="col-md-3 active-color"><b>Posted by</b></span>
+        <span class="col-md-9" *ngIf="isLogged">
           <div class="job-details-user">
             <img [src]="user.imageURL" style="margin-top: -15px;" width="100px" height="100px" (click)="openEmployerDetails()"class="user-on-job"/>
           </div>
@@ -26,6 +30,7 @@
             <div class="row"><span class="col-md-3 active-color">Email</span><span class="col-md-9">{{user.email}}</span></div>
           </div>
         </span>
+        <span class="col-md-9" *ngIf="!isLogged">Log in to see</span>
       </div>
     </div>
 

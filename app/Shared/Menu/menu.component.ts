@@ -16,16 +16,15 @@ export class MenuComponent {
   }
 
   public login() {
-    let username = localStorage.getItem('username'),
-        accessToken = localStorage.getItem('accessToken');
-
-    if (username && accessToken && this.userService.isLogged()) {
-      this.userService.getUser().subscribe(
-        (user: any) => { this.router.navigate([user.type + '/profile']); },
-        (error: any) => { this.router.navigate(['user/login']); }
-      );
-    } else {
-      this.router.navigate(['user/login']);
-    }
+    this.userService.isLogged().subscribe((response) => {
+      if (response) {
+        this.userService.getUser().subscribe(
+          (user: any) => { this.router.navigate([user.type + '/profile']); },
+          (error: any) => { this.router.navigate(['user/login']); }
+        );
+      } else {
+        this.router.navigate(['user/login']);
+      }
+    });
   }
 }

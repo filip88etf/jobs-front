@@ -1,11 +1,11 @@
 <div class="container details-container" *ngIf="worker">
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-4 padding-10">
       <img [src]="worker.imageURL" width="300px" height="300px"/>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 padding-10">
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Name</b></span><span class="col-md-9">{{worker.firstName + " " + worker.lastName}}</span>
       </div>
@@ -13,10 +13,14 @@
         <span class="col-md-3 active-color"><b>Age</b></span><span class="col-md-9">{{worker.birthday | date: medium}}</span>
       </div>
       <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Phone</b></span><span class="col-md-9">{{worker.phone}}</span>
+        <span class="col-md-3 active-color"><b>Phone</b></span>
+        <span *ngIf="isLogged" class="col-md-9">{{worker.phone}}</span>
+        <span *ngIf="!isLogged" class="col-md-9">Log in to see</span>
       </div>
       <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Email</b></span><span class="col-md-9">{{worker.email}}</span>
+        <span class="col-md-3 active-color"><b>Email</b></span>
+        <span *ngIf="isLogged" class="col-md-9">{{worker.email}}</span>
+        <span *ngIf="!isLogged" class="col-md-9">Log in to see</span>
       </div>
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{worker.profession}}</span>

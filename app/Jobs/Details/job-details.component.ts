@@ -19,6 +19,7 @@ export class JobDetailsComponent implements OnInit {
   job: Job;
   user: User;
   profileLink: string;
+  isLogged: boolean = false;
 
   constructor(private facebookService: FacebookService, private jobService: JobService,
     private userService: UserService, private router: Router, private route: ActivatedRoute) {
@@ -30,6 +31,11 @@ export class JobDetailsComponent implements OnInit {
         (job: any) => {
           this.job = job;
       });
+      this.userService.isLogged().subscribe(
+        (response) => {
+          this.isLogged = !!response;
+        }
+      );
       this.userService.getDetails(params['username']).subscribe(
         (user: any) => {
           this.user = user;
