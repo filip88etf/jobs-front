@@ -1,6 +1,6 @@
 # Jobs
 
-This is a open source project that demonstrates using Anguler 2 and TypeScript as front end technology.
+This is a open source project that demonstrates using Anguler 4 and TypeScript as front end technology.
 This application makes simple posting and searching every day jobs. Also this application connects employees and employers.
 
 ## Prerequisites
