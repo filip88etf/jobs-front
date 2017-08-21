@@ -1,11 +1,14 @@
 <div class="container details-container" *ngIf="employer">
+
+  <app-user-menu></app-user-menu>
+
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-4 padding-10">
       <img [src]="employer.imageURL" width="300px" height="300px"/>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 padding-10">
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Name</b></span><span class="col-md-9">{{employer.firstName + " " + employer.lastName}}</span>
       </div>
