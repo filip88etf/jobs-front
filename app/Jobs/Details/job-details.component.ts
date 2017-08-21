@@ -18,6 +18,7 @@ import { UserService } from '../../User/user.service';
 export class JobDetailsComponent implements OnInit {
   job: Job;
   user: User;
+  loggedUser: User;
   profileLink: string;
   isLogged: boolean = false;
 
@@ -41,6 +42,11 @@ export class JobDetailsComponent implements OnInit {
           this.user = user;
           this.user.username = params['username'];
       });
+      this.userService.getUser().subscribe(
+        (user) => {
+          this.loggedUser = user;
+        }
+      );
     });
 
     this.facebookService.init({

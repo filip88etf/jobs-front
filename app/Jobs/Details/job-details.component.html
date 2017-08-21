@@ -1,8 +1,12 @@
 <div class="container details-container" *ngIf="job">
+
+  <app-user-menu></app-user-menu>
+
   <div class="row">
 
     <div class="col-md-4 padding-10">
       <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" width="300px" height="300px"/>
+      <button *ngIf="isLogged && loggedUser && loggedUser.type=='worker'" class="apply-button btn brand-btn">Apply</button>
     </div>
 
     <div class="col-md-8 padding-10">

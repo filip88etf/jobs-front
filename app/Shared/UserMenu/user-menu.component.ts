@@ -25,6 +25,7 @@ export class UserMenuComponent implements OnInit {
     this.active = path.indexOf('profile/jobs') !== -1 ? 2 : 1;
     this.active = path.indexOf('workers') !== -1 ? 3 : this.active;
     this.active = path.indexOf('jobs;') !== -1 ? 4 : this.active;
+    this.active = path.indexOf('/details') !== -1 ? -1 : this.active;
   }
 
   ngOnInit() {
