@@ -1,0 +1,20 @@
+<div class="neutral-color">
+  <form (ngSubmit)="submit()" [formGroup]="applyForm">
+    <div class="modal-header">
+      <h4 class="modal-title">Apply</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <span><b>Optional comment</b></span>
+      </div>
+      <app-text-area formControlName="additionalComment"></app-text-area>
+    </div>
+    <div class="modal-footer">
+      <button type="reset" (click)="close()" class="btn btn-secondary">Cancel</button>
+      <button type="submit" class="btn brand-btn">Apply</button>
+    </div>
+  </form>
+</div>

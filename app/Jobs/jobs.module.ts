@@ -11,7 +11,7 @@ import { FilterJobsComponent } from './Filter/filter-jobs.component';
 import { JobItemComponent } from './JobItem/job-item.component';
 import { JobsComponent } from './Jobs/jobs.component';
 import { JobsListComponent } from './List/jobs-list.component';
-
+import { ApplyModalComponent } from './ApplyModal/apply-modal.component';
 
 export const jobsRoutes: Routes = [
   { path: '', component: JobsComponent },
@@ -21,10 +21,12 @@ export const jobsRoutes: Routes = [
 @NgModule({
   imports: [FormsModule, ReactiveFormsModule, RouterModule.forChild(jobsRoutes),
       NgbModule, SharedModule, CommonModule],
-  declarations: [ JobDetailsComponent, FilterJobsComponent, JobItemComponent, JobsComponent, JobsListComponent ],
+  declarations: [ JobDetailsComponent, FilterJobsComponent, JobItemComponent, JobsComponent, JobsListComponent,
+    ApplyModalComponent ],
   providers: [
     JobService
-  ]
+  ],
+  entryComponents: [ ApplyModalComponent ]
 })
 
 export class JobsModule {

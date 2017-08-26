@@ -69,4 +69,8 @@ export class JobService extends BaseService<Job> {
         }
       );
   }
+
+  public apply(apply: Object): Observable<boolean> {
+    return Observable.of(true);
+  }
 }

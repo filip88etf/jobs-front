@@ -6,12 +6,16 @@
 
     <div class="col-md-4 padding-10">
       <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" width="300px" height="300px"/>
-      <button *ngIf="isLogged && loggedUser && loggedUser.type=='worker'" class="apply-button btn brand-btn">Apply</button>
+      <button *ngIf="isLogged && !isApplied && loggedUser && loggedUser.type=='worker'" (click)=apply() class="apply-button btn brand-btn">Apply</button>
+      <div *ngIf="isApplied" class="applied-message"><span class=" active-color"><b>You Applied</b></span></div>
     </div>
 
     <div class="col-md-8 padding-10">
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Location</b></span><span class="col-md-9">{{job.region}}</span>
+      </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{job.profession}}</span>
       </div>
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Created</b></span><span class="col-md-9">{{job.createdDate | date: medium}}</span>
