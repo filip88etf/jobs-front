@@ -8,8 +8,8 @@ import { NotificationService } from '../../../Core/Services/notification.service
 import { Option } from '../../../global-types';
 import { Job } from '../../../Jobs/Job';
 import { JobService } from '../../../Jobs/job.service';
-import { User } from '../../User';
-import { UserService } from '../../user.service';
+import { User } from '../../../User/User';
+import { UserService } from '../../../User/user.service';
 import { Helper } from '../../../helper';
 
 @Component({

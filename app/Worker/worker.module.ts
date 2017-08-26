@@ -7,7 +7,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { UserModule } from '../User/user.module';
 import { EditWorkerComponent } from './Edit/edit-worker.component';
 import { AuthGuardService } from '../Core/Services/auth-guard.service';
-import { UserJobsComponent } from '../User/Jobs/user-jobs.component';
+import { AppliedJobsComponent } from './AppliedJobs/applied-jobs.component';
 import { ProfileComponent } from '../User/Profile/profile.component';
 import { UserComponent } from '../User/User/user.component';
 
@@ -17,7 +17,7 @@ export const workerRoutes: Routes = [
     [
       { path: '', canActivate: [AuthGuardService], component: ProfileComponent },
       { path: 'edit', canActivate: [AuthGuardService], component: EditWorkerComponent },
-      { path: 'jobs', canActivate: [AuthGuardService], component: UserJobsComponent }
+      { path: 'jobs', canActivate: [AuthGuardService], component: AppliedJobsComponent }
     ]
   },
 ];
@@ -25,7 +25,7 @@ export const workerRoutes: Routes = [
 @NgModule({
   imports: [ FormsModule, ReactiveFormsModule, SharedModule, CommonModule,
     RouterModule.forChild(workerRoutes), UserModule ],
-  declarations: [EditWorkerComponent],
+  declarations: [EditWorkerComponent, AppliedJobsComponent],
   exports: [EditWorkerComponent]
 })
 

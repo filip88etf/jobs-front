@@ -7,16 +7,16 @@ import { ConfirmModalComponent } from '../../Shared/ConfirmModal/confirm-modal.c
 import { EditJobComponent } from './Edit/edit-job.component';
 import { PostJobComponent } from './Post/post-job.component';
 import { Job } from '../../Jobs/Job';
-import { UserService } from '../user.service';
+import { UserService } from '../../User/user.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-user-jobs',
-  templateUrl: 'user-jobs.component.html',
-  styleUrls: ['user-jobs.component.css']
+  selector: 'app-employer-jobs',
+  templateUrl: 'employer-jobs.component.html',
+  styleUrls: ['employer-jobs.component.css']
 })
 
-export class UserJobsComponent implements OnInit {
+export class EmployerJobsComponent implements OnInit {
   @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
 

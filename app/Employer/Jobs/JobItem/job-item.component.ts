@@ -10,12 +10,12 @@ import { Job } from '../../../Jobs/Job';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-user-job',
-  templateUrl: 'user-job-item.component.html',
-  styleUrls: ['user-job-item.component.css']
+  selector: 'app-your-job',
+  templateUrl: 'job-item.component.html',
+  styleUrls: ['job-item.component.css']
 })
 
-export class UserJobItemComponent {
+export class JobItemComponent {
   noPicture: string = 'assets/images/no-job-picture.png';
   @Input() job: Job;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();

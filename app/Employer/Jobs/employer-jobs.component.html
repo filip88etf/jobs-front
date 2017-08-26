@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="jobs-container">
-  <app-user-job *ngFor="let job of jobs" [job]="job"
+  <app-your-job *ngFor="let job of jobs" [job]="job"
                 (onDelete)="removeJobFromList($event)">
-  </app-user-job>
+  </app-your-job>
 </div>
