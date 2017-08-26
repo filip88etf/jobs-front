@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastyConfig } from 'ng2-toasty';
-import { NotificationService } from './Core/Services/notification.service';
+import { NotificationService } from './core/services/notification.service';
 
 @Component({
   moduleId: module.id,

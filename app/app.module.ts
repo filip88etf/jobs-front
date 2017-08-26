@@ -4,11 +4,11 @@ import { XHRBackend, Request, XHRConnection, BrowserXhr, ResponseOptions, XSRFSt
 import { Router } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SharedModule } from './Shared/shared.module';
-import { HomeModule } from './Home/home.module';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ServiceModule } from './Core/Services/service.module';
+import { ServiceModule } from './core/services/service.module';
 
 @NgModule({
   imports: [ BrowserModule, AppRoutingModule, SharedModule, HomeModule,
