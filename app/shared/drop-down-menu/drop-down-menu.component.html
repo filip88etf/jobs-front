@@ -1,10 +1,10 @@
 <div class="col text-right">
-  <div ngbDropdown class="d-inline-block">
+  <div placement="bottom-right" class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
     <div>
-      <img [src]="user?.imageURL" height="30px" width="30px" id="dropdownBasic" ngbDropdownToggle/>
+      <img [src]="user?.imageURL" height="30px" width="30px" id="dropdownManual" ngbDropdownToggle/>
+      <div class="caret-style fa fa-caret-down"></div>
     </div>
-    <div class="caret-style fa fa-caret-down"></div>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
+    <div ngbDropdownMenu aria-labelledby="dropdownManual" class="dropdown-menu-right">
       <div class="drop-menu-item" (click)="openPasswordModal()">Change Password</div>
       <div class="drop-menu-item" (click)="logOut()">Log out</div>
     </div>

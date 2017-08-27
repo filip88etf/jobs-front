@@ -40,11 +40,11 @@ export class JobDetailsComponent implements OnInit {
               let i = 0;
 
               this.loggedUser = user;
-              for (i; i < this.loggedUser['profession'].length; i++) {
-                if (job.profession === this.isQualified) {
-                  this.isQualified = true;
-                }
-              }
+              // for (i; i < this.loggedUser['profession'].length; i++) {
+              //   if (job.profession === this.isQualified) {
+              //     this.isQualified = true;
+              //   }
+              // }
             }
           );
       });
