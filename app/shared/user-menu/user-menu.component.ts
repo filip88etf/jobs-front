@@ -22,7 +22,7 @@ export class UserMenuComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     let path = this.router['location'].path();
-    this.active = path.indexOf('profile/jobs') !== -1 ? 2 : 1;
+    this.active = path.indexOf('employer/jobs') !== -1 || path.indexOf('worker/jobs') !== -1 ? 2 : 1;
     this.active = path.indexOf('workers') !== -1 ? 3 : this.active;
     this.active = path.indexOf('jobs;') !== -1 ? 4 : this.active;
     this.active = path.indexOf('/details') !== -1 ? -1 : this.active;
@@ -44,7 +44,7 @@ export class UserMenuComponent implements OnInit {
   }
 
   public jobs() {
-    this.router.navigate(['/' + this.user.type + '/profile/jobs']);
+    this.router.navigate(['/' + this.user.type + '/jobs']);
     this.active = 2;
   }
 

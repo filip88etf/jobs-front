@@ -1,0 +1,33 @@
+<div class="row job-item">
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3">
+        <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" (click)="openJobDetails()"class="job-item-image"/>
+      </div>
+      <div class="col-md-7">
+        <div class="row">
+          {{job.region}}
+        </div>
+        <div class="row">
+          Posted: {{job.createdDate | date: medium}}
+        </div>
+        <div class="row">
+          {{job.profession}}
+        </div>
+        <div class="row">
+          {{job.description}}
+        </div>
+      </div>
+      <div class="col-md-2 delete-job">
+        <button (click)="openDeleteJobModal()" class="btn btn-outline-secondary float-right">
+          <span class="fa fa-trash-o"></span>
+        </button>
+        <button (click)="openEditJobModal()" class="btn btn-outline-secondary float-right">
+          <span class="fa fa-pencil-square-o"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

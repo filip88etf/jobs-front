@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { EmployerJobsComponent } from './employer-jobs.component';
+import { EmployerJobsComponent } from './list/employer-jobs.component';
 import { JobItemComponent } from './job-item/job-item.component';
 import { EditJobComponent } from './edit/edit-job.component';
 import { PostJobComponent } from './post/post-job.component';

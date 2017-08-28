@@ -1,13 +1,14 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ToastService } from '../../core/services/toast.service';
-import { JobService } from '../../jobs/job.service';
-import { ConfirmModalComponent } from '../../shared/confirm-modal/confirm-modal.component';
-import { EditJobComponent } from './edit/edit-job.component';
-import { PostJobComponent } from './post/post-job.component';
-import { Job } from '../../jobs/Job';
-import { UserService } from '../../user/user.service';
+import { ToastService } from '../../../core/services/toast.service';
+import { JobService } from '../../../jobs/job.service';
+import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
+import { EditJobComponent } from './../edit/edit-job.component';
+import { PostJobComponent } from './../post/post-job.component';
+import { Job } from '../../../jobs/Job';
+import { UserService } from '../../../user/user.service';
 
 @Component({
   moduleId: module.id,
@@ -19,10 +20,12 @@ import { UserService } from '../../user/user.service';
 export class EmployerJobsComponent implements OnInit {
   @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
   @ViewChild(EditJobComponent) editModal: EditJobComponent;
-
+  page: number = 1;
+  totalNumber: number;
+  size: number = 10;
   jobs: Job[];
 
-  constructor (private jobService: JobService, private userService: UserService,
+  constructor (private router: Router, private jobService: JobService, private userService: UserService,
     private toastService: ToastService, private modalService: NgbModal) {
   }
 
@@ -30,7 +33,10 @@ export class EmployerJobsComponent implements OnInit {
     this.userService.getUser().subscribe(
       (user) => {
         this.jobService.getByUsername(user.username).subscribe(
-          (response) => { this.jobs = response; } );
+          (response) => {
+            this.jobs = response;
+            this.totalNumber = response.length;
+        } );
       },
       (error) => { console.log(error); }
     );
@@ -61,5 +67,10 @@ export class EmployerJobsComponent implements OnInit {
   addJob(job: Job): void {
     this.jobs.push(job);
     this.toastService.success('You successfully posted new job!');
+  }
+
+  public pageChanged(pageNumber: number) {
+    this.page = pageNumber;
+    this.router.navigate(['workers', {page: this.page}]);
   }
 }

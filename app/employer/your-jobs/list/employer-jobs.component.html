@@ -1,0 +1,59 @@
+<div class="container">
+
+  <app-user-menu></app-user-menu>
+
+  <div class="jobs-title row">
+    <div class="col-md-6">
+      <div class="float-left padding-top-bottom-20">
+        <h3 class="active-color">Jobs that you posted</h3>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="float-right padding-top-bottom-20">
+        <button (click)="openPostModal()" class="btn btn-outline-secondary">
+          <span>Post Job</span>
+          <span class="fa fa-pencil"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="totalNumber">
+    <div class="row top-pagination">
+      <div class="col-md-12 padding-top-15">
+        <ngb-pagination (pageChange)="pageChanged($event)"
+                        [rotate]="true"
+                        [pageSize]="size"
+                        [maxSize]='10'
+                        [collectionSize]="totalNumber"
+                        [(page)]="page"
+                        [directionLinks]="false">
+        </ngb-pagination>
+      </div>
+    </div>
+
+    <app-your-job *ngFor="let job of jobs" [job]="job"
+                  (onDelete)="removeJobFromList($event)">
+    </app-your-job>
+
+    <div class="row bottom-pagination">
+      <div class="col-md-12">
+        <ngb-pagination (pageChange)="pageChanged($event)"
+                        [rotate]="true"
+                        [pageSize]="size"
+                        [maxSize]='10'
+                        [collectionSize]="totalNumber"
+                        [(page)]="page"
+                        [directionLinks]="false">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!totalNumber">
+    <div class="row justify-content-center">
+      <div class="col-md-4 no-results">No Results</div>
+    </div>
+  </div>
+
+</div>
