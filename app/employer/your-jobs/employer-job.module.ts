@@ -9,10 +9,12 @@ import { EditJobComponent } from './edit/edit-job.component';
 import { PostJobComponent } from './post/post-job.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ConfirmModalComponent } from '../../shared/confirm-modal/confirm-modal.component';
+import { EmployerJobDetailsComponent } from './details/employer-job-details.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, NgbModule, FormsModule, ReactiveFormsModule],
-  declarations: [EmployerJobsComponent, JobItemComponent, EditJobComponent, PostJobComponent],
+  declarations: [EmployerJobsComponent, EmployerJobDetailsComponent, JobItemComponent,
+    EditJobComponent, PostJobComponent],
   exports: [EmployerJobsComponent, JobItemComponent, EditJobComponent, PostJobComponent],
   entryComponents: [PostJobComponent, EditJobComponent, ConfirmModalComponent]
 })

@@ -12,10 +12,12 @@ import { EditEmployerComponent } from './edit/edit-employer.component';
 import { EmployerJobsComponent } from './your-jobs/list/employer-jobs.component';
 import { ProfileComponent } from '../user/profile/profile.component';
 import { AuthGuardService } from '../core/services/auth-guard.service';
+import { EmployerJobDetailsComponent } from './your-jobs/details/employer-job-details.component';
 
 export const employerRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'profile' },
   { path: 'jobs', canActivate: [AuthGuardService], component: EmployerJobsComponent },
+  { path: 'job', canActivate: [AuthGuardService], component: EmployerJobDetailsComponent },
   { path: 'details', component: EmployerDetailsComponent },
   { path: 'profile', canActivate: [AuthGuardService], component: UserComponent, children:
     [

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToastService } from '../../../core/services/toast.service';
@@ -21,7 +22,8 @@ export class JobItemComponent {
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   @Output() onEdit: EventEmitter<Job> = new EventEmitter<Job>();
 
-  constructor(private jobService: JobService, private toastService: ToastService, private modalService: NgbModal) {
+  constructor(private jobService: JobService, private toastService: ToastService, private router: Router,
+    private modalService: NgbModal) {
   }
 
   openDeleteJobModal(): void {
@@ -54,5 +56,9 @@ export class JobItemComponent {
       (result) => { this.toastService.success('You updated your job!'); },
       (reason) => { }
     );
+  }
+
+  openJobDetails(): void {
+    this.router.navigate(['employer/job', {id: this.job.id}]);
   }
 }

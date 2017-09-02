@@ -1,0 +1,17 @@
+@import "global_variables.scss";
+
+.details-container {
+  background-color: white;
+}
+
+.candidates-hr {
+  border-bottom: 2px solid $active-color;
+}
+
+.no-candidates {
+  margin-top: 10px;
+  padding: 10px;
+}
+.applied-workers {
+  border: 2px solid #e9eaec;
+}

@@ -1,8 +1,8 @@
-<div class="container details-container" *ngIf="job">
+<div class="container">
 
   <app-user-menu></app-user-menu>
 
-  <div class="row">
+  <div class="row details-container" *ngIf="job">
 
     <div class="col-md-4 padding-10">
       <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" width="300px" height="300px"/>
@@ -46,5 +46,54 @@
     </div>
 
   </div>
-  
+  <div class="row details-container justify-content-center">
+    <div class="col-md-11 active-color candidates-hr">
+    </div>
+  </div>
+
+  <div class="row details-container justify-content-center" *ngIf="job">
+    <div class="col-md-11">
+      <h3 class="float-left padding-top-bottom-20 active-color">Candidates</h3>
+    </div>
+  </div>
+
+  <div *ngIf="totalNumber">
+    <div class="row top-pagination">
+      <div class="col-md-12 padding-top-15">
+        <ngb-pagination (pageChange)="pageChanged($event)"
+                        [rotate]="true"
+                        [pageSize]="size"
+                        [maxSize]='10'
+                        [collectionSize]="totalNumber"
+                        [(page)]="page"
+                        [directionLinks]="false">
+        </ngb-pagination>
+      </div>
+    </div>
+
+    <app-your-job *ngFor="let candidate of candidates" [candidate]="candidate"
+                  (onDelete)="removeJobFromList($event)">
+    </app-your-job>
+
+    <div class="row bottom-pagination">
+      <div class="col-md-12">
+        <ngb-pagination (pageChange)="pageChanged($event)"
+                        [rotate]="true"
+                        [pageSize]="size"
+                        [maxSize]='10'
+                        [collectionSize]="totalNumber"
+                        [(page)]="page"
+                        [directionLinks]="false">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!totalNumber">
+    <div class="row justify-content-center no-candidates details-container">
+      <div class="col-md-4 no-results content-center">Still no one has applied :-(</div>
+    </div>
+  </div>
+
+
 </div>

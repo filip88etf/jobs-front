@@ -40,9 +40,13 @@ export class BaseService <T> {
     );
   }
 
-  public list(params: any): Observable<T[]> {
-    params.size = this.pageSize;
-    let url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(params);
+  public list(params: any = undefined): Observable<T[]> {
+    let url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?profession=Moler&region=Beograd';
+
+    if (params) {
+      params.size = this.pageSize;
+      url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(params);
+    }
 
     return this.httpService.get(url).map(
       function success(response: Response) {
