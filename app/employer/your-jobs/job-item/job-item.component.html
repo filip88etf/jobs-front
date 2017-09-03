@@ -20,12 +20,22 @@
         </div>
       </div>
       <div class="col-md-2 delete-job">
-        <button (click)="openDeleteJobModal()" class="btn btn-outline-secondary float-right">
-          <span class="fa fa-trash-o"></span>
-        </button>
-        <button (click)="openEditJobModal()" class="btn btn-outline-secondary float-right">
-          <span class="fa fa-pencil-square-o"></span>
-        </button>
+        <div class="row">
+          <div class="col-md-12 padding-5">
+            <button (click)="openEditJobModal()" class="btn btn-outline-secondary float-right">
+              <span class="fa fa-pencil-square-o"></span>
+              <span> Edit</span>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 padding-5">
+            <button (click)="openDeleteJobModal()" class="btn btn-outline-secondary float-right">
+              <span class="fa fa-ban"></span>
+              <span> Cancel</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

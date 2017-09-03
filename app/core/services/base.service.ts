@@ -40,14 +40,12 @@ export class BaseService <T> {
     );
   }
 
-  public list(params: any = undefined): Observable<T[]> {
-    let url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?profession=Moler&region=Beograd';
+  public list(params: any): Observable<T[]> {
+    let url: string,
+        filters: any = Object.assign({}, params);
 
-    if (params) {
-      params.size = this.pageSize;
-      url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(params);
-    }
-
+    filters.size = this.pageSize;
+    url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(filters);
     return this.httpService.get(url).map(
       function success(response: Response) {
         return response.json();
@@ -142,7 +140,7 @@ export class BaseService <T> {
     }
   }
 
-  private encodeUrl(data: Object): string {
+  protected encodeUrl(data: Object): string {
     let encodedUrl: string = '';
 
     for (let property in data) {

@@ -3,7 +3,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Job } from '../Job';
 import { JobService } from '../job.service';
-import { Filter } from '../../global-types';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +15,7 @@ export class JobsListComponent {
   page: number = 1;
   totalNumber: number;
   jobs: Job[];
-  filter: Filter;
+  filter: any;
   size: number = 10;
 
   constructor(private router: Router, private route: ActivatedRoute, private jobService: JobService) {
@@ -24,7 +23,7 @@ export class JobsListComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.filter = Object.assign(new Filter(), params);
+      this.filter = params;
       this.jobService.list(this.filter).subscribe(
         (response: any) => {
           this.jobs = response.content;

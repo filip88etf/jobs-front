@@ -84,6 +84,26 @@ export class WorkerService extends BaseService<Worker> {
       );
   }
 
+  public getCandidates(params: any): Observable<Worker[]> {
+    let par: any = {};
+    let url: string;
+    par.page = params.page;
+    par.profession = 'Moler';
+    par.region = 'Beograd';
+    par.size = 10;
+    url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(par);
+
+    return this.httpService.get(url).map(
+      function success(response: Response) {
+        return response.json();
+      })
+    .catch(
+      function fail(error: any) {
+        return this.errorHandler(error, false);
+      }.bind(this)
+    );
+  }
+
   public logOut() {
     this.worker = null;
     this.clearStorage();

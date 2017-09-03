@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TYPES, CITIES, PROFESSIONS } from '../../global-consts';
-import { Filter } from '../../global-types';
 import { Helper } from '../../helper';
 import { WorkerService } from '../../worker/worker.service';
 
@@ -19,7 +18,6 @@ export class FilterWorkersComponent {
   regions: Object[] = CITIES;
   professions: Object[] = PROFESSIONS;
   filterGroup: FormGroup;
-  filter: Filter;
 
   constructor(private formBuilder: FormBuilder, private workerService: WorkerService,
     private route: ActivatedRoute, private router: Router) {
@@ -30,13 +28,14 @@ export class FilterWorkersComponent {
       region: this.route.params['value'].region,
       profession: this.route.params['value'].profession
     });
-    this.filter = new Filter();
   }
 
   filterData(): void {
-    if (Helper.submitForm(this.filterGroup, this.filter)) {
-      this.filter.page = this.route.params['value'].page;
-      this.router.navigate(['workers', this.filter]);
+    let filter: any = {};
+
+    if (Helper.submitForm(this.filterGroup, filter)) {
+      filter.page = this.route.params['value'].page;
+      this.router.navigate(['workers', filter]);
     }
   }
 }

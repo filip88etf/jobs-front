@@ -1,0 +1,48 @@
+<div class="row candidate">
+  <div class="col-md-12">
+
+    <div class="row justify-content-end additional-comment" *ngIf="additionalComment">
+      <div class="col-md-3">
+        <span>Additional Comment</span>
+      </div>
+      <div class="col-md-9">
+        <span class="row">{{additionalComment}}</span>
+      </div>
+    </div>
+
+    <div class="row padding-top-10">
+      <div class="col-md-3">
+        <img [src]="candidate.imageURL ? candidate.imageURL : 'assets/images/no-profile-pic.png'" (click)="openWorkerDetails()"class="candidate-image"/>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="row">
+              {{candidate.firstName}} {{candidate.lastName}}
+            </div>
+            <div class="row">
+              {{candidate.phone}}
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button *ngIf="!isAccepted" (click)="accept()" class="btn brand-btn float-right">Accept</button>
+            <span *ngIf="isAccepted" class="active-color float-right">Accepted</span>
+          </div>
+        </div>
+        <div class="row">
+          {{candidate.email}}
+        </div>
+        <div class="row">
+          {{candidate.profession}}
+        </div>
+        <div class="row">
+          {{candidate.region}}
+        </div>
+        <div class="row">
+          {{candidate.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Filter } from '../global-types';
 import { Helper } from '../helper';
 import { CITIES, PROFESSIONS } from '../global-consts';
 import { Option } from '../global-types';
@@ -37,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   public search(): void {
-    let params: Filter = new Filter();
+    let params: any = {};
 
     if (Helper.submitForm(this.searchForm, params)) {
       params.page = 1;

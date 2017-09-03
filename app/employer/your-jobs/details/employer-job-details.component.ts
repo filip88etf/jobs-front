@@ -30,7 +30,7 @@ export class EmployerJobDetailsComponent implements OnInit {
         (job) => {
           this.job = job;
         });
-      this.workerService.list().subscribe(
+      this.workerService.getCandidates(params).subscribe(
         (response: any) => {
           this.candidates = response.content;
           this.totalNumber = response.page.totalElements;
@@ -40,6 +40,12 @@ export class EmployerJobDetailsComponent implements OnInit {
 
   public pageChanged(pageNumber: number) {
     this.page = pageNumber;
-    this.router.navigate(['workers', {page: this.page}]);
+    this.router.navigate(['employer/job', { id: this.job.id, page: this.page }]);
+  }
+
+  public candidateAccepted(isAccepted: boolean) {
+    if (isAccepted) {
+      this.job.status = 'In Progress';
+    }
   }
 }

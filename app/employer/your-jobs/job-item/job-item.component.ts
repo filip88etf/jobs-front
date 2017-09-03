@@ -29,7 +29,10 @@ export class JobItemComponent {
   openDeleteJobModal(): void {
     let modal = this.modalService.open(ConfirmModalComponent);
 
-    modal.componentInstance.init('Delete Job', 'Are you sure you want to delete this job?', 'Delete');
+    modal.componentInstance.init('Cancel Job',
+      'If you cancel the job you won\'t be able to add review to worker who work on this job. ' +
+      'Your job won\'t be visible any more.',
+       'Cancel Job', 'Don\'t Cancel');
     modal.result.then(
       (result) => { this.deleteJob(); },
       (reason) => { }
@@ -39,7 +42,7 @@ export class JobItemComponent {
   deleteJob(): void {
     this.jobService.delete(this.job.id).subscribe(
       (response: any) => {
-        this.toastService.success('Job is deleted!');
+        this.toastService.success('Job is canceld!');
         this.onDelete.emit(this.job.id);
       },
       (error: any) => {
@@ -59,6 +62,6 @@ export class JobItemComponent {
   }
 
   openJobDetails(): void {
-    this.router.navigate(['employer/job', {id: this.job.id}]);
+    this.router.navigate(['employer/job', { id: this.job.id, page: 1 }]);
   }
 }

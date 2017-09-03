@@ -62,10 +62,13 @@ export class EmployerJobsComponent implements OnInit {
         break;
       }
     }
+
+    this.totalNumber = this.jobs.length;
   }
 
   addJob(job: Job): void {
     this.jobs.push(job);
+    this.totalNumber = this.jobs.length;
     this.toastService.success('You successfully posted new job!');
   }
 

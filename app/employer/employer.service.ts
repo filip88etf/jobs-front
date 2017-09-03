@@ -21,7 +21,7 @@ export class EmployerService extends BaseService<Employer> {
     super('employers', http, authorizationService, notificationService, router);
   }
 
-  getEmployer(): Observable<Employer> {
+  public getEmployer(): Observable<Employer> {
     if (!this.options) { this.initOptions(); }
     if (!this.employer) {
       return this.getByUsername(localStorage.getItem('username'));
@@ -29,7 +29,7 @@ export class EmployerService extends BaseService<Employer> {
     return Observable.of(this.employer);
   }
 
-  getByUsername(username: string): Observable<Employer> {
+  public getByUsername(username: string): Observable<Employer> {
     let routeUrl = '/search/findByUsername?username=' + username;
     this.initOptions();
 
@@ -48,7 +48,7 @@ export class EmployerService extends BaseService<Employer> {
       );
   }
 
-  create(user: Employer): Observable<Employer> {
+  public create(user: Employer): Observable<Employer> {
     let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
 
     return this.http.post(this.apiUrl, user, options)
@@ -63,7 +63,7 @@ export class EmployerService extends BaseService<Employer> {
       );
   }
 
-  uploadProfilePicture(picture: any): Observable<boolean> {
+  public uploadProfilePicture(picture: any): Observable<boolean> {
     let routeUrl = '/profile/image?username=' + this.employer.username;
 
     this.notificationService.startLoading();
@@ -82,13 +82,13 @@ export class EmployerService extends BaseService<Employer> {
       );
   }
 
-  logOut() {
+  public logOut() {
     this.employer = null;
     this.clearStorage();
     this.router.navigate(['/user/login']);
   }
 
-  setEmployer(employer: Employer) {
+  public setEmployer(employer: Employer) {
     this.employer = employer;
   }
 }

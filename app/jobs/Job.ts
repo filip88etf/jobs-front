@@ -8,4 +8,5 @@ export class Job {
   createdDate: string;
   modifiedDate: string;
   imageURL: string;
+  status: string;
 }

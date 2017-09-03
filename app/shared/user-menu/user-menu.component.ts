@@ -22,9 +22,10 @@ export class UserMenuComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     let path = this.router['location'].path();
-    this.active = path.indexOf('employer/jobs') !== -1 || path.indexOf('worker/jobs') !== -1 ? 2 : 1;
+    this.active = path.indexOf('employer/jobs') !== -1 || path.indexOf('worker/jobs') !== -1 ? 2 : -1;
     this.active = path.indexOf('workers') !== -1 ? 3 : this.active;
     this.active = path.indexOf('jobs;') !== -1 ? 4 : this.active;
+    this.active = path.indexOf('/profile') !== -1 ? 1 : this.active;
     this.active = path.indexOf('/details') !== -1 ? -1 : this.active;
   }
 
