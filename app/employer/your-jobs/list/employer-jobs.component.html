@@ -33,7 +33,7 @@
     </div>
 
     <app-your-job *ngFor="let job of jobs" [job]="job"
-                  (onDelete)="removeJobFromList($event)">
+                  (onCancel)="removeJobFromList($event)">
     </app-your-job>
 
     <div class="row bottom-pagination">

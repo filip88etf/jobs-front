@@ -56,7 +56,7 @@ export class EditEmployerComponent implements OnInit {
     );
   }
 
-  save() {
+  public save() {
     let user = Object.assign(new Employer(), this.employer);
 
     if (Helper.submitForm(this.editForm, user)) {
@@ -73,7 +73,7 @@ export class EditEmployerComponent implements OnInit {
     }
   }
 
-  openCropModal() {
+  public openCropModal() {
     let modalSettings = {
       headerText: 'Upload Profile Picture',
       submitText: 'Upload',

@@ -11,17 +11,29 @@
     </div>
 
     <div class="col-md-8 padding-10">
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Location</b></span><span class="col-md-9">{{job.region}}</span>
-      </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{job.profession}}</span>
-      </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Created</b></span><span class="col-md-9">{{job.createdDate | date: medium}}</span>
-      </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Updated</b></span><span class="col-md-9">{{job.modifiedDate | date: medium}}</span>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row padding-5">
+            <span class="col-md-3 active-color"><b>Location</b></span><span class="col-md-9">{{job.region}}</span>
+          </div>
+          <div class="row padding-5">
+            <span class="col-md-3 active-color"><b>Profession</b></span><span class="col-md-9">{{job.profession}}</span>
+          </div>
+          <div class="row padding-5">
+            <span class="col-md-3 active-color"><b>Created</b></span><span class="col-md-9">{{job.createdDate | date: medium}}</span>
+          </div>
+          <div class="row padding-5">
+            <span class="col-md-3 active-color"><b>Updated</b></span><span class="col-md-9">{{job.modifiedDate | date: medium}}</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="row action-button justify-content-end">
+            <button class="btn btn-outline-secondary" (click)="openEditJobModal()"><span class="fa fa-pencil-square-o"></span> Edit</button>
+          </div>
+          <div class="row action-button justify-content-end">
+            <button class="btn btn-outline-secondary" (click)="openCancelJobModal()"><span class="fa fa-ban"></span> Cancel</button>
+          </div>
+        </div>
       </div>
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Status</b></span><span class="col-md-9">{{job.status}}</span>

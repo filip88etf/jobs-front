@@ -45,22 +45,6 @@ export class EditJobComponent implements OnInit {
     });
   }
 
-  private uploadPicture() {
-    if (this.imageURL) {
-      this.jobService.uploadPicture(this.imageURL, this.job.id).subscribe(
-        (image: any) => {
-          this.job.imageURL = image;
-          this.activeModal.close(this.job);
-          this.notificationService.stopLoading();
-        },
-        (error: any) => {
-          this.activeModal.close();
-          this.notificationService.stopLoading();
-        }
-      );
-    }
-  }
-
   public init(job: Job) {
     this.job = job;
     this.noPicture = this.job.imageURL || 'assets/images/no-job-picture.png';
@@ -99,8 +83,23 @@ export class EditJobComponent implements OnInit {
     myReader.readAsDataURL(file);
   }
 
-
   public close(): void {
     this.activeModal.dismiss('close');
+  }
+
+  private uploadPicture() {
+    if (this.imageURL) {
+      this.jobService.uploadPicture(this.imageURL, this.job.id).subscribe(
+        (image: any) => {
+          this.job.imageURL = image;
+          this.activeModal.close(this.job);
+          this.notificationService.stopLoading();
+        },
+        (error: any) => {
+          this.activeModal.close();
+          this.notificationService.stopLoading();
+        }
+      );
+    }
   }
 }

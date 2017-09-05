@@ -19,14 +19,14 @@ import { Job } from '../../../jobs/Job';
 export class JobItemComponent {
   noPicture: string = 'assets/images/no-job-picture.png';
   @Input() job: Job;
-  @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onCancel: EventEmitter<string> = new EventEmitter<string>();
   @Output() onEdit: EventEmitter<Job> = new EventEmitter<Job>();
 
   constructor(private jobService: JobService, private toastService: ToastService, private router: Router,
     private modalService: NgbModal) {
   }
 
-  openDeleteJobModal(): void {
+  public openCancelJobModal(): void {
     let modal = this.modalService.open(ConfirmModalComponent);
 
     modal.componentInstance.init('Cancel Job',
@@ -34,16 +34,17 @@ export class JobItemComponent {
       'Your job won\'t be visible any more.',
        'Cancel Job', 'Don\'t Cancel');
     modal.result.then(
-      (result) => { this.deleteJob(); },
+      (result) => { this.cancelJob(); },
       (reason) => { }
     );
   }
 
-  deleteJob(): void {
+  public cancelJob(): void {
     this.jobService.delete(this.job.id).subscribe(
       (response: any) => {
         this.toastService.success('Job is canceld!');
-        this.onDelete.emit(this.job.id);
+        this.onCancel.emit(this.job.id);
+        this.router.navigate(['employer/jobs']);
       },
       (error: any) => {
         console.log(error);
@@ -51,7 +52,7 @@ export class JobItemComponent {
     );
   }
 
-  openEditJobModal(): void {
+  public openEditJobModal(): void {
     let modal = this.modalService.open(EditJobComponent, {size: 'lg'});
 
     modal.componentInstance.init(this.job);
@@ -61,7 +62,7 @@ export class JobItemComponent {
     );
   }
 
-  openJobDetails(): void {
+  public openJobDetails(): void {
     this.router.navigate(['employer/job', { id: this.job.id, page: 1 }]);
   }
 }

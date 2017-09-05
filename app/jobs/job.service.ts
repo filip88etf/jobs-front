@@ -31,19 +31,15 @@ export class JobService extends BaseService<Job> {
       );
   }
 
-  public getByUsername(username: string) {
-    let routeUrl = '/search/findByUsername?username=' + username;
+  public getEmployerJobs(params: any) {
+    let stringParams = 'username=' + params.username + '&page=' + params.page + '&size=' + this.pageSize;
+    let routeUrl = '/search/findByUsername?' + stringParams;
     if (!this.options) { this.initOptions(); }
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
         function success (response: Response) {
-          let list = response.json().content;
-
-          if (list && list[0] && list[0].collectionValue) // backend can't fix response
-            list = [];
-
-          return list;
+          return response.json();
         })
       .catch(
         function fail (error: any) {

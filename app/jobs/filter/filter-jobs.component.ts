@@ -30,7 +30,7 @@ export class FilterJobsComponent {
     });
   }
 
-  filterData(): void {
+  public filterData(): void {
     let filter: any = {};
     if (Helper.submitForm(this.filterGroup, filter)) {
       filter.page = this.route.params['value'].page;

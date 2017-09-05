@@ -132,14 +132,6 @@ export class BaseService <T> {
     localStorage.removeItem('username');
   }
 
-  private mapEntityForBackend(entity: T): void {
-    for (let property in entity) {
-      if (entity[property] && Array.isArray(entity[property])) {
-        entity[property] = entity[property].toString();
-      }
-    }
-  }
-
   protected encodeUrl(data: Object): string {
     let encodedUrl: string = '';
 
@@ -149,5 +141,13 @@ export class BaseService <T> {
     encodedUrl = encodedUrl.length ? encodedUrl.slice(0, encodedUrl.length - 1) : encodedUrl;
 
     return encodedUrl;
+  }
+
+  private mapEntityForBackend(entity: T): void {
+    for (let property in entity) {
+      if (entity[property] && Array.isArray(entity[property])) {
+        entity[property] = entity[property].toString();
+      }
+    }
   }
 }

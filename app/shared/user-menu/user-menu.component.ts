@@ -45,7 +45,7 @@ export class UserMenuComponent implements OnInit {
   }
 
   public jobs() {
-    this.router.navigate(['/' + this.user.type + '/jobs']);
+    this.router.navigate(['/' + this.user.type + '/jobs', {page: 1}]);
     this.active = 2;
   }
 
