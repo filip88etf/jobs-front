@@ -18,7 +18,6 @@ import { EditJobComponent } from '../edit/edit-job.component';
 })
 
 export class EmployerJobDetailsComponent implements OnInit {
-  onCancel: EventEmitter<string> = new EventEmitter<string>();
   totalNumber: number;
   size: number = 10;
   page: number = 1;
@@ -71,7 +70,7 @@ export class EmployerJobDetailsComponent implements OnInit {
     this.jobService.delete(this.job.id).subscribe(
       (response: any) => {
         this.toastService.success('Job is canceld!');
-        this.onCancel.emit(this.job.id);
+        this.router.navigate(['employer/jobs', {page: 1}]);
       },
       (error: any) => {
         console.log(error);
@@ -85,6 +84,19 @@ export class EmployerJobDetailsComponent implements OnInit {
     modal.componentInstance.init(this.job);
     modal.result.then(
       (result) => { this.toastService.success('You updated your job!'); },
+      (reason) => { }
+    );
+  }
+
+  public openDoneJobModal(): void {
+    let modal = this.modalService.open(ConfirmModalComponent);
+
+    modal.componentInstance.init('Move Job to Done state',
+      'If you move the job you won\'t be able to add review to worker who work on this job. ' +
+      'Your job won\'t be visible any more.',
+       'Cancel Job', 'Don\'t Cancel');
+    modal.result.then(
+      (result) => { this.cancelJob(); },
       (reason) => { }
     );
   }

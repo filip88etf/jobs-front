@@ -11,6 +11,7 @@
     </div>
 
     <div class="col-md-8 padding-10">
+
       <div class="row">
         <div class="col-md-8">
           <div class="row padding-5">
@@ -28,6 +29,9 @@
         </div>
         <div class="col-md-4">
           <div class="row action-button justify-content-end">
+            <button class="btn btn-outline-secondary" (click)="openDoneJobModal()"><span class="fa fa-check-square-o"></span> Done</button>
+          </div>
+          <div class="row action-button justify-content-end">
             <button class="btn btn-outline-secondary" (click)="openEditJobModal()"><span class="fa fa-pencil-square-o"></span> Edit</button>
           </div>
           <div class="row action-button justify-content-end">
@@ -35,26 +39,18 @@
           </div>
         </div>
       </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Status</b></span><span class="col-md-9">{{job.status}}</span>
-      </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Description</b></span><span class="col-md-9">{{job.description}}</span>
-      </div>
-      <div class="row padding-5" *ngIf="user">
-        <span class="col-md-3 active-color"><b>Posted by</b></span>
-        <span class="col-md-9" *ngIf="isLogged">
-          <div class="job-details-user">
-            <img [src]="user.imageURL" style="margin-top: -15px;" width="100px" height="100px" (click)="openEmployerDetails()"class="user-on-job"/>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row padding-5">
+            <span class="col-md-3 active-color"><b>Status</b></span><span class="col-md-9">{{job.status}}</span>
           </div>
-          <div class="job-details-user">
-            <div class="row"><span class="col-md-3 active-color">Name</span><span class="col-md-9">{{user.firstName}} {{user.lastName}}</span></div>
-            <div class="row"><span class="col-md-3 active-color">Phone</span><span class="col-md-9">{{user.phone}}</span></div>
-            <div class="row"><span class="col-md-3 active-color">Email</span><span class="col-md-9">{{user.email}}</span></div>
+          <div class="row padding-5">
+            <span class="col-md-3 active-color"><b>Description</b></span><span class="col-md-9">{{job.description}}</span>
           </div>
-        </span>
-        <span class="col-md-9" *ngIf="!isLogged">Log in to see</span>
+        </div>
       </div>
+
     </div>
 
   </div>
