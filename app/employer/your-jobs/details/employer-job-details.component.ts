@@ -9,6 +9,7 @@ import { Worker } from '../../../worker/Worker';
 import { WorkerService } from '../../../worker/worker.service';
 import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 import { EditJobComponent } from '../edit/edit-job.component';
+import { ReviewModalComponent } from '../review-modal/review-modal.component';
 
 @Component({
   moduleId: module.id,
@@ -89,14 +90,14 @@ export class EmployerJobDetailsComponent implements OnInit {
   }
 
   public openDoneJobModal(): void {
-    let modal = this.modalService.open(ConfirmModalComponent);
+    let modal = this.modalService.open(ReviewModalComponent, {size: 'lg'});
 
-    modal.componentInstance.init('Move Job to Done state',
-      'If you move the job you won\'t be able to add review to worker who work on this job. ' +
-      'Your job won\'t be visible any more.',
-       'Cancel Job', 'Don\'t Cancel');
+    modal.componentInstance.init(this.candidates);
     modal.result.then(
-      (result) => { this.cancelJob(); },
+      (result) => {
+        this.toastService.success('Your job is done!');
+        this.router.navigate(['employer/jobs', {page: 1}]);
+      },
       (reason) => { }
     );
   }
