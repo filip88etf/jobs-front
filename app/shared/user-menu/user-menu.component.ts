@@ -5,6 +5,8 @@ import { User } from '../../user/User';
 import { UserService } from '../../user/user.service';
 import { CITIES, PROFESSIONS } from '../../global-consts';
 
+const NOACTIVE = -1, PROFILE = 1, YOURJOBS = 2, WORKERS = 3, JOBS = 4;
+
 @Component({
   moduleId: module.id,
   selector: 'app-user-menu',
@@ -13,20 +15,26 @@ import { CITIES, PROFESSIONS } from '../../global-consts';
 })
 
 export class UserMenuComponent implements OnInit {
-  active: number = 1;
-  user: User;
-  userRoute: Route;
-  jobsRoute: Route;
-  searchRoute: Route;
-  isLogged: boolean = false;
+  private active: number = 1;
+  private user: User;
+  private userRoute: Route;
+  private jobsRoute: Route;
+  private searchRoute: Route;
+  private isLogged: boolean = false;
 
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute) {
     let path = this.router['location'].path();
-    this.active = path.indexOf('employer/jobs') !== -1 || path.indexOf('worker/jobs') !== -1 ? 2 : -1;
-    this.active = path.indexOf('workers') !== -1 ? 3 : this.active;
-    this.active = path.indexOf('jobs;') !== -1 ? 4 : this.active;
-    this.active = path.indexOf('/profile') !== -1 ? 1 : this.active;
-    this.active = path.indexOf('/details') !== -1 ? -1 : this.active;
+    if (path.indexOf('employer/jobs') !== -1 || path.indexOf('worker/jobs') !== -1) {
+      this.active = YOURJOBS;
+    } else {
+      this.active = path.indexOf('jobs;') !== -1 ? JOBS : this.active;
+    }
+    this.active = path.indexOf('workers;') !== -1 ? WORKERS : this.active;
+    this.active = path.indexOf('/profile') !== -1 ? PROFILE : this.active;
+    if (!(path.indexOf('employer/jobs') !== -1 || path.indexOf('worker/jobs') !== -1 ||
+      path.indexOf('workers') !== -1 || path.indexOf('/profile') !== -1 || path.indexOf('jobs;') !== -1)) {
+        this.active = NOACTIVE;
+    }
   }
 
   ngOnInit() {
@@ -41,23 +49,23 @@ export class UserMenuComponent implements OnInit {
 
   public profile() {
     this.router.navigate(['/' + this.user.type + '/profile']);
-    this.active = 1;
+    this.active = PROFILE;
   }
 
   public jobs() {
     this.router.navigate(['/' + this.user.type + '/jobs', {page: 1}]);
-    this.active = 2;
+    this.active = YOURJOBS;
   }
 
   public searchWorkers() {
     this.router.navigate(['/workers', { profession: PROFESSIONS[0].value, region: CITIES[0].value , page: 1 }]);
-    this.active = 3;
+    this.active = WORKERS;
   }
 
   public loggedSearchJobs() {
     if (this.user.type === 'worker') {
       this.router.navigate(['/jobs', { profession: this.user['profession'], region: this.user['region'][0], page: 1 }]);
-      this.active = 4;
+      this.active = JOBS;
     } else {
       this.searchJobs();
     }
@@ -65,6 +73,6 @@ export class UserMenuComponent implements OnInit {
 
   public searchJobs() {
     this.router.navigate(['/jobs', { profession: PROFESSIONS[0].value, region: CITIES[0].value, page: 1 }]);
-    this.active = 4;
+    this.active = JOBS;
   }
 }

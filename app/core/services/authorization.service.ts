@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { NotificationService } from './notification.service';
 
 const ACCESS_TOKEN_URL: string = 'https://jobsy-kp-api.herokuapp.com/oauth/token';
+
 const HEADERS = new Headers({
   'Content-Type': 'application/x-www-form-urlencoded',
   'Authorization': 'Basic Zm9vOmZvb3NlY3JldA=='

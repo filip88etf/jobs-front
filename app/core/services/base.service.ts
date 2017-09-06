@@ -9,13 +9,13 @@ import { AuthorizationService } from './authorization.service';
 import { NotificationService } from './notification.service';
 
 export class BaseService <T> {
-  apiUrl: string = 'https://jobsy-kp-api.herokuapp.com';
-  headers: Headers;
-  options: RequestOptions;
-  httpService: Http;
-  authorizationService: AuthorizationService;
-  router: Router;
-  pageSize: number = 10;
+  protected apiUrl: string = 'https://jobsy-kp-api.herokuapp.com';
+  protected headers: Headers;
+  protected options: RequestOptions;
+  protected httpService: Http;
+  protected authorizationService: AuthorizationService;
+  protected router: Router;
+  protected pageSize: number = 10;
 
   constructor(route: string = '', http: Http, authorizationService: AuthorizationService,
     protected notificationService: NotificationService, router: Router) {

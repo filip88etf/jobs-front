@@ -11,7 +11,7 @@ const toastOptions: ToastOptions = {
 
 @Injectable()
 export class ToastService {
-  options: ToastOptions = toastOptions;
+  private options: ToastOptions = toastOptions;
 
   constructor(private toastyService: ToastyService) {
     this.options = toastOptions;
