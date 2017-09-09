@@ -1,0 +1,31 @@
+@import "global_variables.scss";
+
+.thumbs {
+  font-size: 20px;
+  padding: 0px 10px;
+  .fa-thumbs-up {
+    cursor: pointer;
+    &:hover {
+      color: $active-color;
+    }
+  }
+  .fa-thumbs-down {
+    cursor: pointer;
+    &:hover {
+      color: $active-color;
+    }
+  }
+  .active-thumb {
+    color: $active-color;
+  }
+}
+
+.review-input {
+  padding: 0px 10px 30px 10px;
+  border-bottom: 2px solid $active-color;
+}
+
+.error-select-message {
+  font-size: 1rem;
+  color: #d9534f;
+}

@@ -104,6 +104,10 @@ export class WorkerService extends BaseService<Worker> {
     );
   }
 
+  public getAcceptedCandidates(jobId: string): Observable<Worker[]> {
+    return Observable.of([]);
+  }
+
   public logOut() {
     this.worker = null;
     this.clearStorage();

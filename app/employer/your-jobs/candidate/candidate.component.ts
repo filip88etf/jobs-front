@@ -14,7 +14,7 @@ import { Worker } from '../../../worker/Worker';
 
 export class CandidateComponent {
   @Input() candidate: Worker;
-  @Output() onAccept: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onAccept: EventEmitter<Worker> = new EventEmitter<Worker>();
   isAccepted: boolean = false;
   additionalComment: string = 'necu da radim za tu sicu ili daj dobar kes ili cao';
 
@@ -33,9 +33,9 @@ export class CandidateComponent {
     modal.result.then(
       (result) => {
         this.isAccepted = true;
-        this.onAccept.emit(true);
+        this.onAccept.emit(this.candidate);
       },
-      (reason) => { this.onAccept.emit(false); }
+      (reason) => { }
     );
   }
 }

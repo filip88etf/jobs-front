@@ -16,13 +16,16 @@ import { NotificationService } from '../../../core/services/notification.service
 export class ReviewModalComponent implements OnInit {
   candidates: Worker[];
   reviewForm: FormGroup;
+  isUp: boolean[] = [];
+  isSubmited: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal,
     private notificationService: NotificationService) {
   }
 
   ngOnInit() {
-    this.reviewForm = this.formBuilder.group({});
+    let inputs = this.createReviewFields();
+    this.reviewForm = this.formBuilder.group(inputs);
   }
 
   public init(acceptedCandidates: Worker[]) {
@@ -30,10 +33,12 @@ export class ReviewModalComponent implements OnInit {
   }
 
   public submit(): void {
-    let reviews: Object;
+    let reviews = {};
+    this.isSubmited = true;
 
-    if (Helper.submitForm(this.reviewForm, reviews)) {
+    if (Helper.submitForm(this.reviewForm, reviews) && this.recomendationsDone()) {
       this.notificationService.startLoading();
+      reviews = this.mapReviews(reviews);
       this.activeModal.close(false);
 
       this.notificationService.stopLoading();
@@ -42,5 +47,39 @@ export class ReviewModalComponent implements OnInit {
 
   public close(): void {
     this.activeModal.dismiss('close');
+  }
+
+  private createReviewFields () {
+    let fields: Object = {};
+
+    for (let i = 0; i < this.candidates.length; i++) {
+      fields['candidate' + i] = '';
+    }
+    return fields;
+  }
+
+  private mapReviews(reviewMap: Object): Object[] {
+    let reviews: Object[] = [],
+        i: number = 0;
+
+    for (let review in reviewMap) {
+      reviews.push({
+        id: this.candidates[i].id,
+        review: reviewMap[review],
+        recomanded: this.isUp[i++]
+      });
+    }
+    return reviews;
+  }
+
+  private recomendationsDone(): boolean {
+    let done = true;
+    for (let i = 0; i < this.candidates.length; i++) {
+      if (this.isUp[i] === undefined) {
+        done = false;
+      }
+    }
+
+    return done;
   }
 }

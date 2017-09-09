@@ -6,7 +6,33 @@
     </button>
   </div>
   <div class="modal-body">
+    <div *ngFor="let candidate of candidates; let i=index;">
 
+      <div class="row">
+        <div class="col-md-12">
+          <div class="padding-10">
+            <span>{{candidate.firstName + " " + candidate.lastName}}</span>
+          </div>
+          <div class="padding-10">
+            <span>Would you recomend him?</span>
+          </div>
+          <div class="thumbs">
+            <span class="padding-10 fa fa-thumbs-up" [ngClass]="{'active-thumb' : isUp[i]===true}" (click)="isUp[i]=true"></span>
+            <span class="padding-10 fa fa-thumbs-down" [ngClass]="{'active-thumb' : isUp[i]===false}" (click)="isUp[i]=false"></span>
+          </div>
+          <div class="padding-10 error-select-message" *ngIf="isUp[i]!==true && isUp[i]!==false && isSubmited">Please select one</div>
+          <div class="padding-10">
+            <span>How satisfy you were with him?</span>
+          </div>
+          <div class="review-input">
+            <app-text-area [formControlName]="'candidate' + i" ngDefaultControl
+                         [required]="true">
+            </app-text-area>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
   <div class="modal-footer">
     <button (click)="close()" class="btn btn-outline-secondary">Cancel</button>

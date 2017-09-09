@@ -24,6 +24,7 @@ export class EmployerJobDetailsComponent implements OnInit {
   page: number = 1;
   job: Job;
   candidates: Worker[];
+  acceptedCandidates: Worker[] = [];
 
   constructor(private jobService: JobService, private route: ActivatedRoute, private toastService: ToastService,
     private workerService: WorkerService, private router: Router, private modalService: NgbModal) {
@@ -34,6 +35,11 @@ export class EmployerJobDetailsComponent implements OnInit {
       this.jobService.get(params['id']).subscribe(
         (job) => {
           this.job = job;
+          this.workerService.getAcceptedCandidates(job.id).subscribe(
+            (acceptedCandidates) => {
+              this.acceptedCandidates = acceptedCandidates;
+            }
+          );
         });
       this.workerService.getCandidates(params).subscribe(
         (response: any) => {
@@ -48,10 +54,9 @@ export class EmployerJobDetailsComponent implements OnInit {
     this.router.navigate(['employer/job', { id: this.job.id, page: this.page }]);
   }
 
-  public candidateAccepted(isAccepted: boolean) {
-    if (isAccepted) {
-      this.job.status = 'In Progress';
-    }
+  public candidateAccepted(worker: Worker) {
+    this.job.status = 'In Progress';
+    this.acceptedCandidates.push(worker);
   }
 
   public openCancelJobModal(): void {
@@ -92,7 +97,7 @@ export class EmployerJobDetailsComponent implements OnInit {
   public openDoneJobModal(): void {
     let modal = this.modalService.open(ReviewModalComponent, {size: 'lg'});
 
-    modal.componentInstance.init(this.candidates);
+    modal.componentInstance.init(this.acceptedCandidates);
     modal.result.then(
       (result) => {
         this.toastService.success('Your job is done!');
