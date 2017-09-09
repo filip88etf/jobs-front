@@ -21,6 +21,7 @@
                    [label]="'Description'"
                    [required]="true">
     </app-text-area>
+
     <div class="row justify-content-md-center image-cropper">
       <div class="col-md-6">
         <div class="file-upload">
@@ -32,13 +33,15 @@
       </div>
       <div class="col-md-6 content-center">
         <div class="result rounded" >
-            <img class="preview-profile-img" [src]="data.image ? data.image : noPicture" [width]="200" [height]="200">
+            <img class="preview-profile-img" [src]="data.image ? data.image : noPicture" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
         </div>
         <div class="">
           <span>Job picture preview</span>
         </div>
       </div>
     </div>
+
+
 
   </div>
   <div class="modal-footer">

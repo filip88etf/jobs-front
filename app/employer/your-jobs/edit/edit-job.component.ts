@@ -34,6 +34,8 @@ export class EditJobComponent implements OnInit {
       this.cropperSettings = new CropperSettings();
       this.cropperSettings.noFileInput = true;
       this.cropperSettings.allowedFilesRegex = (/\.(gif|jpg|jpeg|tiff|png)$/i);
+      this.cropperSettings.croppedWidth = 200;
+      this.cropperSettings.croppedHeight = 200;
       this.data = {};
   }
 
@@ -89,7 +91,7 @@ export class EditJobComponent implements OnInit {
 
   private uploadPicture() {
     if (this.imageURL) {
-      this.jobService.uploadPicture(this.imageURL, this.job.id).subscribe(
+      this.jobService.uploadPicture(this.data['image'], this.job.id).subscribe(
         (image: any) => {
           this.job.imageURL = image;
           this.activeModal.close(this.job);
