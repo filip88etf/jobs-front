@@ -23,7 +23,7 @@ export class JobsListComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.filter = params;
+      this.filter = Object.assign({}, params);
       this.jobService.list(this.filter).subscribe(
         (response: any) => {
           this.jobs = response.content;
@@ -35,6 +35,6 @@ export class JobsListComponent {
 
   public pageChanged(pageNumber: number) {
     this.filter.page = this.page = pageNumber;
-    this.router.navigate(['workers', this.filter]);
+    this.router.navigate(['jobs', this.filter]);
   }
 }

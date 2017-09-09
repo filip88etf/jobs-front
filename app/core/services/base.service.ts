@@ -45,7 +45,7 @@ export class BaseService <T> {
         filters: any = Object.assign({}, params);
 
     filters.size = this.pageSize;
-    url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(filters);
+    url = this.apiUrl + '/search?' + this.encodeUrl(filters);
     return this.httpService.get(url).map(
       function success(response: Response) {
         return response.json();

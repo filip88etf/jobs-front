@@ -1,0 +1,25 @@
+<div class="row job-item">
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3">
+        <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" (click)="openJobDetails()"class="job-item-image"/>
+      </div>
+      <div class="col-md-7">
+        <div class="row">
+          {{job.region}}
+        </div>
+        <div class="row">
+          Posted: {{job.createdDate | date: medium}}
+        </div>
+        <div class="row">
+          {{job.profession}}
+        </div>
+        <div class="row">
+          {{job.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

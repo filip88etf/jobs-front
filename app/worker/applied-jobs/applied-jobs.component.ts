@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { JobService } from '../../jobs/job.service';
 
 @Component({
   moduleId: module.id,
@@ -7,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrls: ['applied-jobs.component.css']
 })
 
-export class AppliedJobsComponent {
+export class AppliedJobsComponent implements OnInit {
+  page: number = 1;
+  totalNumber: number = 0;
+  size: number = 10;
+
+  constructor (private jobService: JobService) {
+  }
+
+  ngOnInit(): void {
+  }
 }

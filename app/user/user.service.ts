@@ -120,7 +120,7 @@ export class UserService extends BaseService<User> {
 
   resetPassword(email: string): Observable<boolean> {
     let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) }),
-        routeUrl = '/reset',
+        routeUrl = '/users/reset',
         data = { email: email};
 
     return this.http.post(this.apiUrl + routeUrl, data, options)

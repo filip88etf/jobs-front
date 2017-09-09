@@ -1,0 +1,26 @@
+@import "global_variables.scss";
+
+.job-wrapper {
+  background-color: white;
+  margin: 20px;
+  border-bottom: solid $active-color 2px;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.delete-job {
+  padding: 17px 5px;
+}
+
+.job-item {
+  background-color: $brand-color;
+  padding: 10px;
+  margin-top: 15px;
+  border-bottom: 2px solid $active-color;
+}
+
+.job-item-image {
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+}
