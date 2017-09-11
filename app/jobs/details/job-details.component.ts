@@ -4,10 +4,13 @@ import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { User } from '../../user/User';
+import { Application } from '../../applications/Application';
+import { Employer } from '../../employer/Employer';
 import { JobService } from '../job.service';
 import { Job } from '../Job';
 import { UserService } from '../../user/user.service';
 import { ApplyModalComponent } from '../apply-modal/apply-modal.component';
+import { ApplicationService } from '../../applications/application.service';
 
 @Component({
   moduleId: module.id,
@@ -19,15 +22,17 @@ import { ApplyModalComponent } from '../apply-modal/apply-modal.component';
 
 export class JobDetailsComponent implements OnInit {
   job: Job;
-  user: User;
+  employer: Employer;
+  applications: Application[];
+  isApplied: boolean;
   loggedUser: User;
   profileLink: string;
   isLogged: boolean = false;
-  isApplied: boolean = false;
-  isQualified: boolean = true;
+  isQualified: boolean = false;
 
   constructor(private facebookService: FacebookService, private jobService: JobService, private modalService: NgbModal,
-    private userService: UserService, private router: Router, private route: ActivatedRoute) {
+    private userService: UserService, private router: Router, private route: ActivatedRoute,
+    private applicationService: ApplicationService) {
   }
 
   ngOnInit() {
@@ -37,14 +42,7 @@ export class JobDetailsComponent implements OnInit {
           this.job = job;
           this.userService.getUser().subscribe(
             (user) => {
-              let i = 0;
-
-              this.loggedUser = user;
-              // for (i; i < this.loggedUser['profession'].length; i++) {
-              //   if (job.profession === this.isQualified) {
-              //     this.isQualified = true;
-              //   }
-              // }
+              this.canApply(user);
             }
           );
       });
@@ -55,8 +53,8 @@ export class JobDetailsComponent implements OnInit {
       );
       this.userService.getDetails(params['username']).subscribe(
         (user: any) => {
-          this.user = user;
-          this.user.username = params['username'];
+          this.employer = user;
+          this.employer.username = params['username'];
       });
     });
 
@@ -71,17 +69,40 @@ export class JobDetailsComponent implements OnInit {
   }
 
   public openEmployerDetails() {
-    this.router.navigate(['employer/details', { username: this.user.username }]);
+    this.router.navigate(['employer/details', { username: this.employer.username }]);
   }
 
   public apply() {
     let modal = this.modalService.open(ApplyModalComponent);
 
+    modal.componentInstance.init(this.job, this.loggedUser);
     modal.result.then(
       (result) => {
         this.isApplied = true;
+        this.applications.push(result);
       },
       (reason) => { }
+    );
+  }
+
+  private canApply(user: any): void {
+    this.loggedUser = user;
+    for (let i = 0; i < this.loggedUser['profession'].length; i++) {
+      if (this.job.profession === this.loggedUser['profession']) {
+        this.isQualified = true;
+      }
+    }
+
+    this.applicationService.getByJobId(this.job['id']).subscribe(
+      (response: any) => {
+        this.applications = response;
+        this.isApplied = false;
+        for (let i = 0; i < this.applications.length; i++) {
+          if (this.applications[i]['workerId'] === this.loggedUser.id) {
+            this.isApplied = true;
+          }
+        }
+      }
     );
   }
 }

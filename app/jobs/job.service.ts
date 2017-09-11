@@ -48,6 +48,23 @@ export class JobService extends BaseService<Job> {
       );
   }
 
+  public getWorkerJobs(params: any) {
+    let stringParams = 'username=' + params.username + '&page=' + params.page + '&size=' + this.pageSize;
+    let routeUrl = '/search/findByUsername?' + stringParams;
+    if (!this.options) { this.initOptions(); }
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        function success (response: Response) {
+          return response.json();
+        })
+      .catch(
+        function fail (error: any) {
+          return this.errorHandler(error);
+        }.bind(this)
+      );
+  }
+
   public uploadPicture(picture: any, jobId: string): Observable<boolean> {
     let routeUrl = '/image?id=' + jobId;
 
@@ -64,9 +81,5 @@ export class JobService extends BaseService<Job> {
           return this.errorHandler(error);
         }
       );
-  }
-
-  public apply(apply: Object): Observable<boolean> {
-    return Observable.of(true);
   }
 }

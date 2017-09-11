@@ -3,8 +3,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Helper } from '../../helper';
-import { JobService } from '../job.service';
-import { UserService } from '../../user/user.service';
+import { Job } from '../Job';
+import { User } from '../../user/User/';
+import { Application } from '../../applications/Application';
+import { ApplicationService } from '../../applications/application.service';
 
 @Component({
   moduleId: module.id,
@@ -13,30 +15,34 @@ import { UserService } from '../../user/user.service';
 })
 
 export class ApplyModalComponent {
-  private applyForm: FormGroup;
+  applyForm: FormGroup;
+  user: User;
+  job: Job;
 
   constructor(private activeModal: NgbActiveModal, private formBuilder: FormBuilder,
-    private jobService: JobService, private userService: UserService) {
+    private applicationService: ApplicationService) {
     this.applyForm = formBuilder.group({
-      additionalComment: ''
+      comment: ''
     });
   }
 
+  public init(job: Job, user: User): void {
+    this.job = job;
+    this.user = user;
+  }
+
   public submit(): void {
-    let applied = {};
-    Helper.submitForm(this.applyForm, applied);
-    this.userService.getUser().subscribe(
-      (user: any) => {
-        applied['userId'] = user['id'];
-        this.jobService.apply(applied).subscribe(
-          (response) => {
-            console.log(response);
-          }
-        );
+    let application: Application = new Application();
+    Helper.submitForm(this.applyForm, application);
+    application.workerId = this.user.id,
+    application.jobId = this.job.id,
+
+    this.applicationService.create(application).subscribe(
+      (response) => {
+        this.activeModal.close(response);
       }
     );
 
-    this.activeModal.close('submit');
   }
 
   public close(): void {

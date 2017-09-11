@@ -6,7 +6,7 @@
 
     <div class="col-md-4 padding-10">
       <img [src]="job.imageURL ? job.imageURL : 'assets/images/no-job-picture.png'" width="300px" height="300px"/>
-      <button *ngIf="isLogged && !isApplied && loggedUser && loggedUser.type=='worker'" (click)=apply() class="apply-button btn brand-btn">Apply</button>
+      <button *ngIf="isLogged && isQualified && loggedUser && loggedUser.type=='worker' && isApplied===false" (click)=apply() class="apply-button btn brand-btn">Apply</button>
       <div *ngIf="isApplied" class="applied-message"><span class=" active-color"><b>You Applied</b></span></div>
     </div>
 
@@ -26,25 +26,25 @@
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Description</b></span><span class="col-md-9">{{job.description}}</span>
       </div>
-      <div class="row padding-5" *ngIf="user">
+      <div class="row padding-5" *ngIf="employer">
         <span class="col-md-3 active-color"><b>Posted by</b></span>
         <span class="col-md-9" *ngIf="isLogged">
           <div class="job-details-user">
-            <img [src]="user.imageURL" style="margin-top: -15px;" width="100px" height="100px" (click)="openEmployerDetails()"class="user-on-job"/>
+            <img [src]="employer.imageURL" style="margin-top: -15px;" width="100px" height="100px" (click)="openEmployerDetails()"class="user-on-job"/>
           </div>
           <div class="job-details-user">
-            <div class="row"><span class="col-md-3 active-color">Name</span><span class="col-md-9">{{user.firstName}} {{user.lastName}}</span></div>
-            <div class="row"><span class="col-md-3 active-color">Phone</span><span class="col-md-9">{{user.phone}}</span></div>
-            <div class="row"><span class="col-md-3 active-color">Email</span><span class="col-md-9">{{user.email}}</span></div>
+            <div class="row"><span class="col-md-3 active-color">Name</span><span class="col-md-9">{{employer.firstName}} {{employer.lastName}}</span></div>
+            <div class="row"><span class="col-md-3 active-color">Phone</span><span class="col-md-9">{{employer.phone}}</span></div>
+            <div class="row"><span class="col-md-3 active-color">Email</span><span class="col-md-9">{{employer.email}}</span></div>
           </div>
         </span>
         <span class="col-md-9" *ngIf="!isLogged">Log in to see</span>
       </div>
-      <div class="row padding-5">
-        <span class="col-md-3 active-color"><b>Number of applied</b></span><span class="col-md-9">{{10}}</span>
+      <div class="row padding-5" *ngIf="applications">
+        <span class="col-md-3 active-color"><b>Number of applied</b></span><span class="col-md-9">{{applications.length}}</span>
       </div>
     </div>
 
   </div>
-  
+
 </div>
