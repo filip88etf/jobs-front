@@ -16,7 +16,10 @@
 
     <div class="row list">
       <div class="col-md-12">
-        <app-job-item *ngFor="let job of jobs" [job]="job">
+        <app-job-item *ngFor="let job of jobs"
+          [job]="job"
+          [applications]=applications
+          [loggedUser]="loggedUser">
         </app-job-item>
       </div>
     </div>
