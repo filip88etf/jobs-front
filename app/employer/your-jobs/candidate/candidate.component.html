@@ -1,12 +1,12 @@
 <div class="row candidate">
   <div class="col-md-12">
 
-    <div class="row justify-content-end additional-comment" *ngIf="additionalComment">
+    <div class="row justify-content-end additional-comment" *ngIf="candidate.application.comment">
       <div class="col-md-3">
         <span>Additional Comment</span>
       </div>
       <div class="col-md-9">
-        <span class="row">{{additionalComment}}</span>
+        <span class="row">{{candidate.application.comment}}</span>
       </div>
     </div>
 

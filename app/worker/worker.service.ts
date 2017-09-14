@@ -84,16 +84,15 @@ export class WorkerService extends BaseService<Worker> {
       );
   }
 
-  public getCandidates(params: any): Observable<Worker[]> {
-    let par: any = {};
-    let url: string;
-    par.page = params.page;
-    par.profession = 'Moler';
-    par.region = 'Beograd';
-    par.size = 10;
-    url = this.apiUrl + '/search/findByRegionContainingAndProfessionContaining?' + this.encodeUrl(par);
+  public getCandidates(applications: any[], page: number): Observable<Worker[]> {
+    let workerIds: number[] = [],
+        url = this.apiUrl + '/fetch?' + this.encodeUrl({page: page, size: this.pageSize});
 
-    return this.httpService.get(url).map(
+    for (let i = 0; i < applications.length; i++) {
+      workerIds.push(applications[i].workerId);
+    }
+
+    return this.httpService.post(url, workerIds, this.options).map(
       function success(response: Response) {
         return response.json();
       })

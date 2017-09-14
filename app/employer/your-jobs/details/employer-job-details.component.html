@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-md-8">
           <div class="row padding-5">
-            <span class="col-md-3 active-color"><b>Status</b></span><span class="col-md-9">{{job.status}}</span>
+            <span class="col-md-3 active-color"><b>Status</b></span><span class="col-md-9">{{job.status == "inprogress" ? "In Progress" : "Active"}}</span>
           </div>
           <div class="row padding-5">
             <span class="col-md-3 active-color"><b>Description</b></span><span class="col-md-9">{{job.description}}</span>
@@ -80,7 +80,8 @@
       </div>
     </div>
 
-    <app-candidate *ngFor="let candidate of candidates" [candidate]="candidate"
+    <app-candidate *ngFor="let candidate of candidates"
+                  [candidate]="candidate"
                   (onAccept)="candidateAccepted($event)">
     </app-candidate>
 

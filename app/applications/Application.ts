@@ -4,4 +4,5 @@ export class Application {
   workerId: string;
   jobId: string;
   comment: string;
+  status: string;
 }

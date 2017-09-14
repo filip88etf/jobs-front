@@ -1,15 +1,18 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 
 import { ToastService } from '../../../core/services/toast.service';
 import { Job } from '../../../jobs/Job';
+import { Application } from '../../../applications/Application';
 import { JobService } from '../../../jobs/job.service';
 import { Worker } from '../../../worker/Worker';
 import { WorkerService } from '../../../worker/worker.service';
 import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 import { EditJobComponent } from '../edit/edit-job.component';
 import { ReviewModalComponent } from '../review-modal/review-modal.component';
+import { ApplicationService } from '../../../applications/application.service';
 
 @Component({
   moduleId: module.id,
@@ -25,26 +28,27 @@ export class EmployerJobDetailsComponent implements OnInit {
   job: Job;
   candidates: Worker[];
   acceptedCandidates: Worker[] = [];
+  applications: Application[];
 
   constructor(private jobService: JobService, private route: ActivatedRoute, private toastService: ToastService,
-    private workerService: WorkerService, private router: Router, private modalService: NgbModal) {
+    private workerService: WorkerService, private router: Router, private modalService: NgbModal,
+    private applicationService: ApplicationService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.jobService.get(params['id']).subscribe(
-        (job) => {
-          this.job = job;
-          this.workerService.getAcceptedCandidates(job.id).subscribe(
-            (acceptedCandidates) => {
-              this.acceptedCandidates = acceptedCandidates;
-            }
-          );
-        });
-      this.workerService.getCandidates(params).subscribe(
-        (response: any) => {
-          this.candidates = response.content;
-          this.totalNumber = response.page.totalElements;
+      forkJoin([
+        this.jobService.get(params['id']),
+        this.applicationService.getByJobId(params['id'])
+      ]).subscribe(
+        (results) => {
+          this.job = results[0];
+          this.applications = results[1];
+          this.workerService.getCandidates(this.applications, params['page']).subscribe((candidates: any) => {
+            this.candidates = this.mapApplicationsOnCandidates(candidates.content);
+            this.totalNumber = candidates.page.totalElements;
+            this.setAcceptedCandidates();
+          });
         });
     });
   }
@@ -55,8 +59,12 @@ export class EmployerJobDetailsComponent implements OnInit {
   }
 
   public candidateAccepted(worker: Worker) {
-    this.job.status = 'In Progress';
-    this.acceptedCandidates.push(worker);
+    if (this.acceptedCandidates.length === 0) {
+      this.job.status = 'inprogress';
+      this.jobService.update(this.job).subscribe((response) => {
+        this.acceptedCandidates.push(worker);
+      });
+    }
   }
 
   public openCancelJobModal(): void {
@@ -106,4 +114,28 @@ export class EmployerJobDetailsComponent implements OnInit {
       (reason) => { }
     );
   }
+
+  private setAcceptedCandidates(): void {
+    for (let i = 0; i < this.applications.length; i++) {
+      if (this.applications[i]['status'] === 'accepted') {
+        for (let j = 0; j < this.candidates.length; j++) {
+          if (this.applications[i].workerId === this.candidates[j].id) {
+            this.acceptedCandidates.push(this.candidates[j]);
+          }
+        }
+      }
+    }
+  }
+
+  private mapApplicationsOnCandidates(candidates: any): Worker[] {
+    for (let i = 0; i < this.applications.length; i++) {
+      for (let j = 0; j < candidates.length; j++) {
+        if (this.applications[i].workerId === candidates[j].id) {
+          candidates[j].application = this.applications[i];
+        }
+      }
+    }
+    return candidates;
+  }
+
 }

@@ -21,8 +21,8 @@ export const TYPES = [
 ];
 
 export const GENDER_LIST = [
-  { value: 'Female', label: 'Female' },
-  { value: 'Male', label: 'Male' }
+  { value: 'female', label: 'Female' },
+  { value: 'male', label: 'Male' }
 ];
 
 export const PROFESSIONS = [

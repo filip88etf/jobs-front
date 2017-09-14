@@ -20,6 +20,7 @@ export class ApplicationService extends BaseService<Application> {
 
   getByJobId(jobId: string): Observable<Application> {
     let routeUrl: string = '/search/findByJobId?jobid=' + jobId;
+    if (!this.options) { this.initOptions(); }
 
     return this.httpService.get(this.apiUrl + routeUrl).map(
       (response: Response) => {
@@ -35,6 +36,7 @@ export class ApplicationService extends BaseService<Application> {
 
   getByWorkerId(workerId: string): Observable<Application> {
     let routeUrl: string = '/search/findByWorkerId?workerid=' + workerId;
+    if (!this.options) { this.initOptions(); }
 
     return this.httpService.get(this.apiUrl + routeUrl).map(
       (response: Response) => {

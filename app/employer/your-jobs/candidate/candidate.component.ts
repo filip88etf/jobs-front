@@ -1,9 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 import { Worker } from '../../../worker/Worker';
+import { ApplicationService } from '../../../applications/application.service';
+import { Application } from '../../../applications/Application';
 
 @Component({
   moduleId: module.id,
@@ -12,13 +14,16 @@ import { Worker } from '../../../worker/Worker';
   styleUrls: ['candidate.component.css']
 })
 
-export class CandidateComponent {
+export class CandidateComponent implements OnInit {
   @Input() candidate: Worker;
   @Output() onAccept: EventEmitter<Worker> = new EventEmitter<Worker>();
   isAccepted: boolean = false;
-  additionalComment: string = 'necu da radim za tu sicu ili daj dobar kes ili cao';
 
-  constructor(private router: Router, private modalService: NgbModal) {
+  constructor(private router: Router, private modalService: NgbModal, private applicationService: ApplicationService) {
+  }
+
+  public ngOnInit() {
+    this.isAccepted = this.candidate['application'].status === 'accepted';
   }
 
   public openWorkerDetails() {
@@ -32,8 +37,11 @@ export class CandidateComponent {
       'If you accept this worker your job will go in progress and won\'t be visible to public any more', 'Accept');
     modal.result.then(
       (result) => {
-        this.isAccepted = true;
-        this.onAccept.emit(this.candidate);
+        this.candidate['application'].status = 'accepted';
+        this.applicationService.update(this.candidate['application']).subscribe((response) => {
+          this.isAccepted = true;
+          this.onAccept.emit(this.candidate);
+        });
       },
       (reason) => { }
     );

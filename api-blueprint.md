@@ -36,7 +36,7 @@ This is the REST API writen in Java(spring).
             "firstName": "Filip",
             "lastName": "Djordjevic",
             "birthday": "06-08-1988",
-            "gender": "Male",
+            "gender": "male",
             "phone": "0601434835",
             "email": "eing.filip@gmail.com"
             "profession": "Electician",
