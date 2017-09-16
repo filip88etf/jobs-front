@@ -62,9 +62,9 @@ export class EmployerJobDetailsComponent implements OnInit {
     if (this.acceptedCandidates.length === 0) {
       this.job.status = 'inprogress';
       this.jobService.update(this.job).subscribe((response) => {
-        this.acceptedCandidates.push(worker);
       });
     }
+    this.acceptedCandidates.push(worker);
   }
 
   public openCancelJobModal(): void {

@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Worker } from '../../../worker/Worker';
 import { Helper } from '../../../helper';
+import { Review } from '../../../reviews/Review';
 import { NotificationService } from '../../../core/services/notification.service';
+import { ReviewService } from '../../../reviews/review.service';
 
 @Component({
   moduleId: module.id,
@@ -20,7 +22,7 @@ export class ReviewModalComponent implements OnInit {
   isSubmited: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService, private reviewService: ReviewService) {
   }
 
   ngOnInit() {
@@ -39,8 +41,10 @@ export class ReviewModalComponent implements OnInit {
     if (Helper.submitForm(this.reviewForm, reviews) && this.recomendationsDone()) {
       this.notificationService.startLoading();
       reviews = this.mapReviews(reviews);
-      this.activeModal.close(false);
+      this.reviewService.createReviews().subscribe(() => {
 
+      });
+      this.activeModal.close(false);
       this.notificationService.stopLoading();
     }
   }

@@ -40,9 +40,11 @@ export class JobDetailsComponent implements OnInit {
       this.jobService.get(params['id']).subscribe(
         (job: any) => {
           this.job = job;
-          this.userService.getUser().subscribe(
-            (user) => {
-              this.canApply(user);
+          this.userService.isLogged().subscribe(
+            (response) => {
+              if (response) {
+                this.canApply(response);
+              }
             }
           );
       });
