@@ -105,7 +105,7 @@ export class EmployerJobDetailsComponent implements OnInit {
   public openDoneJobModal(): void {
     let modal = this.modalService.open(ReviewModalComponent, {size: 'lg'});
 
-    modal.componentInstance.init(this.acceptedCandidates);
+    modal.componentInstance.init(this.acceptedCandidates, this.job.id);
     modal.result.then(
       (result) => {
         this.toastService.success('Your job is done!');

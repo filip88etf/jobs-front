@@ -18,7 +18,18 @@ export class ReviewService extends BaseService<Review> {
     super('reviews', http, authorizationService, notificationService, router);
   }
 
-  public createReviews(): Observable<Review[]> {
-    return Observable.of([]);
+  public createReviews(reviews: Object[]): Observable<Review[]> {
+    let routeUrl = this.apiUrl + '/bulk';
+    if (!this.options) this.initOptions();
+
+    return this.httpService.post(routeUrl, reviews, this.options).map(
+      (response) => {
+        return response.json();
+      }
+    ).catch(
+      function fail(error: any) {
+        return this.errorHandler(error, false);
+      }.bind(this)
+    );
   }
 }

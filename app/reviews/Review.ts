@@ -8,5 +8,5 @@ export class Review {
   jobId: string;
   jobResourceId: string;
   review: string;
-  isRecommended: string;
+  recommended: boolean;
 }

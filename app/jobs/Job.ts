@@ -8,5 +8,5 @@ export class Job {
   createdDate: string;
   modifiedDate: string;
   imageURL: string;
-  status: string;
+  status: string;         // [active, inprogress, done]
 }

@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Worker } from '../../../worker/Worker';
 import { Helper } from '../../../helper';
 import { Review } from '../../../reviews/Review';
+import { User } from '../../../user/User';
 import { NotificationService } from '../../../core/services/notification.service';
 import { ReviewService } from '../../../reviews/review.service';
+import { UserService } from '../../../user/user.service';
+import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   moduleId: module.id,
@@ -20,32 +24,41 @@ export class ReviewModalComponent implements OnInit {
   reviewForm: FormGroup;
   isUp: boolean[] = [];
   isSubmited: boolean = false;
+  loggedEmployer: User;
+  jobId: string;
 
-  constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal,
-    private notificationService: NotificationService, private reviewService: ReviewService) {
+  constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal, private userService: UserService,
+    private notificationService: NotificationService, private reviewService: ReviewService,
+    private toastService: ToastService, private router: Router) {
   }
 
   ngOnInit() {
     let inputs = this.createReviewFields();
     this.reviewForm = this.formBuilder.group(inputs);
+    this.userService.getUser().subscribe(
+      (loggedEmployer) => {
+        this.loggedEmployer = loggedEmployer;
+      }
+    );
   }
 
-  public init(acceptedCandidates: Worker[]) {
+  public init(acceptedCandidates: Worker[], jobId: string) {
     this.candidates = acceptedCandidates;
+    this.jobId = jobId;
   }
 
   public submit(): void {
-    let reviews = {};
+    let reviews: any = {};
     this.isSubmited = true;
 
     if (Helper.submitForm(this.reviewForm, reviews) && this.recomendationsDone()) {
       this.notificationService.startLoading();
-      reviews = this.mapReviews(reviews);
-      this.reviewService.createReviews().subscribe(() => {
-
+      this.reviewService.createReviews(this.mapReviews(reviews)).subscribe(() => {
+        this.activeModal.close(false);
+        this.notificationService.stopLoading();
+        this.toastService.success('Congrats, your job is done!');
+        this.router.navigate(['']);
       });
-      this.activeModal.close(false);
-      this.notificationService.stopLoading();
     }
   }
 
@@ -68,9 +81,13 @@ export class ReviewModalComponent implements OnInit {
 
     for (let review in reviewMap) {
       reviews.push({
-        id: this.candidates[i].id,
+        workerId: this.candidates[i].id,
+        workerUsername: this.candidates[i].username,
+        employerId: this.loggedEmployer.id,
+        employerUsername: this.loggedEmployer.username,
+        jobId: this.jobId,
         review: reviewMap[review],
-        recomanded: this.isUp[i++]
+        recomended: this.isUp[i++]
       });
     }
     return reviews;

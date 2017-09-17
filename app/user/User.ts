@@ -7,7 +7,7 @@ export class User {
   gender: string;
   phone: string;
   email: string;
-  type: string;
+  type: string;           // [worker, employer]
   username: string;
   password: string;
   fbId: string;

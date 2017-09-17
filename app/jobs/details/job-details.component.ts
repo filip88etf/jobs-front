@@ -23,8 +23,9 @@ import { ApplicationService } from '../../applications/application.service';
 export class JobDetailsComponent implements OnInit {
   job: Job;
   employer: Employer;
-  applications: Application[];
+  applications: Application[] = [];
   isApplied: boolean;
+  isAccepted: boolean;
   loggedUser: User;
   profileLink: string;
   isLogged: boolean = false;
@@ -42,16 +43,12 @@ export class JobDetailsComponent implements OnInit {
           this.job = job;
           this.userService.isLogged().subscribe(
             (response) => {
-              if (response) {
-                this.canApply(response);
-              }
+              if (response) { this.canApply(response); }
             }
           );
       });
       this.userService.isLogged().subscribe(
-        (response) => {
-          this.isLogged = !!response;
-        }
+        (response) => { this.isLogged = !!response; }
       );
       this.userService.getDetails(params['username']).subscribe(
         (user: any) => {
@@ -89,6 +86,10 @@ export class JobDetailsComponent implements OnInit {
 
   private canApply(user: any): void {
     this.loggedUser = user;
+    if (this.loggedUser.type === 'employer') {
+      this.isQualified = false;
+      return;
+    }
     for (let i = 0; i < this.loggedUser['profession'].length; i++) {
       if (this.job.profession === this.loggedUser['profession']) {
         this.isQualified = true;
@@ -102,6 +103,7 @@ export class JobDetailsComponent implements OnInit {
         for (let i = 0; i < this.applications.length; i++) {
           if (this.applications[i]['workerId'] === this.loggedUser.id) {
             this.isApplied = true;
+            this.isAccepted = this.applications[i].status === 'accepted';
           }
         }
       }

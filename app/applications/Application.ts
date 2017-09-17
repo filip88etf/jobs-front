@@ -4,5 +4,5 @@ export class Application {
   workerId: string;
   jobId: string;
   comment: string;
-  status: string;
+  status: string;   // [pending,accepted]
 }

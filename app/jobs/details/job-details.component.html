@@ -26,22 +26,30 @@
       <div class="row padding-5">
         <span class="col-md-3 active-color"><b>Description</b></span><span class="col-md-9">{{job.description}}</span>
       </div>
+      <div class="row padding-5">
+        <span class="col-md-3 active-color"><b>Number of applied</b></span><span class="col-md-9">{{applications.length}}</span>
+      </div>
       <div class="row padding-5" *ngIf="employer">
         <span class="col-md-3 active-color"><b>Posted by</b></span>
-        <span class="col-md-9" *ngIf="isLogged">
-          <div class="job-details-user">
-            <img [src]="employer.imageURL" style="margin-top: -15px;" width="100px" height="100px" (click)="openEmployerDetails()"class="user-on-job"/>
-          </div>
-          <div class="job-details-user">
-            <div class="row"><span class="col-md-3 active-color">Name</span><span class="col-md-9">{{employer.firstName}} {{employer.lastName}}</span></div>
-            <div class="row"><span class="col-md-3 active-color">Phone</span><span class="col-md-9">{{employer.phone}}</span></div>
-            <div class="row"><span class="col-md-3 active-color">Email</span><span class="col-md-9">{{employer.email}}</span></div>
+        <span class="col-md-9 posted-by" *ngIf="isLogged">
+          <div class="employer-data">
+            <div class="employer-img">
+              <img [src]="employer.imageURL" width="100px" height="100px" (click)="openEmployerDetails()"class="user-on-job"/>
+            </div>
+            <div class="employer-info">
+              <div class="row">
+                <span class="col-md-4 active-color">Name</span><span class="col-md-8">{{employer.firstName}} {{employer.lastName}}</span>
+              </div>
+              <div class="row" *ngIf="isAccepted">
+                <span class="col-md-4 active-color">Phone</span><span class="col-md-8">{{employer.phone}}</span>
+              </div>
+              <div class="row">
+                <span class="col-md-4 active-color">Posted jobs</span><span class="col-md-8">10</span>
+              </div>
+            </div>
           </div>
         </span>
         <span class="col-md-9" *ngIf="!isLogged">Log in to see</span>
-      </div>
-      <div class="row padding-5" *ngIf="applications">
-        <span class="col-md-3 active-color"><b>Number of applied</b></span><span class="col-md-9">{{applications.length}}</span>
       </div>
     </div>
 
