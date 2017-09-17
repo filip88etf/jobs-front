@@ -69,7 +69,7 @@ export class FacebookEmployerComponent implements OnInit {
 
   authorizeAndLogin(username: string, facebookAccessToken: string) {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
-      function authorizeSuccess (result: any) {
+      (result: any) => {
         this.employerService.getEmployer().subscribe(
           (result: any) => {
             this.employerService.getEmployer().subscribe((employer: any) => { this.userService.setUser(employer); });
@@ -77,7 +77,7 @@ export class FacebookEmployerComponent implements OnInit {
           },
           (error: any) => { console.log(error); }
         );
-      }.bind(this),
+      }
     );
   }
 

@@ -34,17 +34,17 @@ export class LoginComponent implements OnInit {
   login (): void {
     this.badCredentials = false;
     this.authorizationService.authorize(this.username, this.password).subscribe(
-      function authorizeSuccess (result: any) {
+      (result: any) => {
         this.userService.getByUsername(this.username).subscribe(
           (user: any) => { this.router.navigate([user.type + '/profile']); },
           (error: any) => { console.log(error); }
         );
-      }.bind(this),
-      function authorizeFail (error: any) {
+      },
+      (error: any) => {
         if (error.status === 400) {
           this.badCredentials = true;
         }
-      }.bind(this)
+      }
     );
   }
 

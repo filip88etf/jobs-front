@@ -40,7 +40,8 @@ export class JobItemComponent {
   }
 
   public cancelJob(): void {
-    this.jobService.delete(this.job.id).subscribe(
+    this.job.status = 'canceled';
+    this.jobService.update(this.job).subscribe(
       (response: any) => {
         this.toastService.success('Job is canceld!');
         this.onCancel.emit(this.job.id);

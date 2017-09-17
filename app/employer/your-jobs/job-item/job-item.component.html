@@ -28,7 +28,7 @@
             </button>
           </div>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="job.status !== 'inprogress'">
           <div class="col-md-12 padding-5">
             <button (click)="openCancelJobModal()" class="btn btn-outline-secondary float-right">
               <span class="fa fa-ban"></span>

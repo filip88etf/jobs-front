@@ -49,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
       return;
 
     this.userService.verifyPassword(controls['oldPassword'].value).subscribe(
-      function success(isOk: boolean) {
+      (isOk: boolean) => {
         if (isOk) {
           let group = <FormGroup> controls['newPasswordGroup'];
 
@@ -63,8 +63,8 @@ export class ChangePasswordComponent implements OnInit {
         } else {
           this.wrongPassword = true;
         }
-      }.bind(this),
-      function fail(error: any) {
+      },
+      (error: any) => {
         console.log(error);
       }
     );

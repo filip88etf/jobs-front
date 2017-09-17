@@ -21,13 +21,13 @@ export class JobService extends BaseService<Job> {
   public create(entity: Job): Observable<Job> {
     return this.httpService.post(this.apiUrl, entity, this.options)
       .map(
-        function success (response: Response) {
+        (response: Response) => {
           return response.json();
         })
       .catch(
-        function fail (error: Error) {
+        (error: Error) => {
           return this.errorHandler(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -38,13 +38,13 @@ export class JobService extends BaseService<Job> {
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
-        function success (response: Response) {
+        (response: Response) => {
           return response.json();
         })
       .catch(
-        function fail (error: any) {
+        (error: any) => {
           return this.errorHandler(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -55,13 +55,13 @@ export class JobService extends BaseService<Job> {
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
-        function success (response: Response) {
+        (response: Response) => {
           return response.json();
         })
       .catch(
-        function fail (error: any) {
+        (error: any) => {
           return this.errorHandler(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -70,16 +70,26 @@ export class JobService extends BaseService<Job> {
 
     return this.http.post(this.apiUrl + routeUrl, picture, this.options)
       .map(
-        function success(response: any): boolean {
+        (response: any) => {
           this.notificationService.stopLoading();
           return response['_body'];
-        }.bind(this)
+        }
       )
       .catch(
-        function fail(error: any): any {
+        (error: any) => {
           this.notificationService.stopLoading();
           return this.errorHandler(error);
         }
       );
+  }
+
+  public getAppliedJobs(applications: any[], page: number): Observable<Job[]> {
+    let ids: string[] = [];
+
+    for (let i = 0; i < applications.length; i++) {
+      ids.push(applications[i].jobId);
+    }
+
+    return this.fetch(ids, page);
   }
 }

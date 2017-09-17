@@ -35,16 +35,16 @@ export class EmployerService extends BaseService<Employer> {
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
-        function success(response: Response): any {
+        (response: Response) => {
           this.employer = this.employer || new Employer();
           Object.assign(this.employer, response.json());
           localStorage.setItem('username', this.employer.username);
           return this.employer;
-      }.bind(this))
+      })
       .catch(
-        function fail(error: any): any {
+        (error: any) => {
           return this.errorHandler(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -53,13 +53,13 @@ export class EmployerService extends BaseService<Employer> {
 
     return this.http.post(this.apiUrl, user, options)
       .map(
-        function success(response: Response): any {
+        (response: Response) => {
           return response.json();
       })
       .catch(
-        function fail(error: any): any {
+        (error: any) => {
           return this.errorHandler(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -69,13 +69,13 @@ export class EmployerService extends BaseService<Employer> {
     this.notificationService.startLoading();
     return this.http.post(this.apiUrl + routeUrl, picture, this.options)
       .map(
-        function success(response: any): boolean {
+        (response: any) => {
           this.notificationService.stopLoading();
           return response['_body'];
-        }.bind(this)
+        }
       )
       .catch(
-        function fail(error: any): any {
+        (error: any) => {
           this.notificationService.stopLoading();
           return this.errorHandler(error);
         }

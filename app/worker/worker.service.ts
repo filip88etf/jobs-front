@@ -33,11 +33,11 @@ export class WorkerService extends BaseService<Worker> {
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
-        function success(response: Response): any {
+        (response: Response) => {
           let worker = new Worker();
           Object.assign(worker, response.json());
           return worker;
-      }.bind(this))
+      })
       .catch(
         function fail(error: any): any {
           console.log(error);
@@ -85,22 +85,13 @@ export class WorkerService extends BaseService<Worker> {
   }
 
   public getCandidates(applications: any[], page: number): Observable<Worker[]> {
-    let workerIds: number[] = [],
-        url = this.apiUrl + '/fetch?' + this.encodeUrl({page: page, size: this.pageSize});
+    let ids: string[] = [];
 
     for (let i = 0; i < applications.length; i++) {
-      workerIds.push(applications[i].workerId);
+      ids.push(applications[i].workerId);
     }
 
-    return this.httpService.post(url, workerIds, this.options).map(
-      function success(response: Response) {
-        return response.json();
-      })
-    .catch(
-      function fail(error: any) {
-        return this.errorHandler(error, false);
-      }.bind(this)
-    );
+    return this.fetch(ids, page);
   }
 
   public getAcceptedCandidates(jobId: string): Observable<Worker[]> {

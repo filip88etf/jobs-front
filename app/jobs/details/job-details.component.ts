@@ -86,14 +86,14 @@ export class JobDetailsComponent implements OnInit {
 
   private canApply(user: any): void {
     this.loggedUser = user;
-    if (this.loggedUser.type === 'employer') {
-      this.isQualified = false;
-      return;
-    }
-    for (let i = 0; i < this.loggedUser['profession'].length; i++) {
-      if (this.job.profession === this.loggedUser['profession']) {
-        this.isQualified = true;
+    if (this.loggedUser.type === 'worker') {
+      for (let i = 0; i < this.loggedUser['profession'].length; i++) {
+        if (this.job.profession === this.loggedUser['profession']) {
+          this.isQualified = true;
+        }
       }
+    } else {
+      this.isQualified = false;
     }
 
     this.applicationService.getByJobId(this.job['id']).subscribe(

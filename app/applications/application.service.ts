@@ -24,7 +24,8 @@ export class ApplicationService extends BaseService<Application> {
 
     return this.httpService.get(this.apiUrl + routeUrl).map(
       (response: Response) => {
-        return response.json().content;
+        let content = response.json().content[0].workerId ? response.json().content : [];
+        return content;
       }
     )
     .catch(
@@ -40,7 +41,8 @@ export class ApplicationService extends BaseService<Application> {
 
     return this.httpService.get(this.apiUrl + routeUrl).map(
       (response: Response) => {
-        return response.json().content;
+        let content = response.json().content[0].workerId ? response.json().content : [];
+        return content;
       }
     )
     .catch(

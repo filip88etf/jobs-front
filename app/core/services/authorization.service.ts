@@ -32,16 +32,16 @@ export class AuthorizationService {
 
     return this.http.post(ACCESS_TOKEN_URL, this.encodeUrl(data), this.options)
       .map(
-        function success(response: Response): any {
+        (response: Response) => {
           this.notificationService.stopLoading();
           return this.getAuthData(response.json());
-        }.bind(this)
+        }
       )
       .catch(
-        function fail(error: any): any {
+        (error: any) => {
           this.notificationService.stopLoading();
           return Observable.throw(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -59,16 +59,16 @@ export class AuthorizationService {
 
     return this.http.post(ACCESS_TOKEN_URL.replace('oauth/token', 'users/facebook/login'), data, options)
       .map(
-        function success(response: any): any {
+        (response: any) => {
           this.notificationService.stopLoading();
           return this.getAuthData(response.json());
-        }.bind(this)
+        }
       )
       .catch(
-        function fail(error: any): any {
+        (error: any) => {
           this.notificationService.stopLoading();
           return Observable.throw(error);
-        }.bind(this)
+        }
       );
   }
 
@@ -82,7 +82,7 @@ export class AuthorizationService {
 
     return this.http.post(ACCESS_TOKEN_URL, this.encodeUrl(data), this.options)
       .map(
-        function success(response: Response): any {
+        (response: Response) => {
           return this.getAuthData(response.json());
         }
       );

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Job } from '../../jobs/Job';
 import { JobService } from '../../jobs/job.service';
 import { ApplicationService } from '../../applications/application.service';
 import { WorkerService } from '../worker.service';
@@ -13,6 +14,7 @@ import { Application } from '../../applications/Application';
 })
 
 export class AppliedJobsComponent implements OnInit {
+  jobs: Job[];
   page: number = 1;
   totalNumber: number = 0;
   size: number = 10;
@@ -25,6 +27,12 @@ export class AppliedJobsComponent implements OnInit {
     this.workerService.getWorker().subscribe((worker) => {
       this.applicationService.getByWorkerId(worker.id).subscribe(
         (applications: any) => {
+          this.jobService.getAppliedJobs(applications, 1).subscribe(
+            (response: any) => {
+              this.jobs = response.content;
+              this.totalNumber = response.page.totalElements;
+            }
+          );
         }
       );
     });

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { Worker } from '../../../worker/Worker';
 import { Helper } from '../../../helper';
@@ -29,7 +28,7 @@ export class ReviewModalComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal, private userService: UserService,
     private notificationService: NotificationService, private reviewService: ReviewService,
-    private toastService: ToastService, private router: Router) {
+    private toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -56,8 +55,6 @@ export class ReviewModalComponent implements OnInit {
       this.reviewService.createReviews(this.mapReviews(reviews)).subscribe(() => {
         this.activeModal.close(false);
         this.notificationService.stopLoading();
-        this.toastService.success('Congrats, your job is done!');
-        this.router.navigate(['']);
       });
     }
   }
@@ -81,10 +78,10 @@ export class ReviewModalComponent implements OnInit {
 
     for (let review in reviewMap) {
       reviews.push({
-        workerId: this.candidates[i].id,
-        workerUsername: this.candidates[i].username,
-        employerId: this.loggedEmployer.id,
-        employerUsername: this.loggedEmployer.username,
+        toId: this.candidates[i].id,
+        toUsername: this.candidates[i].username,
+        fromId: this.loggedEmployer.id,
+        fromUsername: this.loggedEmployer.username,
         jobId: this.jobId,
         review: reviewMap[review],
         recomended: this.isUp[i++]

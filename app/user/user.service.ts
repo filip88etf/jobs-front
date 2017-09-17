@@ -57,7 +57,7 @@ export class UserService extends BaseService<User> {
 
     return this.http.get(this.apiUrl + routeUrl, this.options)
       .map(
-        function success(response: Response): any {
+        (response: Response) => {
           let user = response.json();
 
           user = Object.assign(user.type === 'worker' ? new Worker() : new Employer(), user);

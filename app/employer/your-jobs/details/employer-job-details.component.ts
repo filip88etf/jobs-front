@@ -81,7 +81,8 @@ export class EmployerJobDetailsComponent implements OnInit {
   }
 
   public cancelJob(): void {
-    this.jobService.delete(this.job.id).subscribe(
+    this.job.status = 'canceled';
+    this.jobService.update(this.job).subscribe(
       (response: any) => {
         this.toastService.success('Job is canceld!');
         this.router.navigate(['employer/jobs', {page: 1}]);
@@ -108,8 +109,11 @@ export class EmployerJobDetailsComponent implements OnInit {
     modal.componentInstance.init(this.acceptedCandidates, this.job.id);
     modal.result.then(
       (result) => {
-        this.toastService.success('Your job is done!');
-        this.router.navigate(['employer/jobs', {page: 1}]);
+        this.job.status = 'done';
+        this.jobService.update(this.job).subscribe(() => {
+          this.toastService.success('Congrats, your job is done!');
+          this.router.navigate(['employer/jobs', {page: 1}]);
+        });
       },
       (reason) => { }
     );

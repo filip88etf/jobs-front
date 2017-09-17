@@ -47,13 +47,13 @@ export class BaseService <T> {
     filters.size = this.pageSize;
     url = this.apiUrl + '/search?' + this.encodeUrl(filters);
     return this.httpService.get(url).map(
-      function success(response: Response) {
+      (response: Response) => {
         return response.json();
       })
     .catch(
-      function fail(error: any) {
+      (error: any) => {
         return this.errorHandler(error, false);
-      }.bind(this)
+      }
     );
   }
 
@@ -63,38 +63,53 @@ export class BaseService <T> {
 
     return this.httpService.post(this.apiUrl, entity, options)
       .map(
-        function success (response: Response) {
+        (response: Response) => {
           return response.json();
         })
       .catch(
-        function fail (error: Error) {
+        (error: Error) => {
           return this.errorHandler(error);
-        }.bind(this)
+        }
       );
   }
 
   public update(entity: T): Observable<T> {
     this.mapEntityForBackend(entity);
     return this.httpService.patch(this.apiUrl + '/' + entity['id'], entity, this.options).map(
-      function success (response: Response) {
+      (response: Response) => {
         return response.json();
       })
     .catch(
-      function fail (error: any) {
+      (error: any) => {
         return this.errorHandler(error);
-      }.bind(this)
+      }
     );
   }
 
   public delete(id: string): Observable<boolean> {
     return this.httpService.delete(this.apiUrl + '/' + id, this.options).map(
-      function success (response: Response) {
+      (response: Response) => {
         return response.json();
       })
     .catch(
-      function fail (error: any) {
+      (error: any) => {
         return this.errorHandler(error);
-      }.bind(this)
+      }
+    );
+  }
+
+  public fetch(ids: string[], page: number) {
+    let url = this.apiUrl + '/fetch?' + this.encodeUrl({page: page, size: this.pageSize});
+    this.initOptions();
+
+    return this.httpService.post(url, ids, this.options).map(
+      (response: Response) => {
+        return response.json();
+      })
+    .catch(
+      (error: any) => {
+        return this.errorHandler(error, false);
+      }
     );
   }
 

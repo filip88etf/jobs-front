@@ -34,7 +34,7 @@
           <div class="row action-button justify-content-end">
             <button class="btn btn-outline-secondary" (click)="openEditJobModal()"><span class="fa fa-pencil-square-o"></span> Edit</button>
           </div>
-          <div class="row action-button justify-content-end">
+          <div class="row action-button justify-content-end" *ngIf="job.status !== 'inprogress'">
             <button class="btn btn-outline-secondary" (click)="openCancelJobModal()"><span class="fa fa-ban"></span> Cancel</button>
           </div>
         </div>
