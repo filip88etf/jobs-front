@@ -15,11 +15,11 @@ import { NotificationService } from '../core/services/notification.service';
 export class ReviewService extends BaseService<Review> {
   constructor (private http: Http, authorizationService: AuthorizationService,
     notificationService: NotificationService, router: Router) {
-    super('reviews', http, authorizationService, notificationService, router);
+    super('', http, authorizationService, notificationService, router);
   }
 
   public createReviews(reviews: Object[]): Observable<Review[]> {
-    let routeUrl = this.apiUrl + '/bulk';
+    let routeUrl = this.apiUrl + '/wreviews/bulk';
     if (!this.options) this.initOptions();
 
     return this.httpService.post(routeUrl, reviews, this.options).map(
@@ -27,9 +27,25 @@ export class ReviewService extends BaseService<Review> {
         return response.json();
       }
     ).catch(
-      function fail(error: any) {
+      (error: any) => {
         return this.errorHandler(error, false);
-      }.bind(this)
+      }
+    );
+  }
+
+  public getWorkerReviews(workerUsername: string): Observable<Review[]> {
+    let routeUrl = this.apiUrl + '/wreviews/search/findByWorkerUsername?workerusername=' + workerUsername;
+    if (!this.options) this.initOptions();
+
+    return this.httpService.get(routeUrl, this.options).map(
+      (response) => {
+        let content = response.json().content[0].workerId ? response.json().content : [];
+        return content;
+      }
+    ).catch(
+      (error: any) => {
+        return this.errorHandler(error, false);
+      }
     );
   }
 }

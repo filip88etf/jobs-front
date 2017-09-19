@@ -22,6 +22,6 @@ export class AppliedJobComponent {
   }
 
   public openJobDetails(): void {
-    this.router.navigate(['employer/job', { id: this.job.id, page: 1 }]);
+    this.router.navigate(['jobs/details', { id: this.job.id, username: this.job.username }]);
   }
 }

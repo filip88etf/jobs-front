@@ -23,6 +23,7 @@ import { SearchMenuComponent } from './search-menu/search-menu.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DropDownMenuComponent } from './drop-down-menu/drop-down-menu.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   imports: [
@@ -33,13 +34,13 @@ import { DropDownMenuComponent } from './drop-down-menu/drop-down-menu.component
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent, SearchMenuComponent,
     InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent, DropDownMenuComponent,
     InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent, UserMenuComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent, ReviewComponent
   ],
   exports: [
     MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent, SearchMenuComponent,
     InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule, UserMenuComponent,
-    DropDownMenuComponent, ChangePasswordComponent, ImageCropperComponent
+    DropDownMenuComponent, ChangePasswordComponent, ImageCropperComponent, ReviewComponent
   ],
   entryComponents: [
     PictureCropperComponent, ChangePasswordComponent

@@ -78,13 +78,13 @@ export class ReviewModalComponent implements OnInit {
 
     for (let review in reviewMap) {
       reviews.push({
-        toId: this.candidates[i].id,
-        toUsername: this.candidates[i].username,
-        fromId: this.loggedEmployer.id,
-        fromUsername: this.loggedEmployer.username,
+        workerId: this.candidates[i].id,
+        workerUsername: this.candidates[i].username,
+        employerId: this.loggedEmployer.id,
+        employerUsername: this.loggedEmployer.username,
         jobId: this.jobId,
         review: reviewMap[review],
-        recomended: this.isUp[i++]
+        recommended: this.isUp[i++]
       });
     }
     return reviews;

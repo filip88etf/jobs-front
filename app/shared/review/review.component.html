@@ -1,0 +1,18 @@
+<div class="row padding-10">
+  <div class="col-md-12 review-item">
+
+    <div class="row">
+      <div class="col-md-12">
+        <span class="fa" [ngClass]="{'fa-thumbs-up' : review.recommended, 'fa-thumbs-down' : !review.recommended}"></span>
+        <span>by {{review.fullName}} Marko Nikolic</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <span>{{review.review}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

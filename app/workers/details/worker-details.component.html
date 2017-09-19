@@ -43,5 +43,14 @@
     </div>
   </div>
 
+  <div class="row padding-10">
+    <div class="col-md-12">
+      <h3 class="active-color">Reviews</h3>
+    </div>
+  </div>
+
+  <div>
+    <app-review *ngFor="let review of reviews" [review]="review"></app-review>
+  </div>
 
 </div>
