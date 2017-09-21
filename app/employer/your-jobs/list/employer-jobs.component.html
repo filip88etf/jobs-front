@@ -19,18 +19,6 @@
   </div>
 
   <div *ngIf="totalNumber">
-    <div class="row top-pagination">
-      <div class="col-md-12 padding-top-15">
-        <ngb-pagination (pageChange)="pageChanged($event)"
-                        [rotate]="true"
-                        [pageSize]="size"
-                        [maxSize]='10'
-                        [collectionSize]="totalNumber"
-                        [(page)]="page"
-                        [directionLinks]="false">
-        </ngb-pagination>
-      </div>
-    </div>
 
     <app-your-job *ngFor="let job of jobs" [job]="job"
                   (onCancel)="removeJobFromList($event)">
@@ -48,6 +36,7 @@
         </ngb-pagination>
       </div>
     </div>
+    
   </div>
 
   <div *ngIf="!totalNumber">

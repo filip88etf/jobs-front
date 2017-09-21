@@ -14,7 +14,8 @@
     </nav>
     <nav (click)="jobs()"
          class="menu-item cl-effect-4">
-      <a [ngClass]="{'active-menu-item' : active==2}">Your Jobs</a>
+      <a *ngIf="user.type === 'employer'" [ngClass]="{'active-menu-item' : active==2}">My Jobs</a>
+      <a *ngIf="user.type === 'worker'" [ngClass]="{'active-menu-item' : active==2}">Applied Jobs</a>
     </nav>
     <nav (click)="searchWorkers()"
          class="menu-item cl-effect-4">

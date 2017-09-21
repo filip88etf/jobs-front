@@ -27,7 +27,7 @@ export class CandidateComponent implements OnInit {
   }
 
   public openWorkerDetails() {
-    this.router.navigate(['workers/details', { username: this.candidate.username }]);
+    this.router.navigate(['workers/details', { username: this.candidate.username, page: 1 }]);
   }
 
   public accept() {

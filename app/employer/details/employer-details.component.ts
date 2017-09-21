@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { User } from '../../user/User';
 import { UserService } from '../../user/user.service';
+import { Review } from '../../reviews/Review';
+import { ReviewService } from '../../reviews/review.service';
 
 @Component({
   moduleId: module.id,
@@ -13,8 +15,9 @@ import { UserService } from '../../user/user.service';
 
 export class EmployerDetailsComponent implements OnInit {
   employer: User;
+  reviews: Review[];
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private reviewService: ReviewService) {
   }
 
   ngOnInit() {
@@ -22,7 +25,11 @@ export class EmployerDetailsComponent implements OnInit {
       this.userService.getByUsername(params['username']).subscribe(
         (user: User) => {
           this.employer = user;
-          console.log(this.employer);
+        }
+      );
+      this.reviewService.getEmployerReviews(params['username']).subscribe(
+        (reviews: any) => {
+          this.reviews = reviews;
         }
       );
     });

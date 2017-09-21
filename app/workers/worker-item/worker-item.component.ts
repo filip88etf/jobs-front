@@ -18,7 +18,7 @@ export class WorkerItemComponent {
   }
 
   public openWorkerDetails() {
-    this.router.navigate(['workers/details', { username: this.worker.username}]);
+    this.router.navigate(['workers/details', { username: this.worker.username, page: 1 }]);
   }
 
   public report() {

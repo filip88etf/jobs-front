@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
 
 import { ReviewService } from '../../reviews/review.service';
 import { Review } from '../../reviews/Review';
 import { WorkerService } from '../../worker/worker.service';
 import { UserService } from '../../user/user.service';
+import { Worker } from '../../worker/Worker';
 
 @Component({
   moduleId: module.id,
@@ -20,8 +21,11 @@ export class WorkerDetailsComponent implements OnInit {
   profileLink: string;
   isLogged: boolean;
   reviews: Review[];
+  page: number = 1;
+  totalNumber: number = 0;
+  size: number = 10;
 
-  constructor(private facebookService: FacebookService, private workerService: WorkerService,
+  constructor(private facebookService: FacebookService, private workerService: WorkerService, private router: Router,
     private route: ActivatedRoute, private userService: UserService, private reviewService: ReviewService) {
   }
 
@@ -30,12 +34,13 @@ export class WorkerDetailsComponent implements OnInit {
       this.workerService.getDetails(params['username']).subscribe(
         (worker: any) => {
           this.worker = worker;
-          this.reviewService.getWorkerReviews(params['username']).subscribe(
-            (reviews: any) => {
-              this.reviews = reviews;
-            }
-          );
       });
+      this.reviewService.getWorkerReviews(params).subscribe(
+        (response: any) => {
+          this.reviews = response.content;
+          this.totalNumber = response.page.totalElements;
+        }
+      );
     });
 
     this.userService.isLogged().subscribe(
@@ -52,5 +57,10 @@ export class WorkerDetailsComponent implements OnInit {
     });
 
     this.profileLink = location.href;
+  }
+
+  public pageChanged(pageNumber: number) {
+    this.page = pageNumber;
+    this.router.navigate(['workers/details', { username: this.worker.username, page: this.page }]);
   }
 }

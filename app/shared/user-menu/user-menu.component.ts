@@ -15,7 +15,7 @@ const NOACTIVE = -1, PROFILE = 1, YOURJOBS = 2, WORKERS = 3, JOBS = 4;
 })
 
 export class UserMenuComponent implements OnInit {
-  private active: number = 1;
+  private active: number = -1;
   private user: User;
   private userRoute: Route;
   private jobsRoute: Route;

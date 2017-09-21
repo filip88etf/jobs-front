@@ -12,6 +12,7 @@ import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { ProfileComponent } from '../user/profile/profile.component';
 import { UserComponent } from '../user/user/user.component';
 import { AppliedJobComponent } from './applied-job/applied-job.component';
+import { RequestReviewModal } from './request-review/request-review.modal';
 
 export const workerRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'profile' },
@@ -27,8 +28,9 @@ export const workerRoutes: Routes = [
 @NgModule({
   imports: [ FormsModule, ReactiveFormsModule, SharedModule, CommonModule,
     RouterModule.forChild(workerRoutes), UserModule, NgbModule ],
-  declarations: [AppliedJobComponent, EditWorkerComponent, AppliedJobsComponent],
-  exports: [EditWorkerComponent]
+  declarations: [AppliedJobComponent, EditWorkerComponent, AppliedJobsComponent, RequestReviewModal],
+  exports: [EditWorkerComponent],
+  entryComponents: [RequestReviewModal]
 })
 
 export class WorkerModule {}

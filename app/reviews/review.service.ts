@@ -19,7 +19,7 @@ export class ReviewService extends BaseService<Review> {
   }
 
   public createReviews(reviews: Object[]): Observable<Review[]> {
-    let routeUrl = this.apiUrl + '/wreviews/bulk';
+    let routeUrl = this.apiUrl + '/workers/reviews/bulk';
     if (!this.options) this.initOptions();
 
     return this.httpService.post(routeUrl, reviews, this.options).map(
@@ -33,14 +33,28 @@ export class ReviewService extends BaseService<Review> {
     );
   }
 
-  public getWorkerReviews(workerUsername: string): Observable<Review[]> {
-    let routeUrl = this.apiUrl + '/wreviews/search/findByWorkerUsername?workerusername=' + workerUsername;
+  public getWorkerReviews(params: Object): Observable<Review[]> {
+    let routeUrl = this.apiUrl + '/workers/reviews?' + this.encodeUrl(params) + '&size=' + this.pageSize;
     if (!this.options) this.initOptions();
 
     return this.httpService.get(routeUrl, this.options).map(
       (response) => {
-        let content = response.json().content[0].workerId ? response.json().content : [];
-        return content;
+        return response.json();
+      }
+    ).catch(
+      (error: any) => {
+        return this.errorHandler(error, false);
+      }
+    );
+  }
+
+  public getEmployerReviews(username: string): Observable<Review[]> {
+    let routeUrl = this.apiUrl + '/employers/reviews?username=' + username;
+    if (!this.options) this.initOptions();
+
+    return this.httpService.get(routeUrl, this.options).map(
+      (response) => {
+        return response.json();
       }
     ).catch(
       (error: any) => {
