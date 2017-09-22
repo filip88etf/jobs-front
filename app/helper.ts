@@ -76,4 +76,17 @@ export class Helper {
       day: date.getDate()
     };
   }
+
+  static getStatus(status: string) {
+    let result: string;
+
+    switch (status) {
+      case 'active': result = 'Active'; break;
+      case 'inprogress': result = 'In Progress'; break;
+      case 'done': result = 'Done'; break;
+      case 'canceled': result = 'Canceled'; break;
+    }
+
+    return result;
+  }
 }

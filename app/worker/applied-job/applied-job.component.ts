@@ -24,4 +24,8 @@ export class AppliedJobComponent {
   public openJobDetails(): void {
     this.router.navigate(['jobs/details', { id: this.job.id, username: this.job.username }]);
   }
+
+  public getStatus(): string {
+    return Helper.getStatus(this.job.status);
+  }
 }

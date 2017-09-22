@@ -66,4 +66,8 @@ export class JobItemComponent {
   public openJobDetails(): void {
     this.router.navigate(['employer/job', { id: this.job.id, page: 1 }]);
   }
+
+  public getStatus(): string {
+    return Helper.getStatus(this.job.status);
+  }
 }

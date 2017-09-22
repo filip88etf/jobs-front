@@ -155,3 +155,47 @@
 .float-right {
   float: right !important;
 }
+
+// jobs status labels
+.job-label {
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.job-label-active {
+  @extend .job-label;
+  background-color: $job-active-color;
+}
+
+.job-label-inprogress {
+  @extend .job-label;
+  background-color: $job-inprogress-color;
+}
+
+.job-label-done {
+  @extend .job-label;
+  background-color: $job-done-color;
+}
+
+.job-label-canceled {
+  @extend .job-label;
+  background-color: $job-canceled-color;
+}
+
+// border based on status
+.border-active {
+  border-bottom: 2px solid $job-active-color;
+}
+
+.border-inprogress {
+  border-bottom: 2px solid $job-inprogress-color;
+}
+
+.border-done {
+  border-bottom: 2px solid $job-done-color;
+}
+
+.border-canceled {
+  border-bottom: 2px solid $job-canceled-color;
+}

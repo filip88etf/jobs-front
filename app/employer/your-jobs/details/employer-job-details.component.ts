@@ -22,7 +22,7 @@ import { ApplicationService } from '../../../applications/application.service';
 })
 
 export class EmployerJobDetailsComponent implements OnInit {
-  totalNumber: number;
+  totalNumber: number = 0;
   size: number = 10;
   page: number = 1;
   job: Job;
@@ -44,11 +44,13 @@ export class EmployerJobDetailsComponent implements OnInit {
         (results) => {
           this.job = results[0];
           this.applications = results[1];
-          this.workerService.getCandidates(this.applications, params['page']).subscribe((candidates: any) => {
-            this.candidates = this.mapApplicationsOnCandidates(candidates.content);
-            this.totalNumber = candidates.page.totalElements;
-            this.setAcceptedCandidates();
-          });
+          if (this.applications.length) {
+            this.workerService.getCandidates(this.applications, params['page']).subscribe((candidates: any) => {
+              this.candidates = this.mapApplicationsOnCandidates(candidates.content);
+              this.totalNumber = candidates.page.totalElements;
+              this.setAcceptedCandidates();
+            });
+          }
         });
     });
   }
