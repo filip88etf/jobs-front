@@ -7,9 +7,10 @@
       </div>
     </div>
 
-    <div class="row" [ngClass]="{'has-danger': !valid}">
+    <div class="row">
       <div class="col-md-6">
         <input class="col-md-12 form-control"
+                [ngClass]="{'input-error': !valid}"
                 type="text"
                 [(ngModel)]="model"
                 (focus)="clearValidation()"
@@ -27,8 +28,9 @@
   </div>
 </div>
 <!-- no label => no control style -->
-<div *ngIf="!label" [ngClass]="{'has-danger': !valid}">
+<div *ngIf="!label">
   <input class="form-control"
+          [ngClass]="{'input-error': !valid}"
           type="text"
           [(ngModel)]="model"
           (focus)="clearValidation()"

@@ -37,17 +37,15 @@
                     [label]="'Phone'"
                     [required]="true">
     </app-input-text>
-    <div [ngClass]="{'has-danger': editForm.get('email').errors?.email ? true : false}">
-      <app-input-unique formControlName="email"
-                        [ignoreValue]="ignoreEmail"
-                        [label]="'Email'"
-                        [field]="'email'"
-                        [required]="true">
-      </app-input-unique>
-      <span class="error-message" *ngIf="editForm.get('email').errors?.email">
-        Invalid email
-      </span>
-    </div>
+    <app-input-unique formControlName="email"
+                      [ignoreValue]="ignoreEmail"
+                      [label]="'Email'"
+                      [field]="'email'"
+                      [required]="true">
+    </app-input-unique>
+    <span class="error-message" *ngIf="editForm.get('email').errors?.email">
+      Invalid email
+    </span>
 
     <app-input-select formControlName="profession" ngDefaultControl
                       [label]="'Profession'"

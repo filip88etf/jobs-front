@@ -6,9 +6,10 @@
     </div>
   </div>
 
-  <div class="row" [ngClass]="{'has-danger': !valid}">
+  <div class="row">
     <div class="col-md-6">
       <textarea class="col-md-12 form-control"
+              [ngClass]="{'input-error': !valid}"
               rows="4"
               [(ngModel)]="model"
               (focus)="clearValidation()"
@@ -21,8 +22,9 @@
 
 </div>
 
-<div *ngIf="!label" [ngClass]="{'has-danger': !valid}">
+<div *ngIf="!label">
   <textarea class="col-md-12 form-control"
+        [ngClass]="{'input-error': !valid}"
         rows="4"
         [(ngModel)]="model"
         (focus)="clearValidation()"

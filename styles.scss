@@ -135,8 +135,15 @@
 }
 
 .input-error {
-  border: 1px solid #d9534f;
+  border: 1px solid #d9534f !important;
   border-radius: 4px;
+}
+
+.group-input-error {
+  input {
+    border: 1px solid #d9534f !important;
+    border-radius: 4px;
+  }
 }
 
 .input-warning {

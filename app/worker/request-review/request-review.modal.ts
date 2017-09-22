@@ -18,7 +18,10 @@ export class RequestReviewModal implements OnInit {
   }
 
   ngOnInit() {
-    this.reviewForm = this.formBuilder.group({});
+    this.reviewForm = this.formBuilder.group({
+      username: '',
+      email: ''
+    });
   }
 
   public submit(): void {
