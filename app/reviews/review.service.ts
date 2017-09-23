@@ -62,4 +62,18 @@ export class ReviewService extends BaseService<Review> {
       }
     );
   }
+
+  public doesReviewExist(workerIds: string[], employerUsername: string): Observable<Object[]> {
+    let routeUrl = this.apiUrl + '/workers/reviews/check?employerusername=' + employerUsername;
+
+    return this.httpService.post(routeUrl, workerIds, this.options).map(
+      (response) => {
+        return response.json();
+      }
+    ).catch(
+      (error: any) => {
+        return this.errorHandler(error);
+      }
+    );
+  }
 }

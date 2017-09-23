@@ -13,30 +13,40 @@ import { ToastService } from '../../../core/services/toast.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-review-modal',
-  templateUrl: 'review-modal.component.html',
-  styleUrls: ['review-modal.component.css']
+  selector: 'app-review-workers',
+  templateUrl: 'review-workers.modal.html',
+  styleUrls: ['review-workers.modal.css']
 })
 
-export class ReviewModalComponent implements OnInit {
+export class ReviewWorkersModal implements OnInit {
   candidates: Worker[];
   reviewForm: FormGroup;
   isUp: boolean[] = [];
   isSubmited: boolean = false;
   loggedEmployer: User;
   jobId: string;
+  reviewedCandidates: Worker[] = [];
+  candidatesToReview: Worker[] = [];
 
   constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal, private userService: UserService,
     private notificationService: NotificationService, private reviewService: ReviewService,
     private toastService: ToastService) {
+      this.reviewForm = this.formBuilder.group({});
   }
 
   ngOnInit() {
-    let inputs = this.createReviewFields();
-    this.reviewForm = this.formBuilder.group(inputs);
     this.userService.getUser().subscribe(
       (loggedEmployer) => {
         this.loggedEmployer = loggedEmployer;
+        this.reviewService.doesReviewExist(this.getCandidateIds(), loggedEmployer.username).subscribe(
+          (response) => {
+            let inputs: Object;
+
+            this.seperateReviewedAndToReviewCandidates(response);
+            inputs = this.createReviewFields();
+            this.reviewForm = this.formBuilder.group(inputs);
+          }
+        );
       }
     );
   }
@@ -63,10 +73,10 @@ export class ReviewModalComponent implements OnInit {
     this.activeModal.dismiss('close');
   }
 
-  private createReviewFields () {
+  private createReviewFields (): Object {
     let fields: Object = {};
 
-    for (let i = 0; i < this.candidates.length; i++) {
+    for (let i = 0; i < this.candidatesToReview.length; i++) {
       fields['candidate' + i] = '';
     }
     return fields;
@@ -78,8 +88,8 @@ export class ReviewModalComponent implements OnInit {
 
     for (let review in reviewMap) {
       reviews.push({
-        workerId: this.candidates[i].id,
-        workerUsername: this.candidates[i].username,
+        workerId: this.candidatesToReview[i].id,
+        workerUsername: this.candidatesToReview[i].username,
         employerId: this.loggedEmployer.id,
         employerUsername: this.loggedEmployer.username,
         jobId: this.jobId,
@@ -92,12 +102,36 @@ export class ReviewModalComponent implements OnInit {
 
   private recomendationsDone(): boolean {
     let done = true;
-    for (let i = 0; i < this.candidates.length; i++) {
+    for (let i = 0; i < this.candidatesToReview.length; i++) {
       if (this.isUp[i] === undefined) {
         done = false;
       }
     }
 
     return done;
+  }
+
+  private getCandidateIds(): string[] {
+    let ids: string[] = [];
+
+    for (let i = 0; i < this.candidates.length; i++) {
+      ids.push(this.candidates[i].id);
+    }
+
+    return ids;
+  }
+
+  private seperateReviewedAndToReviewCandidates(isReviewedMap: any): void {
+    for (let workerId in isReviewedMap) {
+      for (let candidate of this.candidates) {
+        if (candidate['id'].toString() === workerId) {
+          if (isReviewedMap[workerId]) {
+            this.reviewedCandidates.push(candidate);
+          } else {
+            this.candidatesToReview.push(candidate);
+          }
+        }
+      }
+    }
   }
 }

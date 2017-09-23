@@ -11,7 +11,7 @@ import { Worker } from '../../../worker/Worker';
 import { WorkerService } from '../../../worker/worker.service';
 import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 import { EditJobComponent } from '../edit/edit-job.component';
-import { ReviewModalComponent } from '../review-modal/review-modal.component';
+import { ReviewWorkersModal } from '../review-workers/review-workers.modal';
 import { ApplicationService } from '../../../applications/application.service';
 
 @Component({
@@ -106,7 +106,7 @@ export class EmployerJobDetailsComponent implements OnInit {
   }
 
   public openDoneJobModal(): void {
-    let modal = this.modalService.open(ReviewModalComponent, {size: 'lg'});
+    let modal = this.modalService.open(ReviewWorkersModal, {size: 'lg'});
 
     modal.componentInstance.init(this.acceptedCandidates, this.job.id);
     modal.result.then(

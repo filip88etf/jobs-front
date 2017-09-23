@@ -6,8 +6,18 @@
     </button>
   </div>
   <div class="modal-body">
-    <div *ngFor="let candidate of candidates; let i=index;">
 
+    <div *ngFor="let candidate of reviewedCandidates">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="review-input">
+            <span>You have already gave review to {{candidate.firstName + " " + candidate.lastName}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let candidate of candidatesToReview; let i=index;">
       <div class="row">
         <div class="col-md-12">
           <div class="padding-10">
@@ -31,8 +41,8 @@
           </div>
         </div>
       </div>
-
     </div>
+
   </div>
   <div class="modal-footer">
     <button (click)="close()" class="btn btn-outline-secondary">Cancel</button>
