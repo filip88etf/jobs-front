@@ -32,10 +32,8 @@ export class ApplyModalComponent {
   }
 
   public submit(): void {
-    let application: Application = new Application();
+    let application: Application = new Application(this.user.id, this.job.id, 'pending', this.job.username);
     Helper.submitForm(this.applyForm, application);
-    application.workerId = this.user.id,
-    application.jobId = this.job.id,
 
     this.applicationService.create(application).subscribe(
       (response) => {

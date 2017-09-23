@@ -65,6 +65,7 @@ export class ReviewService extends BaseService<Review> {
 
   public doesReviewExist(workerIds: string[], employerUsername: string): Observable<Object[]> {
     let routeUrl = this.apiUrl + '/workers/reviews/check?employerusername=' + employerUsername;
+    if (!this.options) this.initOptions();
 
     return this.httpService.post(routeUrl, workerIds, this.options).map(
       (response) => {
@@ -75,5 +76,18 @@ export class ReviewService extends BaseService<Review> {
         return this.errorHandler(error);
       }
     );
+  }
+
+  public verifyRequestReview(params: Object) {
+    let routeUrl = this.apiUrl + '/workers/reviews/verify?' + this.encodeUrl(params);
+    if (!this.options) this.initOptions();
+
+    return this.httpService.get(routeUrl, this.options).map(
+      (response) => {
+        return response.json();
+      }
+    ).catch((error: any) => {
+      return this.errorHandler(error);
+    });
   }
 }
