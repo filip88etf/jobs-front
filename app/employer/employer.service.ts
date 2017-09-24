@@ -21,15 +21,15 @@ export class EmployerService extends BaseService<Employer> {
     super('employers', http, authorizationService, notificationService, router);
   }
 
-  public getEmployer(): Observable<Employer> {
+  public getCurrentEmployer(): Observable<Employer> {
     if (!this.options) { this.initOptions(); }
     if (!this.employer) {
-      return this.getByUsername(localStorage.getItem('username'));
+      return this.getCurrentByUsername(localStorage.getItem('username'));
     }
     return Observable.of(this.employer);
   }
 
-  public getByUsername(username: string): Observable<Employer> {
+  public getCurrentByUsername(username: string): Observable<Employer> {
     let routeUrl = '/search/findByUsername?username=' + username;
     this.initOptions();
 
@@ -40,6 +40,21 @@ export class EmployerService extends BaseService<Employer> {
           Object.assign(this.employer, response.json());
           localStorage.setItem('username', this.employer.username);
           return this.employer;
+      })
+      .catch(
+        (error: any) => {
+          return this.errorHandler(error);
+        }
+      );
+  }
+
+  public getByUsername(username: string): Observable<Employer> {
+    let routeUrl = '/search/findByUsername?username=' + username;
+
+    return this.http.get(this.apiUrl + routeUrl)
+      .map(
+        (response: Response) => {
+          return response.json();
       })
       .catch(
         (error: any) => {

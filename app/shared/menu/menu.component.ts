@@ -18,7 +18,7 @@ export class MenuComponent {
   public login() {
     this.userService.isLogged().subscribe((response) => {
       if (response) {
-        this.userService.getUser().subscribe(
+        this.userService.getCurrentUser().subscribe(
           (user: any) => { this.router.navigate([user.type + '/profile']); },
           (error: any) => { this.router.navigate(['user/login']); }
         );
@@ -31,7 +31,7 @@ export class MenuComponent {
   public register() {
     this.userService.isLogged().subscribe((response) => {
       if (response) {
-        this.userService.getUser().subscribe(
+        this.userService.getCurrentUser().subscribe(
           (user: any) => { this.router.navigate([user.type + '/profile']); },
           (error: any) => { this.router.navigate(['user/login']); }
         );

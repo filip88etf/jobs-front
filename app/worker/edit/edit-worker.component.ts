@@ -50,7 +50,7 @@ export class EditWorkerComponent implements OnInit {
       description: this.worker.description
     });
 
-    this.workerService.getWorker().subscribe(
+    this.workerService.getCurrentWorker().subscribe(
       (response) => {
         this.worker = response;
         this.ignoreEmail = this.worker.email;

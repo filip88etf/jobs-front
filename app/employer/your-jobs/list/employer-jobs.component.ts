@@ -31,7 +31,7 @@ export class EmployerJobsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.userService.getUser().subscribe(
+      this.userService.getCurrentUser().subscribe(
         (user) => {
           let filters = Object.assign({}, params);
           filters['username'] = user.username;

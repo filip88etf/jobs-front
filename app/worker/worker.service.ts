@@ -20,32 +20,15 @@ export class WorkerService extends BaseService<Worker> {
     super('workers', http, authorizationService, notificationService, router);
   }
 
-  public getWorker(): Observable<Worker> {
+  public getCurrentWorker(): Observable<Worker> {
     if (!this.options) { this.initOptions(); }
     if (!this.worker) {
-      return this.getByUsername(localStorage.getItem('username'));
+      return this.getCurrentByUsername(localStorage.getItem('username'));
     }
     return Observable.of(this.worker);
   }
 
-  public getDetails(username: string): Observable<Worker> {
-    let routeUrl = '/details/findByUsername?username=' + username;
-
-    return this.http.get(this.apiUrl + routeUrl, this.options)
-      .map(
-        (response: Response) => {
-          let worker = new Worker();
-          Object.assign(worker, response.json());
-          return worker;
-      })
-      .catch(
-        function fail(error: any): any {
-          console.log(error);
-        }.bind(this)
-      );
-  }
-
-  public getByUsername(username: string): Observable<Worker> {
+  public getCurrentByUsername(username: string): Observable<Worker> {
     let routeUrl = '/search/findByUsername?username=' + username;
     this.initOptions();
 
@@ -61,6 +44,39 @@ export class WorkerService extends BaseService<Worker> {
       .catch(
         function fail(error: any): any {
           return this.errorHandler(error);
+        }.bind(this)
+      );
+  }
+
+  public getByUsername(username: string): Observable<Worker> {
+    let routeUrl = '/search/findByUsername?username=' + username;
+    this.initOptions();
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        (response: Response) => {
+          return response.json();
+      })
+      .catch(
+        (error: any) => {
+          return this.errorHandler(error);
+        }
+      );
+  }
+
+  public getDetails(username: string): Observable<Worker> {
+    let routeUrl = '/details/findByUsername?username=' + username;
+
+    return this.http.get(this.apiUrl + routeUrl, this.options)
+      .map(
+        (response: Response) => {
+          let worker = new Worker();
+          Object.assign(worker, response.json());
+          return worker;
+      })
+      .catch(
+        function fail(error: any): any {
+          console.log(error);
         }.bind(this)
       );
   }

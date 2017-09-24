@@ -43,7 +43,7 @@ export class FacebookWorkerComponent implements OnInit {
       description: ''
     });
 
-    this.userService.getUser().subscribe(
+    this.userService.getCurrentUser().subscribe(
       (response: any) => {
         this.worker = Object.assign(new Worker(), response);
         this.worker.type = 'worker';
@@ -68,9 +68,9 @@ export class FacebookWorkerComponent implements OnInit {
   private authorizeAndLogin(username: string, facebookAccessToken: string): void {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       (result: any) => {
-        this.workerService.getByUsername(username).subscribe(
-          (result: any) => {
-            this.workerService.getWorker().subscribe((worker: any) => { this.userService.setUser(worker); });
+        this.workerService.getCurrentByUsername(username).subscribe(
+          (worker: any) => {
+            this.userService.setUser(worker);
             this.router.navigate(['worker/profile']); },
           (error: any) => { console.log(error); }
         );

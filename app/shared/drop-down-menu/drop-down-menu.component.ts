@@ -23,7 +23,7 @@ export class DropDownMenuComponent {
   }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(
+    this.userService.getCurrentUser().subscribe(
       (user) => { this.user = user; }
     );
   }

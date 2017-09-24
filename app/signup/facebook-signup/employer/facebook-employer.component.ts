@@ -37,7 +37,7 @@ export class FacebookEmployerComponent implements OnInit {
       phone: ''
     });
 
-    this.userService.getUser().subscribe(
+    this.userService.getCurrentUser().subscribe(
       (response: any) => {
         this.employer = Object.assign(new Employer(), response);
         this.employer.type = 'employer';
@@ -70,9 +70,9 @@ export class FacebookEmployerComponent implements OnInit {
   authorizeAndLogin(username: string, facebookAccessToken: string) {
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       (result: any) => {
-        this.employerService.getEmployer().subscribe(
-          (result: any) => {
-            this.employerService.getEmployer().subscribe((employer: any) => { this.userService.setUser(employer); });
+        this.employerService.getCurrentEmployer().subscribe(
+          (employer: any) => {
+            this.userService.setUser(employer);
             this.router.navigate(['employer/profile']);
           },
           (error: any) => { console.log(error); }

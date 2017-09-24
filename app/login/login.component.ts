@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.badCredentials = false;
     this.authorizationService.authorize(this.username, this.password).subscribe(
       (result: any) => {
-        this.userService.getByUsername(this.username).subscribe(
+        this.userService.getCurrentByUsername(this.username).subscribe(
           (user: any) => { this.router.navigate([user.type + '/profile']); },
           (error: any) => { console.log(error); }
         );
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
 
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       (result: any) => {
-        this.userService.getByUsername(username).subscribe(
+        this.userService.getCurrentByUsername(username).subscribe(
           (user: any) => {
             if (user) {
               this.router.navigate([user.type + '/profile']);

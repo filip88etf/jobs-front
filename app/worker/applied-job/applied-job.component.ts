@@ -6,6 +6,7 @@ import { ConfirmModalComponent } from '../../shared/confirm-modal/confirm-modal.
 import { Helper } from '../../helper';
 import { JobService } from '../../jobs/job.service';
 import { Job } from '../../jobs/Job';
+import { ReviewEmployerModal } from '../review-employer/review-employer.modal';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +19,7 @@ export class AppliedJobComponent {
   noPicture: string = 'assets/images/no-job-picture.png';
   @Input() job: Job;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private modalService: NgbModal) {
   }
 
   public openJobDetails(): void {
@@ -27,5 +28,16 @@ export class AppliedJobComponent {
 
   public getStatus(): string {
     return Helper.getStatus(this.job.status);
+  }
+
+  public openReviewEmployer(): void {
+    let modal = this.modalService.open(ReviewEmployerModal);
+
+    modal.componentInstance.init(this.job);
+    modal.result.then(
+      (result) => {
+      },
+      (reason) => { }
+    );
   }
 }

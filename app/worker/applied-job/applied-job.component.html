@@ -22,6 +22,9 @@
           {{job.description}}
         </div>
       </div>
+      <div class="col-md-2" *ngIf="job.status === 'done'">
+        <button class="btn brand-btn" (click)="openReviewEmployer()">Review employer</button>
+      </div>
     </div>
   </div>
 

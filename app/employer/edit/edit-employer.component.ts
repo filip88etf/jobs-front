@@ -46,7 +46,7 @@ export class EditEmployerComponent implements OnInit {
       email: [this.employer.email, [GlobalValidators.emailValidator]],
     });
 
-    this.employerService.getEmployer().subscribe(
+    this.employerService.getCurrentEmployer().subscribe(
       (response) => {
         this.employer = response;
         this.ignoreEmail = this.employer.email;

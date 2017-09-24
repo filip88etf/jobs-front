@@ -40,7 +40,6 @@ export class ApplyModalComponent {
         this.activeModal.close(response);
       }
     );
-
   }
 
   public close(): void {

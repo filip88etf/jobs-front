@@ -27,7 +27,7 @@ export class AppliedJobsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.workerService.getWorker().subscribe((worker) => {
+    this.workerService.getCurrentWorker().subscribe((worker) => {
       this.applicationService.getByWorkerId(worker.id).subscribe(
         (applications: any) => {
           this.fetchAppliedJobs(applications);

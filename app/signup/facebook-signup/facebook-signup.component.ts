@@ -68,7 +68,7 @@ export class FacebookSignupComponent implements OnInit {
 
     this.authorizationService.authorizeWithFacebook(username, facebookAccessToken).subscribe(
       (result: any) => {
-        this.userService.getByUsername(username).subscribe(
+        this.userService.getCurrentByUsername(username).subscribe(
           (user: any) => { this.router.navigate([user.type + '/profile']); },
           (error: any) => { console.log(error); }
         );

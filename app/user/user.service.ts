@@ -25,7 +25,14 @@ export class UserService extends BaseService<User> {
     super('', http, authorizationService, notificationService, router);
   }
 
-  getByUsername(username: string): Observable<User> {
+  getCurrentUser(): Observable<User> {
+    if (!this.user) {
+      return this.getCurrentByUsername(localStorage.getItem('username'));
+    }
+    return Observable.of(this.user);
+  }
+
+  getCurrentByUsername(username: string): Observable<User> {
     let routeUrl = '/users/findByUsername?username=' + username;
     this.initOptions();
 
@@ -68,13 +75,6 @@ export class UserService extends BaseService<User> {
           console.log(error);
         }
       );
-  }
-
-  getUser(): Observable<User> {
-    if (!this.user) {
-      return this.getByUsername(localStorage.getItem('username'));
-    }
-    return Observable.of(this.user);
   }
 
   setUser(user: User): void {

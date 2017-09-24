@@ -35,7 +35,7 @@ export class ReviewWorkersModal implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(
+    this.userService.getCurrentUser().subscribe(
       (loggedEmployer) => {
         this.loggedEmployer = loggedEmployer;
         this.reviewService.doesReviewExist(this.getCandidateIds(), loggedEmployer.username).subscribe(

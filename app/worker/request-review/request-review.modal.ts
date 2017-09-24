@@ -32,7 +32,7 @@ export class RequestReviewModal implements OnInit {
     this.reviewForm = this.formBuilder.group({
       employerusername: ''
     });
-    this.userService.getUser().subscribe(
+    this.userService.getCurrentUser().subscribe(
       (worker: any) => {
         this.worker = worker;
     });

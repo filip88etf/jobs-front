@@ -75,10 +75,11 @@ export class WorkerSignupComponent implements OnInit {
   authorizeAndLogin(username: string, password: string): void {
     this.authorizationService.authorize(username, password).subscribe(
       (result: any) => {
-        this.workerService.getByUsername(username).subscribe(
+        this.workerService.getCurrentByUsername(username).subscribe(
           (result: any) => {
-            this.workerService.getWorker().subscribe((worker: any) => { this.userService.setUser(worker); });
-            this.router.navigate(['worker/profile']); },
+            this.userService.setUser(result);
+            this.router.navigate(['worker/profile']);
+          },
           (error: any) => { console.log(error); }
         );
       },

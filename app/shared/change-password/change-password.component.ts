@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.userService.getUser().subscribe((user) => { this.user = user; });
+    this.userService.getCurrentUser().subscribe((user) => { this.user = user; });
     this.changePasswordForm = this.formBuilder.group({
       oldPassword: '',
       newPasswordGroup: this.formBuilder.group({

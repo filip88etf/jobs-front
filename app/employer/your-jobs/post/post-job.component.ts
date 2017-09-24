@@ -48,7 +48,7 @@ export class PostJobComponent implements OnInit {
       profession: null,
       description: ''
     });
-    this.userService.getUser().subscribe(
+    this.userService.getCurrentUser().subscribe(
       (user) => { this.user = user; }
     );
   }

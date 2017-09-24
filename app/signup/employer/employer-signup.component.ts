@@ -74,9 +74,9 @@ export class EmployerSignupComponent implements OnInit {
   authorizeAndLogin(username: string, password: string) {
     this.authorizationService.authorize(username, password).subscribe(
       (result: any) => {
-        this.employerService.getByUsername(username).subscribe(
-          (result: any) => {
-            this.employerService.getEmployer().subscribe((employer: any) => { this.userService.setUser(employer); });
+        this.employerService.getCurrentByUsername(username).subscribe(
+          (employer: any) => {
+            this.userService.setUser(employer);
             this.router.navigate(['employer/profile']);
           },
           (error: any) => { console.log(error); }
