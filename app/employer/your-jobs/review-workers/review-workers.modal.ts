@@ -62,7 +62,7 @@ export class ReviewWorkersModal implements OnInit {
 
     if (Helper.submitForm(this.reviewForm, reviews) && this.recomendationsDone()) {
       this.notificationService.startLoading();
-      this.reviewService.createReviews(this.mapReviews(reviews)).subscribe(() => {
+      this.reviewService.createWorkerReviews(this.mapReviews(reviews)).subscribe(() => {
         this.activeModal.close(false);
         this.notificationService.stopLoading();
       });

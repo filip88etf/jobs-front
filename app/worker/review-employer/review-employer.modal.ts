@@ -57,7 +57,7 @@ export class ReviewEmployerModal implements OnInit {
 
     if (Helper.submitForm(this.reviewForm, review) && (this.isUp || this.isUp === false)) {
       this.notificationService.startLoading();
-      this.reviewService.createReviews([this.mapReview(review)]).subscribe(() => {
+      this.reviewService.createEmployerReview(this.mapReview(review)).subscribe(() => {
         this.activeModal.close(false);
         this.notificationService.stopLoading();
       });

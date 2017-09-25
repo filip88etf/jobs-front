@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12" *ngIf="employer">
         <div class="padding-10">
           <span>{{employer.firstName + " " + employer.lastName}}</span>
         </div>
@@ -23,7 +23,7 @@
           <span>How satisfy you were with him?</span>
         </div>
         <div class="review-input">
-          <app-text-area [formControlName]="comment" ngDefaultControl
+          <app-text-area formControlName="comment" ngDefaultControl
                        [required]="true">
           </app-text-area>
         </div>

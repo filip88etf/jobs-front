@@ -18,7 +18,7 @@ export class ReviewService extends BaseService<Review> {
     super('', http, authorizationService, notificationService, router);
   }
 
-  public createReviews(reviews: Object[]): Observable<Review[]> {
+  public createWorkerReviews(reviews: Object[]): Observable<Review[]> {
     let routeUrl = this.apiUrl + '/workers/reviews/bulk';
     if (!this.options) this.initOptions();
 
@@ -29,6 +29,20 @@ export class ReviewService extends BaseService<Review> {
     ).catch(
       (error: any) => {
         return this.errorHandler(error, false);
+      }
+    );
+  }
+
+  public createEmployerReview(review: Object): Observable<Review> {
+    let routeUrl = this.apiUrl + '/employers/reviews';
+
+    return this.httpService.post(routeUrl, review, this.options).map(
+      (response) => {
+        return response.json();
+      }
+    ).catch(
+      (error) => {
+        return this.errorHandler(error);
       }
     );
   }

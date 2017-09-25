@@ -113,7 +113,7 @@ export class BaseService <T> {
     );
   }
 
-  public errorHandler(error: any, redirect: boolean = true) {
+  protected errorHandler(error: any, redirect: boolean = true) {
     switch (error.status) {
       case 401:
         this.authorizationService.refreshAccessToken().subscribe(

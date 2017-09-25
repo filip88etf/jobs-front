@@ -40,7 +40,7 @@ export class AppliedJobsComponent implements OnInit {
     let modal = this.modalService.open(RequestReviewModal, {size: 'lg'});
 
     modal.result.then(
-      (result) => {  },
+      (result) => { this.removeJobsAfterEmployerWasReviewed(); },
       (reason) => {  }
     );
   }
@@ -48,6 +48,10 @@ export class AppliedJobsComponent implements OnInit {
   public pageChanged(pageNumber: number) {
     this.page = pageNumber;
     this.router.navigate(['worker/jobs', { page: this.page }]);
+  }
+
+  public removeJobsAfterEmployerWasReviewed() {
+    //for (let jo)
   }
 
   private fetchAppliedJobs(applications: any) {
