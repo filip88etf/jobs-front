@@ -23,7 +23,7 @@ export class ChangePasswordComponent implements OnInit {
   wrongPassword: boolean = false;
   user: User;
 
-  constructor(private formBuilder: FormBuilder, public activeModal: NgbActiveModal, private toastService: ToastService,
+  constructor(private formBuilder: FormBuilder, private activeModal: NgbActiveModal, private toastService: ToastService,
     private userService: UserService, private employerService: EmployerService, private workerService: WorkerService) {
   }
 

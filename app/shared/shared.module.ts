@@ -24,6 +24,7 @@ import { UserMenuComponent } from './user-menu/user-menu.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { DropDownMenuComponent } from './drop-down-menu/drop-down-menu.component';
 import { ReviewComponent } from './review/review.component';
+import { ReportModal } from './report/report.modal';
 
 @NgModule({
   imports: [
@@ -34,7 +35,7 @@ import { ReviewComponent } from './review/review.component';
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent, SearchMenuComponent,
     InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent, DropDownMenuComponent,
     InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent, UserMenuComponent,
-    ChangePasswordComponent, ReviewComponent
+    ChangePasswordComponent, ReviewComponent, ReportModal
   ],
   exports: [
     MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
@@ -43,7 +44,7 @@ import { ReviewComponent } from './review/review.component';
     DropDownMenuComponent, ChangePasswordComponent, ImageCropperComponent, ReviewComponent
   ],
   entryComponents: [
-    PictureCropperComponent, ChangePasswordComponent
+    PictureCropperComponent, ChangePasswordComponent, ReportModal
   ]
 })
 

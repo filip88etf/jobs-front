@@ -11,6 +11,7 @@ import { Job } from '../Job';
 import { UserService } from '../../user/user.service';
 import { ApplyModalComponent } from '../apply-modal/apply-modal.component';
 import { ApplicationService } from '../../applications/application.service';
+import { ReportModal } from '../../shared/report/report.modal';
 
 @Component({
   moduleId: module.id,
@@ -67,11 +68,11 @@ export class JobDetailsComponent implements OnInit {
     this.profileLink = location.href;
   }
 
-  public openEmployerDetails() {
+  public openEmployerDetails(): void {
     this.router.navigate(['employer/details', { username: this.employer.username }]);
   }
 
-  public apply() {
+  public apply(): void {
     let modal = this.modalService.open(ApplyModalComponent);
 
     modal.componentInstance.init(this.job, this.loggedUser);
@@ -80,6 +81,16 @@ export class JobDetailsComponent implements OnInit {
         this.isApplied = true;
         this.applications.push(result);
       },
+      (reason) => { }
+    );
+  }
+
+  public report(): void {
+    let modal = this.modalService.open(ReportModal);
+
+    modal.componentInstance.init(this.job, this.loggedUser, 'job');
+    modal.result.then(
+      (result) => { },
       (reason) => { }
     );
   }

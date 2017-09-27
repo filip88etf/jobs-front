@@ -60,6 +60,7 @@ export class BaseService <T> {
   public create(entity: T): Observable<T> {
     let options = new RequestOptions({ headers: new Headers({'Content-Type': 'application/json'}) });
     this.mapEntityForBackend(entity);
+    if (this.options) this.initOptions();
 
     return this.httpService.post(this.apiUrl, entity, options)
       .map(

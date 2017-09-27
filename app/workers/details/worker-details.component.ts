@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FacebookService, InitParams, LoginOptions } from 'ngx-facebook';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ReviewService } from '../../reviews/review.service';
 import { Review } from '../../reviews/Review';
 import { WorkerService } from '../../worker/worker.service';
 import { UserService } from '../../user/user.service';
 import { Worker } from '../../worker/Worker';
+import { ReportModal } from '../../shared/report/report.modal';
 
 @Component({
   moduleId: module.id,
@@ -24,9 +26,11 @@ export class WorkerDetailsComponent implements OnInit {
   page: number = 1;
   totalNumber: number = 0;
   size: number = 10;
+  loggedUser: Object;
 
   constructor(private facebookService: FacebookService, private workerService: WorkerService, private router: Router,
-    private route: ActivatedRoute, private userService: UserService, private reviewService: ReviewService) {
+    private route: ActivatedRoute, private userService: UserService, private reviewService: ReviewService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -46,6 +50,7 @@ export class WorkerDetailsComponent implements OnInit {
     this.userService.isLogged().subscribe(
       (response) => {
         this.isLogged = !!response;
+        this.loggedUser = response;
       }
     );
 
@@ -62,5 +67,15 @@ export class WorkerDetailsComponent implements OnInit {
   public pageChanged(pageNumber: number) {
     this.page = pageNumber;
     this.router.navigate(['workers/details', { username: this.worker.username, page: this.page }]);
+  }
+
+  public report(): void {
+    let modal = this.modalService.open(ReportModal);
+
+    modal.componentInstance.init(this.worker, this.loggedUser, 'worker');
+    modal.result.then(
+      (result) => { },
+      (reason) => { }
+    );
   }
 }

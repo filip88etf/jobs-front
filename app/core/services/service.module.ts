@@ -10,6 +10,7 @@ import { ApplicationService } from '../../applications/application.service';
 import { ToastService } from './toast.service';
 import { AuthGuardService } from './auth-guard.service';
 import { NotificationService } from './notification.service';
+import { ReportService } from '../../report/report.service';
 
 @NgModule({
   imports: [HttpModule]
@@ -19,7 +20,7 @@ export class ServiceModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: ServiceModule,
-      providers: [AuthorizationService, ToastService, AuthGuardService, ReviewService,
+      providers: [AuthorizationService, ToastService, AuthGuardService, ReviewService, ReportService,
         EmployerService, UserService, WorkerService, NotificationService, ApplicationService]
     };
   }

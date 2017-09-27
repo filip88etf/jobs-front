@@ -58,7 +58,4 @@ export class JobItemComponent implements OnInit {
       this.isQualified = true;
     }
   }
-
-  public report(): void {
-  }
 }
