@@ -13,11 +13,11 @@ import { Job } from '../../../jobs/Job';
 @Component({
   moduleId: module.id,
   selector: 'app-edit-job',
-  templateUrl: 'edit-job.component.html',
+  templateUrl: 'edit-job.modal.html',
   styles: ['.image-cropper { padding: 20px 0px }']
 })
 
-export class EditJobComponent implements OnInit {
+export class EditJobModal implements OnInit {
   editJobForm: FormGroup;
   selected: Option[];
   regions: Option[] = CITIES;

@@ -5,11 +5,11 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   moduleId: module.id,
   selector: 'app-picture-cropper',
-  templateUrl: 'picture-cropper.component.html',
-  styleUrls: ['picture-cropper.component.css']
+  templateUrl: 'picture-cropper.modal.html',
+  styleUrls: ['picture-cropper.modal.css']
 })
 
-export class PictureCropperComponent {
+export class PictureCropperModal {
   data: any;
   cropperSettings: CropperSettings;
   noPicture: string = 'assets/images/no-profile-pic.png';

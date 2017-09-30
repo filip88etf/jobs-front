@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
+import { ConfirmModal } from '../../../shared/confirm/confirm.modal';
 import { Worker } from '../../../worker/Worker';
 import { ApplicationService } from '../../../applications/application.service';
 import { Application } from '../../../applications/Application';
@@ -31,7 +31,7 @@ export class CandidateComponent implements OnInit {
   }
 
   public accept() {
-    let modal = this.modalService.open(ConfirmModalComponent);
+    let modal = this.modalService.open(ConfirmModal);
 
     modal.componentInstance.init('Accept ' + this.candidate.firstName + ' ' + this.candidate.lastName,
       'If you accept this worker your job will go in progress and won\'t be visible to public any more', 'Accept');

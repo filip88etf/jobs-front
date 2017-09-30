@@ -13,15 +13,15 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { InputSelectComponent } from './input-select/input-select.component';
 import { InputCalendarComponent } from './input-calendar/input-calendar.component';
 import { InputPasswordComponent } from './input-password/input-password.component';
-import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { ConfirmModal } from './confirm/confirm.modal';
 import { TextAreaComponent } from './text-area/text-area.component';
 import { InputMultiselectComponent } from './input-multiselect/input-multiselect.component';
 import { InputUniqueComponent } from './input-unique/input-unique.component';
-import { PictureCropperComponent } from './picture-cropper/picture-cropper.component';
+import { PictureCropperModal } from './picture-cropper/picture-cropper.modal';
 import { LoaderComponent } from './loader/loader.component';
 import { SearchMenuComponent } from './search-menu/search-menu.component';
 import { UserMenuComponent } from './user-menu/user-menu.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordModal } from './change-password/change-password.modal';
 import { DropDownMenuComponent } from './drop-down-menu/drop-down-menu.component';
 import { ReviewComponent } from './review/review.component';
 import { ReportModal } from './report/report.modal';
@@ -33,18 +33,18 @@ import { ReportModal } from './report/report.modal';
   ],
   declarations: [
     MenuComponent, ValidationMessage, InputPasswordComponent, TextAreaComponent, LoaderComponent, SearchMenuComponent,
-    InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperComponent, DropDownMenuComponent,
-    InputCalendarComponent, ConfirmModalComponent, InputUniqueComponent, ImageCropperComponent, UserMenuComponent,
-    ChangePasswordComponent, ReviewComponent, ReportModal
+    InputMultiselectComponent, InputTextComponent, InputSelectComponent, PictureCropperModal, DropDownMenuComponent,
+    InputCalendarComponent, ConfirmModal, InputUniqueComponent, ImageCropperComponent, UserMenuComponent,
+    ChangePasswordModal, ReviewComponent, ReportModal
   ],
   exports: [
-    MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperComponent, LoaderComponent,
+    MenuComponent, ValidationMessage, InputPasswordComponent, PictureCropperModal, LoaderComponent,
     TextAreaComponent, InputMultiselectComponent, InputTextComponent, InputUniqueComponent, SearchMenuComponent,
-    InputSelectComponent, InputCalendarComponent, ConfirmModalComponent, FormsModule, ToastyModule, UserMenuComponent,
-    DropDownMenuComponent, ChangePasswordComponent, ImageCropperComponent, ReviewComponent
+    InputSelectComponent, InputCalendarComponent, ConfirmModal, FormsModule, ToastyModule, UserMenuComponent,
+    DropDownMenuComponent, ChangePasswordModal, ImageCropperComponent, ReviewComponent
   ],
   entryComponents: [
-    PictureCropperComponent, ChangePasswordComponent, ReportModal
+    PictureCropperModal, ChangePasswordModal, ReportModal
   ]
 })
 

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ApplyModalComponent } from '../apply-modal/apply-modal.component';
+import { ApplyModal } from '../apply/apply.modal';
 import { JobService } from '../job.service';
 import { Job } from '../Job';
 import { User } from '../../user/User';
@@ -34,7 +34,7 @@ export class JobItemComponent implements OnInit {
   }
 
   public apply (): void {
-    let modal = this.modalService.open(ApplyModalComponent);
+    let modal = this.modalService.open(ApplyModal);
 
     modal.componentInstance.init(this.job, this.loggedUser);
     modal.result.then(

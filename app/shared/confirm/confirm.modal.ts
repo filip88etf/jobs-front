@@ -4,10 +4,10 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   moduleId: module.id,
   selector: 'app-confirm-modal',
-  templateUrl: 'confirm-modal.component.html'
+  templateUrl: 'confirm.modal.html'
 })
 
-export class ConfirmModalComponent {
+export class ConfirmModal {
   headerText: string;
   bodyText: string;
   submitText: string;

@@ -2,9 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConfirmModalComponent } from '../../shared/confirm-modal/confirm-modal.component';
 import { Helper } from '../../helper';
-import { JobService } from '../../jobs/job.service';
 import { Job } from '../../jobs/Job';
 import { ReviewEmployerModal } from '../review-employer/review-employer.modal';
 

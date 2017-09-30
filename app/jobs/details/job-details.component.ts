@@ -9,7 +9,7 @@ import { Employer } from '../../employer/Employer';
 import { JobService } from '../job.service';
 import { Job } from '../Job';
 import { UserService } from '../../user/user.service';
-import { ApplyModalComponent } from '../apply-modal/apply-modal.component';
+import { ApplyModal } from '../apply/apply.modal';
 import { ApplicationService } from '../../applications/application.service';
 import { ReportModal } from '../../shared/report/report.modal';
 
@@ -73,7 +73,7 @@ export class JobDetailsComponent implements OnInit {
   }
 
   public apply(): void {
-    let modal = this.modalService.open(ApplyModalComponent);
+    let modal = this.modalService.open(ApplyModal);
 
     modal.componentInstance.init(this.job, this.loggedUser);
     modal.result.then(

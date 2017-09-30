@@ -11,10 +11,10 @@ import { ApplicationService } from '../../applications/application.service';
 @Component({
   moduleId: module.id,
   selector: 'app-apply-modal',
-  templateUrl: 'apply-modal.component.html'
+  templateUrl: 'apply.modal.html'
 })
 
-export class ApplyModalComponent {
+export class ApplyModal {
   applyForm: FormGroup;
   user: User;
   job: Job;

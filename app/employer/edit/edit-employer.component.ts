@@ -10,7 +10,7 @@ import { GENDER_LIST } from '../../global-consts';
 import { Option } from '../../global-types';
 import { EmployerService } from '../employer.service';
 import { Helper } from '../../helper';
-import { PictureCropperComponent } from '../../shared/picture-cropper/picture-cropper.component';
+import { PictureCropperModal } from '../../shared/picture-cropper/picture-cropper.modal';
 
 @Component({
   moduleId: module.id,
@@ -79,7 +79,7 @@ export class EditEmployerComponent implements OnInit {
       submitText: 'Upload',
       cancelText: 'Cancel'
     };
-    let  modal = this.modalService.open(PictureCropperComponent, {size: 'lg'});
+    let  modal = this.modalService.open(PictureCropperModal, {size: 'lg'});
 
     modal.componentInstance.init(modalSettings);
     modal.result.then(

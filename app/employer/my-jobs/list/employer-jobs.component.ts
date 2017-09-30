@@ -4,9 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToastService } from '../../../core/services/toast.service';
 import { JobService } from '../../../jobs/job.service';
-import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
-import { EditJobComponent } from './../edit/edit-job.component';
-import { PostJobComponent } from './../post/post-job.component';
+import { PostJobModal } from './../post/post-job.modal';
 import { Job } from '../../../jobs/Job';
 import { UserService } from '../../../user/user.service';
 
@@ -18,8 +16,6 @@ import { UserService } from '../../../user/user.service';
 })
 
 export class EmployerJobsComponent implements OnInit {
-  @ViewChild(ConfirmModalComponent) confirmModal: ConfirmModalComponent;
-  @ViewChild(EditJobComponent) editModal: EditJobComponent;
   page: number = 1;
   totalNumber: number;
   size: number = 10;
@@ -47,7 +43,7 @@ export class EmployerJobsComponent implements OnInit {
   }
 
   public openPostModal(): void {
-    let modal = this.modalService.open(PostJobComponent, {size: 'lg'});
+    let modal = this.modalService.open(PostJobModal, {size: 'lg'});
 
     modal.result.then(
       (result) => {

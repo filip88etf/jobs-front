@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { ChangePasswordModal } from '../change-password/change-password.modal';
 import { UserService } from '../../user/user.service';
 import { WorkerService } from '../../worker/worker.service';
 import { EmployerService } from '../../employer/employer.service';
@@ -29,7 +29,7 @@ export class DropDownMenuComponent {
   }
 
   openPasswordModal() {
-    let modal = this.modalService.open(ChangePasswordComponent);
+    let modal = this.modalService.open(ChangePasswordModal);
 
     modal.result.then(
       (result) => { },

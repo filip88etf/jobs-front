@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToastService } from '../../../core/services/toast.service';
-import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
+import { ConfirmModal } from '../../../shared/confirm/confirm.modal';
 import { Helper } from '../../../helper';
 import { JobService } from '../../../jobs/job.service';
-import { EditJobComponent } from '../edit/edit-job.component';
+import { EditJobModal } from '../edit/edit-job.modal';
 import { Job } from '../../../jobs/Job';
 
 @Component({
@@ -27,7 +27,7 @@ export class JobItemComponent {
   }
 
   public openCancelJobModal(): void {
-    let modal = this.modalService.open(ConfirmModalComponent);
+    let modal = this.modalService.open(ConfirmModal);
 
     modal.componentInstance.init('Cancel Job',
       'If you cancel the job you won\'t be able to add review to worker who work on this job. ' +
@@ -45,7 +45,7 @@ export class JobItemComponent {
       (response: any) => {
         this.toastService.success('Job is canceld!');
         this.onCancel.emit(this.job.id);
-        this.router.navigate(['employer/jobs']);
+        this.router.navigate(['employer/jobs', { page: 1}]);
       },
       (error: any) => {
         console.log(error);
@@ -54,7 +54,7 @@ export class JobItemComponent {
   }
 
   public openEditJobModal(): void {
-    let modal = this.modalService.open(EditJobComponent, {size: 'lg'});
+    let modal = this.modalService.open(EditJobModal, {size: 'lg'});
 
     modal.componentInstance.init(this.job);
     modal.result.then(

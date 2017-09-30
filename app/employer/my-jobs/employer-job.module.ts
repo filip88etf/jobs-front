@@ -5,10 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EmployerJobsComponent } from './list/employer-jobs.component';
 import { JobItemComponent } from './job-item/job-item.component';
-import { EditJobComponent } from './edit/edit-job.component';
-import { PostJobComponent } from './post/post-job.component';
+import { EditJobModal } from './edit/edit-job.modal';
+import { PostJobModal } from './post/post-job.modal';
 import { SharedModule } from '../../shared/shared.module';
-import { ConfirmModalComponent } from '../../shared/confirm-modal/confirm-modal.component';
+import { ConfirmModal } from '../../shared/confirm/confirm.modal';
 import { EmployerJobDetailsComponent } from './details/employer-job-details.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import { ReviewWorkersModal } from './review-workers/review-workers.modal';
@@ -16,9 +16,9 @@ import { ReviewWorkersModal } from './review-workers/review-workers.modal';
 @NgModule({
   imports: [CommonModule, SharedModule, NgbModule, FormsModule, ReactiveFormsModule],
   declarations: [EmployerJobsComponent, EmployerJobDetailsComponent, JobItemComponent,
-    EditJobComponent, PostJobComponent, CandidateComponent, ReviewWorkersModal],
-  exports: [EmployerJobsComponent, JobItemComponent, EditJobComponent, PostJobComponent],
-  entryComponents: [PostJobComponent, EditJobComponent, ConfirmModalComponent, ReviewWorkersModal]
+    EditJobModal, PostJobModal, CandidateComponent, ReviewWorkersModal],
+  exports: [EmployerJobsComponent],
+  entryComponents: [PostJobModal, EditJobModal, ConfirmModal, ReviewWorkersModal]
 })
 
 export class EmployerJobModule {

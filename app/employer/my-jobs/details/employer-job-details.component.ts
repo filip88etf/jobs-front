@@ -9,8 +9,8 @@ import { Application } from '../../../applications/Application';
 import { JobService } from '../../../jobs/job.service';
 import { Worker } from '../../../worker/Worker';
 import { WorkerService } from '../../../worker/worker.service';
-import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
-import { EditJobComponent } from '../edit/edit-job.component';
+import { ConfirmModal } from '../../../shared/confirm/confirm.modal';
+import { EditJobModal } from '../edit/edit-job.modal';
 import { ReviewWorkersModal } from '../review-workers/review-workers.modal';
 import { ApplicationService } from '../../../applications/application.service';
 
@@ -70,7 +70,7 @@ export class EmployerJobDetailsComponent implements OnInit {
   }
 
   public openCancelJobModal(): void {
-    let modal = this.modalService.open(ConfirmModalComponent);
+    let modal = this.modalService.open(ConfirmModal);
 
     modal.componentInstance.init('Cancel Job',
       'If you cancel the job you won\'t be able to add review to worker who work on this job. ' +
@@ -96,7 +96,7 @@ export class EmployerJobDetailsComponent implements OnInit {
   }
 
   public openEditJobModal(): void {
-    let modal = this.modalService.open(EditJobComponent, {size: 'lg'});
+    let modal = this.modalService.open(EditJobModal, {size: 'lg'});
 
     modal.componentInstance.init(this.job);
     modal.result.then(

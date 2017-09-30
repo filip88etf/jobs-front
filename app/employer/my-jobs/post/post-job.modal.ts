@@ -15,11 +15,11 @@ import { Helper } from '../../../helper';
 @Component({
   moduleId: module.id,
   selector: 'app-post-job',
-  templateUrl: 'post-job.component.html',
+  templateUrl: 'post-job.modal.html',
   styles: ['.image-cropper { padding: 20px 0px }']
 })
 
-export class PostJobComponent implements OnInit {
+export class PostJobModal implements OnInit {
   regions: Option[] = CITIES;
   professions: Option[] = PROFESSIONS;
   cropperSettings: CropperSettings;

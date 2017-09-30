@@ -14,11 +14,10 @@ import { User } from '../../user/User';
 @Component({
   moduleId: module.id,
   selector: 'app-change-password',
-  templateUrl: 'change-password.component.html',
-  styles: []
+  templateUrl: 'change-password.modal.html'
 })
 
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordModal implements OnInit {
   changePasswordForm: FormGroup;
   wrongPassword: boolean = false;
   user: User;
